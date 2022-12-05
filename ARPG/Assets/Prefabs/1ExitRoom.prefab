@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975270707060947377}
   - component: {fileID: 8282403222250315860}
+  - component: {fileID: 3699878307710309266}
   m_Layer: 0
   m_Name: 1ExitRoom
   m_TagString: Untagged
@@ -145,6 +146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivotPoints:
   - {fileID: 7312303853829007487}
+--- !u!65 &3699878307710309266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438075820671748406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.086148, y: 5.9071693, z: 8.336994}
+  m_Center: {x: -0.1752162, y: 2.9874134, z: 0.04210949}
 --- !u!1 &3088020409293497287
 GameObject:
   m_ObjectHideFlags: 0
