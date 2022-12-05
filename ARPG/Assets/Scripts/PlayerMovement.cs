@@ -1,0 +1,127 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public GameObject cam;
+    public Transform body;
+    [NonSerialized]
+    public Vector3 move;
+    
+    private CapsuleCollider _col;
+    private Rigidbody _rb;
+    private bool _grounded;
+    private Vector3 _groundNormal = Vector3.up;
+    private float _regularSpeed;
+    private Vector3 _endVel;
+    
+    [Header("Movement Variables")]
+    public float moveSpeed = 5f;
+    public float acceleration = 2;
+    
+    [Header("Move Limitations")] 
+    public float friction = 0.6f;
+    public float maxStrafeSpeed = 30;
+    public float maxGroundAngle = 35f;
+    public float maxVelocity = 50;
+    public LayerMask walkableLayers;
+    
+    [Header("Other movement variables")]
+    public float gravityScale = 9.82f;
+    public bool canMove = true;
+
+    void Start()
+    {
+        _col = GetComponent<CapsuleCollider>();
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+
+    private void FixedUpdate()
+    {
+        Movement();
+    }
+
+    private void Movement()
+    {
+        _endVel = body.InverseTransformVector(_rb.velocity);
+        
+        if (canMove)
+        {
+            
+            if (_grounded)
+            {
+                _endVel = Accelerate(_endVel, moveSpeed, acceleration, _groundNormal);
+                _endVel = Friction(_endVel, moveSpeed, friction, _groundNormal);
+            }
+        }
+
+        if (!_grounded)
+        {
+            Gravity();
+        }
+
+        _rb.velocity = body.TransformVector(_endVel);
+    }
+    
+    private Vector3 Accelerate(Vector3 vel, float wishSpeed, float accel, Vector3 normal)
+    {
+        Vector3 moveRight = Vector3.Cross(move, Vector3.up);
+        Vector3 planeMove = Vector3.Cross(normal, moveRight).normalized;
+
+        float currentSpeed = Vector3.Dot(vel, planeMove);  //tf does this mean
+        float addSpeed = Mathf.Max(wishSpeed - currentSpeed, 0);
+        float accelSpeed = Mathf.Min(accel * wishSpeed, addSpeed);
+        Vector3 clampedSpeed = Vector3.ClampMagnitude(new Vector3(vel.x, 0, vel.z) + planeMove * accelSpeed, maxStrafeSpeed);
+        return clampedSpeed + Vector3.up * vel.y;
+    }
+    
+    private Vector3 Friction(Vector3 vel, float wishSpeed, float friction, Vector3 normal)
+    {
+        Vector3 moveRight = Vector3.Cross(move, Vector3.up);
+        Vector3 planeMove = Vector3.Cross(normal, moveRight).normalized;
+        Vector3 overDesired = vel - planeMove * wishSpeed;
+
+        float frictionCheck = Vector3.Dot(vel, overDesired);
+        if (frictionCheck <= 0)
+            return vel;
+
+        Vector3 frictionAdd = -overDesired * Mathf.Clamp01(friction);
+        return vel + frictionAdd;
+    }
+    
+    private void Gravity()
+    {
+        _endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
+    }
+    
+    private void OnCollisionExit(Collision col)
+    {
+        if (!_grounded) return;
+        _grounded = false;
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        for (int i = 0; i < col.contactCount; i++)
+        {
+            
+            if (IsWithinAngle(col.GetContact(i).normal, maxGroundAngle))
+            {
+                _grounded = true;
+                _groundNormal = col.GetContact(i).normal;
+            }
+        }
+    }
+
+    private bool IsWithinAngle(Vector3 normal, float angle)
+    {
+        return Vector3.Angle(normal, Vector3.up) <= angle;
+    }
+}
