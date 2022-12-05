@@ -52,11 +52,28 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float damageReductionPercentage; //inherent percentile - doesn't need ModPerc
     public float evasionChance; //inherent percentile - doesn't need ModPerc
     
-    //effect over time variables
-    //no idea on how to actually treat these - percentiles? base stat nums? 
-    public float eotLength; 
-    public float eotDamage;
-
+    //'element' variables
+    
+    //poison
+    public float basePoisonDamage = 1f;
+    public float poisonDamageModPerc = 1f;
+    public float poisonLength = 5f;
+    public float PoisonDamage => basePoisonDamage * poisonDamageModPerc;
+    
+    //fire
+    public float baseFireDamage = 1f;
+    public float fireDamageModPerc = 1f;
+    public float fireLength = 5f;
+    public float FireDamage => baseFireDamage * fireDamageModPerc;
+    
+    //ice
+    public float baseIceDamage = 1f;
+    public float iceDamageModPerc = 1f;
+    public float iceLength = 5f;
+    public float IceDamage => baseIceDamage * iceDamageModPerc;
+    
+    
+    
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage*damageReductionPercentage;
