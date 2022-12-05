@@ -1,33 +1,31 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
-    //todo: privatize fields - public only for testing in editor!
     //hp variables
-    private float BaseHealth => 100f;
+    public float baseMaxHealth = 100f;
     public float maxHealthModPerc = 1f;
-    public float MaxHealth => BaseHealth * maxHealthModPerc;
+    private float MaxHealth => baseMaxHealth * maxHealthModPerc;
 
+    
     private float _currentHealth; //for clamp functionality
     public float CurrentHealth
         { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
 
     //mana variables
-    private float BaseMana => 100f;
+    public float baseMana = 100f;
     public float maxManaModPerc = 1f;
-    public float MaxMana => BaseMana * maxManaModPerc;
+    private float MaxMana => baseMana * maxManaModPerc;
 
-    private float _currentMana;
+    private float _currentMana; // for clamp functionality
     public float CurrentMana
-        { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
+        { get => _currentMana; set => _currentMana = Math.Clamp(value, 0, MaxMana); }
     
     //player-bound attack variables
-    private float BasePower => 10f;
+    public float basePower = 10f;
     public float powerModPerc = 1f;
-    public float AttackPower => BasePower * powerModPerc;
+    public float AttackPower => basePower * powerModPerc;
 
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
@@ -58,19 +56,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
     //no idea on how to actually treat these - percentiles? base stat nums? 
     public float eotLength; 
     public float eotDamage;
-    
-    
 
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage*damageReductionPercentage;
     }
 
-    public void ManaUsePlaceholder(float manaUsed)
-    {
-        CurrentMana -= manaUsed;
-    }
-    
-    
-    
 }
