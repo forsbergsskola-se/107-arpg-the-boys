@@ -6,23 +6,28 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour, IDamageable
 {
     //todo: privatize fields - public only for testing in editor!
-    
     //hp variables
     private float BaseHealth => 100f;
     public float maxHealthModPerc = 1f;
-    public float maxHealth; //todo: make function of base*ModPerc
-    public float CurrentHealth { get; private set; }
-    
+    public float MaxHealth => BaseHealth * maxHealthModPerc;
+
+    private float _currentHealth; //for clamp functionality
+    public float CurrentHealth
+        { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
+
     //mana variables
     private float BaseMana => 100f;
     public float maxManaModPerc = 1f;
-    public float maxMana; //todo: make function of base*ModPerc
-    public float currentMana;
+    public float MaxMana => BaseMana * maxManaModPerc;
+
+    private float _currentMana;
+    public float CurrentMana
+        { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
     
     //player-bound attack variables
     private float BasePower => 10f;
     public float powerModPerc = 1f;
-    public float attackPower; //todo: make function of base*ModPerc
+    public float AttackPower => BasePower * powerModPerc;
 
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
@@ -31,18 +36,18 @@ public class PlayerStats : MonoBehaviour, IDamageable
     //move speed variables
     public float baseMoveSpeed;
     public float moveSpeedModPerc = 1f;
-    public float moveSpeed; //todo: make function of base*ModPerc
+    public float MoveSpeed => baseMoveSpeed * moveSpeedModPerc; 
 
     //dodge variables
     public int dodgeCharges = 1;
     
     public float baseDodgeLength;
     public float dodgeLengthModPerc = 1f;
-    public float dodgeLength; //todo: make function of base*ModPerc
+    public float DodgeLength => baseDodgeLength * dodgeLengthModPerc;
     
     public float baseDodgeSpeed;
     public float dodgeSpeedModPerc = 1f;
-    public float dodgeSpeed; //todo: make function of base*ModPerc
+    public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerc;
     
     
     //passive damage mitigation variables
@@ -63,7 +68,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void ManaUsePlaceholder(float manaUsed)
     {
-        currentMana -= manaUsed;
+        CurrentMana -= manaUsed;
     }
     
     
