@@ -67,10 +67,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float FireDamage => baseFireDamage * fireDamageModPerc;
     
     //ice
-    public float baseIceDamage = 1f;
-    public float iceDamageModPerc = 1f;
+    public float iceSlowdownPercentage = 0.2f; //inherent percentile - doesn't need ModPerc
     public float iceLength = 5f;
-    public float IceDamage => baseIceDamage * iceDamageModPerc;
     
     
     
