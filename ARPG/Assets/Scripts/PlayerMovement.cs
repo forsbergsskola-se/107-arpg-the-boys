@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform body;
     [NonSerialized]
     public Vector3 move;
+    private bool _dash;
     
     private CapsuleCollider _col;
     private Rigidbody _rb;
@@ -49,19 +50,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _dash = Input.GetButtonDown("Dash");
 
-
-        if (canMove && _grounded)
-        {
-            if (_isInvulnerable)
-            {
-                RollTimer();
-            }
-            else if (Input.GetButtonDown("Dash"))
-            {
-                StartRoll();
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -83,8 +73,17 @@ public class PlayerMovement : MonoBehaviour
                     _endVel = Friction(_endVel, moveSpeed, friction, _groundNormal);
                 }
             }
+            
+            if (_isInvulnerable)
+            {
+                RollTimer();
+            }
+            else if (_dash)
+            {
+                StartRoll();
+            }
         }
-        
+
         if (!_grounded)
         {
             Gravity();

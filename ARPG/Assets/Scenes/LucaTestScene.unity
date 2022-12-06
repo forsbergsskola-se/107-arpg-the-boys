@@ -533,6 +533,7 @@ MonoBehaviour:
   acceleration: 2
   rollSpeed: 10
   rotationSpeed: 7
+  rollRotationSpeed: 20
   friction: 0.6
   maxStrafeSpeed: 30
   maxGroundAngle: 35
@@ -551,7 +552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230244673}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.99999905, y: 1.5470009, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5470009, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -583,7 +584,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -600,6 +601,7 @@ GameObject:
   - component: {fileID: 2024453895}
   - component: {fileID: 2024453894}
   - component: {fileID: 2024453893}
+  - component: {fileID: 2024453896}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -642,7 +644,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 16.1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -673,3 +675,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: 45, z: 0}
+--- !u!114 &2024453896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024453892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff19921e446cdb04682e0e37b40cd66a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1230244675}
+  orbitOffset: {x: -11, y: 20, z: -11}
+  sharpness: 15
+  maxDistanceFromTarget: 10
