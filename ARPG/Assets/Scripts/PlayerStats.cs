@@ -29,8 +29,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
-    //todo: apply crit to attacks
-    
+    public float CritHit => AttackPower * critDamage;
+
     //move speed variables
     public float baseMoveSpeed;
     public float moveSpeedModPerc = 1f;
