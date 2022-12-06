@@ -27,8 +27,9 @@ public class WorldGenerator : MonoBehaviour
     void GenerateRooms(int desiredRoomAmount, Vector3 startPos, Quaternion startRot)
     {
         Queue<Transform> pivotsProcessing = new();
-        int generatedRoomAmount =1;
-        currentPivots = SpawnRoom(Random.Range(1, 4), startPos, startRot);
+        generatedRoomAmount =1;
+        int doorAmount = Random.Range(1, 4);
+        currentPivots = SpawnRoom(doorAmount, startPos, startRot);
         foreach (Transform pivot in currentPivots)
         {
             pivotsProcessing.Enqueue(pivot);
@@ -38,8 +39,14 @@ public class WorldGenerator : MonoBehaviour
         {
             Transform currentTransform = pivotsProcessing.Dequeue();
             Debug.Log(currentTransform);
-            
-            currentPivots = SpawnRoom(Random.Range(0, 4), currentTransform.position, currentTransform.rotation);
+            ///////
+            doorAmount = Random.Range(1, 4);
+            while (doorAmount + pivotsProcessing.Count + generatedRoomAmount >= desiredRoomAmount)
+            {
+                doorAmount = Random.Range(0, 4);
+            }
+            ///////
+            currentPivots = SpawnRoom(doorAmount, currentTransform.position, currentTransform.rotation);
             generatedRoomAmount++;
             foreach (Transform pivot in currentPivots)
             {
@@ -75,9 +82,11 @@ public class WorldGenerator : MonoBehaviour
         
         return unusedPivots;
     }
-    
+
+    #region old Code, unused and unnecessary atm
+/*
     void SpawnRoom2()
-    {/*
+    {
         currentPivot = pivotsProcessing.Dequeue();
         transform.position = currentPivot.transform.position;
         do
@@ -99,14 +108,13 @@ public class WorldGenerator : MonoBehaviour
         if (generatedRoomAmount < desiredRoomAmount || pivotsProcessing.Count > 0)
         {
             SpawnRoom();
-        }*/
+        }
     }
     void SpawnFirstRoom()
     {
         
         while (generatedRoomAmount <1)
         {
-            //currentRoom = rooms[Random.Range(0, rooms.Length)];
             if (currentRoom.pivotPoints.Length >1)
             {
                 latestRoom = Instantiate(currentRoom, transform.position, transform.rotation);
@@ -118,9 +126,11 @@ public class WorldGenerator : MonoBehaviour
             Debug.Log(i);
             Debug.Log(latestRoom.pivotPoints[i]);
             Debug.Log("trying enqueue");
-            //pivotsProcessing.Enqueue(latestRoom.pivotPoints[i]);
         }
     }
+    */
+    #endregion
+    
 }
 [System.Serializable]
 public class RoomList

@@ -333,7 +333,7 @@ MonoBehaviour:
   allRooms:
   - rooms:
     - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
-    - {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
+    - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
   - rooms:
     - {fileID: 4655078571775284410, guid: ac36e22520ca87c478e28f8f9be9f675, type: 3}
     - {fileID: 4655078571775284410, guid: 2bad87d2bf5a93f4a9aa9491fdbadb30, type: 3}
