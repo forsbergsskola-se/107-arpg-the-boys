@@ -6,21 +6,21 @@ public class PlayerStats : MonoBehaviour, IDamageable
     //hp variables
     public float baseMaxHealth = 100f;
     public float maxHealthModPerc = 1f;
-    private float MaxHealth => baseMaxHealth * maxHealthModPerc;
+    public float MaxHealth => baseMaxHealth * maxHealthModPerc;
 
     
-    private float _currentHealth; //for clamp functionality
+    public float currentHealth; //for clamp functionality
     public float CurrentHealth
-        { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
+        { get => currentHealth; private set => currentHealth = Math.Clamp(value, 0, MaxHealth); } 
 
     //mana variables
     public float baseMana = 100f;
     public float maxManaModPerc = 1f;
-    private float MaxMana => baseMana * maxManaModPerc;
+    public float MaxMana => baseMana * maxManaModPerc;
 
-    private float _currentMana; // for clamp functionality
+    public float currentMana; // for clamp functionality
     public float CurrentMana
-        { get => _currentMana; set => _currentMana = Math.Clamp(value, 0, MaxMana); }
+        { get => currentMana; set => currentMana = Math.Clamp(value, 0, MaxMana); }
     
     //player-bound attack variables
     public float basePower = 10f;
@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     
     
     //passive damage mitigation variables
-    public float damageReductionPercentage; //inherent percentile - doesn't need ModPerc
+    public float damageTakenPercentage = 1; //inherent percentile - doesn't need ModPerc
     public float evasionChance; //inherent percentile - doesn't need ModPerc
     
     //'element' variables
@@ -76,7 +76,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
     
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage*damageReductionPercentage;
+        CurrentHealth -= damage*damageTakenPercentage;
     }
 
+    void Start()
+    {
+        currentHealth = MaxHealth;
+        currentMana = MaxMana;
+    }
+    
 }
