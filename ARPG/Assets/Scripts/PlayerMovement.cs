@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        _dash = Input.GetButtonDown("Dash");
-
+        if (Input.GetButtonDown("Dash"))
+            StartCoroutine(CO_DashActivate());  //Using a coroutine so I can use WaitForFixedUpdate
     }
 
     private void FixedUpdate()
@@ -117,6 +117,13 @@ public class PlayerMovement : MonoBehaviour
         // Set the invulnerability flag and reset the invulnerability timer
         _isInvulnerable = true;
         _invulnerabilityTimer = 0.0f;
+    }
+
+    private IEnumerator CO_DashActivate()
+    {
+        _dash = true;
+        yield return new WaitForFixedUpdate();
+        _dash = false;
     }
     
     private Vector3 rotateDir;
