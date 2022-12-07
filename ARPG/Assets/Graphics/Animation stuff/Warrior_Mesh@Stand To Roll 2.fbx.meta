@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e1a4dd57b860c3445ab284584969e210
+guid: 08f67e20833da3e47986e1fb10761256
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -15,14 +15,11 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: pelvis
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'neck_01' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0

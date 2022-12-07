@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         
         
         // Play the roll animation
-        //_playerAnimator.SetTrigger("Roll");
+        _playerAnimator.SetTrigger("Roll");
 
         // Set the invulnerability flag and reset the invulnerability timer
         _isInvulnerable = true;
