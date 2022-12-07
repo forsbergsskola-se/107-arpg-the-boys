@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform body;
     [NonSerialized]
     public Vector3 move;
-    private bool _dash;
+    
     
     private CapsuleCollider _col;
     private Rigidbody _rb;
@@ -21,9 +21,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _endVel;
     private float _invulnerabilityTimer = 0.0f;
     private bool _isInvulnerable = false;
-    
-    [Header("Movement Variables")]
-    public float moveSpeed = 5f;
+    private float _desiredSpeed;
+    private bool _dash;
+    private bool _running;
+
+    [Header("Movement Variables")] 
+    public float walkSpeed = 5;
+    public float runSpeed = 11f;
     public float acceleration = 2;
     public float rollSpeed = 5.0f;
     public float rotationSpeed = 10;
@@ -45,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
+        _playerAnimator = body.GetComponent<Animator>();
     }
 
     void Update()
@@ -52,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         if (Input.GetButtonDown("Dash"))
             StartCoroutine(CO_DashActivate());  //Using a coroutine so I can use WaitForFixedUpdate
+        if (Input.GetButton("Run"))
+            _running = true;
+        else
+            _running = false;
+        
+        MovementAnimation();
     }
 
     private void FixedUpdate()
@@ -69,8 +80,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!_isInvulnerable)
                 {
-                    _endVel = Accelerate(_endVel, moveSpeed, acceleration, _groundNormal);
-                    _endVel = Friction(_endVel, moveSpeed, friction, _groundNormal);
+                    if (_running)
+                    {
+                        _endVel = Accelerate(_endVel, runSpeed, acceleration, _groundNormal);
+                        _endVel = Friction(_endVel, runSpeed, friction, _groundNormal);
+                    }
+                    else
+                    {
+                        _endVel = Accelerate(_endVel, walkSpeed, acceleration, _groundNormal);
+                        _endVel = Friction(_endVel, walkSpeed, friction, _groundNormal);
+                    }
+                    
                 }
             }
             
@@ -93,6 +113,11 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = transform.TransformVector(_endVel);
     }
 
+    private void MovementAnimation()
+    {
+        _playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
+    }
+    
     void RollTimer()
     {
         _invulnerabilityTimer += Time.deltaTime;
@@ -146,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
         float accelSpeed = Mathf.Min(accel * wishSpeed, addSpeed);
         Vector3 clampedSpeed = Vector3.ClampMagnitude(new Vector3(vel.x, 0, vel.z) + planeMove * accelSpeed, maxStrafeSpeed);
         return clampedSpeed + Vector3.up * vel.y;
+        
     }
 
     private Vector3 MoveFromCamera()
