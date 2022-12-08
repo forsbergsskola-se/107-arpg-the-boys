@@ -1,34 +1,46 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class roarAnimationBehaviour : StateMachineBehaviour
+public class danceAnimationBehaviour : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    private float _timer;
+    public float danceDuration;
     private GrassBoss _bossScript;
-    private bool _bossAttacked;
-    private int _animateTwice;
+    private float _nukeTimer;
+    public float nukeSpawnRate;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _timer = 0;
+        _nukeTimer = 0;
         _bossScript = FindObjectOfType<GrassBoss>();
-        _bossScript.StartCoroutine(_bossScript.CO_Fart());
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("Roar", false);
+        _timer += Time.deltaTime;
+        _nukeTimer += Time.deltaTime;
+        if (_timer > danceDuration)
+        {
+            animator.SetBool("Dance", false);
+            _timer = 0;
+        }
 
-            
-        
+        if (_nukeTimer > nukeSpawnRate)
+        {
+            _bossScript.StartCoroutine(_bossScript.CO_Dance());
+            _nukeTimer = 0;
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

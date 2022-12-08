@@ -6,12 +6,14 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
 {
     public float groundScatterCd;
     public float roarCd;
+    public float danceCd;
 
     private float _timer;
 
     private float _scatterRounds;
 
-    public int roundsBeforeFart;
+    public int roundsBeforeSpecial;
+    private bool _switchSpecial;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,22 +25,40 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _timer += Time.deltaTime;
-        if (_scatterRounds >= roundsBeforeFart)
+        if(_timer > groundScatterCd && _scatterRounds < roundsBeforeSpecial)
+            MainAttack();
+        if(_timer > danceCd && _scatterRounds >= roundsBeforeSpecial && _switchSpecial)
+            DanceAttack();
+        if(_timer > roarCd && _scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
+            FartAttack();
+
+        void MainAttack()
         {
-            if (_timer > roarCd)
-            {
-                animator.SetBool("Roar",true);
-                _scatterRounds = 0;
-                _timer = 0;
-            }
-        }
-        else if (_timer > groundScatterCd)
-        {
-            animator.SetBool("GroundScatter", true);
+            
+            animator.SetBool("GroundScatter",true);
             _timer = 0;
             _scatterRounds++;
+            
+        }
+
+        void FartAttack()
+        {
+            animator.SetBool("Roar",true);
+            _scatterRounds = 0;
+            _timer = 0;
+            _switchSpecial = true;
+        }
+
+        void DanceAttack()
+        {
+            animator.SetBool("Dance",true);
+            _scatterRounds = 0;
+            _timer = 0;
+            _switchSpecial = false;
         }
     }
+
+    
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

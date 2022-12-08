@@ -210,12 +210,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122506322}
   m_LocalRotation: {x: 0.070451126, y: 0.92253083, z: -0.32094878, w: 0.2023992}
-  m_LocalPosition: {x: -5.627768, y: 7.3336906, z: 10.491939}
+  m_LocalPosition: {x: 0, y: 7.3336906, z: 10.491939}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &265039119
 GameObject:
@@ -411,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317429244622496316, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3317429244622496316, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
       propertyPath: m_LocalPosition.x
@@ -454,9 +454,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
-      propertyPath: fartPrefab
-      value: 
-      objectReference: {fileID: 4371201884222273529, guid: 754148b94da304e4481533e4091e56dd, type: 3}
+      propertyPath: _danceRadius
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
 --- !u!1001 &1444854494

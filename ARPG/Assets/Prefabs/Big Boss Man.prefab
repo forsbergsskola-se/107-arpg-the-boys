@@ -997,8 +997,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundScatterPrefab: {fileID: 8170752514618103492, guid: 79be24f135d46964e9f186bacaca2299, type: 3}
+  fartPrefab: {fileID: 4371201884222273529, guid: 754148b94da304e4481533e4091e56dd, type: 3}
+  dancePrefab: {fileID: 6352747105645326638, guid: e4fed0e7169d73240a9bb980d0e62256, type: 3}
+  _danceRadius: 5
   bossPrefab: {fileID: 2684762198962026630}
-  groundScatterAmount: 5
+  groundScatterAmount: 4
   groundScatterDistance: 5
   groundScatterSpeed: 0.5
 --- !u!1 &2776004848001670109

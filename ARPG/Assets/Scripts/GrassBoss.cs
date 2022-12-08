@@ -8,6 +8,9 @@ public class GrassBoss : MonoBehaviour
 {
     public GameObject groundScatterPrefab;
     public GameObject fartPrefab;
+    public GameObject dancePrefab;
+    [SerializeField]
+    private float _danceRadius;
     public GameObject bossPrefab;
     private GameObject _firePoint;
     public int groundScatterAmount;
@@ -30,6 +33,13 @@ public class GrassBoss : MonoBehaviour
         var position = bossPrefab.transform.position;
         position = new Vector3(position.x, Mathf.Clamp(position.y, 0, 10),position.z);
         bossPrefab.transform.position = position;
+
+        //move towards _firePoint
+        //transform.position = Vector3.MoveTowards(transform.position,_firePoint.transform.position, 2 * Time.deltaTime);
+        //transform.LookAt(_firePoint.transform);
+        
+        
+        
     }
     
     public IEnumerator CO_GroundScatter()
@@ -68,5 +78,11 @@ public class GrassBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(1.75f);
         Instantiate(fartPrefab, transform.position, Quaternion.identity);
+    }
+
+    public IEnumerator CO_Dance()
+    {
+        Instantiate(dancePrefab, new Vector3(Random.Range(-_danceRadius, _danceRadius), 0,Random.Range(-_danceRadius, _danceRadius)), Quaternion.identity);
+        yield return null;
     }
 }
