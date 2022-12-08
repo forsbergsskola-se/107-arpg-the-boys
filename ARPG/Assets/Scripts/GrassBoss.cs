@@ -9,8 +9,8 @@ public class GrassBoss : MonoBehaviour
     public GameObject groundScatterPrefab;
     public GameObject fartPrefab;
     public GameObject dancePrefab;
-    [SerializeField]
-    private float _danceRadius;
+    
+    public float danceRadius;
     public GameObject bossPrefab;
     private GameObject _firePoint;
     public int groundScatterAmount;
@@ -82,7 +82,7 @@ public class GrassBoss : MonoBehaviour
 
     public IEnumerator CO_Dance()
     {
-        Instantiate(dancePrefab, new Vector3(Random.Range(-_danceRadius, _danceRadius), 0,Random.Range(-_danceRadius, _danceRadius)), Quaternion.identity);
+        Instantiate(dancePrefab, new Vector3(Random.Range(-danceRadius, danceRadius), 0,Random.Range(-danceRadius, danceRadius)), Quaternion.identity);
         yield return null;
     }
 }

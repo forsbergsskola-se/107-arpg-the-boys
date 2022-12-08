@@ -7,8 +7,6 @@ public class roarAnimationBehaviour : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     private GrassBoss _bossScript;
-    private bool _bossAttacked;
-    private int _animateTwice;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,9 +18,6 @@ public class roarAnimationBehaviour : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("Roar", false);
-
-            
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
