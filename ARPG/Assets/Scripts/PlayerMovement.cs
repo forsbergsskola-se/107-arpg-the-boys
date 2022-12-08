@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isInvulnerable = false;
     private float _desiredSpeed;
     private bool _dash;
+    private int _dashes;
     private bool _running;
 
     [Header("Movement Variables")] 
@@ -32,8 +33,9 @@ public class PlayerMovement : MonoBehaviour
     public float rollSpeed = 5.0f;
     public float rotationSpeed = 10;
     public float rollRotationSpeed = 20;
-    
+
     [Header("Move Limitations")] 
+    public int maxDashAmount = 1;
     public float friction = 0.6f;
     public float maxStrafeSpeed = 30;
     public float maxGroundAngle = 35f;
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        _dashes = maxDashAmount;
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerAnimator = body.GetComponent<Animator>();
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 RollTimer();
             }
-            else if (_dash)
+            else if (_dash && _dashes > 0)
             {
                 StartRoll();
             }
@@ -111,6 +114,11 @@ public class PlayerMovement : MonoBehaviour
 
         RotatePlayer();
         _rb.velocity = transform.TransformVector(_endVel);
+    }
+
+    public void AddDash() // Made this a function so I can add dashes from other scripts easier
+    {
+        Math.Clamp(_dashes++, 0, maxDashAmount);
     }
 
     private void MovementAnimation()
@@ -134,7 +142,9 @@ public class PlayerMovement : MonoBehaviour
     {
         // Set the player's velocity to the roll speed in the direction the player is currently facing
         _endVel = rotateDir * rollSpeed;
-        
+
+        // Uses up one dash
+        _dashes = Math.Clamp(_dashes--, 0, maxDashAmount);
         
         // Play the roll animation
         _playerAnimator.SetTrigger("Roll");
