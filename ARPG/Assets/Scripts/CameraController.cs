@@ -31,4 +31,9 @@ public class CameraController : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, desiredPos, sharpness * Time.deltaTime);
     }
+
+    private void BossRoomCamera()
+    {
+        //Vector3 desiredPos = Vector3.Lerp()
+    }
 }
