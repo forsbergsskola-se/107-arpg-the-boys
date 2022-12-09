@@ -330,12 +330,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbba4194bebc96e4da6b283dd33e2645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
+  roomLayer:
+    serializedVersion: 2
+    m_Bits: 8
   allRooms:
   - rooms:
     - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
-    - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
   - rooms:
-    - {fileID: 4655078571775284410, guid: ac36e22520ca87c478e28f8f9be9f675, type: 3}
     - {fileID: 4655078571775284410, guid: 2bad87d2bf5a93f4a9aa9491fdbadb30, type: 3}
   - rooms:
     - {fileID: 5796119332005419444, guid: dd508275f9755a041a5eb667a35c4c92, type: 3}
@@ -345,7 +347,7 @@ MonoBehaviour:
     - {fileID: 1208907895324898138, guid: 89af1e815d985a54f8919545e79d5016, type: 3}
     - {fileID: 1208907895324898138, guid: 49aeb2bf151ed1a4094e4246ea04de01, type: 3}
   generatedRoomAmount: 0
-  desiredRoomAmount: 15
+  desiredRoomAmount: 20
   currentPivot: {fileID: 0}
   currentRoom: {fileID: 0}
   latestRoom: {fileID: 0}
