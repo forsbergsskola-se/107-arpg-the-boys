@@ -36,9 +36,10 @@ public class Guard
 
 public interface Iinteruptable
 {
-    
+    void Interrupted();
 }
-public class Enemy : MonoBehaviour
+
+public class Enemy : MonoBehaviour, Iinteruptable
 {
     public GameObject target;
     public float moveSpeed;
@@ -57,6 +58,10 @@ public class Enemy : MonoBehaviour
     
     private bool[] _abilities;
     private bool _isAttacking;
+    private Coroutine _startedAttack;
+
+    private GameObject _currentAttackChild;
+    private string _currentAttackParameter;
 
 
     // Start is called before the first frame update
@@ -72,7 +77,7 @@ public class Enemy : MonoBehaviour
 
         if (inDistance && !_isAttacking)
         {
-            StartCoroutine(SelectedAttack());
+            _startedAttack = StartCoroutine(SelectedAttack());
         }
         else if(!_isAttacking)
         {
@@ -127,36 +132,59 @@ public class Enemy : MonoBehaviour
     private IEnumerator CO_EnemyLightAttack()
     {
         _isAttacking = true;
+        _currentAttackChild = lightAttackInformation.lightAttackChild;
+        _currentAttackParameter = lightAttackInformation.lightAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(lightAttackInformation.lightAttackStartDelay);
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, true);
         yield return new WaitForSeconds(lightAttackInformation.lightAttackDurationDelay);
         lightAttackInformation.lightAttackChild.SetActive(true);
         yield return new WaitForSeconds(lightAttackInformation.lightAttackDuration);
         lightAttackInformation.lightAttackChild.SetActive(false);
+        animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, false);
         _isAttacking = false;
     }
 
     private IEnumerator CO_EnemyHeavyAttack()
     {
         _isAttacking = true;
+        _currentAttackChild = heavyAttackInformation.heavyAttackChild;
+        _currentAttackParameter = heavyAttackInformation.heavyAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackStartDelay);
         animator.SetBool(heavyAttackInformation.heavyAttackParameterNameOfTypeBool, true);
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackDurationDelay);
         heavyAttackInformation.heavyAttackChild.SetActive(true);
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackDuration);
         heavyAttackInformation.heavyAttackChild.SetActive(false);
+        animator.SetBool(heavyAttackInformation.heavyAttackParameterNameOfTypeBool, false);
         _isAttacking = false;
     }
 
     private IEnumerator CO_EnemyGuard()
     {
         _isAttacking = true;
+        _currentAttackChild = guardInformation.guardChild;
+        _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
         yield return new WaitForSeconds(guardInformation.guardDurationDelay);
         guardInformation.guardChild.SetActive(true);
         yield return new WaitForSeconds(guardInformation.guardDuration);
         guardInformation.guardChild.SetActive(false);
+        animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         _isAttacking = false;
+    }
+
+    [ContextMenu("Interrupt")]
+    public void Interrupted()
+    {
+        CancelAttack();
+    }
+
+    private void CancelAttack()
+    {
+        StopCoroutine(_startedAttack);
+        _isAttacking = false;
+        _currentAttackChild.SetActive(false);
+        animator.SetBool(_currentAttackParameter, false);
     }
 }
