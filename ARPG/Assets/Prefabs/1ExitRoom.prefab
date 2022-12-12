@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4975270707060947377}
   - component: {fileID: 8282403222250315860}
   - component: {fileID: 3699878307710309266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1ExitRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
