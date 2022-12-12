@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 8602049887543168351}
   - component: {fileID: 4655078571775284410}
   - component: {fileID: 2456274974672402102}
+  - component: {fileID: 2299482880366660187}
   m_Layer: 3
   m_Name: 2ExitRoomDiag
   m_TagString: Untagged
@@ -450,8 +451,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.087998, y: 5.5480256, z: 8.328249}
-  m_Center: {x: -0.09828138, y: 3.0856168, z: 0.04629612}
+  m_Size: {x: 5.4900107, y: 5.5480256, z: 8.328249}
+  m_Center: {x: 1.200712, y: 3.0856168, z: 0.04629612}
+--- !u!65 &2299482880366660187
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782868889242107352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.087135, y: 5.5480256, z: 6.4087057}
+  m_Center: {x: -0.09785056, y: 3.0856168, z: 1.0060678}
 --- !u!1 &5437507111893156189
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -762,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1298509
+      value: 2.339851
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.z
