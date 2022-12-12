@@ -218,11 +218,13 @@ public class WorldGenerator : MonoBehaviour
         wasDestroyed = false;
         DungeonRoom currentRoom = Instantiate(room,pos, Quaternion.identity);
         //lägga till en random int som hoppar hela check-pivot grejen så att vi får en random första varje gång.
-        int jumpNum = Random.Range(0, )
+        
+        int jumpNum = Random.Range(0, currentRoom.pivotPoints.Length);
         for (int j = 0; j < currentRoom.pivotPoints.Length; j++)
         {
+            int jumpedIndex = (j + jumpNum) % currentRoom.pivotPoints.Length; //sick line of code :sunglasses:
             //currentRoom.gameObject.SetActive(false);
-            Transform currentPivotPoint = currentRoom.pivotPoints[j];
+            Transform currentPivotPoint = currentRoom.pivotPoints[jumpedIndex];
             Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * Vector3.right, rot * -Vector3.right);
             roomRot = Quaternion.LookRotation(roomRot * Vector3.forward, Vector3.up);
             currentRoom.transform.rotation *= roomRot;
@@ -254,7 +256,7 @@ public class WorldGenerator : MonoBehaviour
                     Transform[] unusedPivots = new Transform[currentRoom.pivotPoints.Length-1];
                     for (int k = 0; k < unusedPivots.Length;k++)
                     {
-                        if (k < j)
+                        if (k < jumpedIndex)
                         {
                             unusedPivots[k] = currentRoom.pivotPoints[k];
                         }
