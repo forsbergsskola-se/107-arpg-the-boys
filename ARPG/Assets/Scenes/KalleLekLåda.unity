@@ -547,7 +547,7 @@ MonoBehaviour:
     - {fileID: 1208907895324898138, guid: 89af1e815d985a54f8919545e79d5016, type: 3}
     - {fileID: 1208907895324898138, guid: 89af1e815d985a54f8919545e79d5016, type: 3}
     - {fileID: 1208907895324898138, guid: 49aeb2bf151ed1a4094e4246ea04de01, type: 3}
-  debugOn: 1
+  debugOn: 0
   debugSphere: {fileID: 1074531172}
   debugCube: {fileID: 74161822}
 --- !u!4 &1686337407
