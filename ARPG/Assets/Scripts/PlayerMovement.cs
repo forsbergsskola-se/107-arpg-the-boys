@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddDash() // Made this a function so I can add dashes from other scripts easier
     {
-        Math.Clamp(_dashes++, 0, maxDashAmount);
+        Math.Clamp(_dashes + 1, 0, maxDashAmount);
     }
 
     private void MovementAnimation()
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         _endVel = rotateDir * rollSpeed;
 
         // Uses up one dash
-        _dashes = Math.Clamp(_dashes--, 0, maxDashAmount);
+        _dashes = Math.Clamp(_dashes - 1, 0, maxDashAmount);
         
         // Play the roll animation
         _playerAnimator.SetTrigger("Roll");
