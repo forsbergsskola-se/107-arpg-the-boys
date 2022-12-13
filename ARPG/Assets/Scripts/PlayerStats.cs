@@ -7,20 +7,20 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float baseMaxHealth = 100f;
     public float maxHealthModPerc = 1f;
     public float MaxHealth => baseMaxHealth * maxHealthModPerc;
-
     
-    public float currentHealth; //for clamp functionality
+    private float _currentHealth; //for clamp functionality
     public float CurrentHealth
-        { get => currentHealth; private set => currentHealth = Math.Clamp(value, 0, MaxHealth); } 
+        { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
 
     //mana variables
-    public float baseMana = 100f;
+    
+    public float baseMaxMana = 100f;
     public float maxManaModPerc = 1f;
-    public float MaxMana => baseMana * maxManaModPerc;
-
-    public float currentMana; // for clamp functionality
+    public float MaxMana => baseMaxMana * maxManaModPerc;
+    
+    private float _currentMana; // for clamp functionality
     public float CurrentMana
-        { get => currentMana; set => currentMana = Math.Clamp(value, 0, MaxMana); }
+        { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
     
     //player-bound attack variables
     public float basePower = 10f;
@@ -77,10 +77,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
         CurrentHealth -= damage*damageTakenPercentage;
     }
 
+    public void ChangeMana(float change)
+    {
+        CurrentMana -= change;
+    }
+
     void Start()
     {
-        currentHealth = MaxHealth;
-        currentMana = MaxMana;
+        _currentHealth = MaxHealth;
+        _currentMana = MaxMana;
     }
     
 }
