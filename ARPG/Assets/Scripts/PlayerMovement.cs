@@ -154,7 +154,8 @@ public class PlayerMovement : MonoBehaviour
         _dash = false;
     }
     
-    private Vector3 rotateDir;
+    [NonSerialized]
+    public Vector3 rotateDir;
     private void RotatePlayer()
     {
         if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling)

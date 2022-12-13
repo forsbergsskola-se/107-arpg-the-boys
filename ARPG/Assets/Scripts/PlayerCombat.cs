@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,15 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public BaseWeapon currentWeapon;
+    public LayerMask hitLayer;
     public Transform attackCenter;
+    private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
     
     void Start()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -29,6 +33,23 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        RotateToMouse();
+    }
+
+    private void RotateToMouse()
+    {
+        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation, Quaternion.LookRotation(_playerMovement.rotateDir), _playerMovement.rotationSpeed * Time.deltaTime);
+    }
+    
+    private void SetRotatePoint()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane(transform.position + hit.point, Vector3.up);
+    }
+    
     private void LightAttack()
     {
         Debug.Log("Light attack!");
@@ -37,12 +58,16 @@ public class PlayerCombat : MonoBehaviour
         
         // TODO: Plays sound
         
+        // TODO: Rotate towards mouse
+        SetRotatePoint();
+        
         // TODO: Boxcast with take damage
-        RaycastHit[] hits = Physics.BoxCastAll(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.forward, Quaternion.identity, 1);
-        DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, attackCenter.forward, 1, Color.cyan);
+        Collider[] hits = Physics.OverlapBox(attackCenter.position, currentWeapon.lightAttackColSize / 2,
+            Quaternion.identity, hitLayer);
+        DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, Color.cyan);
         for (var i = 0; i < hits.Length; i++)
         {
-            if (hits[i].collider.TryGetComponent(out IDamageable damageable))
+            if (hits[i].TryGetComponent(out IDamageable damageable))
             {
                 float damage = currentWeapon.lightAttackDamage + _playerStats.AttackPower;
                 damageable.TakeDamage(damage);
@@ -62,6 +87,17 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Plays sound
         
         // TODO: Boxcast with take damage
+        Collider[] hits = Physics.OverlapBox(attackCenter.position, currentWeapon.heavyAttackColSize / 2,
+            Quaternion.identity, hitLayer);
+        DrawBoxCastBox(attackCenter.position, currentWeapon.heavyAttackColSize / 2, attackCenter.rotation, Color.cyan);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                float damage = currentWeapon.heavyAttackDamage + _playerStats.AttackPower;
+                damageable.TakeDamage(damage);
+            }
+        }
         
         // TODO: Cooldown
     }
@@ -88,23 +124,10 @@ public class PlayerCombat : MonoBehaviour
     }
     
     
-     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float distance, Color color)
+     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
      {
-         direction.Normalize();
          Box bottomBox = new Box(origin, halfExtents, orientation);
-         Box topBox = new Box(origin + (direction * distance), halfExtents, orientation);
-             
-         Debug.DrawLine(bottomBox.backBottomLeft, topBox.backBottomLeft,    color);
-         Debug.DrawLine(bottomBox.backBottomRight, topBox.backBottomRight, color);
-         Debug.DrawLine(bottomBox.backTopLeft, topBox.backTopLeft, color);
-         Debug.DrawLine(bottomBox.backTopRight, topBox.backTopRight,    color);
-         Debug.DrawLine(bottomBox.frontTopLeft, topBox.frontTopLeft,    color);
-         Debug.DrawLine(bottomBox.frontTopRight, topBox.frontTopRight, color);
-         Debug.DrawLine(bottomBox.frontBottomLeft, topBox.frontBottomLeft, color);
-         Debug.DrawLine(bottomBox.frontBottomRight, topBox.frontBottomRight,    color);
-     
          DrawBox(bottomBox, color);
-         DrawBox(topBox, color);
      }
      
      public static void DrawBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
