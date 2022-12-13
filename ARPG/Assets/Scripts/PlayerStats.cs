@@ -71,7 +71,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float iceLength = 5f;
     
     
-    
+    //methods
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage*damageTakenPercentage;
