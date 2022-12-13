@@ -3699,6 +3699,7 @@ GameObject:
   - component: {fileID: 8451480336757137063}
   - component: {fileID: 8451480336757137062}
   - component: {fileID: 7330928658350872650}
+  - component: {fileID: 938367398927242142}
   - component: {fileID: 8451480336757137057}
   - component: {fileID: 8451480336757137056}
   m_Layer: 0
@@ -3769,6 +3770,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 7220317599497472196}
   attackCenter: {fileID: 5148911742629426043}
+--- !u!114 &938367398927242142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451480336757137061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2743f1d9898f74a42b7805e9256fa1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxHealth: 100
+  maxHealthModPerc: 1
+  baseMaxMana: 100
+  maxManaModPerc: 1
+  basePower: 10
+  powerModPerc: 1
+  critRate: 0.05
+  critDamage: 2
+  baseMoveSpeed: 0
+  moveSpeedModPerc: 1
+  dodgeCharges: 1
+  baseDodgeLength: 0
+  dodgeLengthModPerc: 1
+  baseDodgeSpeed: 0
+  dodgeSpeedModPerc: 1
+  damageTakenPercentage: 1
+  evasionChance: 0
+  basePoisonDamage: 1
+  poisonDamageModPerc: 1
+  poisonLength: 5
+  baseFireDamage: 1
+  fireDamageModPerc: 1
+  fireLength: 5
+  iceSlowdownPercentage: 0.2
+  iceLength: 5
 --- !u!54 &8451480336757137057
 Rigidbody:
   m_ObjectHideFlags: 0

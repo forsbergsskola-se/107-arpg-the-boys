@@ -1107,6 +1107,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: baseDodgeSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: maxDodgeCharges
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7220317599497472196, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: lightAttackColSize.x
       value: 2

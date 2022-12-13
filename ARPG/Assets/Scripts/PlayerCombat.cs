@@ -6,10 +6,11 @@ public class PlayerCombat : MonoBehaviour
 {
     public BaseWeapon currentWeapon;
     public Transform attackCenter;
+    private PlayerStats _playerStats;
     
     void Start()
     {
-        
+        _playerStats = GetComponent<PlayerStats>();
     }
 
     void Update()
@@ -37,15 +38,15 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Plays sound
         
         // TODO: Boxcast with take damage
-        RaycastHit[] hits = Physics.BoxCastAll(attackCenter.position, currentWeapon.lightAttackColSize / 2,
-            attackCenter.forward, Quaternion.identity, 1);
+        RaycastHit[] hits = Physics.BoxCastAll(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.forward, Quaternion.identity, 1);
         DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, attackCenter.forward, 1, Color.cyan);
         for (var i = 0; i < hits.Length; i++)
         {
-            // if (hits[i].collider.TryGetComponent(Enemy))
-            // {
-            //     hits[i]
-            // }
+            if (hits[i].collider.TryGetComponent(out IDamageable damageable))
+            {
+                float damage = currentWeapon.lightAttackDamage + _playerStats.AttackPower;
+                damageable.TakeDamage(damage);
+            }
         }
 
 
