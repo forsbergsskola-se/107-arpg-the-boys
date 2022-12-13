@@ -3,71 +3,71 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
-    //hp variables
+    [Header("HP Variables")]
     public float baseMaxHealth = 100f;
-    public float maxHealthModPerc = 1f;
-    public float MaxHealth => baseMaxHealth * maxHealthModPerc;
+    public float maxHealthModPerk = 1f;
+    public float MaxHealth => baseMaxHealth * maxHealthModPerk;
     
     private float _currentHealth; //for clamp functionality
     public float CurrentHealth
         { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
 
-    //mana variables
-    
+    [Header("Mana Variables")]
     public float baseMaxMana = 100f;
-    public float maxManaModPerc = 1f;
-    public float MaxMana => baseMaxMana * maxManaModPerc;
+    public float maxManaModPerk = 1f;
+    public float MaxMana => baseMaxMana * maxManaModPerk;
     
     private float _currentMana; // for clamp functionality
     public float CurrentMana
         { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
     
-    //player-bound attack variables
+    [Header("Player-Bound Attack Variables")]
     public float basePower = 10f;
-    public float powerModPerc = 1f;
-    public float AttackPower => basePower * powerModPerc;
+    public float powerModPerk = 1f;
+    public float AttackPower => basePower * powerModPerk;
 
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
     public float CritHit => AttackPower * critDamage;
+    
+    [Header("Movement Speed Variables")]
+    public float baseWalkMoveSpeed = 5f;
+    public float baseRunMoveSpeed = 11f;
+    public float moveSpeedModPerk = 1f;
+    public float WalkMoveSpeed => baseWalkMoveSpeed * moveSpeedModPerk; 
+    public float RunMoveSpeed => baseRunMoveSpeed * moveSpeedModPerk; 
 
-    //move speed variables
-    public float baseMoveSpeed;
-    public float moveSpeedModPerc = 1f;
-    public float MoveSpeed => baseMoveSpeed * moveSpeedModPerc; 
+    
+    
+    [NonSerialized]
+    public int dodgesCharges;
+    [Header("Dodge Variables")]
+    public int maxDodgeCharges;
 
-    //dodge variables
-    public int dodgeCharges = 1;
+    public float baseDodgeSpeed = 20f;
+    public float dodgeSpeedModPerk = 1f;
+    public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerk;
     
-    public float baseDodgeLength;
-    public float dodgeLengthModPerc = 1f;
-    public float DodgeLength => baseDodgeLength * dodgeLengthModPerc;
-    
-    public float baseDodgeSpeed;
-    public float dodgeSpeedModPerc = 1f;
-    public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerc;
-    
-    
-    //passive damage mitigation variables
-    public float damageTakenPercentage = 1; //inherent percentile - doesn't need ModPerc
-    public float evasionChance; //inherent percentile - doesn't need ModPerc
+    [Header("Passive Damage Mitigation Variables")]
+    public float damageTakenPercentage = 1; //inherent percentile - doesn't need ModPerk
+    public float evasionChance; //inherent percentile - doesn't need ModPerk
     
     //'element' variables
-    
-    //poison
+    [Header("Element Variables")]
+    [Header("Poison Variables")]
     public float basePoisonDamage = 1f;
-    public float poisonDamageModPerc = 1f;
+    public float poisonDamageModPerk = 1f;
     public float poisonLength = 5f;
-    public float PoisonDamage => basePoisonDamage * poisonDamageModPerc;
+    public float PoisonDamage => basePoisonDamage * poisonDamageModPerk;
     
-    //fire
+    [Header("Fire Variables")]
     public float baseFireDamage = 1f;
-    public float fireDamageModPerc = 1f;
+    public float fireDamageModPerk = 1f;
     public float fireLength = 5f;
-    public float FireDamage => baseFireDamage * fireDamageModPerc;
+    public float FireDamage => baseFireDamage * fireDamageModPerk;
     
-    //ice
-    public float iceSlowdownPercentage = 0.2f; //inherent percentile - doesn't need ModPerc
+    [Header("Ice Variables")]
+    public float iceSlowdownPercentage = 0.2f; //inherent percentile - doesn't need ModPerk
     public float iceLength = 5f;
     
     
@@ -80,6 +80,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public void ChangeMana(float change)
     {
         CurrentMana -= change;
+    }
+    
+    public void AddDash() 
+    {
+        Math.Clamp(dodgesCharges + 1, 0, maxDodgeCharges);
     }
 
     void Start()

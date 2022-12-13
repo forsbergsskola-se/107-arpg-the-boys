@@ -14,28 +14,25 @@ public class PlayerMovement : MonoBehaviour
     
     private CapsuleCollider _col;
     private Rigidbody _rb;
+    private PlayerStats _playerStats;
     private Animator _playerAnimator;
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
     private float _regularSpeed;
     private Vector3 _endVel;
     private float _invulnerabilityTimer = 0.0f;
-    private bool _isInvulnerable = false;
+    private bool _isRolling = false;
     private float _desiredSpeed;
     private bool _dash;
-    private int _dashes;
     private bool _running;
 
-    [Header("Movement Variables")] 
-    public float walkSpeed = 5;
-    public float runSpeed = 11f;
+    [Header("Movement Variables")]
     public float acceleration = 2;
-    public float rollSpeed = 5.0f;
+    //public float rollSpeed = 5.0f;
     public float rotationSpeed = 10;
     public float rollRotationSpeed = 20;
 
-    [Header("Move Limitations")] 
-    public int maxDashAmount = 1;
+    [Header("Move Limitations")]
     public float friction = 0.6f;
     public float maxStrafeSpeed = 30;
     public float maxGroundAngle = 35f;
@@ -44,15 +41,16 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Other movement variables")]
     public float gravityScale = 9.82f;
-    public float rollInvulnerabilityDuration = 1.0f;
+    public float rollDuration = 0.4f;
     public bool canMove = true;
 
     void Start()
     {
-        _dashes = maxDashAmount;
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
+        _playerStats = GetComponent<PlayerStats>();
         _playerAnimator = body.GetComponent<Animator>();
+        _playerStats.dodgesCharges = _playerStats.maxDodgeCharges;
     }
 
     void Update()
@@ -81,27 +79,27 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_grounded)
             {
-                if (!_isInvulnerable)
+                if (!_isRolling)
                 {
                     if (_running)
                     {
-                        _endVel = Accelerate(_endVel, runSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, runSpeed, friction, _groundNormal);
+                        _endVel = Accelerate(_endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
+                        _endVel = Friction(_endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
                     }
                     else
                     {
-                        _endVel = Accelerate(_endVel, walkSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, walkSpeed, friction, _groundNormal);
+                        _endVel = Accelerate(_endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
+                        _endVel = Friction(_endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
                     }
                     
                 }
             }
             
-            if (_isInvulnerable)
+            if (_isRolling)
             {
                 RollTimer();
             }
-            else if (_dash && _dashes > 0)
+            else if (_dash && _playerStats.dodgesCharges > 0)
             {
                 StartRoll();
             }
@@ -116,11 +114,6 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = transform.TransformVector(_endVel);
     }
 
-    public void AddDash() // Made this a function so I can add dashes from other scripts easier
-    {
-        Math.Clamp(_dashes + 1, 0, maxDashAmount);
-    }
-
     private void MovementAnimation()
     {
         _playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
@@ -131,9 +124,9 @@ public class PlayerMovement : MonoBehaviour
         _invulnerabilityTimer += Time.deltaTime;
         body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rollRotationSpeed * Time.deltaTime);
 
-        if (_invulnerabilityTimer >= rollInvulnerabilityDuration)
+        if (_invulnerabilityTimer >= rollDuration)
         {
-            _isInvulnerable = false;
+            _isRolling = false;
             _invulnerabilityTimer = 0.0f;
         }
     }
@@ -141,16 +134,16 @@ public class PlayerMovement : MonoBehaviour
     void StartRoll()
     {
         // Set the player's velocity to the roll speed in the direction the player is currently facing
-        _endVel = rotateDir * rollSpeed;
+        _endVel = rotateDir * _playerStats.DodgeSpeed;
 
         // Uses up one dash
-        _dashes = Math.Clamp(_dashes - 1, 0, maxDashAmount);
+        _playerStats.dodgesCharges = Math.Clamp(_playerStats.dodgesCharges - 1, 0, _playerStats.maxDodgeCharges);
         
         // Play the roll animation
         _playerAnimator.SetTrigger("Roll");
 
         // Set the invulnerability flag and reset the invulnerability timer
-        _isInvulnerable = true;
+        _isRolling = true;
         _invulnerabilityTimer = 0.0f;
     }
 
@@ -164,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 rotateDir;
     private void RotatePlayer()
     {
-        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isInvulnerable)
+        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling)
         {
             rotateDir = MoveFromCamera();
             body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rotationSpeed * Time.deltaTime);
