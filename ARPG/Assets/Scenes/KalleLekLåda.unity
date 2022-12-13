@@ -534,9 +534,8 @@ MonoBehaviour:
   deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
   allRooms:
   - rooms:
-    - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
-    - {fileID: 8282403222250315860, guid: 7ba4813dec5e52048b245d6f2c0517d0, type: 3}
     - {fileID: 8282403222250315860, guid: 2c9aa429063427d448d2ce7666a46954, type: 3}
+    - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
   - rooms:
     - {fileID: 4655078571775284410, guid: 2bad87d2bf5a93f4a9aa9491fdbadb30, type: 3}
     - {fileID: 4655078571775284410, guid: ac36e22520ca87c478e28f8f9be9f675, type: 3}
@@ -565,3 +564,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2002586121
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.99999905
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246608, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511052677990246615, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}
+      propertyPath: m_Name
+      value: Effect_38_GloryBoundary
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34d0599d37e35ac4ebeab64c18d00ccc, type: 3}

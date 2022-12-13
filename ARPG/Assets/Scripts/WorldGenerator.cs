@@ -35,6 +35,7 @@ public class WorldGenerator : MonoBehaviour
         return allRooms[amountOfDoors].rooms[Random.Range(0,allRooms[amountOfDoors].rooms.Count)];
     }
 
+    //private SpawnMonster[] _monstersToSpawn;
     void GenerateRooms(int rooms, Vector3 startPos, Quaternion startRot)
     {
         Queue<Transform> pivotsProcessing = new();
@@ -108,6 +109,7 @@ public class WorldGenerator : MonoBehaviour
                 generatedRoomAmount++;
             }
         }
+        
     }
 
     Transform[] SpawnRoom(int doors, Vector3 pos,Quaternion rot)

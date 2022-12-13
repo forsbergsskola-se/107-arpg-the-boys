@@ -692,6 +692,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4975270707060947377}
     m_Modifications:
     - target: {fileID: 2492092478784126613, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 2492092478784126613, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
       propertyPath: m_Name
       value: Monster Spawner
       objectReference: {fileID: 0}
