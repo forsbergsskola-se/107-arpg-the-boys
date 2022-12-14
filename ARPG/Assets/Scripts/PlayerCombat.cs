@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
     public BaseWeapon currentWeapon;
     public LayerMask hitLayer;
     public Transform attackCenter;
+    private bool _canAttack = true;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
     
@@ -19,18 +20,22 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (_canAttack)
         {
-            LightAttack();
+            if (Input.GetButton("Fire1"))
+            {
+                LightAttack();
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                HeavyAttack();
+            }
+            if (Input.GetButtonDown("Fire3"))
+            {
+                Guard();
+            }
         }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            HeavyAttack();
-        }
-        if (Input.GetButtonDown("Fire3"))
-        {
-            Guard();
-        }
+        
     }
 
     private void FixedUpdate()
@@ -54,6 +59,9 @@ public class PlayerCombat : MonoBehaviour
     {
         Debug.Log("Light attack!");
         
+        // TODO: Cooldown
+        StartCoroutine(CO_AttackCooldown(currentWeapon.lightAttackCooldown));
+        
         // TODO: Does animation
         
         // TODO: Plays sound
@@ -61,21 +69,12 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Rotate towards mouse
         SetRotatePoint();
         
+        // TODO: Freeze player movement
+        
         // TODO: Boxcast with take damage
-        Collider[] hits = Physics.OverlapBox(attackCenter.position, currentWeapon.lightAttackColSize / 2,
-            Quaternion.identity, hitLayer);
-        DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, Color.cyan);
-        for (var i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].TryGetComponent(out IDamageable damageable))
-            {
-                float damage = currentWeapon.lightAttackDamage + _playerStats.AttackPower;
-                damageable.TakeDamage(damage);
-            }
-        }
+        AttackBox(currentWeapon.lightAttackColSize, currentWeapon.lightAttackDamage);
 
-
-        // TODO: Cooldown
+        
     }
     
     private void HeavyAttack()
@@ -87,17 +86,7 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Plays sound
         
         // TODO: Boxcast with take damage
-        Collider[] hits = Physics.OverlapBox(attackCenter.position, currentWeapon.heavyAttackColSize / 2,
-            Quaternion.identity, hitLayer);
-        DrawBoxCastBox(attackCenter.position, currentWeapon.heavyAttackColSize / 2, attackCenter.rotation, Color.cyan);
-        for (var i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].TryGetComponent(out IDamageable damageable))
-            {
-                float damage = currentWeapon.heavyAttackDamage + _playerStats.AttackPower;
-                damageable.TakeDamage(damage);
-            }
-        }
+        AttackBox(currentWeapon.heavyAttackColSize, currentWeapon.heavyAttackDamage);
         
         // TODO: Cooldown
     }
@@ -111,8 +100,29 @@ public class PlayerCombat : MonoBehaviour
     {
         Debug.Log("Parried!");
     }
-    
-    
+
+    private void AttackBox(Vector3 attackColSize, float weaponDamage)
+    {
+        Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
+        DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                float damage = weaponDamage + _playerStats.AttackPower;
+                damageable.TakeDamage(damage);
+            }
+        }
+    }
+
+    private IEnumerator CO_AttackCooldown(float cooldown)
+    {
+        _canAttack = false;
+        _playerMovement.canMove = false;
+        yield return new WaitForSeconds(cooldown);
+        _canAttack = true;
+        _playerMovement.canMove = true;
+    }
     
     
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
