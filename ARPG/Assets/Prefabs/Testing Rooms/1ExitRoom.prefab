@@ -691,6 +691,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4975270707060947377}
     m_Modifications:
+    - target: {fileID: 992949290861126112, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949290996091205, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949291153635159, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949291966996947, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949292497623818, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949292529280724, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992949292930094982, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2492092478784126613, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
       propertyPath: m_Icon
       value: 
@@ -698,6 +726,10 @@ PrefabInstance:
     - target: {fileID: 2492092478784126613, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
       propertyPath: m_Name
       value: Monster Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196071860791245962, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773821717774769173, guid: b52bd3a2f3de21c48be7c03ed4c15900, type: 3}
       propertyPath: m_RootOrder

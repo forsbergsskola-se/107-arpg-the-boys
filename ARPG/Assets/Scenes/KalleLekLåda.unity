@@ -402,11 +402,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &738752742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+  m_PrefabInstance: {fileID: 1352581455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &738752748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
   m_PrefabInstance: {fileID: 1352581455}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &738752749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738752742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.98
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!1 &1074531172
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +633,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137062, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: cam
       value: 
@@ -701,7 +728,6 @@ MonoBehaviour:
   allRooms:
   - rooms:
     - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
-    - {fileID: 8282403222250315860, guid: 7ba4813dec5e52048b245d6f2c0517d0, type: 3}
   - rooms:
     - {fileID: 4655078571775284410, guid: 2bad87d2bf5a93f4a9aa9491fdbadb30, type: 3}
     - {fileID: 4655078571775284410, guid: ac36e22520ca87c478e28f8f9be9f675, type: 3}
