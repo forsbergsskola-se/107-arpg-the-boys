@@ -10,6 +10,8 @@ public class LightAttack
 {
     public string lightAttackParameterNameOfTypeBool;
     public GameObject lightAttackChild;
+    public Vector3 lightAttackSize;
+    public float lightAttackDamage;
     public float lightAttackStartDelay;
     public float lightAttackDurationDelay;
     public float lightAttackDuration;
@@ -62,6 +64,8 @@ public class Enemy : MonoBehaviour, Iinteruptable
 
     private GameObject _currentAttackChild;
     private string _currentAttackParameter;
+    public Transform attackTransform;
+    public LayerMask hitLayer;
 
 
     // Start is called before the first frame update
@@ -138,6 +142,12 @@ public class Enemy : MonoBehaviour, Iinteruptable
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, true);
         yield return new WaitForSeconds(lightAttackInformation.lightAttackDurationDelay);
         lightAttackInformation.lightAttackChild.SetActive(true);
+        Collider[] hits = Physics.OverlapBox(attackTransform.position,lightAttackInformation.lightAttackSize / 2, Quaternion.identity, hitLayer);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+                damageable.TakeDamage(lightAttackInformation.lightAttackDamage);
+        }
         yield return new WaitForSeconds(lightAttackInformation.lightAttackDuration);
         lightAttackInformation.lightAttackChild.SetActive(false);
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, false);
