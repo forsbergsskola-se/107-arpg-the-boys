@@ -11,7 +11,7 @@ public class SpawnMonster : MonoBehaviour
     public GameObject enemy;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7 && readyToSpawn)
+        if ((triggerSpawnLayers & (1 << other.gameObject.layer)) != 0 && readyToSpawn)
         {
             readyToSpawn = false;
             BeginSpawn();   
