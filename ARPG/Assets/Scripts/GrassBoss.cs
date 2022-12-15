@@ -81,7 +81,7 @@ public class GrassBoss : MonoBehaviour
     {
         yield return new WaitForSeconds(1.75f);
         GameObject fartInstance = Instantiate(fartPrefab, transform.position, Quaternion.identity);
-        fartInstance.transform.localScale = abilityScale;
+        fartInstance.transform.localScale = abilityScale * 1.8f;
     }
 
     public IEnumerator CO_Dance()
