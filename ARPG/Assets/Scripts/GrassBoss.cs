@@ -9,6 +9,7 @@ public class GrassBoss : MonoBehaviour
     public GameObject groundScatterPrefab;
     public GameObject fartPrefab;
     public GameObject dancePrefab;
+    public Vector3 abilityScale;
     
     public float danceRadius;
     public GameObject bossPrefab;
@@ -24,7 +25,6 @@ public class GrassBoss : MonoBehaviour
     void Start()
     {
         _firePoint = GameObject.FindGameObjectWithTag("firePoint");
-        
     }
 
     // Update is called once per frame
@@ -50,7 +50,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -59,7 +60,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -68,7 +70,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -4 + _firePoint.transform.forward * 6, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -4 + _firePoint.transform.forward * 6, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -77,12 +80,15 @@ public class GrassBoss : MonoBehaviour
     public IEnumerator CO_Fart()
     {
         yield return new WaitForSeconds(1.75f);
-        Instantiate(fartPrefab, transform.position, Quaternion.identity);
+        GameObject fartInstance = Instantiate(fartPrefab, transform.position, Quaternion.identity);
+        fartInstance.transform.localScale = abilityScale;
     }
 
     public IEnumerator CO_Dance()
     {
-        Instantiate(dancePrefab, new Vector3(Random.Range(-danceRadius, danceRadius), 0,Random.Range(-danceRadius, danceRadius)), Quaternion.identity);
+        var position = _firePoint.transform.position;
+        GameObject danceInstance = Instantiate(dancePrefab, new Vector3(Random.Range(position.x -danceRadius, position.x + danceRadius), 0,Random.Range(position.z ,position.z + danceRadius * 2)), Quaternion.identity);
+        danceInstance.transform.localScale = abilityScale;
         yield return null;
     }
 }

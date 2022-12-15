@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18294273, g: 0.22863546, b: 0.30685768, a: 1}
+  m_IndirectSpecularColor: {r: 0.1829423, g: 0.22863492, b: 0.3068567, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -423,7 +423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317429244622496316, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.8
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 3317429244622496316, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
       propertyPath: m_LocalRotation.w
@@ -454,8 +454,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
+      propertyPath: danceRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
       propertyPath: _danceRadius
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
+      propertyPath: abilityScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
+      propertyPath: abilityScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
+      propertyPath: abilityScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938978347778213422, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
+      propertyPath: groundScatterDistance
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
