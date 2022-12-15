@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class DungeonRoom : MonoBehaviour
 {
-    public GameObject[] pivotPoints;
+    public Transform[] pivotPoints;
+    public Transform[] monsterSpawners;
 }
