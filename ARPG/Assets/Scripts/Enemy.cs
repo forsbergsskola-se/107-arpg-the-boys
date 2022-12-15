@@ -37,12 +37,7 @@ public class Guard
     public float guardDuration;
 }
 
-public interface Iinteruptable
-{
-    void Interrupted();
-}
-
-public class Enemy : MonoBehaviour, Iinteruptable
+public class Enemy : MonoBehaviour, IInterruptable
 {
     public GameObject target;
     public float moveSpeed;
@@ -148,6 +143,8 @@ public class Enemy : MonoBehaviour, Iinteruptable
             {
                 if (hits[i].TryGetComponent(out IDamageable damageable))
                     damageable.TakeDamage(lightAttackInformation.lightAttackDamage);
+                if (hits[i].TryGetComponent(out IInterruptable interruptable))
+                    interruptable.Interrupt();
             }
 
             timer += Time.deltaTime;
@@ -197,7 +194,7 @@ public class Enemy : MonoBehaviour, Iinteruptable
     }
 
     [ContextMenu("Interrupt")]
-    public void Interrupted()
+    public void Interrupt()
     {
         CancelAttack();
     }
@@ -306,4 +303,6 @@ public class Enemy : MonoBehaviour, Iinteruptable
          Vector3 direction = point - pivot;
          return pivot + rotation * direction;
      }
+
+     
 }
