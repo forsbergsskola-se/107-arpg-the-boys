@@ -31,7 +31,7 @@ public class HeavyAttack
 public class Guard
 {
     public string guardParameterNameOfTypeBool;
-    public Vector3 guardSize;
+    public GameObject guardChild;
     public float guardStartDelay;
     public float guardDurationDelay;
     public float guardDuration;
@@ -185,24 +185,13 @@ public class Enemy : MonoBehaviour, Iinteruptable
     private IEnumerator CO_EnemyGuard()
     {
         _isAttacking = true;
-        float timer = 0;
         _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
         yield return new WaitForSeconds(guardInformation.guardDurationDelay);
-        while (timer < guardInformation.guardDuration)
-        {
-            Collider[] hits = Physics.OverlapBox(attackTransform.position,guardInformation.guardSize / 2, Quaternion.identity, hitLayer);
-            for (var i = 0; i < hits.Length; i++)
-            {
-                if (hits[i].TryGetComponent(out IDamageable damageable))
-                    damageable.TakeDamage(heavyAttackInformation.heavyAttackDamage);
-                //change for guard
-            }
-            DrawBoxCastBox(attackTransform.position,lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.magenta);
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        guardInformation.guardChild.SetActive(true);
+        yield return new WaitForSeconds(guardInformation.guardDuration);
+        guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         _isAttacking = false;
     }
@@ -217,6 +206,7 @@ public class Enemy : MonoBehaviour, Iinteruptable
     {
         StopCoroutine(_startedAttack);
         _isAttacking = false;
+        guardInformation.guardChild.SetActive(false);
         animator.SetBool(_currentAttackParameter, false);
     }
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
