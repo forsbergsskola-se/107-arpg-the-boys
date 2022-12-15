@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -10,7 +13,8 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask hitLayer;
     public Transform attackCenter;
     public float attackRotateSpeed = 20;
-    private bool _canAttack = true;
+    [NonSerialized]
+    public bool isAttacking;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
     
@@ -22,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (_canAttack && currentWeapon != null)
+        if (!isAttacking && currentWeapon != null)
         {
             if (Input.GetButton("Fire1"))
             {
@@ -52,19 +56,25 @@ public class PlayerCombat : MonoBehaviour
     
     private void SetRotatePoint()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-            _playerMovement.rotateDir = Vector3.ProjectOnPlane(transform.position + hit.point, Vector3.up);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
+        else
+        {
+            float playerYDiff = Camera.main.transform.position.y - transform.position.y;
+            float angle = Vector3.Angle(Vector3.down, ray.direction);
+            float vectorDistance = Mathf.Abs(playerYDiff / Mathf.Cos(angle));
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane((Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position, Vector3.up).normalized;
+        }
     }
     
     private IEnumerator LightAttack()
     {
         Debug.Log("Light attack!");
 
-        _canAttack = false;
+        isAttacking = true;
         _playerMovement.endVel = Vector3.zero;
-        _playerMovement.enabled = false;
-        
+
         SetRotatePoint();
         
         // TODO: Cooldown
@@ -80,8 +90,7 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Boxcast with take damage
         AttackBox(currentWeapon.lightAttackColSize, currentWeapon.lightAttackDamage, true);
 
-        _canAttack = true;
-        _playerMovement.enabled = true;
+        isAttacking = false;
     }
     
     private void HeavyAttack()

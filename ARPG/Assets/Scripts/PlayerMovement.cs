@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider _col;
     private Rigidbody _rb;
     private PlayerStats _playerStats;
+    private PlayerCombat _playerCombat;
     private Animator _playerAnimator;
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
+        _playerCombat = GetComponent<PlayerCombat>();
         _playerAnimator = body.GetComponent<Animator>();
         _playerStats.dodgesCharges = _playerStats.maxDodgeCharges;
     }
@@ -76,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         endVel = transform.InverseTransformVector(_rb.velocity);
 
-        if (canMove)
+        if (canMove && !_playerCombat.isAttacking)
         {
             if (_grounded)
             {
@@ -162,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling && canMove)
         {
             rotateDir = MoveFromCamera();
-            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rotationSpeed * Time.deltaTime);
+            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir, Vector3.up), rotationSpeed * Time.deltaTime);
         }
     }
     
