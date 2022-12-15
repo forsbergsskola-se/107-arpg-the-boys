@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using TMPro;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -26,6 +28,16 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public float guardPunish;
     public float parryTime;
 
+    [Header("Appearance")] 
+    public Vector3 modelOffset;
+
+    private Rigidbody _rb;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
+
     public void Interact()
     {
         throw new System.NotImplementedException();
@@ -38,7 +50,11 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     
     public void Pickup(PlayerCombat playerCombat)
     {
-        StartCoroutine(LerpToHand(3f, playerCombat));
+        StartCoroutine(LerpToHand(0.25f, playerCombat));
+        _rb.useGravity = false;
+        _rb.detectCollisions = false;
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
         transform.parent = playerCombat.weaponHolder;
         playerCombat.currentWeapon = this;
     }
@@ -46,23 +62,30 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public void DropWeapon(PlayerCombat playerCombat)
     {
         playerCombat.currentWeapon = null;
+        _rb.useGravity = true;
+        _rb.detectCollisions = true;
         transform.parent = null;
     }
 
     private IEnumerator LerpToHand(float time, PlayerCombat playerCombat)
     {
         Vector3 localDist = transform.position - playerCombat.transform.position;
-        Quaternion localRot = Quaternion.Euler(playerCombat.transform.InverseTransformVector(transform.rotation.eulerAngles));
+        Quaternion localRot = transform.rotation;
         float elapsedTime = 0;
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             float elapsed01 = Mathf.Clamp01(elapsedTime / time);
-            //Quaternion.Lerp(playerCombat.transform.rotation * localRot, playerCombat.weaponHolder.rotation, elapsed01);
-            Vector3.Lerp(playerCombat.transform.position + localDist, playerCombat.weaponHolder.position, elapsed01);
+            transform.rotation = Quaternion.Lerp(localRot, playerCombat.weaponHolder.rotation, elapsed01);
+            transform.position = Vector3.Lerp(playerCombat.transform.TransformPoint(localDist), GetHoldPos(playerCombat), elapsed01);
             yield return null;
         }
-        transform.position = playerCombat.weaponHolder.position;
+        transform.position = GetHoldPos(playerCombat);
         transform.rotation = playerCombat.weaponHolder.rotation;
+    }
+
+    Vector3 GetHoldPos(PlayerCombat playerCombat)
+    {
+        return playerCombat.weaponHolder.TransformPoint(modelOffset);
     }
 }

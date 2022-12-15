@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackRotateSpeed = 20;
     [NonSerialized]
     public bool isAttacking;
+    private Rigidbody _rb;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
     
@@ -73,7 +74,8 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Light attack!");
 
         isAttacking = true;
-        _playerMovement.endVel = Vector3.zero;
+        _playerMovement._rb.velocity = Vector3.zero;
+        
 
         SetRotatePoint();
         

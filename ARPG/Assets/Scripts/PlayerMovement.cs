@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 move;
     
     private CapsuleCollider _col;
-    private Rigidbody _rb;
+    [NonSerialized]
+    public Rigidbody _rb;
     private PlayerStats _playerStats;
     private PlayerCombat _playerCombat;
     private Animator _playerAnimator;
@@ -113,7 +114,8 @@ public class PlayerMovement : MonoBehaviour
             Gravity();
         }
 
-        RotatePlayer();
+        if (!_playerCombat.isAttacking)
+            RotatePlayer();
         _rb.velocity = transform.TransformVector(endVel);
     }
 
