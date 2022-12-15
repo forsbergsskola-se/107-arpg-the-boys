@@ -11,7 +11,7 @@ public class ItemExampleScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PlayerStats playerstats = collision.gameObject.GetComponent<PlayerStats>();
-        playerstats.baseMaxHealth += itemScriptableObject.testValue;
+        playerstats.baseMaxHealth += itemScriptableObject.optValue;
     }
 
 }
