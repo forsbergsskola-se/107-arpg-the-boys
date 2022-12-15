@@ -20,11 +20,14 @@ public class GrassBoss : MonoBehaviour
 
 
     private float _distanceBetween;
+    public bool firePointIsOnBoss;
 
 
     void Start()
     {
         _firePoint = GameObject.FindGameObjectWithTag("firePoint");
+        if(firePointIsOnBoss)
+          _firePoint.transform.position = transform.position;
     }
 
     // Update is called once per frame
