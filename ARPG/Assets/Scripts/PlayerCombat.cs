@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public BaseWeapon currentWeapon;
+    public Transform weaponHolder;
     public LayerMask hitLayer;
     public Transform attackCenter;
+    public float attackRotateSpeed = 20;
     private bool _canAttack = true;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
@@ -20,11 +22,11 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (_canAttack)
+        if (_canAttack && currentWeapon != null)
         {
             if (Input.GetButton("Fire1"))
             {
-                LightAttack();
+                StartCoroutine(LightAttack());
             }
             if (Input.GetButtonDown("Fire2"))
             {
@@ -45,7 +47,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void RotateToMouse()
     {
-        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation, Quaternion.LookRotation(_playerMovement.rotateDir), _playerMovement.rotationSpeed * Time.deltaTime);
+        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation, Quaternion.LookRotation(_playerMovement.rotateDir), attackRotateSpeed * Time.deltaTime);
     }
     
     private void SetRotatePoint()
@@ -55,26 +57,31 @@ public class PlayerCombat : MonoBehaviour
             _playerMovement.rotateDir = Vector3.ProjectOnPlane(transform.position + hit.point, Vector3.up);
     }
     
-    private void LightAttack()
+    private IEnumerator LightAttack()
     {
         Debug.Log("Light attack!");
+
+        _canAttack = false;
+        _playerMovement.endVel = Vector3.zero;
+        _playerMovement.enabled = false;
+        
+        SetRotatePoint();
         
         // TODO: Cooldown
-        StartCoroutine(CO_AttackCooldown(currentWeapon.lightAttackCooldown));
+        yield return new WaitForSeconds(currentWeapon.lightAttackCooldown);
         
         // TODO: Does animation
         
         // TODO: Plays sound
         
-        // TODO: Rotate towards mouse
-        SetRotatePoint();
         
         // TODO: Freeze player movement
         
         // TODO: Boxcast with take damage
-        AttackBox(currentWeapon.lightAttackColSize, currentWeapon.lightAttackDamage);
+        AttackBox(currentWeapon.lightAttackColSize, currentWeapon.lightAttackDamage, true);
 
-        
+        _canAttack = true;
+        _playerMovement.enabled = true;
     }
     
     private void HeavyAttack()
@@ -86,7 +93,7 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Plays sound
         
         // TODO: Boxcast with take damage
-        AttackBox(currentWeapon.heavyAttackColSize, currentWeapon.heavyAttackDamage);
+        AttackBox(currentWeapon.heavyAttackColSize, currentWeapon.heavyAttackDamage, true);
         
         // TODO: Cooldown
     }
@@ -101,10 +108,11 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Parried!");
     }
 
-    private void AttackBox(Vector3 attackColSize, float weaponDamage)
+    private void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
     {
         Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
-        DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
+        if (showBox)
+            DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
@@ -115,16 +123,7 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private IEnumerator CO_AttackCooldown(float cooldown)
-    {
-        _canAttack = false;
-        _playerMovement.canMove = false;
-        yield return new WaitForSeconds(cooldown);
-        _canAttack = true;
-        _playerMovement.canMove = true;
-    }
-    
-    
+
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
     //Draws just the box at where it is currently hitting.
     public static void DrawBoxCastOnHit(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float hitInfoDistance, Color color)

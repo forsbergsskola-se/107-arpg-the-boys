@@ -4,5 +4,13 @@ using UnityEngine;
 
 public interface IPickupable
 {
-    void Pickup();
+    void Pickup()
+    {
+        
+    }
+
+    void Pickup(PlayerCombat playerCombat)
+    {
+        
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseWeapon : MonoBehaviour
+public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
 {
     [Header("General Weapon Stats")] 
     public float critRate = 0.1f;
@@ -23,4 +23,27 @@ public class BaseWeapon : MonoBehaviour
     public float guardPunish;
     public float parryTime;
 
+    public void Interact()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Highlight()
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    public void Pickup(PlayerCombat playerCombat)
+    {
+        Vector3.Lerp(transform.position, playerCombat.weaponHolder.position, 1);
+        transform.position = playerCombat.weaponHolder.position;
+        transform.parent = playerCombat.weaponHolder;
+        playerCombat.currentWeapon = this;
+    }
+
+    public void DropWeapon(PlayerCombat playerCombat)
+    {
+        playerCombat.currentWeapon = null;
+        transform.parent = null;
+    }
 }

@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [NonSerialized]
     public Vector3 move;
     
-    
     private CapsuleCollider _col;
     private Rigidbody _rb;
     private PlayerStats _playerStats;
@@ -19,13 +18,15 @@ public class PlayerMovement : MonoBehaviour
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
     private float _regularSpeed;
-    private Vector3 _endVel;
+    
     private float _invulnerabilityTimer = 0.0f;
     private bool _isRolling = false;
     private float _desiredSpeed;
     private bool _dash;
     private bool _running;
-
+    [NonSerialized]
+    public Vector3 endVel;
+    
     [Header("Movement Variables")]
     public float acceleration = 2;
     //public float rollSpeed = 5.0f;
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        _endVel = transform.InverseTransformVector(_rb.velocity);
+        endVel = transform.InverseTransformVector(_rb.velocity);
 
         if (canMove)
         {
@@ -83,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (_running)
                     {
-                        _endVel = Accelerate(_endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
                     }
                     else
                     {
-                        _endVel = Accelerate(_endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
                     }
                     
                 }
@@ -111,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         RotatePlayer();
-        _rb.velocity = transform.TransformVector(_endVel);
+        _rb.velocity = transform.TransformVector(endVel);
     }
 
     private void MovementAnimation()
@@ -134,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
     void StartRoll()
     {
         // Set the player's velocity to the roll speed in the direction the player is currently facing
-        _endVel = rotateDir * _playerStats.DodgeSpeed;
+        endVel = rotateDir * _playerStats.DodgeSpeed;
 
         // Uses up one dash
         _playerStats.dodgesCharges = Math.Clamp(_playerStats.dodgesCharges - 1, 0, _playerStats.maxDodgeCharges);
@@ -158,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 rotateDir;
     private void RotatePlayer()
     {
-        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling)
+        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling && canMove)
         {
             rotateDir = MoveFromCamera();
             body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rotationSpeed * Time.deltaTime);
@@ -199,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Gravity()
     {
-        _endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
+        endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
     }
     
     private void OnCollisionExit(Collision col)

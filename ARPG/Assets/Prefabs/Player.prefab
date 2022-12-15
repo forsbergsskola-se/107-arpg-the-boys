@@ -3680,14 +3680,70 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4930112382327181956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.109, y: -0.0462, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1564704669403428578}
+  m_Father: {fileID: 4390147298263784063}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7793192218839439657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564704669403428578}
+  - component: {fileID: 2240797512025792562}
+  m_Layer: 0
+  m_Name: Sword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564704669403428578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793192218839439657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4799583936798233547}
-  m_Father: {fileID: 4390147298263784063}
-  m_RootOrder: 5
+  m_Father: {fileID: 5577569843397224882}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2240797512025792562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793192218839439657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ffc8a0b105458448947445b0346e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  critRate: 0.1
+  critDamageBonus: 1.5
+  lightAttackDamage: 10
+  lightAttackCooldown: 1
+  lightAttackColSize: {x: 2, y: 1, z: 1}
+  heavyAttackDamage: 20
+  heavyAttackCooldown: 1
+  heavyAttackColSize: {x: 3, y: 3, z: 3}
+  guardTime: 0
+  guardPunish: 0
+  parryTime: 0
 --- !u!1 &8451480336757137061
 GameObject:
   m_ObjectHideFlags: 0
@@ -3699,6 +3755,7 @@ GameObject:
   - component: {fileID: 8451480336757137063}
   - component: {fileID: 8451480336757137062}
   - component: {fileID: 7330928658350872650}
+  - component: {fileID: 5296135388477071890}
   - component: {fileID: 938367398927242142}
   - component: {fileID: 8451480336757137057}
   - component: {fileID: 8451480336757137056}
@@ -3739,13 +3796,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   body: {fileID: 4390147298263784413}
-  walkSpeed: 5
-  runSpeed: 11
   acceleration: 0.25
-  rollSpeed: 20
   rotationSpeed: 7
   rollRotationSpeed: 20
-  maxDashAmount: 7
   friction: 0.6
   maxStrafeSpeed: 30
   maxGroundAngle: 35
@@ -3754,7 +3807,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   gravityScale: 9.82
-  rollInvulnerabilityDuration: 0.4
+  rollDuration: 0.4
   canMove: 1
 --- !u!114 &7330928658350872650
 MonoBehaviour:
@@ -3768,8 +3821,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcf74fd93e7f3148b583d60f67723ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 7220317599497472196}
+  currentWeapon: {fileID: 0}
+  weaponHolder: {fileID: 5577569843397224882}
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
   attackCenter: {fileID: 5148911742629426043}
+  attackRotateSpeed: 20
+--- !u!114 &5296135388477071890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451480336757137061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e6354a802514442a74bb522ea26d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCombat: {fileID: 7330928658350872650}
+  interactAreaSize: 3
 --- !u!114 &938367398927242142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3790,12 +3862,11 @@ MonoBehaviour:
   powerModPerc: 1
   critRate: 0.05
   critDamage: 2
-  baseMoveSpeed: 0
+  baseWalkMoveSpeed: 5
+  baseRunMoveSpeed: 11
   moveSpeedModPerc: 1
-  dodgeCharges: 1
-  baseDodgeLength: 0
-  dodgeLengthModPerc: 1
-  baseDodgeSpeed: 0
+  maxDodgeCharges: 3
+  baseDodgeSpeed: 20
   dodgeSpeedModPerc: 1
   damageTakenPercentage: 1
   evasionChance: 0
@@ -3842,7 +3913,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5577569843397224882}
+    m_TransformParent: {fileID: 1564704669403428578}
     m_Modifications:
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_RootOrder
@@ -3850,11 +3921,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8858601
+      value: 0.8858604
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8858602
+      value: 0.8858603
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalScale.z
@@ -3862,19 +3933,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0976998
+      value: -0.011300705
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06389998
+      value: -0.01769992
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18669999
+      value: -0.1866998
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.54742175
+      value: 0.54742163
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3882,11 +3953,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4870681
+      value: 0.48706815
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.42192885
+      value: 0.42192894
       objectReference: {fileID: 0}
     - target: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3906,34 +3977,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
---- !u!1 &4799583936797741035 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9112861893149409468, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
-  m_PrefabInstance: {fileID: 4390147298971963223}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7220317599497472196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4799583936797741035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7ffc8a0b105458448947445b0346e83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  critRate: 0.1
-  critDamageBonus: 1.5
-  lightAttackDamage: 10
-  lightAttackCooldown: 0.5
-  lightAttackColSize: {x: 1, y: 1, z: 1}
-  heavyAttackDamage: 20
-  heavyAttackCooldown: 1
-  heavyAttackColSize: {x: 0, y: 0, z: 0}
-  guardTime: 0
-  guardPunish: 0
-  parryTime: 0
 --- !u!4 &4799583936798233547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9112861893149252764, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
