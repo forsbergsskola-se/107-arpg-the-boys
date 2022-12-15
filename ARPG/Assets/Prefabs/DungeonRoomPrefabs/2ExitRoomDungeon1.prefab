@@ -283,6 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2305482175874851073}
+  - component: {fileID: 7861458429828971456}
   m_Layer: 0
   m_Name: 2ExitRoomDungeon1
   m_TagString: Untagged
@@ -325,6 +326,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7861458429828971456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3861291117337504111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085960bc2826a16418c9c8ab93c94724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotPoints:
+  - {fileID: 1333378455409570173}
+  - {fileID: 7073331823470144417}
 --- !u!1 &4857605843253847351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
+--- !u!1 &1333378455409570173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4091620275854664280, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
+  m_PrefabInstance: {fileID: 3047043942702043941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3269852809706080957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
@@ -1522,6 +1543,11 @@ PrefabInstance:
 --- !u!4 &6757722414582845537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
+  m_PrefabInstance: {fileID: 6548760693221165561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7073331823470144417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4091620275854664280, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
   m_PrefabInstance: {fileID: 6548760693221165561}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6867105050719357842
