@@ -37,11 +37,12 @@ public class Guard
     public float guardDuration;
 }
 
-public class Enemy : MonoBehaviour, IInterruptable
+public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
     public GameObject target;
     public float moveSpeed;
     public float attackRange;
+    public float maxHealth;
     
     public Animator animator;
     
@@ -56,6 +57,7 @@ public class Enemy : MonoBehaviour, IInterruptable
     
     private bool[] _abilities;
     private bool _isAttacking;
+    private bool _isInterruptible;
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
@@ -67,7 +69,10 @@ public class Enemy : MonoBehaviour, IInterruptable
     void Start()
     {
         _abilities = new[] {hasGuard, hasHeavyAttacks, hasLightAttacks};
+        CurrentHealth = maxHealth;
     }
+    
+    
 
     // Update is called once per frame
     void Update()
@@ -143,8 +148,8 @@ public class Enemy : MonoBehaviour, IInterruptable
             {
                 if (hits[i].TryGetComponent(out IDamageable damageable))
                     damageable.TakeDamage(lightAttackInformation.lightAttackDamage);
-                if (hits[i].TryGetComponent(out IInterruptable interruptable))
-                    interruptable.Interrupt();
+                if (hits[i].TryGetComponent(out IInterruptible interruptible))
+                    interruptible.Interrupt();
             }
 
             timer += Time.deltaTime;
@@ -170,6 +175,8 @@ public class Enemy : MonoBehaviour, IInterruptable
             {
                 if (hits[i].TryGetComponent(out IDamageable damageable))
                     damageable.TakeDamage(heavyAttackInformation.heavyAttackDamage);
+                if(hits[i].TryGetComponent(out IInterruptible interruptible))
+                    interruptible.Interrupt();
             }
             timer += Time.deltaTime;
             yield return null;
@@ -194,10 +201,7 @@ public class Enemy : MonoBehaviour, IInterruptable
     }
 
     [ContextMenu("Interrupt")]
-    public void Interrupt()
-    {
-        CancelAttack();
-    }
+    
 
     private void CancelAttack()
     {
@@ -206,6 +210,19 @@ public class Enemy : MonoBehaviour, IInterruptable
         guardInformation.guardChild.SetActive(false);
         animator.SetBool(_currentAttackParameter, false);
     }
+    
+    public float CurrentHealth { get; private set;}
+    
+    public void Interrupt()
+    {
+        if(!_isInterruptible)
+             CancelAttack();
+    }
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+    }
+
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
     //Draws just the box at where it is currently hitting.
     public static void DrawBoxCastOnHit(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float hitInfoDistance, Color color)
@@ -303,6 +320,5 @@ public class Enemy : MonoBehaviour, IInterruptable
          Vector3 direction = point - pivot;
          return pivot + rotation * direction;
      }
-
      
 }
