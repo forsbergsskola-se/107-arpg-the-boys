@@ -29,7 +29,14 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
     public float CritHit => AttackPower * critDamage;
-    
+
+    [Header("Player-Bound Range Variables")]
+    public float baseRangedRange;
+    public float rangedRangeModPerc;
+    public float RangedRange => baseRangedRange * rangedRangeModPerc;
+    public float baseRangePower;
+    public float rangePowerModPerc;
+    public float RangePower => baseRangePower * rangePowerModPerc;
     [Header("Movement Speed Variables")]
     public float baseWalkMoveSpeed = 5f;
     public float baseRunMoveSpeed = 11f;
@@ -46,6 +53,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public float baseDodgeSpeed = 20f;
     public float dodgeSpeedModPerc = 1f;
+    public float baseDodgeRange;
+    public float dodgeRangeModPerc;
     public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerc;
     
     [Header("Passive Damage Mitigation Variables")]

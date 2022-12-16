@@ -47,6 +47,11 @@ public class ItemScript : MonoBehaviour
             //crit
             plStat.critRate += itemSo.critRateChange;
             plStat.critDamage += itemSo.critDamageChange;
+            //ranged
+            plStat.baseRangedRange += itemSo.baseRangedRangeChange;
+            plStat.rangedRangeModPerc += itemSo.rangedRangeModPercChange;
+            plStat.baseRangePower += itemSo.baseRangePowerChange;
+            plStat.rangePowerModPerc += itemSo.rangePowerModPercChange;
             //move speed
             plStat.baseWalkMoveSpeed += itemSo.baseWalkMoveSpeedChange;
             plStat.baseRunMoveSpeed += itemSo.baseRunMoveSpeedChange;
@@ -56,6 +61,8 @@ public class ItemScript : MonoBehaviour
             plStat.maxDodgeCharges += itemSo.maxDodgeChargesChange;
             plStat.baseDodgeSpeed += itemSo.baseDodgeSpeedChange;
             plStat.dodgeSpeedModPerc += itemSo.dodgeSpeedModPercChange;
+            plStat.baseDodgeRange += itemSo.baseDodgeRangeChange;
+            plStat.dodgeRangeModPerc += itemSo.dodgeRangeModPercChange;
             //mitigation
             plStat.dmgTakePerc += itemSo.dmgTakePerc;
             plStat.evasionChance += itemSo.evasionChanceChange;
@@ -88,6 +95,11 @@ public class ItemScript : MonoBehaviour
             //crit
             plStat.critRate += Scale(_itemCountPlaceHold,itemSo.critRateChange);
             plStat.critDamage += Scale(_itemCountPlaceHold,itemSo.critDamageChange);
+            //ranged
+            plStat.baseRangedRange += Scale(_itemCountPlaceHold,itemSo.baseRangedRangeChange);
+            plStat.rangedRangeModPerc += Scale(_itemCountPlaceHold,itemSo.rangedRangeModPercChange);
+            plStat.baseRangePower += Scale(_itemCountPlaceHold,itemSo.baseRangePowerChange);
+            plStat.rangePowerModPerc += Scale(_itemCountPlaceHold,itemSo.rangePowerModPercChange);
             //move speed
             plStat.baseWalkMoveSpeed += Scale(_itemCountPlaceHold,itemSo.baseWalkMoveSpeedChange);
             plStat.baseRunMoveSpeed += Scale(_itemCountPlaceHold,itemSo.baseRunMoveSpeedChange);

@@ -29,6 +29,12 @@ public class ItemScriptableObject : ScriptableObject
     public float critRateChange;
     public float critDamageChange; //damage = critDamage * AttackPower, so keep above 1f for actual crits.
     //stat 'CritHit' ignored - derived value.
+    [Header("Player-Bound Range Variables")]
+    public float baseRangedRangeChange;
+    public float rangedRangeModPercChange;
+    //stat 'RangedRange' ignored - derived value.
+    public float baseRangePowerChange;
+    public float rangePowerModPercChange;
 
     [Header("Movement Speed Variables")]
     public float baseWalkMoveSpeedChange;
@@ -42,6 +48,8 @@ public class ItemScriptableObject : ScriptableObject
     public int maxDodgeChargesChange;
     public float baseDodgeSpeedChange;
     public float dodgeSpeedModPercChange;
+    public float baseDodgeRangeChange;
+    public float dodgeRangeModPercChange;
     //stat 'DodgeSpeed' ignored - derived value.
 
     [Header("Passive Damage Mitigation Variables")]
