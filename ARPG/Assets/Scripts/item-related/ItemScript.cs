@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour
@@ -13,8 +11,8 @@ public class ItemScript : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerStats>())
         {
-            PlayerStats playerstats = collision.gameObject.GetComponent<PlayerStats>();
-            ItemPickedUp(playerstats);
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+            ItemPickedUp(playerStats);
             Debug.Log($"{gameObject} collided with {collision.gameObject} and was destroyed.");
             Destroy(gameObject);
         }
@@ -28,7 +26,7 @@ public class ItemScript : MonoBehaviour
         return power / (1.0f + MathF.Sqrt(numItems));
     }
 
-    private int _itemCountPlaceHold = 0; //todo: replace all instances of placehold with actual inventory count of item
+    private int _itemCountPlaceHold = 0; //todo: replace all instances of _itemCountPlaceHold with actual inventory count of item
     private void ItemPickedUp(PlayerStats plStat)
     {
         if(isLinearScaling)

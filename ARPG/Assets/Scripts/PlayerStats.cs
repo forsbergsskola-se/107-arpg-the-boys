@@ -47,7 +47,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     
     
     [NonSerialized]
-    public int dodgesCharges;
+    public int DodgeCharges;
     [Header("Dodge Variables")]
     public int maxDodgeCharges;
 
@@ -93,7 +93,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     
     public void AddDodge(int addCharges) 
     {
-        Math.Clamp(dodgesCharges + addCharges, 0, maxDodgeCharges);
+        Math.Clamp(DodgeCharges + addCharges, 0, maxDodgeCharges);
     }
 
     void Start()
