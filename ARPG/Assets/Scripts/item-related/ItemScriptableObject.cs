@@ -8,15 +8,18 @@ public class ItemScriptableObject : ScriptableObject
 
     [Header("HP Variables")] 
     public float baseMaxHealthChange;
-    public float baseMaxHealthModPercChange;
+    public float baseMaxHpModPercChange;
     //stat 'MaxHealth' variable ignored - derived value.
     public float currentHealthChange; //recovery items should modify this.
+    //currentHealthChange should ALWAYS be used through iDamageable's TakeDamage.
 
     [Header("Mana Variables")]
     public float baseMaxManaChange;
-    public float maxManaModPercChange;
+    public float maxMpModPercChange;
     //stat 'MaxMana' variable ignored - derived value.
     public float currentManaChange; //recovery items should modify this.
+    //currentManaChange should ALWAYS be used through PlayerStats' ChangeMana.
+
 
     [Header("Player-Bound Attack Variables")]
     public float basePowerChange;
@@ -35,35 +38,36 @@ public class ItemScriptableObject : ScriptableObject
     //stat 'RunMoveSpeed' ignored - derived value.
 
     [Header("Dodge Variables")]
-    public int dodgeChargesChange; 
+    public int dodgeChargesChange; //use PlayerStats' AddDodge!
     public int maxDodgeChargesChange;
     public float baseDodgeSpeedChange;
     public float dodgeSpeedModPercChange;
     //stat 'DodgeSpeed' ignored - derived value.
 
     [Header("Passive Damage Mitigation Variables")]
-    public float damageTakenPercentageChange; // 1f=100% damage taken, 0.5f=50% damage taken, etc.
+    public float dmgTakePerc; // 1f=100% damage taken, 0.5f=50% damage taken, etc.
     public float evasionChanceChange; // 1f = 100% attacks dodged, 0.5f=50% attacks dodged.
     
     [Header("Element Variables")]
     [Header("Poison Variables")]
     public float basePoisonDamageChange;
-    public float poisonDamageModPercChange;
+    public float poisonDmgModPercChange;
     public float poisonLengthChange;
     //stat 'PoisonDamage' ignored - derived value.
     
     [Header("Fire Variables")]
     public float baseFireDamageChange;
-    public float fireDamageModPercChange;
+    public float fireDmgModPercChange;
     public float fireLengthChange;
     //stat 'FireDamage' ignored - derived value.
     
     [Header("Ice Variables")]
-    public float iceSlowdownPercentageChange; 
+    public float iceSlowPercChange; 
     public float iceLengthChange;
     
     //optional variables for any extra value changes one might want to add not included in above list.
     //really - just there as a 'just in case it's needed' thing.
+    //these optional variables will need special additions in the itemScript to utilize - meaning a new script for those items.
     [Header("Optional variables")]
     public float optValue;
     public float optValueTwo;

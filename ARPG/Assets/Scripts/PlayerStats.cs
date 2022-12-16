@@ -49,32 +49,32 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerc;
     
     [Header("Passive Damage Mitigation Variables")]
-    public float damageTakenPercentage = 1; //inherent percentile - doesn't need ModPerc
+    public float dmgTakePerc = 1; //inherent percentile - doesn't need ModPerc
     public float evasionChance; //inherent percentile - doesn't need ModPerc
     
     //'element' variables
     [Header("Element Variables")]
     [Header("Poison Variables")]
     public float basePoisonDamage = 1f;
-    public float poisonDamageModPerc = 1f;
+    public float poisonDmgModPerc = 1f;
     public float poisonLength = 5f;
-    public float PoisonDamage => basePoisonDamage * poisonDamageModPerc;
+    public float PoisonDamage => basePoisonDamage * poisonDmgModPerc;
     
     [Header("Fire Variables")]
     public float baseFireDamage = 1f;
-    public float fireDamageModPerc = 1f;
+    public float fireDmgModPerc = 1f;
     public float fireLength = 5f;
-    public float FireDamage => baseFireDamage * fireDamageModPerc;
+    public float FireDamage => baseFireDamage * fireDmgModPerc;
     
     [Header("Ice Variables")]
-    public float iceSlowdownPercentage = 0.2f; //inherent percentile - doesn't need ModPerc
+    public float iceSlowPerc = 0.2f; //inherent percentile - doesn't need ModPerc
     public float iceLength = 5f;
     
     
     //methods
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage*damageTakenPercentage;
+        CurrentHealth -= damage*dmgTakePerc;
     }
 
     public void ChangeMana(float change)
@@ -82,9 +82,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         CurrentMana -= change;
     }
     
-    public void AddDash() 
+    public void AddDodge(int addCharges) 
     {
-        Math.Clamp(dodgesCharges + 1, 0, maxDodgeCharges);
+        Math.Clamp(dodgesCharges + addCharges, 0, maxDodgeCharges);
     }
 
     void Start()
