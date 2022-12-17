@@ -21,7 +21,7 @@ public class GroundScatterBehaviour : StateMachineBehaviour
         if (_timer > _groundScatterAttack)
         {
             _bossScript.StartCoroutine(_bossScript.CO_GroundScatter());
-            _timer = 0;
+            _timer = -10;
         }
         animator.SetBool("GroundScatter", false);
     }
