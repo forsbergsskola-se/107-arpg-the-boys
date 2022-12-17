@@ -58,7 +58,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public bool hasGuard;
     
     private bool[] _abilities;
-    private bool _isAttacking;
+    [NonSerialized]
+    public bool isAttacking;
     private bool _continueAttack;
     private Coroutine _startedAttack;
 
@@ -80,11 +81,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         var inDistance = Vector3.Distance(transform.position, target.transform.position) < attackRange;
 
-        if (inDistance && !_isAttacking)
+        if (inDistance && !isAttacking)
         {
             _startedAttack = StartCoroutine(SelectedAttack());
         }
-        else if (!_isAttacking)
+        else if (!isAttacking)
         {
             EnemyMovement();
         }
@@ -147,7 +148,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private IEnumerator CO_EnemyLightAttack()
     {
         _continueAttack = false;
-        _isAttacking = true;
+        isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.LightAttack;
         _currentAttackParameter = lightAttackInformation.lightAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(lightAttackInformation.lightAttackStartDelay);
@@ -156,13 +157,13 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         yield return new WaitForSeconds(lightAttackInformation.lightAttackDuration);
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        _isAttacking = false;
+        isAttacking = false;
     }
 
     private IEnumerator CO_EnemyHeavyAttack()
     {
         _continueAttack = false;
-        _isAttacking = true;
+        isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.HeavyAttack;
         _currentAttackParameter = heavyAttackInformation.heavyAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackStartDelay);
@@ -171,7 +172,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackDuration);
         animator.SetBool(heavyAttackInformation.heavyAttackParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        _isAttacking = false;
+        isAttacking = false;
     }
 
     private IEnumerator CO_EnemyGuard()
@@ -179,7 +180,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         _continueAttack = false;
         if(guardInformation.guardChild == null)
             yield break;
-        _isAttacking = true;
+        isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.Guard;
         _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
@@ -189,7 +190,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        _isAttacking = false;
+        isAttacking = false;
     }
 
     //Used for animation events
@@ -232,7 +233,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private void CancelAttack()
     {
         StopCoroutine(_startedAttack);
-        _isAttacking = false;
+        isAttacking = false;
         guardInformation.guardChild.SetActive(false);
         animator.SetBool(_currentAttackParameter, false);
     }
