@@ -29,7 +29,8 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public float parryTime;
 
     [Header("Appearance")] 
-    public Vector3 modelOffset;
+    public Vector3 modelPosOffset;
+    public Vector3 modelRotOffset;
 
     private Rigidbody _rb;
 
@@ -53,6 +54,7 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
         StartCoroutine(LerpToHand(0.25f, playerCombat));
         _rb.useGravity = false;
         _rb.detectCollisions = false;
+        _rb.isKinematic = true;
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
         transform.parent = playerCombat.weaponHolder;
@@ -64,6 +66,7 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
         playerCombat.currentWeapon = null;
         _rb.useGravity = true;
         _rb.detectCollisions = true;
+        _rb.isKinematic = false;
         transform.parent = null;
     }
 
@@ -76,16 +79,21 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
         {
             elapsedTime += Time.deltaTime;
             float elapsed01 = Mathf.Clamp01(elapsedTime / time);
-            transform.rotation = Quaternion.Lerp(localRot, playerCombat.weaponHolder.rotation, elapsed01);
+            transform.rotation = Quaternion.Lerp(localRot, GetHoldRot(playerCombat), elapsed01);
             transform.position = Vector3.Lerp(playerCombat.transform.TransformPoint(localDist), GetHoldPos(playerCombat), elapsed01);
             yield return null;
         }
         transform.position = GetHoldPos(playerCombat);
-        transform.rotation = playerCombat.weaponHolder.rotation;
+        transform.rotation = GetHoldRot(playerCombat);
     }
 
     Vector3 GetHoldPos(PlayerCombat playerCombat)
     {
-        return playerCombat.weaponHolder.TransformPoint(modelOffset);
+        return playerCombat.weaponHolder.TransformPoint(modelPosOffset);
+    }
+    
+    Quaternion GetHoldRot(PlayerCombat playerCombat)
+    {
+        return playerCombat.weaponHolder.rotation * Quaternion.Euler(modelRotOffset);
     }
 }
