@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, Quaternion.identity, Color.red);
     }
 
-    private void EnemyMovement()
+    public void EnemyMovement()
     {
         //paste movement code for the enemy here so he can be interrupted :)
         transform.position =
