@@ -58,9 +58,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public bool hasGuard;
     
     private bool[] _abilities;
-    private bool isAttacking;
     [NonSerialized]
-    public bool Attacking;
+    public bool isAttacking;
     private bool _continueAttack;
     private Coroutine _startedAttack;
 
@@ -82,11 +81,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         var inDistance = Vector3.Distance(transform.position, target.transform.position) < attackRange;
 
-        if (inDistance && !Attacking && !isAttacking)
+        if (inDistance && !isAttacking)
         {
             _startedAttack = StartCoroutine(SelectedAttack());
         }
-        else if (!Attacking && !isAttacking)
+        else if (!isAttacking)
         {
             EnemyMovement();
         }
