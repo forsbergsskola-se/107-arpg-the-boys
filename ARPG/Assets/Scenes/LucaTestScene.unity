@@ -937,10 +937,10 @@ MonoBehaviour:
   critRate: 0.1
   critDamageBonus: 1.5
   lightAttackDamage: 10
-  lightAttackCooldown: 0.5
+  lightAttackSpeed: 0.5
   lightAttackColSize: {x: 0, y: 0, z: 0}
   heavyAttackDamage: 20
-  heavyAttackCooldown: 1
+  heavyAttackSpeed: 1
   heavyAttackColSize: {x: 0, y: 0, z: 0}
   guardTime: 0
   guardPunish: 0
@@ -1348,33 +1348,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe
       objectReference: {fileID: 0}
-    - target: {fileID: 1062353334104711912, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2182101299139696452, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2372584552947546636, guid: 439a532aec13bc04e85ea9ffb8759869, type: 3}
-    - target: {fileID: 2182101299139696452, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
       propertyPath: m_RootOrder
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.0277836
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.0277834
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.027783
       objectReference: {fileID: 0}
     - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1415,42 +1391,6 @@ PrefabInstance:
     - target: {fileID: 8657553802276891944, guid: 1b035162e8f807446b642433228ab46e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelOffset.x
-      value: 0.004
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelOffset.y
-      value: -0.116
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelOffset.z
-      value: 0.007
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelPosOffset.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelPosOffset.y
-      value: -0.096
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelPosOffset.z
-      value: 0.009
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelRotOffset.x
-      value: 354.98718
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelRotOffset.y
-      value: 52.707985
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-      propertyPath: modelRotOffset.z
-      value: 11.908818
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b035162e8f807446b642433228ab46e, type: 3}
@@ -1518,6 +1458,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: maxDodgeCharges
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1564704669403428578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.461

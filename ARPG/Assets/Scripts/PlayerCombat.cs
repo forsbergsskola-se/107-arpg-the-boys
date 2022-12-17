@@ -18,6 +18,10 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody _rb;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
+    [NonSerialized]
+    public bool continueAttack;
+    [NonSerialized] 
+    public bool animationEnded;
     
     void Start()
     {
@@ -27,15 +31,15 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (!isAttacking && currentWeapon != null)
+        if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
-                StartCoroutine(LightAttack());
+                StartCoroutine(Attack(currentWeapon.lightAttackSpeed, "Light-attack"));
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                HeavyAttack();
+                StartCoroutine(Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack"));
             }
             if (Input.GetButtonDown("Fire3"))
             {
@@ -68,47 +72,34 @@ public class PlayerCombat : MonoBehaviour
             _playerMovement.rotateDir = Vector3.ProjectOnPlane((Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position, Vector3.up).normalized;
         }
     }
-    
-    private IEnumerator LightAttack()
-    {
-        Debug.Log("Light attack!");
 
+    private IEnumerator Attack(float attackSpeed, string animTriggerName)
+    {
+        Debug.Log(animTriggerName);
+        
+        _playerMovement.playerAnimator.speed = attackSpeed;
+
+        animationEnded = false;
+        continueAttack = false;
         isAttacking = true;
         _playerMovement._rb.velocity = Vector3.zero;
         
-
         SetRotatePoint();
         
-        // TODO: Cooldown
-        yield return new WaitForSeconds(currentWeapon.lightAttackCooldown);
-        
-        // TODO: Does animation
-        
         // TODO: Plays sound
         
         
-        // TODO: Freeze player movement
-        
-        // TODO: Boxcast with take damage
-        AttackBox(currentWeapon.lightAttackColSize, currentWeapon.lightAttackDamage, true);
+        // TODO: Does animation
+        _playerMovement.playerAnimator.SetTrigger(animTriggerName);
 
+        yield return new WaitUntil(() => animationEnded);
+        
+        
+        // End attack
         isAttacking = false;
+        _playerMovement.playerAnimator.speed = 1;
     }
-    
-    private void HeavyAttack()
-    {
-        Debug.Log("Heavy attack!");
-        
-        // TODO: Does animation
-        
-        // TODO: Plays sound
-        
-        // TODO: Boxcast with take damage
-        AttackBox(currentWeapon.heavyAttackColSize, currentWeapon.heavyAttackDamage, true);
-        
-        // TODO: Cooldown
-    }
-    
+
     private void Guard()
     {
         Debug.Log("Guarded!");
@@ -119,7 +110,7 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Parried!");
     }
 
-    private void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
+    public void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
     {
         Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
         if (showBox)

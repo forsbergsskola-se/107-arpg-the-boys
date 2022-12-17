@@ -16,13 +16,15 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody _rb;
     private PlayerStats _playerStats;
     private PlayerCombat _playerCombat;
-    private Animator _playerAnimator;
+    [NonSerialized]
+    public Animator playerAnimator;
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
     private float _regularSpeed;
     
     private float _invulnerabilityTimer = 0.0f;
-    private bool _isRolling = false;
+    [NonSerialized]
+    public bool isRolling;
     private float _desiredSpeed;
     private bool _dash;
     private bool _running;
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
         _playerCombat = GetComponent<PlayerCombat>();
-        _playerAnimator = body.GetComponent<Animator>();
+        playerAnimator = body.GetComponent<Animator>();
         _playerStats.dodgesCharges = _playerStats.maxDodgeCharges;
     }
 
@@ -83,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_grounded)
             {
-                if (!_isRolling)
+                if (!isRolling)
                 {
                     if (_running)
                     {
@@ -99,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             
-            if (_isRolling)
+            if (isRolling)
             {
                 RollTimer();
             }
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovementAnimation()
     {
-        _playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
+        playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
     }
     
     void RollTimer()
@@ -131,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_invulnerabilityTimer >= rollDuration)
         {
-            _isRolling = false;
+            isRolling = false;
             _invulnerabilityTimer = 0.0f;
         }
     }
@@ -145,10 +147,10 @@ public class PlayerMovement : MonoBehaviour
         _playerStats.dodgesCharges = Math.Clamp(_playerStats.dodgesCharges - 1, 0, _playerStats.maxDodgeCharges);
         
         // Play the roll animation
-        _playerAnimator.SetTrigger("Roll");
+        playerAnimator.SetTrigger("Roll");
 
         // Set the invulnerability flag and reset the invulnerability timer
-        _isRolling = true;
+        isRolling = true;
         _invulnerabilityTimer = 0.0f;
     }
 
@@ -163,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 rotateDir;
     private void RotatePlayer()
     {
-        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling && canMove)
+        if (MoveFromCamera().sqrMagnitude >= 0.1f && !isRolling && canMove)
         {
             rotateDir = MoveFromCamera();
             body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir, Vector3.up), rotationSpeed * Time.deltaTime);
