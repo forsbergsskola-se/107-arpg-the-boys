@@ -11,22 +11,22 @@ using Random = UnityEngine.Random;
 [System.Serializable]
 public class LightAttack
 {
+    public bool showHitBox;
     public string lightAttackParameterNameOfTypeBool;
     public Vector3 lightAttackSize;
     public float lightAttackDamage;
     public float lightAttackStartDelay;
-    public float lightAttackDurationDelay;
     public float lightAttackDuration;
 }
 
 [System.Serializable]
 public class HeavyAttack
 {
+    public bool showHitBox;
     public string heavyAttackParameterNameOfTypeBool;
     public Vector3 heavyAttackSize;
     public float heavyAttackDamage;
     public float heavyAttackStartDelay;
-    public float heavyAttackDurationDelay;
     public float heavyAttackDuration;
 }
 
@@ -36,7 +36,6 @@ public class Guard
     public string guardParameterNameOfTypeBool;
     public GameObject guardChild;
     public float guardStartDelay;
-    public float guardDurationDelay;
     public float guardDuration;
 }
 
@@ -57,7 +56,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public Guard guardInformation;
     public bool hasGuard;
-
+    
     private bool[] _abilities;
     private bool _isAttacking;
     private bool _continueAttack;
@@ -89,6 +88,10 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         {
             EnemyMovement();
         }
+        if(lightAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
+        if(heavyAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, Quaternion.identity, Color.red);
     }
 
     private void EnemyMovement()
