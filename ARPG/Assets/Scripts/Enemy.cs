@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private string _currentAttackParameter;
     public Transform attackTransform;
     public LayerMask hitLayer;
+    public float rotationSpeed;
 
 
     // Start is called before the first frame update
@@ -95,8 +96,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void EnemyMovement()
     {
         //paste movement code for the enemy here so he can be interrupted :)
+        Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
-        transform.LookAt(target.transform);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     //selection of attacks
