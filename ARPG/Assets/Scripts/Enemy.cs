@@ -57,7 +57,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private bool[] _abilities;
     [NonSerialized]
     public bool isAttacking;
-    private bool _endAttack;
+    [NonSerialized]
+    private bool _endAttack = true;
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
