@@ -25,7 +25,7 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
 
     [Header("Guard Stats")]
     public float guardTime;
-    public float guardPunish;
+    public float parryPunishRange = 3;
     public float parryTime;
 
     [Header("Appearance")] 

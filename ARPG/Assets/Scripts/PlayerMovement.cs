@@ -101,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             
+            
+        }
+        
+        if (canMove)
+        {
             if (isRolling)
             {
                 RollTimer();
@@ -110,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 StartRoll();
             }
         }
-
+        
         if (!_grounded)
         {
             Gravity();

@@ -108,6 +108,7 @@ public class PlayerCombat : MonoBehaviour
     private void Parry()
     {
         Debug.Log("Parried!");
+        Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange);
     }
 
     public void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
