@@ -19,8 +19,6 @@ public class GrassBoss : MonoBehaviour
     public float groundScatterSpeed;
     public float passiveStageDuration;
 
-    public Animator animator;
-    
     [NonSerialized]
     public float _scatterRounds;
 
@@ -53,7 +51,6 @@ public class GrassBoss : MonoBehaviour
         transform.position = position;
 
         //move towards _firePoint
-        animator.SetFloat("MoveSpeed", _rb.velocity.magnitude);
         if (moveToAttackSpot)
             MoveToAttackSpot();
     }
@@ -73,8 +70,10 @@ public class GrassBoss : MonoBehaviour
         yield return new WaitForSeconds(passiveStageDuration);
         yield return new WaitUntil(() => enemyScript.endAttack);
         enemyScript.enabled = false;
+        enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, true);
         moveToAttackSpot = true;
         yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
+        enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
         moveToAttackSpot = false;
         passiveStageActive = false;
@@ -129,5 +128,16 @@ public class GrassBoss : MonoBehaviour
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
         yield return null;
+    }
+    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Collider[] collisions = groundScatterPrefab.GetComponentsInChildren<Collider>();
+        for (var i = 0; i < collisions.Length; i++)
+        {
+            if (collisions[i].CompareTag("Player"))
+                print("dadady");
+        }
     }
 }

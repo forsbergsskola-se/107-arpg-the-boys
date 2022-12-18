@@ -546,6 +546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137062, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: cam
       value: 
@@ -609,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1502410820, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1502410820, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_Constraints
@@ -690,6 +694,10 @@ PrefabInstance:
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: rotationSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: walkAnimationParameterName
+      value: Walking
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674086, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: animator
