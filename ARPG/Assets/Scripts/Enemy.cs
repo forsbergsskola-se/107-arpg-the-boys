@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float maxHealth;
 
     public Animator animator;
+    public string walkAnimationParameterName;
 
     public LightAttack lightAttackInformation;
     public bool hasLightAttacks;
@@ -55,9 +56,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public bool hasGuard;
     
     private bool[] _abilities;
-    [NonSerialized]
-    public bool isAttacking;
-    private bool _endAttack;
+    private bool _isAttacking;
+    public bool endAttack = true;
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
@@ -79,14 +79,19 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         var inDistance = Vector3.Distance(transform.position, target.transform.position) < attackRange;
 
-        if (inDistance && !isAttacking)
+        if (inDistance && !_isAttacking)
         {
             _startedAttack = StartCoroutine(SelectedAttack());
         }
-        else if (!isAttacking)
+        else if (!_isAttacking)
         {
             EnemyMovement();
+            animator.SetBool(walkAnimationParameterName, true);
         }
+        else 
+            animator.SetBool(walkAnimationParameterName, false);
+        
+        
         if(lightAttackInformation.showHitBox)
             DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
         if(heavyAttackInformation.showHitBox)
@@ -97,7 +102,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         //paste movement code for the enemy here so he can be interrupted :)
         Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+        var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
@@ -145,47 +151,47 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     //Attacks
     private IEnumerator CO_EnemyLightAttack()
     {
-        _endAttack = false;
-        isAttacking = true;
+        endAttack = false;
+        _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.LightAttack;
         _currentAttackParameter = lightAttackInformation.lightAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(lightAttackInformation.lightAttackStartDelay);
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, true);
-        yield return new WaitUntil(() => _endAttack);
+        yield return new WaitUntil(() => endAttack);
         animator.SetBool(lightAttackInformation.lightAttackParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        isAttacking = false;
+        _isAttacking = false;
     }
 
     private IEnumerator CO_EnemyHeavyAttack()
     {
-        _endAttack = false;
-        isAttacking = true;
+        endAttack = false;
+        _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.HeavyAttack;
         _currentAttackParameter = heavyAttackInformation.heavyAttackParameterNameOfTypeBool;
         yield return new WaitForSeconds(heavyAttackInformation.heavyAttackStartDelay);
         animator.SetBool(heavyAttackInformation.heavyAttackParameterNameOfTypeBool, true);
-        yield return new WaitUntil(() => _endAttack);
+        yield return new WaitUntil(() => endAttack);
         animator.SetBool(heavyAttackInformation.heavyAttackParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        isAttacking = false;
+        _isAttacking = false;
     }
 
     private IEnumerator CO_EnemyGuard()
     {
-        _endAttack = false;
+        endAttack = false;
         if(guardInformation.guardChild == null)
             yield break;
-        isAttacking = true;
+        _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.Guard;
         _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
-        yield return new WaitUntil(() => _endAttack);
+        yield return new WaitUntil(() => endAttack);
         guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
-        isAttacking = false;
+        _isAttacking = false;
     }
 
     //Used for animation events
@@ -196,7 +202,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public void LightAttackAnimationEnd()
     {
-        _endAttack = true;
+        endAttack = true;
     }
     
     public void HeavyAttackAnimation()
@@ -206,7 +212,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     
     public void HeavyAttackAnimationEnd()
     {
-        _endAttack = true;
+        endAttack = true;
     }
     
     public void GuardAnimation()
@@ -215,7 +221,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     }
     public void GuardAnimationEnd()
     {
-        _endAttack = true;
+        endAttack = true;
     }
 
     //boxcast for hitbox of attack
@@ -239,9 +245,10 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private void CancelAttack()
     {
         StopCoroutine(_startedAttack);
-        isAttacking = false;
+        _isAttacking = false;
         guardInformation.guardChild.SetActive(false);
         animator.SetBool(_currentAttackParameter, false);
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 
     #region Interfaces
