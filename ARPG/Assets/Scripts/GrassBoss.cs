@@ -18,11 +18,20 @@ public class GrassBoss : MonoBehaviour
     public float groundScatterDistance;
     public float groundScatterSpeed;
     public float passiveStageDuration;
+
+    public Animator animator;
     
+    [NonSerialized]
+    public float _scatterRounds;
+
     public bool passiveStageActive;
     public bool switchFromPassive;
     private float _distanceBetween;
     public bool firePointIsOnBoss;
+
+    private Rigidbody _rb;
+    private bool moveToAttackSpot;
+    private bool rotateToAttackSpot;
 
 
     void Start()
@@ -33,6 +42,8 @@ public class GrassBoss : MonoBehaviour
             _firePoint.transform.position = transform.position;
             _firePoint.transform.rotation = transform.rotation;
         }
+
+        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -43,9 +54,19 @@ public class GrassBoss : MonoBehaviour
         transform.position = position;
 
         //move towards _firePoint
-        //transform.position = Vector3.MoveTowards(transform.position,_firePoint.transform.position, 2 * Time.deltaTime);
-        //transform.LookAt(_firePoint.transform);
+        animator.SetFloat("MoveSpeed", _rb.velocity.magnitude);
+        if (moveToAttackSpot)
+            MoveToAttackSpot();
+        if(rotateToAttackSpot)
+            transform.rotation = Quaternion.Lerp(transform.rotation, _firePoint.transform.rotation, 10);
+    }
 
+    private void MoveToAttackSpot()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(_firePoint.transform.position - transform.position);
+        
+        transform.position = Vector3.MoveTowards(transform.position,_firePoint.transform.position, enemyScript.moveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, enemyScript.rotationSpeed * Time.deltaTime);
     }
 
     public IEnumerator CO_PassiveStage()
@@ -53,8 +74,13 @@ public class GrassBoss : MonoBehaviour
         passiveStageActive = true;
         enemyScript.enabled = true;
         yield return new WaitForSeconds(passiveStageDuration);
-        switchFromPassive = true;
+        yield return new WaitUntil(() => enemyScript.endAttack);
         enemyScript.enabled = false;
+        moveToAttackSpot = true;
+        yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
+        rotateToAttackSpot = true;
+        switchFromPassive = true;
+        moveToAttackSpot = false;
         passiveStageActive = false;
     }
     public IEnumerator CO_GroundScatter()

@@ -11,8 +11,6 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
 
     private float _timer;
     private float _passiveTimer;
-    
-    private float _scatterRounds;
 
     public int roundsBeforeSpecial;
     private bool _switchSpecial;
@@ -30,13 +28,13 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         if (_bossScript.switchFromPassive)
         {
             _timer += Time.deltaTime;
-            if (_timer > groundScatterCd && _scatterRounds < roundsBeforeSpecial)
+            if (_timer > groundScatterCd && _bossScript._scatterRounds < roundsBeforeSpecial)
                 MainAttack();
             
-            if (_timer > danceCd && _scatterRounds >= roundsBeforeSpecial && _switchSpecial)
+            if (_timer > danceCd && _bossScript._scatterRounds >= roundsBeforeSpecial && _switchSpecial)
                 DanceAttack();
             
-            if (_timer > roarCd && _scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
+            if (_timer > roarCd && _bossScript._scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
                 FartAttack();
         }
 
@@ -47,13 +45,13 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         {
             animator.SetBool("GroundScatter",true);
             _timer = 0;
-            _scatterRounds++;
+            _bossScript._scatterRounds++;
         }
 
         void FartAttack()
         {
             animator.SetBool("Roar",true);
-            _scatterRounds = 0;
+            _bossScript._scatterRounds = 0;
             _timer = 0;
             _switchSpecial = true;
         }
@@ -61,7 +59,7 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         void DanceAttack()
         {
             animator.SetBool("Dance",true);
-            _scatterRounds = 0;
+            _bossScript._scatterRounds = 0;
             _timer = 0;
             _switchSpecial = false;
         }

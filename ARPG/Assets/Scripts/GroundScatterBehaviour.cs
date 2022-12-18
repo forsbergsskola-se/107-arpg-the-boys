@@ -9,10 +9,12 @@ public class GroundScatterBehaviour : StateMachineBehaviour
     private float _timer;
     private readonly float _groundScatterAttack = 1.5f;
     private GrassBoss _bossScript;
+    
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _timer = 0;
         _bossScript = FindObjectOfType<GrassBoss>();
+        
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,6 +23,7 @@ public class GroundScatterBehaviour : StateMachineBehaviour
         if (_timer > _groundScatterAttack)
         {
             _bossScript.StartCoroutine(_bossScript.CO_GroundScatter());
+            animator.SetBool("GroundScatter",false);
             _timer = -10;
         }
     }
@@ -30,6 +33,8 @@ public class GroundScatterBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (_bossScript._scatterRounds > 2)
+            _bossScript.switchFromPassive = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
