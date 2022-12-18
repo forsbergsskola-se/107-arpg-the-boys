@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,12 +11,11 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
 
     private float _timer;
     private float _passiveTimer;
-
+    
     private float _scatterRounds;
 
     public int roundsBeforeSpecial;
     private bool _switchSpecial;
-    private bool _switchPassive;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -27,27 +27,27 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_switchPassive)
+        if (_bossScript.switchFromPassive)
         {
             _timer += Time.deltaTime;
-            if(_timer > groundScatterCd && _scatterRounds < roundsBeforeSpecial)
+            if (_timer > groundScatterCd && _scatterRounds < roundsBeforeSpecial)
                 MainAttack();
-            if(_timer > danceCd && _scatterRounds >= roundsBeforeSpecial && _switchSpecial)
+            
+            if (_timer > danceCd && _scatterRounds >= roundsBeforeSpecial && _switchSpecial)
                 DanceAttack();
-            if(_timer > roarCd && _scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
+            
+            if (_timer > roarCd && _scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
                 FartAttack();
         }
 
-        if (!_switchPassive && !_bossScript.passiveStageActive)
+        if (!_bossScript.switchFromPassive && !_bossScript.passiveStageActive)
             _bossScript.StartCoroutine(_bossScript.CO_PassiveStage());
 
         void MainAttack()
         {
-            
             animator.SetBool("GroundScatter",true);
             _timer = 0;
             _scatterRounds++;
-            
         }
 
         void FartAttack()

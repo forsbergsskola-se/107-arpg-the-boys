@@ -23,7 +23,6 @@ public class GroundScatterBehaviour : StateMachineBehaviour
             _bossScript.StartCoroutine(_bossScript.CO_GroundScatter());
             _timer = -10;
         }
-        animator.SetBool("GroundScatter", false);
     }
 
     

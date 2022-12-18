@@ -27,6 +27,7 @@ public class danceAnimationBehaviour : StateMachineBehaviour
         {
             animator.SetBool("Dance", false);
             _timer = 0;
+            _bossScript.switchFromPassive = false;
         }
 
         if (_nukeTimer > nukeSpawnRate)

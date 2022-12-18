@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  moveSpeed: 0
+  moveSpeed: 5
   attackRange: 2
   maxHealth: 100
   animator: {fileID: 6624447921053603127}
@@ -223,22 +223,19 @@ MonoBehaviour:
     lightAttackParameterNameOfTypeBool: LightAttack
     lightAttackSize: {x: 10, y: 10, z: 10}
     lightAttackDamage: 5
-    lightAttackStartDelay: 1
-    lightAttackDuration: 2
+    lightAttackStartDelay: 0.1
   hasLightAttacks: 1
   heavyAttackInformation:
     showHitBox: 0
     heavyAttackParameterNameOfTypeBool: HeavyAttack
     heavyAttackSize: {x: 10, y: 10, z: 10}
     heavyAttackDamage: 10
-    heavyAttackStartDelay: 1
-    heavyAttackDuration: 4
+    heavyAttackStartDelay: 0.1
   hasHeavyAttacks: 1
   guardInformation:
     guardParameterNameOfTypeBool: 
     guardChild: {fileID: 102550616}
     guardStartDelay: 1
-    guardDuration: 5
   hasGuard: 0
   attackTransform: {fileID: 834398481}
   hitLayer:
@@ -265,7 +262,9 @@ MonoBehaviour:
   groundScatterAmount: 4
   groundScatterDistance: 10
   groundScatterSpeed: 0.4
-  passiveStageDuration: 0
+  passiveStageDuration: 10
+  passiveStageActive: 0
+  switchFromPassive: 0
   firePointIsOnBoss: 1
 --- !u!1 &620216483588369120
 GameObject:

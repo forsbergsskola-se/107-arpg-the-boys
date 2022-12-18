@@ -19,8 +19,8 @@ public class GrassBoss : MonoBehaviour
     public float groundScatterSpeed;
     public float passiveStageDuration;
     
-    [NonSerialized]
     public bool passiveStageActive;
+    public bool switchFromPassive;
     private float _distanceBetween;
     public bool firePointIsOnBoss;
 
@@ -51,7 +51,10 @@ public class GrassBoss : MonoBehaviour
     public IEnumerator CO_PassiveStage()
     {
         passiveStageActive = true;
+        enemyScript.enabled = true;
         yield return new WaitForSeconds(passiveStageDuration);
+        switchFromPassive = true;
+        enemyScript.enabled = false;
         passiveStageActive = false;
     }
     public IEnumerator CO_GroundScatter()
@@ -64,7 +67,7 @@ public class GrassBoss : MonoBehaviour
             {
                 GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
                 groundScatterInstance.transform.localScale = abilityScale;
-                yield return new WaitForSeconds(groundScatterSpeed);
+                yield return new WaitForSeconds(groundScatterSpeed); 
             } 
         }
 
