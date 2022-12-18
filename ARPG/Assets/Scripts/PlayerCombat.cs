@@ -4,22 +4,28 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour, IInterruptible
 {
+    
     public BaseWeapon currentWeapon;
     public Transform weaponHolder;
     public LayerMask hitLayer;
     public Transform attackCenter;
     public float attackRotateSpeed = 20;
-    [NonSerialized]
     public bool isAttacking;
+    
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] slashWhoosh, enemyHitSound;
+
+    private Coroutine _currentAttack;
     private Rigidbody _rb;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
-    [NonSerialized]
-    public bool continueAttack;
+
     [NonSerialized] 
     public bool animationEnded;
     
@@ -35,11 +41,11 @@ public class PlayerCombat : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                StartCoroutine(Attack(currentWeapon.lightAttackSpeed, "Light-attack"));
+                _currentAttack = StartCoroutine(Attack(currentWeapon.lightAttackSpeed, "Light-attack", IInterruptible.AttackState.LightAttack));
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                StartCoroutine(Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack"));
+                _currentAttack = StartCoroutine(Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack", IInterruptible.AttackState.HeavyAttack));
             }
             if (Input.GetButtonDown("Fire3"))
             {
@@ -73,14 +79,14 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private IEnumerator Attack(float attackSpeed, string animTriggerName)
+    private IEnumerator Attack(float attackSpeed, string animTriggerName, IInterruptible.AttackState attackState)
     {
+        CurrentAttackState = attackState;
         Debug.Log(animTriggerName);
         
         _playerMovement.playerAnimator.speed = attackSpeed;
 
         animationEnded = false;
-        continueAttack = false;
         isAttacking = true;
         _playerMovement._rb.velocity = Vector3.zero;
         
@@ -89,15 +95,15 @@ public class PlayerCombat : MonoBehaviour
         // TODO: Plays sound
         
         
-        // TODO: Does animation
+        // Plays animation and waits until animation has ended before finishing up the attack
         _playerMovement.playerAnimator.SetTrigger(animTriggerName);
 
         yield return new WaitUntil(() => animationEnded);
         
-        
         // End attack
         isAttacking = false;
         _playerMovement.playerAnimator.speed = 1;
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 
     private void Guard()
@@ -108,11 +114,19 @@ public class PlayerCombat : MonoBehaviour
     private void Parry()
     {
         Debug.Log("Parried!");
-        Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange);
+        Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out Enemy enemy))
+            {
+                // TODO: Call enemy parried function here
+            }
+        }
     }
 
     public void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
     {
+        bool hitEnemy = false;
         Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
         if (showBox)
             DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
@@ -120,12 +134,72 @@ public class PlayerCombat : MonoBehaviour
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
+                if (!hitEnemy)
+                {
+                    hitEnemy = true;
+                    audioSource.clip = GetRandomAudioClip(enemyHitSound);
+                    audioSource.Play();
+                    _playerStats.AddDash();
+                    Debug.Log("An enemy was hit");
+                }
+                if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
+                    interruptible.Interrupt();
                 float damage = weaponDamage + _playerStats.AttackPower;
                 damageable.TakeDamage(damage);
             }
         }
     }
 
+    public AudioClip GetRandomAudioClip(AudioClip[] audioClips)
+    {
+        // Select a random index from the array
+        int randomIndex = Random.Range(0, audioClips.Length);
+
+        // Return the audio clip at the random index
+        return audioClips[randomIndex];
+    }
+
+    private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)
+    {
+        switch (player.CurrentAttackState)
+        {
+            case IInterruptible.AttackState.LightAttack:
+                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack)
+                {
+                    return true;
+                }
+                break;
+            case IInterruptible.AttackState.HeavyAttack:
+                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack || enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    public void Interrupt()
+    {
+        _playerMovement.playerAnimator.speed = 2.5f;
+        _playerMovement.playerAnimator.SetTrigger("Interrupted");
+        CancelAttack();
+    }
+
+    public void CancelAttack()
+    {
+        if (_currentAttack != null)
+        {
+            StopCoroutine(_currentAttack);
+            isAttacking = false;
+            _playerMovement.playerAnimator.speed = 1;
+            CurrentAttackState = IInterruptible.AttackState.NoAttack;
+        }
+    }
+
+    public IInterruptible.AttackState CurrentAttackState { get; set; }
+    
 
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
     //Draws just the box at where it is currently hitting.
@@ -224,4 +298,5 @@ public class PlayerCombat : MonoBehaviour
          Vector3 direction = point - pivot;
          return pivot + rotation * direction;
      }
+     
 }

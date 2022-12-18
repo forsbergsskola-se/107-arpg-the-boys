@@ -205,15 +205,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5544351134137442710}
-  m_LocalRotation: {x: 0.52797735, y: 0.18023497, z: 0.15789546, w: 0.8147542}
-  m_LocalPosition: {x: 3.42, y: 0.68, z: 0.89}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6276, y: 1.6276, z: 1.6276}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3640630776836014662}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 53.459, y: 50.651, z: 48.745}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5544351134137442709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   heavyAttackSpeed: 1.2
   heavyAttackColSize: {x: 3, y: 3, z: 3}
   guardTime: 0.7
-  guardPunish: 0
+  parryPunishRange: 3
   parryTime: 0.1
   modelPosOffset: {x: 0, y: -0.19, z: 0}
   modelRotOffset: {x: 0, y: 0, z: 0}

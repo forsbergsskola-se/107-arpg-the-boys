@@ -14,14 +14,16 @@ public class PlayerCombatAnimations : MonoBehaviour
     public void LightAttackEvent()
     {
         playerCombat.AttackBox(playerCombat.currentWeapon.lightAttackColSize, playerCombat.currentWeapon.lightAttackDamage, true);
-        playerCombat.continueAttack = true;
     }
     
     public void HeavyAttackEvent()
     {
         playerCombat.AttackBox(playerCombat.currentWeapon.heavyAttackColSize, playerCombat.currentWeapon.heavyAttackDamage, true);
-        playerCombat.continueAttack = true;
     }
-    
-    
+
+    public void PlayWhooshSound()
+    {
+        playerCombat.audioSource.clip = playerCombat.GetRandomAudioClip(playerCombat.slashWhoosh);
+        playerCombat.audioSource.Play();
+    }
 }

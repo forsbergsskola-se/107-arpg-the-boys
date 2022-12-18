@@ -145,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
     
     void StartRoll()
     {
+        _playerCombat.CancelAttack();
         // Set the player's velocity to the roll speed in the direction the player is currently facing
         endVel = rotateDir * _playerStats.DodgeSpeed;
 
