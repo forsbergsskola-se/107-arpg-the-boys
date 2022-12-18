@@ -31,7 +31,6 @@ public class GrassBoss : MonoBehaviour
 
     private Rigidbody _rb;
     private bool moveToAttackSpot;
-    private bool rotateToAttackSpot;
 
 
     void Start()
@@ -57,8 +56,6 @@ public class GrassBoss : MonoBehaviour
         animator.SetFloat("MoveSpeed", _rb.velocity.magnitude);
         if (moveToAttackSpot)
             MoveToAttackSpot();
-        if(rotateToAttackSpot)
-            transform.rotation = Quaternion.Lerp(transform.rotation, _firePoint.transform.rotation, 10);
     }
 
     private void MoveToAttackSpot()
@@ -78,7 +75,6 @@ public class GrassBoss : MonoBehaviour
         enemyScript.enabled = false;
         moveToAttackSpot = true;
         yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
-        rotateToAttackSpot = true;
         switchFromPassive = true;
         moveToAttackSpot = false;
         passiveStageActive = false;
