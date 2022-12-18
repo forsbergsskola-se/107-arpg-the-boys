@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float maxHealth;
 
     public Animator animator;
+    public string walkAnimationParameterName;
 
     public LightAttack lightAttackInformation;
     public bool hasLightAttacks;
@@ -56,7 +57,6 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     
     private bool[] _abilities;
     private bool _isAttacking;
-    [NonSerialized]
     public bool endAttack = true;
     private Coroutine _startedAttack;
 
@@ -86,7 +86,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         else if (!_isAttacking)
         {
             EnemyMovement();
+            animator.SetBool(walkAnimationParameterName, true);
         }
+        else 
+            animator.SetBool(walkAnimationParameterName, false);
+        
+        
         if(lightAttackInformation.showHitBox)
             DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
         if(heavyAttackInformation.showHitBox)
@@ -97,7 +102,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         //paste movement code for the enemy here so he can be interrupted :)
         Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+        var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
