@@ -1068,7 +1068,6 @@ MonoBehaviour:
   - {fileID: 4083822017541079217}
   - {fileID: 6122116685043685920}
   - {fileID: 8062833531910428257}
-  monsterSpawners: []
 --- !u!65 &8235604927317283158
 BoxCollider:
   m_ObjectHideFlags: 0

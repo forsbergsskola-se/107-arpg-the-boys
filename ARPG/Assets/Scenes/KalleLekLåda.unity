@@ -723,23 +723,20 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 8
-  desiredRoomAmount: 1000
+  desiredRoomAmount: 14
   deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
   allRooms:
   - rooms:
     - {fileID: 8282403222250315860, guid: 42df8eeac5336ce45b3e98c774d7c149, type: 3}
     - {fileID: 8282403222250315860, guid: 7ba4813dec5e52048b245d6f2c0517d0, type: 3}
-    - {fileID: 8282403222250315860, guid: 2c9aa429063427d448d2ce7666a46954, type: 3}
   - rooms:
-    - {fileID: 7861458429828971456, guid: 7d6950a71b7f8134eb9ed0b25423814a, type: 3}
+    - {fileID: 4655078571775284410, guid: 2bad87d2bf5a93f4a9aa9491fdbadb30, type: 3}
     - {fileID: 4655078571775284410, guid: ac36e22520ca87c478e28f8f9be9f675, type: 3}
   - rooms:
-    - {fileID: 108088960873103764, guid: 45fa17d3391e08048ae54f6d71a50cf1, type: 3}
+    - {fileID: 5796119332005419444, guid: dd508275f9755a041a5eb667a35c4c92, type: 3}
     - {fileID: 5796119332005419444, guid: ac96de9b959b724448be2c443258cb11, type: 3}
   - rooms:
-    - {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - {fileID: 1208907895324898138, guid: 6d9f5bc6fd93e8e49b962a20124a3c95, type: 3}
-    - {fileID: 1208907895324898138, guid: 49aeb2bf151ed1a4094e4246ea04de01, type: 3}
   debugOn: 0
   debugSphere: {fileID: 1074531172}
   debugCube: {fileID: 74161822}
