@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private GameObject target;
     public float moveSpeed;
     public Vector3 attackRange;
+    public bool showHitbox;
     public float maxHealth;
 
     public Animator animator;
@@ -103,24 +104,17 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
         else 
             animator.SetBool(walkAnimationParameterName, false);
-        
-        
+
+        if (showHitbox)
+            DrawBoxCastBox(attackTransform.position, attackRange / 2, Quaternion.identity, Color.green);
         if(lightAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
+            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, attackTransform.rotation, Color.cyan);
         if(heavyAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, Quaternion.identity, Color.red);
+            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, attackTransform.rotation, Color.red);
         
 
         //dont call every frame later
         Death();
-
-
-        if (lightAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2,
-                attackTransform.rotation, Color.cyan);
-        if (heavyAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2,
-                attackTransform.rotation, Color.red);
 
     }
 
