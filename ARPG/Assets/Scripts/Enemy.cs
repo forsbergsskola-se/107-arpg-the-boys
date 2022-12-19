@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public Animator animator;
     public string walkAnimationParameterName;
+    public string interruptedAnimationParameter;
 
     public LightAttack lightAttackInformation;
     public bool hasLightAttacks;
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public LayerMask hitLayer;
     public float rotationSpeed;
     private bool _isInRange;
+    private bool _isInterrupted;
 
 
     // Start is called before the first frame update
@@ -84,11 +86,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         _isInRange = hits.Length > 0;
 
 
-        if (_isInRange && !_isAttacking)
+        if (_isInRange && !_isAttacking && !_isInterrupted)
         {
             _startedAttack = StartCoroutine(SelectedAttack());
         }
-        else if (!_isAttacking)
+        else if (!_isAttacking && !_isInterrupted)
         {
             EnemyMovement();
             animator.SetBool(walkAnimationParameterName, true);
@@ -205,6 +207,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     }
 
     //Used for animation events
+    public void InterruptedAnimationEnd()
+    {
+        _isInterrupted = false;
+        animator.SetBool(interruptedAnimationParameter, false);
+    }
     public void LightAttackAnimationAttack()
     {
         HitBox(lightAttackInformation.lightAttackSize, lightAttackInformation.lightAttackDamage);
@@ -266,7 +273,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         StopCoroutine(_startedAttack);
         _isAttacking = false;
-        guardInformation.guardChild.SetActive(false);
+        if(guardInformation.guardChild != null)
+            guardInformation.guardChild.SetActive(false);
         animator.SetBool(_currentAttackParameter, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
@@ -279,9 +287,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
 
+    [ContextMenu("Interrupt")]
     public void Interrupt()
     {
         CancelAttack();
+        _isInterrupted = true;
+        animator.SetBool(interruptedAnimationParameter, true);
     }
 
 
