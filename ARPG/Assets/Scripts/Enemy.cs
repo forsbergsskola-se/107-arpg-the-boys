@@ -93,9 +93,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         
         
         if(lightAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
+            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, attackTransform.rotation, Color.cyan);
         if(heavyAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, Quaternion.identity, Color.red);
+            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, attackTransform.rotation, Color.red);
     }
 
     public void EnemyMovement()
@@ -228,7 +228,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void HitBox(Vector3 size, float damage)
     {
         Collider[] hits = Physics.OverlapBox(attackTransform.position, size / 2,
-            Quaternion.identity, hitLayer);
+            attackTransform.rotation, hitLayer);
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
@@ -240,6 +240,15 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     }
 
     #endregion
+
+    private void Death()
+    {
+        if (CurrentHealth <= 0)
+        {
+            //death logic here.
+            Destroy(gameObject);
+        }
+    }
 
 
     private void CancelAttack()
