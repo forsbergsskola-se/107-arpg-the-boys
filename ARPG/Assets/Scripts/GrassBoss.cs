@@ -27,7 +27,6 @@ public class GrassBoss : MonoBehaviour
     private float _distanceBetween;
     public bool firePointIsOnBoss;
 
-    private Rigidbody _rb;
     private bool moveToAttackSpot;
 
 
@@ -40,7 +39,6 @@ public class GrassBoss : MonoBehaviour
             _firePoint.transform.rotation = transform.rotation;
         }
 
-        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

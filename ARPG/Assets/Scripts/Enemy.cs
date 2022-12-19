@@ -109,9 +109,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, Quaternion.identity, Color.cyan);
         if(heavyAttackInformation.showHitBox)
             DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, Quaternion.identity, Color.red);
-
-        else
-            animator.SetBool(walkAnimationParameterName, false);
+        
 
         //dont call every frame later
         Death();
