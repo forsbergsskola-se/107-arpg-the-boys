@@ -741,22 +741,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2027315705}
-    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
-      propertyPath: hitLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
-      propertyPath: heavyAttackInformation.heavyAttackDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
-      propertyPath: heavyAttackInformation.heavyAttackStartDelay
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
       propertyPath: m_RootOrder
       value: 5
