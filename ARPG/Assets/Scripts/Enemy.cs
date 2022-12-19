@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             animator.SetBool(walkAnimationParameterName, false);
 
         if (showHitbox)
-            DrawBoxCastBox(attackTransform.position, attackRange / 2, Quaternion.identity, Color.green);
+            DrawBoxCastBox(attackTransform.position, attackRange / 2, attackTransform.rotation, Color.green);
         if(lightAttackInformation.showHitBox)
             DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, attackTransform.rotation, Color.cyan);
         if(heavyAttackInformation.showHitBox)
