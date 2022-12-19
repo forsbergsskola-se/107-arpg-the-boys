@@ -9,18 +9,14 @@ public class WorldGenerator : MonoBehaviour
     [Header("Settings")]
     public LayerMask roomLayer;
     public int desiredRoomAmount;
-    private int generatedRoomAmount;
+    private int _generatedRoomAmount;
     
     [Header("Rooms")]
     public DungeonRoom deadEnd;
     
     public List<RoomList> allRooms;
     
-    
-    //public Transform currentPivot;
-    //public DungeonRoom currentRoom;
-    //public DungeonRoom latestRoom;
-    private Transform[] currentPivots;
+    private Transform[] _currentPivots;
     [Header("Debug")]
     public bool debugOn = false;
     public GameObject debugSphere;
@@ -35,78 +31,48 @@ public class WorldGenerator : MonoBehaviour
         return allRooms[amountOfDoors].rooms[Random.Range(0,allRooms[amountOfDoors].rooms.Count)];
     }
 
-    //private SpawnMonster[] _monstersToSpawn;
-    void GenerateRooms(int rooms, Vector3 startPos, Quaternion startRot)
+    void GenerateRooms(int desiredRooms, Vector3 startPos, Quaternion startRot)
     {
         Queue<Transform> pivotsProcessing = new();
-        generatedRoomAmount=1;
-        int from = rooms >= 2 ? 1 : 0;
-        int to = Math.Clamp(rooms - 2, 0, allRooms.Count);
+        _generatedRoomAmount=1;
+        int from = desiredRooms >= 2 ? 1 : 0;
+        int to = Math.Clamp(desiredRooms - 2, 0, allRooms.Count);
         int doorAmount = Random.Range(from, to);
-        currentPivots = SpawnRoom(doorAmount, startPos, startRot);
-        foreach (Transform pivot in currentPivots)
+        _currentPivots = SpawnRoom(doorAmount, startPos, startRot);
+        foreach (Transform pivot in _currentPivots)
         {
             pivotsProcessing.Enqueue(pivot);
         }
-        while (pivotsProcessing.Count > 0 && generatedRoomAmount < rooms)
+        while (pivotsProcessing.Count > 0 && _generatedRoomAmount < desiredRooms)
         {
             Transform currentTransform = pivotsProcessing.Dequeue();
-            //Debug.Log(currentTransform);
-            ///////
-            // om vi har tre rum och tre punkter:
-            // om vi har fyra rum och tre punkter:
-            // skapa ett 2-rum och sedan fylla med 1-rum
-            
-            // om vi har fem rum och tre punkter:
-            // vi kan skapa ett 3-rum som leder till...
-            // fyra rum och fyra punkter...         WE GOOD
-            
-            // om vi har sex rum och tre punkter
-            // vi kan skapa ett 4-rum som leder till...
-            // fem rum och fem punkter
-            
-            //om vi har sju rum och tre punkter
-            //vi kan skapa ett 5-rum NEJ
-            //vi kan skapa ett 4-rum som leder till...
-            //sex rum och sex punkter!
-            //vi kan också skapa ett 3-rum som leder till...
-            //sex rum och fem punkter, sen kan vi...
-            //ev två sen WE GOOD
-            
-            //om vi har sju rum och sex punkter...
-            //vi FÅR INTE SKAPA ETT 1-RUM ALDRIG NEJNEJ
-            
-            //när får vi skapa ett 1-rum?
-            //när vi har lika många rum som punkter.
-            
-            //rummet 
-            int remainingRooms = rooms - generatedRoomAmount; 
+            int remainingRooms = desiredRooms - _generatedRoomAmount; 
+            //Ordnar så att rummen som spawnar måste fungera med så många rum som vi vill ha.
             from = remainingRooms == pivotsProcessing.Count + 1 ? 0 : 1; 
             to = Mathf.Clamp(remainingRooms - pivotsProcessing.Count, 0, allRooms.Count);
             doorAmount = Random.Range(from, to);
             do
             {
-                currentPivots = PlaceValidRoom(currentTransform.position, currentTransform.rotation, doorAmount);
+                _currentPivots = PlaceValidRoom(currentTransform.position, currentTransform.rotation, doorAmount);
                 doorAmount--;
-            } while (currentPivots == null && doorAmount >= 0);
-            //currentPivots = PlaceValidRoom(currentTransform.position, currentTransform.rotation, doorAmount); // SpawnRoom(doorAmount, currentTransform.position, currentTransform.rotation);
-            if (currentPivots==null && wasDestroyed)
+            } while (_currentPivots == null && doorAmount >= 0);
+            if (_currentPivots==null && wasDestroyed)
             {
-                Debug.Log("We coudn't spawn a room with any amount of doors under the required, spawning a dead end.");
+                Debug.Log("We couldn't spawn a room with any amount of doors under the required, spawning a dead end.");
                 SpawnRoom(deadEnd, currentTransform.position, currentTransform.rotation);
             }
             else
             {
-                if (currentPivots != null)
+                if (_currentPivots != null)
                 {
-                    foreach (Transform pivot in currentPivots)
+                    foreach (Transform pivot in _currentPivots)
                     {
                         pivotsProcessing.Enqueue(pivot);
                     }
                 }
                 
                 Debug.Log("We've created a room");
-                generatedRoomAmount++;
+                _generatedRoomAmount++;
             }
         }
         
@@ -175,16 +141,15 @@ public class WorldGenerator : MonoBehaviour
         {
             int rand = Random.Range(0, currentNotChecked.Count);
             Transform[]points = SpawnRoomCheckDoors(currentNotChecked[rand], pos, rot);
-            if (points==null || points.Length==0)
+            if (points==null)
             {
                 currentNotChecked.RemoveAt(rand);
             }
             else
             {
                 return points;
-                Debug.Log("Placed a valid room with " + points + " points.");
+                //Debug.Log("Placed a valid room with " + points + " points.");
             }
-            
         }
 
         return null;
@@ -215,24 +180,27 @@ public class WorldGenerator : MonoBehaviour
     }
     private BoxCollider[] _colBuffer = new BoxCollider[1111];
     private bool wasDestroyed = false;
-    Transform[] SpawnRoomCheckDoors(DungeonRoom room, Vector3 pos,Quaternion rot)
+    Transform[] SpawnRoomCheckDoors(DungeonRoom spawnRoom, Vector3 fromRoomPos,Quaternion fromRoomRot)
     {
         wasDestroyed = false;
-        DungeonRoom currentRoom = Instantiate(room,pos, Quaternion.identity);
-        //lägga till en random int som hoppar hela check-pivot grejen så att vi får en random första varje gång.
+        DungeonRoom currentRoom = Instantiate(spawnRoom,fromRoomPos, Quaternion.identity);
         
-        int jumpNum = Random.Range(0, currentRoom.pivotPoints.Length);
+        //we start with this random value in order to start at a random entrance-point.
+        int randomEntranceStart = Random.Range(0, currentRoom.pivotPoints.Length);
+        
+        //We loop through all possible entrance-orientations.
         for (int j = 0; j < currentRoom.pivotPoints.Length; j++)
         {
-            int jumpedIndex = (j + jumpNum) % currentRoom.pivotPoints.Length; //sick line of code :sunglasses:
-            //currentRoom.gameObject.SetActive(false);
+            //We randomize the pivot given by chosenPivot
+            int jumpedIndex = (j + randomEntranceStart) % currentRoom.pivotPoints.Length; //sick line of code :sunglasses:
+            //We set the current pivot to the randomly assigned one.
             Transform currentPivotPoint = currentRoom.pivotPoints[jumpedIndex];
-            Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * Vector3.right, rot * -Vector3.right);
+            //Align the room to the current pivot and the spawn-location.
+            Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * Vector3.right, fromRoomRot * -Vector3.right);
             roomRot = Quaternion.LookRotation(roomRot * Vector3.forward, Vector3.up);
             currentRoom.transform.rotation *= roomRot;
-            //rot = currentPivotPoint.rotation;
             
-            Vector3 move = pos - currentPivotPoint.position;
+            Vector3 move = fromRoomPos - currentPivotPoint.position;
             currentRoom.transform.position += move;
 
             BoxCollider[] colliders = currentRoom.GetComponents<BoxCollider>();
@@ -240,21 +208,36 @@ public class WorldGenerator : MonoBehaviour
             {
                 col.enabled = false;
             }
+            
+            //Loops through all colliders of the current room.
             for (int i = 0; i < colliders.Length; i++)
             {
-
+                //Gets the amount of colliders overlapping with our own colliders and stores them in buffer.
                 int count = Physics.OverlapBoxNonAlloc(
                     currentRoom.transform.position + currentRoom.transform.TransformVector(colliders[i].center),
                     colliders[i].size / 2, _colBuffer, currentRoom.transform.rotation, roomLayer,
                     QueryTriggerInteraction.Collide);
 
+                //If we collide with any room, try another orientation.
                 if (count>0)
                 {
                     if (debugOn) Instantiate(debugSphere, _colBuffer[0].transform.position, Quaternion.identity).name = "I tried being a + " + currentRoom.name + " but I collided with: " + _colBuffer[0].gameObject.name;
                     break;
                 }
-                else
+                
+                if (debugOn) Instantiate(debugCube, currentRoom.transform.position + currentRoom.transform.TransformVector(colliders[i].center),
+                    currentRoom.transform.rotation).transform.localScale = colliders[i].size;
+                
+                //If we didn't hit any rooms with any of the rooms' colliders.
+                if (i == colliders.Length - 1)
                 {
+                    //Re-enable colliders of the room.
+                    foreach (BoxCollider col in colliders)
+                    {
+                        col.enabled = true;
+                    }
+                    
+                    //getting all the pivots that aren't the currently selected entrance.
                     Transform[] unusedPivots = new Transform[currentRoom.pivotPoints.Length-1];
                     for (int k = 0; k < unusedPivots.Length;k++)
                     {
@@ -267,12 +250,7 @@ public class WorldGenerator : MonoBehaviour
                             unusedPivots[k] = currentRoom.pivotPoints[k+1];
                         }
                     }
-                    foreach (Collider col in colliders)
-                    {
-                        col.enabled = true;
-                    }
-                    if (debugOn) Instantiate(debugCube, currentRoom.transform.position + currentRoom.transform.TransformVector(colliders[i].center),
-                        currentRoom.transform.rotation).transform.localScale = colliders[i].size;
+                    
                     return unusedPivots;
                 }
             }

@@ -24,6 +24,14 @@ public class SpawnMonster : MonoBehaviour
 
     void BeginSpawn()
     {
+        int thisEnemy = ThisEnemy();
+        Debug.Log(thisEnemy +" is the chosen enemy from the array");
+        Instantiate(enemies[thisEnemy], transform.position, transform.rotation);
+        spawnEffect.Play();
+    }
+
+    private int ThisEnemy()
+    {
         // all enemies have a number of lapps they put into a skål. this counts all the lapps.
         int fullRateAmount = 0;
         for (int i = 0; i < enemiesSpawnRates.Length; i++)
@@ -45,15 +53,12 @@ public class SpawnMonster : MonoBehaviour
             {
                 if (thisEnemy == _countedTimes)
                 {
-                    thisEnemy = i;
                     Debug.Log(i +" is the enemy we found the number at");
-                    break;
+                    return i;
                 }
                 _countedTimes++;
             }
         }
-        Debug.Log(thisEnemy +" is the chosen enemy from the array");
-        Instantiate(enemies[thisEnemy], transform.position, transform.rotation);
-        spawnEffect.Play();
+        return 0;
     }
 }
