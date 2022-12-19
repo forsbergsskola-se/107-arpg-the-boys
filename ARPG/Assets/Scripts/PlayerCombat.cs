@@ -1,71 +1,111 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour, IInterruptible
 {
+    
     public BaseWeapon currentWeapon;
+    public Transform weaponHolder;
+    public LayerMask hitLayer;
     public Transform attackCenter;
+    public float attackRotateSpeed = 20;
+    public bool isAttacking;
+    
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] slashWhoosh, enemyHitSound;
+
+    private Coroutine _currentAttack;
+    private Rigidbody _rb;
+    private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
+
+    [NonSerialized] 
+    public bool animationEnded;
     
     void Start()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
-            LightAttack();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            HeavyAttack();
-        }
-        if (Input.GetButtonDown("Fire3"))
-        {
-            Guard();
-        }
-    }
-
-    private void LightAttack()
-    {
-        Debug.Log("Light attack!");
-        
-        // TODO: Does animation
-        
-        // TODO: Plays sound
-        
-        // TODO: Boxcast with take damage
-        RaycastHit[] hits = Physics.BoxCastAll(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.forward, Quaternion.identity, 1);
-        DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, attackCenter.forward, 1, Color.cyan);
-        for (var i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].collider.TryGetComponent(out IDamageable damageable))
+            if (Input.GetButtonDown("Fire1"))
             {
-                float damage = currentWeapon.lightAttackDamage + _playerStats.AttackPower;
-                damageable.TakeDamage(damage);
+                _currentAttack = StartCoroutine(Attack(currentWeapon.lightAttackSpeed, "Light-attack", IInterruptible.AttackState.LightAttack));
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                _currentAttack = StartCoroutine(Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack", IInterruptible.AttackState.HeavyAttack));
+            }
+            if (Input.GetButtonDown("Fire3"))
+            {
+                Guard();
             }
         }
+        
+    }
 
+    private void FixedUpdate()
+    {
+        RotateToMouse();
+    }
 
-        // TODO: Cooldown
+    private void RotateToMouse()
+    {
+        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation, Quaternion.LookRotation(_playerMovement.rotateDir), attackRotateSpeed * Time.deltaTime);
     }
     
-    private void HeavyAttack()
+    private void SetRotatePoint()
     {
-        Debug.Log("Heavy attack!");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
+        else
+        {
+            float playerYDiff = Camera.main.transform.position.y - transform.position.y;
+            float angle = Vector3.Angle(Vector3.down, ray.direction);
+            float vectorDistance = Mathf.Abs(playerYDiff / Mathf.Cos(angle));
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane((Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position, Vector3.up).normalized;
+        }
+    }
+
+    private IEnumerator Attack(float attackSpeed, string animTriggerName, IInterruptible.AttackState attackState)
+    {
+        CurrentAttackState = attackState;
+        Debug.Log(animTriggerName);
         
-        // TODO: Does animation
+        _playerMovement.playerAnimator.speed = attackSpeed;
+
+        animationEnded = false;
+        isAttacking = true;
+        _playerMovement._rb.velocity = Vector3.zero;
+        
+        SetRotatePoint();
         
         // TODO: Plays sound
         
-        // TODO: Boxcast with take damage
         
-        // TODO: Cooldown
+        // Plays animation and waits until animation has ended before finishing up the attack
+        _playerMovement.playerAnimator.SetTrigger(animTriggerName);
+
+        yield return new WaitUntil(() => animationEnded);
+        
+        // End attack
+        isAttacking = false;
+        _playerMovement.playerAnimator.speed = 1;
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
-    
+
     private void Guard()
     {
         Debug.Log("Guarded!");
@@ -74,11 +114,93 @@ public class PlayerCombat : MonoBehaviour
     private void Parry()
     {
         Debug.Log("Parried!");
+        Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out Enemy enemy))
+            {
+                // TODO: Call enemy parried function here
+            }
+        }
     }
+
+    public void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
+    {
+        bool hitEnemy = false;
+        Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
+        if (showBox)
+            DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                if (!hitEnemy)
+                {
+                    hitEnemy = true;
+                    audioSource.clip = GetRandomAudioClip(enemyHitSound);
+                    audioSource.Play();
+                    _playerStats.AddDash();
+                    Debug.Log("An enemy was hit");
+                }
+                if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
+                    interruptible.Interrupt();
+                float damage = weaponDamage + _playerStats.AttackPower;
+                damageable.TakeDamage(damage);
+            }
+        }
+    }
+
+    public AudioClip GetRandomAudioClip(AudioClip[] audioClips)
+    {
+        // Select a random index from the array
+        int randomIndex = Random.Range(0, audioClips.Length);
+
+        // Return the audio clip at the random index
+        return audioClips[randomIndex];
+    }
+
+    private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)
+    {
+        switch (player.CurrentAttackState)
+        {
+            case IInterruptible.AttackState.LightAttack:
+                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack)
+                {
+                    return true;
+                }
+                break;
+            case IInterruptible.AttackState.HeavyAttack:
+                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack || enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    public void Interrupt()
+    {
+        _playerMovement.playerAnimator.speed = 2.5f;
+        _playerMovement.playerAnimator.SetTrigger("Interrupted");
+        CancelAttack();
+    }
+
+    public void CancelAttack()
+    {
+        if (_currentAttack != null)
+        {
+            StopCoroutine(_currentAttack);
+            isAttacking = false;
+            _playerMovement.playerAnimator.speed = 1;
+            CurrentAttackState = IInterruptible.AttackState.NoAttack;
+        }
+    }
+
+    public IInterruptible.AttackState CurrentAttackState { get; set; }
     
-    
-    
-    
+
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
     //Draws just the box at where it is currently hitting.
     public static void DrawBoxCastOnHit(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float hitInfoDistance, Color color)
@@ -88,23 +210,10 @@ public class PlayerCombat : MonoBehaviour
     }
     
     
-     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float distance, Color color)
+     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
      {
-         direction.Normalize();
          Box bottomBox = new Box(origin, halfExtents, orientation);
-         Box topBox = new Box(origin + (direction * distance), halfExtents, orientation);
-             
-         Debug.DrawLine(bottomBox.backBottomLeft, topBox.backBottomLeft,    color);
-         Debug.DrawLine(bottomBox.backBottomRight, topBox.backBottomRight, color);
-         Debug.DrawLine(bottomBox.backTopLeft, topBox.backTopLeft, color);
-         Debug.DrawLine(bottomBox.backTopRight, topBox.backTopRight,    color);
-         Debug.DrawLine(bottomBox.frontTopLeft, topBox.frontTopLeft,    color);
-         Debug.DrawLine(bottomBox.frontTopRight, topBox.frontTopRight, color);
-         Debug.DrawLine(bottomBox.frontBottomLeft, topBox.frontBottomLeft, color);
-         Debug.DrawLine(bottomBox.frontBottomRight, topBox.frontBottomRight,    color);
-     
          DrawBox(bottomBox, color);
-         DrawBox(topBox, color);
      }
      
      public static void DrawBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
@@ -189,4 +298,5 @@ public class PlayerCombat : MonoBehaviour
          Vector3 direction = point - pivot;
          return pivot + rotation * direction;
      }
+     
 }
