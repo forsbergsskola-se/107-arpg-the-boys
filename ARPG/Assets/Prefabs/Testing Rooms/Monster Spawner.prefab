@@ -53,9 +53,8 @@ MonoBehaviour:
     m_Bits: 128
   readyToSpawn: 1
   enemies:
-  - {fileID: 2684762198962026630, guid: 6b957651f65c8d24eb46e8864c78ab03, type: 3}
-  - {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-  enemiesSpawnRates: 0400000007000000
+  - {fileID: 6825372332017837820, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+  enemiesSpawnRates: 04000000
 --- !u!135 &7724854099707988728
 SphereCollider:
   m_ObjectHideFlags: 0
