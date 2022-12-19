@@ -204,10 +204,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2027315705}
   moveSpeed: 2
-  attackRange: 2
+  attackRange: {x: 0, y: 0, z: 0}
   maxHealth: 0
   animator: {fileID: 82977776}
   walkAnimationParameterName: 
+  interruptedAnimationParameter: 
   lightAttackInformation:
     showHitBox: 0
     lightAttackParameterNameOfTypeBool: 
@@ -741,6 +742,26 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2027315705}
+    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: attackRange.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: attackRange.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: attackRange.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973990267, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: interruptedAnimationParameter
+      value: Interrupted
+      objectReference: {fileID: 0}
     - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
       propertyPath: m_RootOrder
       value: 5
