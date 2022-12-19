@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public Vector3 orbitOffset = new(0.5f, 1.4f, 0f);
     public float sharpness = 2;
+    public float bossToPlayerCamLerp = 0.5f;
     public float maxDistanceFromTarget = 10;
 
     private void Update()
