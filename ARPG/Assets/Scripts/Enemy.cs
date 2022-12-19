@@ -38,7 +38,7 @@ public class Guard
 
 public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
-    public GameObject target;
+    private GameObject target;
     public float moveSpeed;
     public Vector3 attackRange;
     public float maxHealth;
@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float rotationSpeed;
     private bool _isInRange;
     private bool _isInterrupted;
+    private PlayerCombat _playerCombat;
 
 
     // Start is called before the first frame update
@@ -74,6 +75,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         _abilities = new[] { hasGuard, hasHeavyAttacks, hasLightAttacks };
         CurrentHealth = maxHealth;
+        _playerCombat = FindObjectOfType<PlayerCombat>();
+        target = _playerCombat.gameObject;
     }
 
 
@@ -212,6 +215,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         _isInterrupted = false;
         animator.SetBool(interruptedAnimationParameter, false);
     }
+
     public void LightAttackAnimationAttack()
     {
         HitBox(lightAttackInformation.lightAttackSize, lightAttackInformation.lightAttackDamage);
@@ -271,11 +275,13 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     private void CancelAttack()
     {
-        StopCoroutine(_startedAttack);
-        _isAttacking = false;
-        if(guardInformation.guardChild != null)
+        if (_startedAttack != null)
+            StopCoroutine(_startedAttack);
+        if (guardInformation.guardChild != null)
             guardInformation.guardChild.SetActive(false);
-        animator.SetBool(_currentAttackParameter, false);
+        if (_currentAttackParameter != null)
+            animator.SetBool(_currentAttackParameter, false);
+        _isAttacking = false;
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 

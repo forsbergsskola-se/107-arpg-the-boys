@@ -4208,12 +4208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed08fb7be8186b458181f6814f22d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   moveSpeed: 5
-  attackRange: 2
+  attackRange: {x: 1.5, y: 1.5, z: 1.5}
   maxHealth: 100
   animator: {fileID: 1973990269}
   walkAnimationParameterName: Walking
+  interruptedAnimationParameter: Interrupted
   lightAttackInformation:
     showHitBox: 0
     lightAttackParameterNameOfTypeBool: 
@@ -4238,7 +4238,7 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 128
-  rotationSpeed: 2.5
+  rotationSpeed: 5
 --- !u!136 &280569395
 CapsuleCollider:
   m_ObjectHideFlags: 0
