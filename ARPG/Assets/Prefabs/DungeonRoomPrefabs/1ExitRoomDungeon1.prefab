@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 327910541480710746}
   - component: {fileID: 6107921834861795579}
   - component: {fileID: 6799710022810065622}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: 1ExitRoomDungeon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2746,7 +2746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.518203
+      value: 6.341
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.y
