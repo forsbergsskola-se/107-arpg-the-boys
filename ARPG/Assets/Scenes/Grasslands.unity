@@ -616,8 +616,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7480601, y: 2.25085, z: 1}
-  m_Center: {x: -0.0044562807, y: 1.1928362, z: -7.8164465e-18}
+  m_Size: {x: 0.7369032, y: 1.7624398, z: 0.80491316}
+  m_Center: {x: 0.0630974, y: 0.948631, z: 0.097543456}
 --- !u!1001 &8799918909593571475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,23 +711,31 @@ PrefabInstance:
       objectReference: {fileID: 1484404220}
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: attackRange.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: attackRange.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: attackRange.z
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: rotationSpeed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: hitLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: walkAnimationParameterName
       value: Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: lightAttackInformation.showHitBox
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8960667572649674086, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: animator
