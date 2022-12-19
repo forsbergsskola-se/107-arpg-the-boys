@@ -52,7 +52,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             }
             if (Input.GetButtonDown("Fire3"))
             {
-                Guard();
+                Guard(currentWeapon.guardTime);
             }
         }
 
@@ -124,9 +124,24 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 
-    private void Guard()
+    private IEnumerator Guard(float guardTime)
     {
         Debug.Log("Guarded!");
+        CurrentAttackState = IInterruptible.AttackState.Guard;
+        
+        _playerMovement.playerAnimator.speed = guardTime;
+        animationEnded = false;
+        isAttacking = true;
+        _playerMovement._rb.velocity = Vector3.zero;
+        
+        _playerMovement.playerAnimator.SetBool("isGuarding", true);
+        
+        yield return new WaitUntil(() => animationEnded);
+        
+        // End guard
+        isAttacking = false;
+        _playerMovement.playerAnimator.speed = 1;
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
     
     private void Parry()
