@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
     public GameObject target;
     public float moveSpeed;
-    public float attackRange;
+    public Vector3 attackRange;
     public float maxHealth;
 
     public Animator animator;
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public Guard guardInformation;
     public bool hasGuard;
-    
+
     private bool[] _abilities;
     private bool _isAttacking;
     public bool endAttack = true;
@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public Transform attackTransform;
     public LayerMask hitLayer;
     public float rotationSpeed;
+    private bool _isInRange;
 
 
     // Start is called before the first frame update
@@ -77,9 +78,13 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     // Update is called once per frame
     void Update()
     {
-        var inDistance = Vector3.Distance(transform.position, target.transform.position) < attackRange;
+        Collider[] hits = Physics.OverlapBox(attackTransform.position, attackRange / 2,
+            attackTransform.rotation, hitLayer);
 
-        if (inDistance && !_isAttacking)
+        _isInRange = hits.Length > 0;
+
+
+        if (_isInRange && !_isAttacking)
         {
             _startedAttack = StartCoroutine(SelectedAttack());
         }
@@ -90,15 +95,17 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         }
         else
             animator.SetBool(walkAnimationParameterName, false);
-        
+
         //dont call every frame later
         Death();
-        
-        
-        if(lightAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, attackTransform.rotation, Color.cyan);
-        if(heavyAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, attackTransform.rotation, Color.red);
+
+
+        if (lightAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2,
+                attackTransform.rotation, Color.cyan);
+        if (heavyAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2,
+                attackTransform.rotation, Color.red);
     }
 
     public void EnemyMovement()
@@ -183,7 +190,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private IEnumerator CO_EnemyGuard()
     {
         endAttack = false;
-        if(guardInformation.guardChild == null)
+        if (guardInformation.guardChild == null)
             yield break;
         _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.Guard;
@@ -200,28 +207,29 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     //Used for animation events
     public void LightAttackAnimationAttack()
     {
-        HitBox(lightAttackInformation.lightAttackSize,lightAttackInformation.lightAttackDamage);
+        HitBox(lightAttackInformation.lightAttackSize, lightAttackInformation.lightAttackDamage);
     }
 
     public void LightAttackAnimationEnd()
     {
         endAttack = true;
     }
-    
+
     public void HeavyAttackAnimation()
     {
-        HitBox(heavyAttackInformation.heavyAttackSize,heavyAttackInformation.heavyAttackDamage);
+        HitBox(heavyAttackInformation.heavyAttackSize, heavyAttackInformation.heavyAttackDamage);
     }
-    
+
     public void HeavyAttackAnimationEnd()
     {
         endAttack = true;
     }
-    
+
     public void GuardAnimation()
     {
         guardInformation.guardChild.SetActive(true);
     }
+
     public void GuardAnimationEnd()
     {
         endAttack = true;
