@@ -88,8 +88,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             EnemyMovement();
             animator.SetBool(walkAnimationParameterName, true);
         }
-        else 
+        else
             animator.SetBool(walkAnimationParameterName, false);
+        
+        //dont call every frame later
+        Death();
         
         
         if(lightAttackInformation.showHitBox)
