@@ -11,21 +11,26 @@ public class PlayerMovement : MonoBehaviour
     [NonSerialized]
     public Vector3 move;
     
-    
     private CapsuleCollider _col;
-    private Rigidbody _rb;
+    [NonSerialized]
+    public Rigidbody _rb;
     private PlayerStats _playerStats;
-    private Animator _playerAnimator;
+    private PlayerCombat _playerCombat;
+    [NonSerialized]
+    public Animator playerAnimator;
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
     private float _regularSpeed;
-    private Vector3 _endVel;
+    
     private float _invulnerabilityTimer = 0.0f;
-    private bool _isRolling = false;
+    [NonSerialized]
+    public bool isRolling;
     private float _desiredSpeed;
     private bool _dash;
     private bool _running;
-
+    [NonSerialized]
+    public Vector3 endVel;
+    
     [Header("Movement Variables")]
     public float acceleration = 2;
     //public float rollSpeed = 5.0f;
@@ -49,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
-        _playerAnimator = body.GetComponent<Animator>();
+        _playerCombat = GetComponent<PlayerCombat>();
+        playerAnimator = body.GetComponent<Animator>();
         _playerStats.dodgesCharges = _playerStats.maxDodgeCharges;
     }
 
@@ -73,29 +79,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        _endVel = transform.InverseTransformVector(_rb.velocity);
+        endVel = transform.InverseTransformVector(_rb.velocity);
 
-        if (canMove)
+        if (canMove && !_playerCombat.isAttacking)
         {
             if (_grounded)
             {
-                if (!_isRolling)
+                if (!isRolling)
                 {
                     if (_running)
                     {
-                        _endVel = Accelerate(_endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
                     }
                     else
                     {
-                        _endVel = Accelerate(_endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
                     }
                     
                 }
             }
             
-            if (_isRolling)
+            
+        }
+        
+        if (canMove)
+        {
+            if (isRolling)
             {
                 RollTimer();
             }
@@ -104,19 +115,20 @@ public class PlayerMovement : MonoBehaviour
                 StartRoll();
             }
         }
-
+        
         if (!_grounded)
         {
             Gravity();
         }
 
-        RotatePlayer();
-        _rb.velocity = transform.TransformVector(_endVel);
+        if (!_playerCombat.isAttacking)
+            RotatePlayer();
+        _rb.velocity = transform.TransformVector(endVel);
     }
 
     private void MovementAnimation()
     {
-        _playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
+        playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
     }
     
     void RollTimer()
@@ -126,24 +138,25 @@ public class PlayerMovement : MonoBehaviour
 
         if (_invulnerabilityTimer >= rollDuration)
         {
-            _isRolling = false;
+            isRolling = false;
             _invulnerabilityTimer = 0.0f;
         }
     }
     
     void StartRoll()
     {
+        _playerCombat.CancelAttack();
         // Set the player's velocity to the roll speed in the direction the player is currently facing
-        _endVel = rotateDir * _playerStats.DodgeSpeed;
+        endVel = rotateDir * _playerStats.DodgeSpeed;
 
         // Uses up one dash
         _playerStats.dodgesCharges = Math.Clamp(_playerStats.dodgesCharges - 1, 0, _playerStats.maxDodgeCharges);
         
         // Play the roll animation
-        _playerAnimator.SetTrigger("Roll");
+        playerAnimator.SetTrigger("Roll");
 
         // Set the invulnerability flag and reset the invulnerability timer
-        _isRolling = true;
+        isRolling = true;
         _invulnerabilityTimer = 0.0f;
     }
 
@@ -154,13 +167,14 @@ public class PlayerMovement : MonoBehaviour
         _dash = false;
     }
     
-    private Vector3 rotateDir;
+    [NonSerialized]
+    public Vector3 rotateDir;
     private void RotatePlayer()
     {
-        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isRolling)
+        if (MoveFromCamera().sqrMagnitude >= 0.1f && !isRolling && canMove)
         {
             rotateDir = MoveFromCamera();
-            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rotationSpeed * Time.deltaTime);
+            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir, Vector3.up), rotationSpeed * Time.deltaTime);
         }
     }
     
@@ -198,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Gravity()
     {
-        _endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
+        endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
     }
     
     private void OnCollisionExit(Collision col)
