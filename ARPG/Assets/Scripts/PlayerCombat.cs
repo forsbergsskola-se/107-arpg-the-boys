@@ -15,6 +15,9 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public LayerMask hitLayer;
     public Transform attackCenter;
     public float attackRotateSpeed = 20;
+    public bool showLightHitBox;
+    public bool showHeavyHitBox;
+    [NonSerialized]
     public bool isAttacking;
     
     [Header("Audio")]
@@ -52,6 +55,22 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 Guard();
             }
         }
+
+        if (currentWeapon == null)
+        {
+            return;
+        }
+        if (showLightHitBox)
+        {
+            Vector3 worldOffset = attackCenter.TransformDirection(currentWeapon.lightAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, Color.cyan);
+        }
+
+        if (showHeavyHitBox)
+        {
+            Vector3 worldOffset = attackCenter.TransformDirection(currentWeapon.heavyAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.heavyAttackColSize / 2, attackCenter.rotation, Color.cyan);
+        }
         
     }
 
@@ -84,6 +103,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         CurrentAttackState = attackState;
         Debug.Log(animTriggerName);
         
+        // TODO: Attack speed modifier.
+        
         _playerMovement.playerAnimator.speed = attackSpeed;
 
         animationEnded = false;
@@ -91,10 +112,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         _playerMovement._rb.velocity = Vector3.zero;
         
         SetRotatePoint();
-        
-        // TODO: Plays sound
-        
-        
+
         // Plays animation and waits until animation has ended before finishing up the attack
         _playerMovement.playerAnimator.SetTrigger(animTriggerName);
 
@@ -124,12 +142,12 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         }
     }
 
-    public void AttackBox(Vector3 attackColSize, float weaponDamage, bool showBox)
+    public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
     {
         bool hitEnemy = false;
-        Collider[] hits = Physics.OverlapBox(attackCenter.position, attackColSize / 2, Quaternion.identity, hitLayer);
-        if (showBox)
-            DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
+        Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
+        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer);        // if (showBox)
+        //     DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
@@ -140,7 +158,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
                     audioSource.Play();
                     _playerStats.AddDash();
-                    Debug.Log("An enemy was hit");
+                    //Debug.Log("An enemy was hit");
                 }
                 if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
                     interruptible.Interrupt();
@@ -187,7 +205,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         CancelAttack();
     }
 
-    public void CancelAttack()
+    public bool CancelAttack()
     {
         if (_currentAttack != null)
         {
@@ -195,7 +213,10 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             isAttacking = false;
             _playerMovement.playerAnimator.speed = 1;
             CurrentAttackState = IInterruptible.AttackState.NoAttack;
+            return true;
         }
+
+        return false;
     }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }

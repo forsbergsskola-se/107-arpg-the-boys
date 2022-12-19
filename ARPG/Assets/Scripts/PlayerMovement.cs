@@ -97,11 +97,8 @@ public class PlayerMovement : MonoBehaviour
                         endVel = Accelerate(endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
                         endVel = Friction(endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
                     }
-                    
                 }
             }
-            
-            
         }
         
         if (canMove)
@@ -145,7 +142,11 @@ public class PlayerMovement : MonoBehaviour
     
     void StartRoll()
     {
-        _playerCombat.CancelAttack();
+        if (_playerCombat.CancelAttack() && move.sqrMagnitude != 0)
+        {
+            //
+            ForceRotatePlayer();
+        }
         // Set the player's velocity to the roll speed in the direction the player is currently facing
         endVel = rotateDir * _playerStats.DodgeSpeed;
 
@@ -176,6 +177,12 @@ public class PlayerMovement : MonoBehaviour
             rotateDir = MoveFromCamera();
             body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir, Vector3.up), rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private void ForceRotatePlayer()
+    {
+        rotateDir = MoveFromCamera();
+        body.rotation = Quaternion.LookRotation(rotateDir, Vector3.up);
     }
     
     private Vector3 Accelerate(Vector3 vel, float wishSpeed, float accel, Vector3 normal)

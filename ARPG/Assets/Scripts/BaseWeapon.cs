@@ -17,11 +17,13 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public float lightAttackDamage = 10;
     public float lightAttackSpeed = 1.5f;
     public Vector3 lightAttackColSize;
+    public Vector3 lightAttackColOffset;
     
     [Header("Heavy Attack Stats")] 
     public float heavyAttackDamage = 20;
     public float heavyAttackSpeed = 0.5f;
     public Vector3 heavyAttackColSize;
+    public Vector3 heavyAttackColOffset;
 
     [Header("Guard Stats")]
     public float guardTime;
