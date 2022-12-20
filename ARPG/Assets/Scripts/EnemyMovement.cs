@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GhoulControllerScr : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public GameObject player;
     public NavMeshAgent navMeshAgent;
@@ -18,7 +18,8 @@ public class GhoulControllerScr : MonoBehaviour
     public float meshResolution = 1;
     public int edgeIterations = 4;
     public float edgeDistance = 0.5f;
-
+    public float agroDistance;
+    
     public Transform[] waypoints;
     private int _currentWaypointIndex;
 
@@ -50,6 +51,13 @@ public class GhoulControllerScr : MonoBehaviour
     
     void Update()
     {
+       
+        
+        
+    }
+
+    public void EnemyyMovement()
+    {
         EnviromentView();
         if (!_isPatrol)
         {
@@ -60,7 +68,6 @@ public class GhoulControllerScr : MonoBehaviour
             Patroling();
         }
     }
-
     private void Chasing()
     {
         _playerNear = false;
@@ -73,7 +80,7 @@ public class GhoulControllerScr : MonoBehaviour
 
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
-            if (_waitTime <= 0 && !_caughtPlayer && Vector3.Distance(transform.position, player.transform.position) >= 6f)
+            if (!_caughtPlayer && Vector3.Distance(transform.position, player.transform.position) >= agroDistance)
             {
                 _isPatrol = true;
                 _playerNear = false;
@@ -82,7 +89,7 @@ public class GhoulControllerScr : MonoBehaviour
                 _waitTime = startWaitTime;
                 navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
             }
-            else if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
+            else //if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
             {
                 Stop();
                 _waitTime -= Time.deltaTime;

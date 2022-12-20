@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public Vector3 attackRange;
     public bool showHitbox;
     public float maxHealth;
+    public EnemyMovement enemyMovement;
 
     public Animator animator;
     public string walkAnimationParameterName;
@@ -120,11 +121,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public void EnemyMovement()
     {
-        //paste movement code for the enemy here so he can be interrupted :)
-        Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        enemyMovement.EnemyyMovement();
     }
 
     //selection of attacks
