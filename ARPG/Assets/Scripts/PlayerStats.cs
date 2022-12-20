@@ -3,26 +3,25 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
-    //hp variables
+    [Header("HP Variables")]
     public float baseMaxHealth = 100f;
     public float maxHealthModPerc = 1f;
     public float MaxHealth => baseMaxHealth * maxHealthModPerc;
-
     
-    public float currentHealth; //for clamp functionality
+    private float _currentHealth; //for clamp functionality
     public float CurrentHealth
-        { get => currentHealth; private set => currentHealth = Math.Clamp(value, 0, MaxHealth); } 
+        { get => _currentHealth; private set => _currentHealth = Math.Clamp(value, 0, MaxHealth); } 
 
-    //mana variables
-    public float baseMana = 100f;
+    [Header("Mana Variables")]
+    public float baseMaxMana = 100f;
     public float maxManaModPerc = 1f;
-    public float MaxMana => baseMana * maxManaModPerc;
-
-    public float currentMana; // for clamp functionality
-    public float CurrentMana
-        { get => currentMana; set => currentMana = Math.Clamp(value, 0, MaxMana); }
+    public float MaxMana => baseMaxMana * maxManaModPerc;
     
-    //player-bound attack variables
+    private float _currentMana; // for clamp functionality
+    public float CurrentMana
+        { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
+    
+    [Header("Player-Bound Attack Variables")]
     public float basePower = 10f;
     public float powerModPerc = 1f;
     public float AttackPower => basePower * powerModPerc;
@@ -30,59 +29,68 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
     public float CritHit => AttackPower * critDamage;
-
-    //move speed variables
-    public float baseMoveSpeed;
+    
+    [Header("Movement Speed Variables")]
+    public float baseWalkMoveSpeed = 5f;
+    public float baseRunMoveSpeed = 11f;
     public float moveSpeedModPerc = 1f;
-    public float MoveSpeed => baseMoveSpeed * moveSpeedModPerc; 
+    public float WalkMoveSpeed => baseWalkMoveSpeed * moveSpeedModPerc; 
+    public float RunMoveSpeed => baseRunMoveSpeed * moveSpeedModPerc; 
 
-    //dodge variables
-    public int dodgeCharges = 1;
     
-    public float baseDodgeLength;
-    public float dodgeLengthModPerc = 1f;
-    public float DodgeLength => baseDodgeLength * dodgeLengthModPerc;
     
-    public float baseDodgeSpeed;
+    [NonSerialized]
+    public int dodgesCharges;
+    [Header("Dodge Variables")]
+    public int maxDodgeCharges;
+
+    public float baseDodgeSpeed = 20f;
     public float dodgeSpeedModPerc = 1f;
     public float DodgeSpeed => baseDodgeSpeed * dodgeSpeedModPerc;
     
-    
-    //passive damage mitigation variables
+    [Header("Passive Damage Mitigation Variables")]
     public float damageTakenPercentage = 1; //inherent percentile - doesn't need ModPerc
     public float evasionChance; //inherent percentile - doesn't need ModPerc
     
     //'element' variables
-    
-    //poison
+    [Header("Element Variables")]
+    [Header("Poison Variables")]
     public float basePoisonDamage = 1f;
     public float poisonDamageModPerc = 1f;
     public float poisonLength = 5f;
     public float PoisonDamage => basePoisonDamage * poisonDamageModPerc;
     
-    //fire
+    [Header("Fire Variables")]
     public float baseFireDamage = 1f;
     public float fireDamageModPerc = 1f;
     public float fireLength = 5f;
     public float FireDamage => baseFireDamage * fireDamageModPerc;
     
-    //ice
-    public float baseIceDamage = 1f;
-    public float iceDamageModPerc = 1f;
+    [Header("Ice Variables")]
+    public float iceSlowdownPercentage = 0.2f; //inherent percentile - doesn't need ModPerc
     public float iceLength = 5f;
-    public float IceDamage => baseIceDamage * iceDamageModPerc;
     
     
-    
+    //methods
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage*damageTakenPercentage;
     }
 
+    public void ChangeMana(float change)
+    {
+        CurrentMana -= change;
+    }
+    
+    public void AddDash() 
+    {
+        Math.Clamp(dodgesCharges + 1, 0, maxDodgeCharges);
+    }
+
     void Start()
     {
-        currentHealth = MaxHealth;
-        currentMana = MaxMana;
+        _currentHealth = MaxHealth;
+        _currentMana = MaxMana;
     }
     
 }
