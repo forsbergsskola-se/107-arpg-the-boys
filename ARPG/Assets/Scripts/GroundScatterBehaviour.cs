@@ -9,7 +9,7 @@ public class GroundScatterBehaviour : StateMachineBehaviour
     private float _timer;
     private readonly float _groundScatterAttack = 1.5f;
     private GrassBoss _bossScript;
-    
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _timer = 0;

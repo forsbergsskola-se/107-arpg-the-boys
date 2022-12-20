@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 21629463382188864}
   - component: {fileID: 8584393935175568451}
   - component: {fileID: 3020076226108067228}
+  - component: {fileID: 4601106798467332137}
   m_Layer: 0
   m_Name: Effect_21_GroundScatter
   m_TagString: Untagged
@@ -218,6 +219,30 @@ MonoBehaviour:
   m_activeObj:
   - {fileID: 2232789530766513857}
   m_delayTime: 0
+--- !u!114 &4601106798467332137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170752514618103492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499ee40608561124cb66f0a26257c8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundScatterPoints:
+  - {fileID: 2232789530766513857}
+  - {fileID: 472347433041822270}
+  - {fileID: 472347432493538370}
+  - {fileID: 472347431982965778}
+  - {fileID: 9098877375461091277}
+  - {fileID: 1188901583182157850}
+  - {fileID: 1829533752848759664}
+  - {fileID: 4371385696009892922}
+  - {fileID: 319555019514746870}
+  - {fileID: 37352139986139624}
+  - {fileID: 5697292794995346922}
 --- !u!1001 &698042137850939259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect_21_GroundScatter(Active5) (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
 --- !u!4 &1380342456600697824 stripped
@@ -439,6 +468,10 @@ PrefabInstance:
     - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
       propertyPath: m_Name
       value: Effect_21_GroundScatter(Active5) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
@@ -744,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect_21_GroundScatter(Active4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
 --- !u!1 &472347431982965778 stripped
@@ -893,6 +930,10 @@ PrefabInstance:
     - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
       propertyPath: m_Name
       value: Effect_21_GroundScatter(Active2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640795129183887542, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2984552671765864546, guid: c2ae8d95860915148bdf28559c527cbb, type: 3}

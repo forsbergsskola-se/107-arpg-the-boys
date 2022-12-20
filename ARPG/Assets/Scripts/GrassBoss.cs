@@ -132,12 +132,14 @@ public class GrassBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider[] collisions = groundScatterInstance.GetComponentsInChildren<Collider>();
-        for (var i = 0; i < collisions.Length; i++)
-        {
-            if (collisions[i].CompareTag("Player"))
-                print("dadady");
-        }
+        Collider[] collisions = other != null ? other.GetComponentsInChildren<Collider>() : null;
+        if (collisions != null)
+            for (var i = 0; i < collisions.Length; i++)
+            {
+                if (collisions[i].CompareTag("Player"))
+                    print("dadady");
+            }
+
         print("colliding");
     }
 }
