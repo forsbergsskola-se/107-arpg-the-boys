@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static DrawBoxCast;
 
@@ -16,11 +14,6 @@ public class GroundScatterScript : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CO_GroundScatterHitBox());
-    }
-    
-    private void Update()
-    {
-
     }
 
     private IEnumerator CO_GroundScatterHitBox()

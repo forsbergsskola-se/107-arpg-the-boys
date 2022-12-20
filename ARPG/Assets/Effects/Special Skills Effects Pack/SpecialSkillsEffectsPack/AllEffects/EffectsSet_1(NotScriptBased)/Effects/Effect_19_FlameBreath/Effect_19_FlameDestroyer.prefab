@@ -19548,7 +19548,6 @@ GameObject:
   - component: {fileID: 3310490566502767711}
   - component: {fileID: 3310490566502767708}
   - component: {fileID: 3310490566502767709}
-  - component: {fileID: 7469037642196925510}
   m_Layer: 0
   m_Name: Effect_19_Explosion
   m_TagString: Untagged
@@ -24420,20 +24419,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!136 &7469037642196925510
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3310490566502767706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 33.50948
-  m_Height: 74.83295
-  m_Direction: 2
-  m_Center: {x: 2.66605, y: -4.806877, z: 27.88163}
 --- !u!1 &4371201884222273529
 GameObject:
   m_ObjectHideFlags: 0
@@ -24443,6 +24428,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286001781200285868}
+  - component: {fileID: 268115752826865754}
+  - component: {fileID: 9070296804574605741}
   m_Layer: 0
   m_Name: Effect_19_FlameDestroyer
   m_TagString: Untagged
@@ -24470,3 +24457,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &268115752826865754
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371201884222273529}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 33.50948
+  m_Height: 74.83295
+  m_Direction: 2
+  m_Center: {x: 2.66605, y: -4.806877, z: 27.88163}
+--- !u!114 &9070296804574605741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371201884222273529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35515e12e073e9b40a22cf7863eb9f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 128
