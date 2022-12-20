@@ -243,6 +243,11 @@ MonoBehaviour:
   - {fileID: 319555019514746870}
   - {fileID: 37352139986139624}
   - {fileID: 5697292794995346922}
+  hitBoxSize: {x: 2, y: 2, z: 2}
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  groundScatterDamage: 5
 --- !u!1001 &698042137850939259
 PrefabInstance:
   m_ObjectHideFlags: 0
