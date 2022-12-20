@@ -19,7 +19,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public bool showHeavyHitBox;
     [NonSerialized]
     public bool isAttacking;
-    
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] slashWhoosh, enemyHitSound;
@@ -52,7 +52,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             }
             if (Input.GetButtonDown("Fire3"))
             {
-                Guard(currentWeapon.guardTime);
+                _currentAttack = StartCoroutine(Guard(currentWeapon.guardTime, currentWeapon.parryTime));
             }
         }
 
@@ -124,27 +124,44 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 
-    private IEnumerator Guard(float guardTime)
+    private IEnumerator Guard(float guardTime, float parryTime)
     {
         Debug.Log("Guarded!");
-        CurrentAttackState = IInterruptible.AttackState.Guard;
-        
+
         _playerMovement.playerAnimator.speed = guardTime;
         animationEnded = false;
         isAttacking = true;
         _playerMovement._rb.velocity = Vector3.zero;
-        
-        _playerMovement.playerAnimator.SetBool("isGuarding", true);
-        
+
+        _playerMovement.playerAnimator.SetTrigger("Guard");
+
+        float elapsedTime = 0f;
+        while (elapsedTime < guardTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime < parryTime)
+            {
+                CurrentAttackState = IInterruptible.AttackState.Parry;
+            }
+            else
+            {
+                CurrentAttackState = IInterruptible.AttackState.Guard;
+            }
+
+            yield return null;
+        }
+
+        // Wait for the animation to end
         yield return new WaitUntil(() => animationEnded);
-        
+
         // End guard
         isAttacking = false;
         _playerMovement.playerAnimator.speed = 1;
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
     
-    private void Parry()
+    public void Parry()
     {
         Debug.Log("Parried!");
         Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
@@ -159,7 +176,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
     {
-        bool hitEnemy = false;
+        bool hasHitEnemy = false;
         Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
         Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer);        // if (showBox)
         //     DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
@@ -167,13 +184,13 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
-                if (!hitEnemy)
+                if (!hasHitEnemy)
                 {
-                    hitEnemy = true;
+                    hasHitEnemy = true;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
                     audioSource.Play();
                     _playerStats.AddDash();
-                    //Debug.Log("An enemy was hit");
+                    Debug.Log("An enemy was hit");
                 }
                 if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
                     interruptible.Interrupt();
@@ -215,7 +232,6 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     public void Interrupt()
     {
-        _playerMovement.playerAnimator.speed = 2.5f;
         _playerMovement.playerAnimator.SetTrigger("Interrupted");
         CancelAttack();
     }
