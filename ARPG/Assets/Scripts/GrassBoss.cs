@@ -28,6 +28,7 @@ public class GrassBoss : MonoBehaviour
     public bool firePointIsOnBoss;
 
     private bool moveToAttackSpot;
+    private GameObject groundScatterInstance;
 
 
     void Start()
@@ -84,7 +85,7 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
                 groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed); 
             } 
@@ -94,7 +95,7 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
                 groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
@@ -104,7 +105,7 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                GameObject groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
                 groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
@@ -131,11 +132,12 @@ public class GrassBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider[] collisions = groundScatterPrefab.GetComponentsInChildren<Collider>();
+        Collider[] collisions = groundScatterInstance.GetComponentsInChildren<Collider>();
         for (var i = 0; i < collisions.Length; i++)
         {
             if (collisions[i].CompareTag("Player"))
                 print("dadady");
         }
+        print("colliding");
     }
 }
