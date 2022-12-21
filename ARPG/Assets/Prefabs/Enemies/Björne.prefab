@@ -4144,6 +4144,7 @@ GameObject:
   - component: {fileID: 1973990267}
   - component: {fileID: 2279127500164087791}
   - component: {fileID: 280569395}
+  - component: {fileID: 224781859}
   m_Layer: 10
   m_Name: "Bj\xF6rne"
   m_TagString: Untagged
@@ -4213,7 +4214,7 @@ MonoBehaviour:
   attackRange: {x: 1.5, y: 1.5, z: 1.5}
   showHitbox: 0
   maxHealth: 100
-  enemyMovement: {fileID: 0}
+  enemyMovement: {fileID: 2279127500164087791}
   animator: {fileID: 1973990269}
   walkAnimationParameterName: Walking
   interruptedAnimationParameter: Interrupted
@@ -4259,18 +4260,23 @@ MonoBehaviour:
   startWaitTime: 4
   timeToRotate: 2
   speedRun: 9
-  viewRadius: 15
-  viewAngle: 90
+  viewRadius: 20
+  viewAngle: 180
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   meshResolution: 1
   edgeIterations: 4
   edgeDistance: 0.5
-  waypoints: []
+  agroDistance: 8
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!136 &280569395
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4284,7 +4290,29 @@ CapsuleCollider:
   m_Radius: 1.5698905
   m_Height: 4.1496205
   m_Direction: 1
-  m_Center: {x: -0.07403517, y: 1.5748103, z: 0}
+  m_Center: {x: -0.07403517, y: 2, z: 0}
+--- !u!195 &224781859
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825372332017837820}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1
+  m_Speed: 3.5
+  m_Acceleration: 50
+  avoidancePriority: 50
+  m_AngularSpeed: 200
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8844589350914480094
 GameObject:
   m_ObjectHideFlags: 0
