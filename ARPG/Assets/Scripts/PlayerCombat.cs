@@ -41,6 +41,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     void Update()
     {
+        Debug.Log(CurrentAttackState);
         if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -172,7 +173,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             if (hits[i].TryGetComponent(out Enemy enemy))
             {
-                // TODO: Call enemy parried function here
+                enemy.Parried();
             }
         }
     }
