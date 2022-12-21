@@ -259,7 +259,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
                 if (damageable is IInterruptible interruptible)
-                    if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard ||
+                    if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard &&
                         interruptible.CurrentAttackState != IInterruptible.AttackState.Parry)
                         interruptible.Interrupt();
                     else
