@@ -3798,6 +3798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCombat: {fileID: 7330928658350872650}
+  playerMovement: {fileID: 0}
 --- !u!1 &4930112382327181956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3914,6 +3915,11 @@ MonoBehaviour:
     m_Bits: 0
   attackCenter: {fileID: 5148911742629426043}
   attackRotateSpeed: 20
+  showLightHitBox: 0
+  showHeavyHitBox: 0
+  audioSource: {fileID: 0}
+  slashWhoosh: []
+  enemyHitSound: []
 --- !u!114 &5296135388477071890
 MonoBehaviour:
   m_ObjectHideFlags: 0
