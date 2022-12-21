@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828089153916935724}
-  m_LocalRotation: {x: 0.7067056, y: 0.023816094, z: -0.023816127, w: 0.7067057}
+  m_LocalRotation: {x: 0.7067057, y: 0.02381428, z: -0.02381428, w: 0.7067057}
   m_LocalPosition: {x: 1.2865251, y: 3.0036583, z: -1.5361736}
   m_LocalScale: {x: 1.3093994, y: 1.3094001, z: 1.3094002}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4581913290917062256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.279, y: 88.314, z: -7.25}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -3.86}
 --- !u!114 &7828089153916935713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,11 +50,13 @@ MonoBehaviour:
   critRate: 0.1
   critDamageBonus: 1.5
   lightAttackDamage: 10
-  lightAttackSpeed: 1.5
+  lightAttackSpeed: 3.58
   lightAttackColSize: {x: 0, y: 0, z: 0}
+  lightAttackColOffset: {x: 0, y: 0, z: 0}
   heavyAttackDamage: 20
-  heavyAttackSpeed: 1
+  heavyAttackSpeed: 2.57
   heavyAttackColSize: {x: 0, y: 0, z: 0}
+  heavyAttackColOffset: {x: 0, y: 0, z: 0}
   guardTime: 0
   parryPunishRange: 3
   parryTime: 0
