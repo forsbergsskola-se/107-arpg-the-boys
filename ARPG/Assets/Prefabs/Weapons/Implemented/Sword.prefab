@@ -228,12 +228,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   critRate: 0.1
   critDamageBonus: 1.5
-  lightAttackDamage: 10
+  lightAttackDamage: 25
   lightAttackSpeed: 2.2
-  lightAttackColSize: {x: 2, y: 1, z: 1}
+  lightAttackColSize: {x: 3, y: 3, z: 2.62}
+  lightAttackColOffset: {x: 0, y: 0, z: 1.63}
   heavyAttackDamage: 20
   heavyAttackSpeed: 1.2
-  heavyAttackColSize: {x: 3, y: 3, z: 3}
+  heavyAttackColSize: {x: 3, y: 3, z: 3.96}
+  heavyAttackColOffset: {x: 0, y: 0, z: 2.03}
   guardTime: 0.7
   parryPunishRange: 3
   parryTime: 0.1
