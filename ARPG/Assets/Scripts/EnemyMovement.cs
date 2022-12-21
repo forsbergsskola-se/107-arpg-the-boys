@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public GameObject player;
-    public NavMeshAgent navMeshAgent;
+    private GameObject _player;
+    private NavMeshAgent _navMeshAgent;
+    private PlayerCombat _playerCombat;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedRun = 9;
@@ -15,9 +16,6 @@ public class EnemyMovement : MonoBehaviour
     public float viewAngle = 90;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
-    public float meshResolution = 1;
-    public int edgeIterations = 4;
-    public float edgeDistance = 0.5f;
     public float agroDistance;
     
     public Transform[] waypoints;
@@ -42,18 +40,13 @@ public class EnemyMovement : MonoBehaviour
         _waitTime = startWaitTime;
         _timeToRotate = timeToRotate;
         _currentWaypointIndex = 0;
-        navMeshAgent = GetComponent<NavMeshAgent>();
-
-        navMeshAgent.isStopped = false;
-        navMeshAgent.speed = speedRun;
-        navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
-    }
-    
-    void Update()
-    {
-       
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _playerCombat = FindObjectOfType<PlayerCombat>();
+        _player = _playerCombat.gameObject;
         
-        
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.speed = speedRun;
+        _navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
     }
 
     public void EnemyyMovement()
@@ -75,19 +68,19 @@ public class EnemyMovement : MonoBehaviour
         if (!_caughtPlayer)
         {
             Move(speedRun);
-            navMeshAgent.SetDestination(_playerPosition);
+            _navMeshAgent.SetDestination(_playerPosition);
         }
 
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
-            if (!_caughtPlayer && Vector3.Distance(transform.position, player.transform.position) >= agroDistance)
+            if (!_caughtPlayer && Vector3.Distance(transform.position, _player.transform.position) >= agroDistance)
             {
                 _isPatrol = true;
                 _playerNear = false;
                 Move(speedRun);
                 _timeToRotate = timeToRotate;
                 _waitTime = startWaitTime;
-                navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+                _navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
             }
             else //if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
             {
@@ -118,8 +111,8 @@ public class EnemyMovement : MonoBehaviour
         {
             _playerNear = false;
             _playerPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            _navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
                 if (_waitTime <= 0)
                 {
@@ -140,19 +133,19 @@ public class EnemyMovement : MonoBehaviour
     public void NextPoint()
     {
         _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
-        navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+        _navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
     }
 
     private void Stop()
     {
-        navMeshAgent.isStopped = true;
-        navMeshAgent.speed = 0;
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.speed = 0;
     }
 
     private void Move(float speed)
     {
-        navMeshAgent.isStopped = false;
-        navMeshAgent.speed = speed;
+        _navMeshAgent.isStopped = false;
+        _navMeshAgent.speed = speed;
     }
 
     void CaughtPlayer()
@@ -162,14 +155,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void LookingPlayer(Vector3 playerLastPosition)
     {
-        navMeshAgent.SetDestination(playerLastPosition);
+        _navMeshAgent.SetDestination(playerLastPosition);
         if (Vector3.Distance(transform.position, playerLastPosition) <= 0.3)
         {
             if (_waitTime <= 0)
             {
                 _playerNear = false;
                 Move(speedRun);
-                navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+                _navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
                 _waitTime = startWaitTime;
                 _timeToRotate = timeToRotate;
             }
@@ -212,7 +205,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (_playerInRange)
         {
-            _playerPosition = player.transform.position;
+            _playerPosition = _player.transform.position;
         }
     }
 }
