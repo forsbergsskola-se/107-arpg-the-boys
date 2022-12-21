@@ -4269,7 +4269,6 @@ MonoBehaviour:
   agroDistance: 8
   waypoints:
   - {fileID: 0}
-  - {fileID: 0}
 --- !u!136 &280569395
 CapsuleCollider:
   m_ObjectHideFlags: 0

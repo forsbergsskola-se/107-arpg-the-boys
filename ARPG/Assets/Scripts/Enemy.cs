@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public bool showHitbox;
     public float maxHealth;
     public EnemyMovement enemyMovement;
-
+    public bool hasAiMovement;
+    
     public Animator animator;
     public string walkAnimationParameterName;
 
@@ -121,7 +122,13 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public void EnemyMovement()
     {
-        enemyMovement.EnemyyMovement();
+        if(hasAiMovement)
+            enemyMovement.EnemyyMovement();
+        else
+        {
+            //Boss Movement prolly
+            
+        }
     }
 
     //selection of attacks
