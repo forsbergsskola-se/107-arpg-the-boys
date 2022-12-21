@@ -100,9 +100,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         else if (!_isAttacking && !_isInterrupted)
         {
             EnemyMovement();
-            animator.SetBool(walkAnimationParameterName, true);
         }
-
         else 
             animator.SetBool(walkAnimationParameterName, false);
 

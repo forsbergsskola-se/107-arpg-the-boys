@@ -4255,8 +4255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f873ce3fa13de845addb0b03b875bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  navMeshAgent: {fileID: 0}
   startWaitTime: 4
   timeToRotate: 2
   speedRun: 9
@@ -4268,13 +4266,8 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 256
-  meshResolution: 1
-  edgeIterations: 4
-  edgeDistance: 0.5
   agroDistance: 8
   waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!136 &280569395
