@@ -25,7 +25,7 @@ public class ItemScript : MonoBehaviour
         }
         return power / (1.0f + MathF.Sqrt(numItems));
     }
-
+    
     private int _itemCountPlaceHold = 0; //todo: replace all instances of _itemCountPlaceHold with actual inventory count of item
     private void ItemPickedUp(PlayerStats plStat)
     {
@@ -39,12 +39,23 @@ public class ItemScript : MonoBehaviour
             plStat.baseMaxMana += itemSo.baseMaxManaChange;
             plStat.maxManaModPerc += itemSo.maxMpModPercChange;
             plStat.ChangeMana(itemSo.currentManaChange);
+            //recovery
+            plStat.hpRecovModPerc += itemSo.hpRecovModPercChange;
+            plStat.mpRecovModPerc += itemSo.mpRecovModPercChange;
             //atk
             plStat.basePower += itemSo.basePowerChange;
             plStat.powerModPerc += itemSo.powerModPercChange;
             //crit
             plStat.critRate += itemSo.critRateChange;
             plStat.critDamage += itemSo.critDamageChange;
+            //heavy/light attacks
+            plStat.lightAtkModPerc += itemSo.lightAtkModPercChange;
+            plStat.lightAtkSpeedPerc += itemSo.lightAtkSpeedPercChange;
+            plStat.heavyAtkModPerc += itemSo.heavyAtkModPercChange;
+            plStat.heavyAtkSpeedPerc += itemSo.heavyAtkSpeedPercChange;
+            //block
+            plStat.guardTimeModPerc += itemSo.guardTimeModPercChange;
+            plStat.guardPunishModPerc += itemSo.guardPunishModPercChange;
             //ranged
             plStat.baseRangedRange += itemSo.baseRangedRangeChange;
             plStat.rangedRangeModPerc += itemSo.rangedRangeModPercChange;
@@ -87,12 +98,23 @@ public class ItemScript : MonoBehaviour
             plStat.baseMaxMana += Scale(_itemCountPlaceHold,itemSo.baseMaxManaChange);
             plStat.maxManaModPerc += Scale(_itemCountPlaceHold,itemSo.maxMpModPercChange);
             plStat.ChangeMana(Scale(_itemCountPlaceHold,itemSo.currentManaChange));
+            //recovery
+            plStat.hpRecovModPerc +=Scale(_itemCountPlaceHold, itemSo.hpRecovModPercChange);
+            plStat.mpRecovModPerc +=Scale(_itemCountPlaceHold, itemSo.mpRecovModPercChange);
             //atk
             plStat.basePower += Scale(_itemCountPlaceHold,itemSo.basePowerChange);
             plStat.powerModPerc += Scale(_itemCountPlaceHold,itemSo.powerModPercChange);
             //crit
             plStat.critRate += Scale(_itemCountPlaceHold,itemSo.critRateChange);
             plStat.critDamage += Scale(_itemCountPlaceHold,itemSo.critDamageChange);
+            //heavy/light attacks
+            plStat.lightAtkModPerc +=Scale(_itemCountPlaceHold,itemSo.lightAtkModPercChange);
+            plStat.lightAtkSpeedPerc +=Scale(_itemCountPlaceHold,itemSo.lightAtkSpeedPercChange);
+            plStat.heavyAtkModPerc +=Scale(_itemCountPlaceHold,itemSo.heavyAtkModPercChange);
+            plStat.heavyAtkSpeedPerc +=Scale(_itemCountPlaceHold,itemSo.heavyAtkSpeedPercChange);
+            //block
+            plStat.guardTimeModPerc +=Scale(_itemCountPlaceHold, itemSo.guardTimeModPercChange);
+            plStat.guardPunishModPerc +=Scale(_itemCountPlaceHold, itemSo.guardPunishModPercChange);
             //ranged
             plStat.baseRangedRange += Scale(_itemCountPlaceHold,itemSo.baseRangedRangeChange);
             plStat.rangedRangeModPerc += Scale(_itemCountPlaceHold,itemSo.rangedRangeModPercChange);

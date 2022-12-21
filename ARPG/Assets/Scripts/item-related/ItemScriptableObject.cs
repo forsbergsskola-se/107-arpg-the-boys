@@ -20,15 +20,30 @@ public class ItemScriptableObject : ScriptableObject
     public float currentManaChange; //recovery items should modify this.
     //currentManaChange should ALWAYS be used through PlayerStats' ChangeMana.
 
-
+    [Header("Recovery variables")] 
+    public float hpRecovModPercChange;
+    public float mpRecovModPercChange;
+    
     [Header("Player-Bound Attack Variables")]
     public float basePowerChange;
     public float powerModPercChange;
     //stat 'AttackPower' ignored - derived value.
-
+    
     public float critRateChange;
     public float critDamageChange; //damage = critDamage * AttackPower, so keep above 1f for actual crits.
     //stat 'CritHit' ignored - derived value.
+    
+    [Header("Player-Bound Heavy/Light Attack Variables")]
+    public float lightAtkModPercChange;
+    public float lightAtkSpeedPercChange;
+
+    public float heavyAtkModPercChange;
+    public float heavyAtkSpeedPercChange;
+    
+    [Header("Player-Bound Block Variables")]
+    public float guardTimeModPercChange;
+    public float guardPunishModPercChange;
+    
     [Header("Player-Bound Range Variables")]
     public float baseRangedRangeChange;
     public float rangedRangeModPercChange;

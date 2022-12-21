@@ -20,6 +20,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private float _currentMana; // for clamp functionality
     public float CurrentMana
         { get => _currentMana; private set => _currentMana = Math.Clamp(value, 0, MaxMana); }
+
+    [Header("Recovery Variables")] 
+    public float hpRecovModPerc = 1f;
+    public float mpRecovModPerc = 1f;
     
     [Header("Player-Bound Attack Variables")]
     public float basePower = 10f;
@@ -29,6 +33,17 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float critRate = 0.05f; //inherent percentile - doesn't need ModPerc
     public float critDamage = 2f; //inherent percentile - doesn't need ModPerc
     public float CritHit => AttackPower * critDamage;
+
+    [Header("Player-Bound Heavy/Light Attack Variables")]
+    public float lightAtkModPerc = 1f;
+    public float lightAtkSpeedPerc = 1f;
+    
+    public float heavyAtkModPerc = 1f;
+    public float heavyAtkSpeedPerc = 1f;
+
+    [Header("Player-Bound Block Variables")]
+    public float guardTimeModPerc = 1f;
+    public float guardPunishModPerc = 1f;
 
     [Header("Player-Bound Range Variables")]
     public float baseRangedRange;
@@ -83,23 +98,26 @@ public class PlayerStats : MonoBehaviour, IDamageable
     //methods
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage*dmgTakePerc;
+        if (damage > 0) { CurrentHealth -= damage * dmgTakePerc; }
+        else { CurrentHealth -= damage * hpRecovModPerc; }
     }
 
     public void ChangeMana(float change)
     {
-        CurrentMana -= change;
+        if (change > 0) { CurrentMana -= change; }
+        else { CurrentMana -= change * mpRecovModPerc; }
     }
     
     public void AddDodge(int addCharges) 
     {
-        Math.Clamp(DodgeCharges + addCharges, 0, maxDodgeCharges);
+        DodgeCharges  = Math.Clamp(DodgeCharges + addCharges, 0, maxDodgeCharges);
     }
-
+    
+    
     void Start()
     {
         _currentHealth = MaxHealth;
         _currentMana = MaxMana;
     }
-    
+
 }
