@@ -44,10 +44,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public Vector3 attackRange;
     public bool showHitbox;
     public float maxHealth;
-
+    public EnemyMovement enemyMovement;
+    public bool hasAiMovement;
+    
     public Animator animator;
     public string walkAnimationParameterName;
-    
+
     public string interruptedAnimationParameter;
 
 
@@ -100,32 +102,33 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         else if (!_isAttacking && !_isInterrupted)
         {
             EnemyMovement();
-            animator.SetBool(walkAnimationParameterName, true);
         }
-
-        else 
+        else
             animator.SetBool(walkAnimationParameterName, false);
 
         if (showHitbox)
             DrawBoxCastBox(attackTransform.position, attackRange / 2, attackTransform.rotation, Color.green);
-        if(lightAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2, attackTransform.rotation, Color.cyan);
-        if(heavyAttackInformation.showHitBox)
-            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2, attackTransform.rotation, Color.red);
-        
+        if (lightAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, lightAttackInformation.lightAttackSize / 2,
+                attackTransform.rotation, Color.cyan);
+        if (heavyAttackInformation.showHitBox)
+            DrawBoxCastBox(attackTransform.position, heavyAttackInformation.heavyAttackSize / 2,
+                attackTransform.rotation, Color.red);
+
 
         //dont call every frame later
         Death();
-
     }
 
     public void EnemyMovement()
     {
-        //paste movement code for the enemy here so he can be interrupted :)
-        Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if(hasAiMovement)
+            enemyMovement.EnemyyMovement();
+        else
+        {
+            //Boss Movement prolly
+            
+        }
     }
 
     //selection of attacks
@@ -220,6 +223,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         _isInterrupted = false;
         animator.SetBool(interruptedAnimationParameter, false);
+        animator.speed = 1;
     }
 
     public void LightAttackAnimationAttack()
@@ -260,10 +264,24 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                if (hits[i].TryGetComponent(out IInterruptible interruptible))
+                    if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard &&
+                        interruptible.CurrentAttackState != IInterruptible.AttackState.Parry)
+                        interruptible.Interrupt();
+                    else
+                    {
+                        if (interruptible.CurrentAttackState == IInterruptible.AttackState.Guard)
+                            damage *= 0.05f;
+                        if (interruptible.CurrentAttackState == IInterruptible.AttackState.Parry)
+                        {
+                            _playerCombat.Parry();
+                            damage = 0;
+                        }
+                    }
+
                 damageable.TakeDamage(damage);
-            if (hits[i].TryGetComponent(out IInterruptible interruptible))
-                if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard)
-                    interruptible.Interrupt();
+            }
         }
     }
 
@@ -305,6 +323,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         CancelAttack();
         _isInterrupted = true;
         animator.SetBool(interruptedAnimationParameter, true);
+    }
+
+    public void Parried()
+    {
+        animator.speed = 0.5f;
+        Interrupt();
     }
 
 

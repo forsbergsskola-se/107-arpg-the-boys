@@ -7,7 +7,8 @@ public interface IInterruptible
         NoAttack,
         LightAttack,
         HeavyAttack,
-        Guard
+        Guard,
+        Parry
     }
     
     // public void ChangeAttackState(AttackState attackState)

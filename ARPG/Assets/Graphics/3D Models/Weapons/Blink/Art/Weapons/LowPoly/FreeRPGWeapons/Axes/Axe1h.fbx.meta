@@ -1,4 +1,19 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/HUB STUFF/Crates And Barrels Pack Volume 1 - Free Version/Models/Mod_BigBarrel.fbx.meta
+guid: 9ac5afe5ef465d94da5df7c46608596e
+timeCreated: 1537126026
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Mod_BigBarrel
+  materials:
+    importMaterials: 0
+========
 guid: 439a532aec13bc04e85ea9ffb8759869
 ModelImporter:
   serializedVersion: 19301
@@ -6,9 +21,9 @@ ModelImporter:
   externalObjects: {}
   materials:
     materialImportMode: 1
+>>>>>>>> origin/feature/enemy-combat:ARPG/Assets/Graphics/3D Models/Weapons/Blink/Art/Weapons/LowPoly/FreeRPGWeapons/Axes/Axe1h.fbx.meta
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -21,15 +36,12 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 0
   meshes:
@@ -37,6 +49,9 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+<<<<<<<< HEAD:ARPG/Assets/HUB STUFF/Crates And Barrels Pack Volume 1 - Free Version/Models/Mod_BigBarrel.fbx.meta
+    importBlendShapes: 0
+========
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -44,10 +59,14 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     fileIdsGeneration: 2
+>>>>>>>> origin/feature/enemy-combat:ARPG/Assets/Graphics/3D Models/Weapons/Blink/Art/Weapons/LowPoly/FreeRPGWeapons/Axes/Axe1h.fbx.meta
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
+<<<<<<<< HEAD:ARPG/Assets/HUB STUFF/Crates And Barrels Pack Volume 1 - Free Version/Models/Mod_BigBarrel.fbx.meta
+    weldVertices: 0
+========
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -55,6 +74,7 @@ ModelImporter:
     minBoneWeight: 0.001
     meshOptimizationFlags: -1
     indexFormat: 0
+>>>>>>>> origin/feature/enemy-combat:ARPG/Assets/Graphics/3D Models/Weapons/Blink/Art/Weapons/LowPoly/FreeRPGWeapons/Axes/Axe1h.fbx.meta
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -63,6 +83,11 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
+<<<<<<<< HEAD:ARPG/Assets/HUB STUFF/Crates And Barrels Pack Volume 1 - Free Version/Models/Mod_BigBarrel.fbx.meta
+    tangentImportMode: 0
+  importAnimation: 0
+  copyAvatar: 0
+========
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
@@ -70,6 +95,7 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
+>>>>>>>> origin/feature/enemy-combat:ARPG/Assets/Graphics/3D Models/Weapons/Blink/Art/Weapons/LowPoly/FreeRPGWeapons/Axes/Axe1h.fbx.meta
   humanDescription:
     serializedVersion: 3
     human: []
@@ -83,6 +109,7 @@ ModelImporter:
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
