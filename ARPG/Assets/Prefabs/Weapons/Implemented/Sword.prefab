@@ -238,7 +238,7 @@ MonoBehaviour:
   heavyAttackColOffset: {x: 0, y: 0, z: 2.03}
   guardTime: 0.7
   parryPunishRange: 3
-  parryTime: 0.1
+  parryTime: 0.25
   modelPosOffset: {x: 0, y: -0.19, z: 0}
   modelRotOffset: {x: 0, y: 0, z: 0}
 --- !u!54 &5544351134137442708
