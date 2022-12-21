@@ -25,7 +25,7 @@ public class SpawnMonster : MonoBehaviour
     void BeginSpawn()
     {
         int thisEnemy = ThisEnemy();
-        Debug.Log(thisEnemy +" is the chosen enemy from the array");
+        //Debug.Log(thisEnemy +" is the chosen enemy from the array");
         Instantiate(enemies[thisEnemy], transform.position, transform.rotation);
         spawnEffect.Play();
     }
@@ -44,7 +44,7 @@ public class SpawnMonster : MonoBehaviour
         // picks a random lapp
         int thisEnemy = Random.Range(0, fullRateAmount);
         
-        Debug.Log(thisEnemy +" is the start lapp");
+        //Debug.Log(thisEnemy +" is the start lapp");
         //checks what lapp represents which enemy
         int _countedTimes = 0;
         for (int i = 0; i < enemiesSpawnRates.Length; i++)
@@ -53,7 +53,7 @@ public class SpawnMonster : MonoBehaviour
             {
                 if (thisEnemy == _countedTimes)
                 {
-                    Debug.Log(i +" is the enemy we found the number at");
+                    //Debug.Log(i +" is the enemy we found the number at");
                     return i;
                 }
                 _countedTimes++;
