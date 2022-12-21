@@ -127,7 +127,10 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         else
         {
             //Boss Movement prolly
-            
+            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
