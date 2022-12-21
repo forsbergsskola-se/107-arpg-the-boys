@@ -57,7 +57,6 @@ public class GrassBoss : MonoBehaviour
     private void MoveToAttackSpot()
     {
         Quaternion targetRotation = Quaternion.LookRotation(_firePoint.transform.position - transform.position);
-        
         transform.position = Vector3.MoveTowards(transform.position,_firePoint.transform.position, enemyScript.moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, enemyScript.rotationSpeed * Time.deltaTime);
     }
@@ -75,7 +74,18 @@ public class GrassBoss : MonoBehaviour
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
         moveToAttackSpot = false;
+        yield return StartCoroutine(CO_RotateToTarget(_firePoint.transform));
         passiveStageActive = false;
+    }
+
+    private IEnumerator CO_RotateToTarget(Transform target)
+    {
+        while (transform.rotation != target.transform.rotation)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation,
+                enemyScript.rotationSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
     public IEnumerator CO_GroundScatter()
     {
@@ -129,19 +139,5 @@ public class GrassBoss : MonoBehaviour
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
         yield return null;
-    }
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Collider[] collisions = other != null ? other.GetComponentsInChildren<Collider>() : null;
-        if (collisions != null)
-            for (var i = 0; i < collisions.Length; i++)
-            {
-                if (collisions[i].CompareTag("Player"))
-                    print("dadady");
-            }
-
-        print("colliding");
     }
 }
