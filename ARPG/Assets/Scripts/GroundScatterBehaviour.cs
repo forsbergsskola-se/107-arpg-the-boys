@@ -33,7 +33,7 @@ public class GroundScatterBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_bossScript._scatterRounds > 2)
+        if (_bossScript.scatterRounds > 2)
             _bossScript.switchFromPassive = false;
     }
 

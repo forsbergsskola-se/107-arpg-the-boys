@@ -20,15 +20,16 @@ public class GrassBoss : MonoBehaviour
     public float passiveStageDuration;
 
     [NonSerialized]
-    public float _scatterRounds;
-
+    public float scatterRounds;
+    [NonSerialized]
     public bool passiveStageActive;
+    [NonSerialized]
     public bool switchFromPassive;
     private float _distanceBetween;
     public bool firePointIsOnBoss;
 
-    private bool moveToAttackSpot;
-    private GameObject groundScatterInstance;
+    private bool _moveToAttackSpot;
+    private GameObject _groundScatterInstance;
 
 
     void Start()
@@ -50,7 +51,7 @@ public class GrassBoss : MonoBehaviour
         transform.position = position;
 
         //move towards _firePoint
-        if (moveToAttackSpot)
+        if (_moveToAttackSpot)
             MoveToAttackSpot();
     }
 
@@ -69,11 +70,11 @@ public class GrassBoss : MonoBehaviour
         yield return new WaitUntil(() => enemyScript.endAttack);
         enemyScript.enabled = false;
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, true);
-        moveToAttackSpot = true;
+        _moveToAttackSpot = true;
         yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
-        moveToAttackSpot = false;
+        _moveToAttackSpot = false;
         yield return StartCoroutine(CO_RotateToTarget(_firePoint.transform));
         passiveStageActive = false;
     }
@@ -95,8 +96,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed); 
             } 
         }
@@ -105,8 +106,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -115,8 +116,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
