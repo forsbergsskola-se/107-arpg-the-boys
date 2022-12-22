@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSo: {fileID: 11400000, guid: 565185168d895c24399ad7a4020d9dfc, type: 2}
-  isLinearScaling: 1
+  isLinearScaling: 0
+  heldCount: 0
 --- !u!54 &6073467025313538041
 Rigidbody:
   m_ObjectHideFlags: 0

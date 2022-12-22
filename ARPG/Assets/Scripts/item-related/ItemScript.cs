@@ -7,17 +7,27 @@ public class ItemScript : MonoBehaviour
     [Header("if this is disabled, item power will curve towards zero for this item type.")]
     public bool isLinearScaling;
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //can be replaced with other pick-up logic if required
     {
         if (collision.gameObject.GetComponent<PlayerStats>())
         {
+            //get necessary components
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-            ItemPickedUp(playerStats);
+            PlayerInventory playerInventory = collision.gameObject.GetComponent<PlayerInventory>();
+            heldCount = playerInventory.GetItemCount(itemSo.name);//get # of items held from player inventory
+            ItemPickedUp(playerStats); // runs pick-up method
+            playerInventory.UpdateItemCount(itemSo.name); // updates # held
             Debug.Log($"{gameObject} collided with {collision.gameObject} and was destroyed.");
-            Destroy(gameObject);
+            Destroy(gameObject); //kills object
         }
     }
-    float Scale(int numItems, float power)
+    /* todo: method for selling items.
+     method should be calling 'ItemPickedUp' so that value decreases instead of increases.
+     increase/decrease should employ scaling curve and update items held count as appropriate.
+     see trello backlog entry 'sell item method'.
+    */
+
+    float Scale(int numItems, float power) //scaling math stuff
     {
         if (numItems == 0)
         {
@@ -25,9 +35,9 @@ public class ItemScript : MonoBehaviour
         }
         return power / (1.0f + MathF.Sqrt(numItems));
     }
-    
-    private int _itemCountPlaceHold = 0; //todo: replace all instances of _itemCountPlaceHold with actual inventory count of item
-    private void ItemPickedUp(PlayerStats plStat)
+
+    public int heldCount;
+    private void ItemPickedUp(PlayerStats plStat) //could probably clean this up, but... it works. so i won't.
     {
         if(isLinearScaling)
         {
@@ -91,60 +101,61 @@ public class ItemScript : MonoBehaviour
         else
         {
             //hp
-            plStat.baseMaxHealth += Scale(_itemCountPlaceHold,itemSo.baseMaxHealthChange);
-            plStat.maxHealthModPerc += Scale(_itemCountPlaceHold,itemSo.baseMaxHpModPercChange);
-            plStat.TakeDamage(Scale(_itemCountPlaceHold,itemSo.currentHealthChange));
+            plStat.baseMaxHealth += Scale(heldCount,itemSo.baseMaxHealthChange);
+            plStat.maxHealthModPerc += Scale(heldCount,itemSo.baseMaxHpModPercChange);
+            plStat.TakeDamage(Scale(heldCount,itemSo.currentHealthChange));
             //mp
-            plStat.baseMaxMana += Scale(_itemCountPlaceHold,itemSo.baseMaxManaChange);
-            plStat.maxManaModPerc += Scale(_itemCountPlaceHold,itemSo.maxMpModPercChange);
-            plStat.ChangeMana(Scale(_itemCountPlaceHold,itemSo.currentManaChange));
+            plStat.baseMaxMana += Scale(heldCount,itemSo.baseMaxManaChange);
+            plStat.maxManaModPerc += Scale(heldCount,itemSo.maxMpModPercChange);
+            plStat.ChangeMana(Scale(heldCount,itemSo.currentManaChange));
             //recovery
-            plStat.hpRecovModPerc +=Scale(_itemCountPlaceHold, itemSo.hpRecovModPercChange);
-            plStat.mpRecovModPerc +=Scale(_itemCountPlaceHold, itemSo.mpRecovModPercChange);
+            plStat.hpRecovModPerc +=Scale(heldCount, itemSo.hpRecovModPercChange);
+            plStat.mpRecovModPerc +=Scale(heldCount, itemSo.mpRecovModPercChange);
             //atk
-            plStat.basePower += Scale(_itemCountPlaceHold,itemSo.basePowerChange);
-            plStat.powerModPerc += Scale(_itemCountPlaceHold,itemSo.powerModPercChange);
+            plStat.basePower += Scale(heldCount,itemSo.basePowerChange);
+            plStat.powerModPerc += Scale(heldCount,itemSo.powerModPercChange);
             //crit
-            plStat.critRate += Scale(_itemCountPlaceHold,itemSo.critRateChange);
-            plStat.critDamage += Scale(_itemCountPlaceHold,itemSo.critDamageChange);
+            plStat.critRate += Scale(heldCount,itemSo.critRateChange);
+            plStat.critDamage += Scale(heldCount,itemSo.critDamageChange);
             //heavy/light attacks
-            plStat.lightAtkModPerc +=Scale(_itemCountPlaceHold,itemSo.lightAtkModPercChange);
-            plStat.lightAtkSpeedPerc +=Scale(_itemCountPlaceHold,itemSo.lightAtkSpeedPercChange);
-            plStat.heavyAtkModPerc +=Scale(_itemCountPlaceHold,itemSo.heavyAtkModPercChange);
-            plStat.heavyAtkSpeedPerc +=Scale(_itemCountPlaceHold,itemSo.heavyAtkSpeedPercChange);
+            plStat.lightAtkModPerc +=Scale(heldCount,itemSo.lightAtkModPercChange);
+            plStat.lightAtkSpeedPerc +=Scale(heldCount,itemSo.lightAtkSpeedPercChange);
+            plStat.heavyAtkModPerc +=Scale(heldCount,itemSo.heavyAtkModPercChange);
+            plStat.heavyAtkSpeedPerc +=Scale(heldCount,itemSo.heavyAtkSpeedPercChange);
             //block
-            plStat.guardTimeModPerc +=Scale(_itemCountPlaceHold, itemSo.guardTimeModPercChange);
-            plStat.guardPunishModPerc +=Scale(_itemCountPlaceHold, itemSo.guardPunishModPercChange);
+            plStat.guardTimeModPerc +=Scale(heldCount, itemSo.guardTimeModPercChange);
+            plStat.guardPunishModPerc +=Scale(heldCount, itemSo.guardPunishModPercChange);
             //ranged
-            plStat.baseRangedRange += Scale(_itemCountPlaceHold,itemSo.baseRangedRangeChange);
-            plStat.rangedRangeModPerc += Scale(_itemCountPlaceHold,itemSo.rangedRangeModPercChange);
-            plStat.baseRangePower += Scale(_itemCountPlaceHold,itemSo.baseRangePowerChange);
-            plStat.rangePowerModPerc += Scale(_itemCountPlaceHold,itemSo.rangePowerModPercChange);
+            plStat.baseRangedRange += Scale(heldCount,itemSo.baseRangedRangeChange);
+            plStat.rangedRangeModPerc += Scale(heldCount,itemSo.rangedRangeModPercChange);
+            plStat.baseRangePower += Scale(heldCount,itemSo.baseRangePowerChange);
+            plStat.rangePowerModPerc += Scale(heldCount,itemSo.rangePowerModPercChange);
             //move speed
-            plStat.baseWalkMoveSpeed += Scale(_itemCountPlaceHold,itemSo.baseWalkMoveSpeedChange);
-            plStat.baseRunMoveSpeed += Scale(_itemCountPlaceHold,itemSo.baseRunMoveSpeedChange);
-            plStat.moveSpeedModPerc += Scale(_itemCountPlaceHold,itemSo.moveSpeedModPercChange);
+            plStat.baseWalkMoveSpeed += Scale(heldCount,itemSo.baseWalkMoveSpeedChange);
+            plStat.baseRunMoveSpeed += Scale(heldCount,itemSo.baseRunMoveSpeedChange);
+            plStat.moveSpeedModPerc += Scale(heldCount,itemSo.moveSpeedModPercChange);
             //dodge
             plStat.AddDodge(itemSo.dodgeChargesChange); //dodgeCharges cannot be scaled - is int.
             plStat.maxDodgeCharges += itemSo.maxDodgeChargesChange; //dodgeCharges cannot be scaled - is int.
-            plStat.baseDodgeSpeed += Scale(_itemCountPlaceHold,itemSo.baseDodgeSpeedChange);
-            plStat.dodgeSpeedModPerc += Scale(_itemCountPlaceHold,itemSo.dodgeSpeedModPercChange);
+            plStat.baseDodgeSpeed += Scale(heldCount,itemSo.baseDodgeSpeedChange);
+            plStat.dodgeSpeedModPerc += Scale(heldCount,itemSo.dodgeSpeedModPercChange);
             //mitigation
-            plStat.dmgTakePerc += Scale(_itemCountPlaceHold,itemSo.dmgTakePerc);
-            plStat.evasionChance += Scale(_itemCountPlaceHold,itemSo.evasionChanceChange);
+            plStat.dmgTakePerc += Scale(heldCount,itemSo.dmgTakePerc);
+            plStat.evasionChance += Scale(heldCount,itemSo.evasionChanceChange);
             //elements
             //poison
-            plStat.basePoisonDamage += Scale(_itemCountPlaceHold,itemSo.basePoisonDamageChange);
-            plStat.poisonDmgModPerc += Scale(_itemCountPlaceHold,itemSo.poisonDmgModPercChange);
-            plStat.poisonLength += Scale(_itemCountPlaceHold,itemSo.poisonLengthChange);
+            plStat.basePoisonDamage += Scale(heldCount,itemSo.basePoisonDamageChange);
+            plStat.poisonDmgModPerc += Scale(heldCount,itemSo.poisonDmgModPercChange);
+            plStat.poisonLength += Scale(heldCount,itemSo.poisonLengthChange);
             //fire
-            plStat.baseFireDamage += Scale(_itemCountPlaceHold,itemSo.baseFireDamageChange);
-            plStat.fireDmgModPerc += Scale(_itemCountPlaceHold,itemSo.fireDmgModPercChange);
-            plStat.fireLength += Scale(_itemCountPlaceHold,itemSo.fireLengthChange);
+            plStat.baseFireDamage += Scale(heldCount,itemSo.baseFireDamageChange);
+            plStat.fireDmgModPerc += Scale(heldCount,itemSo.fireDmgModPercChange);
+            plStat.fireLength += Scale(heldCount,itemSo.fireLengthChange);
             //ice
-            plStat.iceSlowPerc += Scale(_itemCountPlaceHold,itemSo.iceSlowPercChange);
-            plStat.iceLength += Scale(_itemCountPlaceHold,itemSo.iceLengthChange);
+            plStat.iceSlowPerc += Scale(heldCount,itemSo.iceSlowPercChange);
+            plStat.iceLength += Scale(heldCount,itemSo.iceLengthChange);
         }
+        Debug.Log("items held value in item script: " + heldCount);
     }
 
 }
