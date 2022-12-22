@@ -845,7 +845,6 @@ MonoBehaviour:
     guardChild: {fileID: 0}
     guardStartDelay: 0
   hasGuard: 0
-  endAttack: 1
   attackTransform: {fileID: 663235997}
   hitLayer:
     serializedVersion: 2
@@ -1752,6 +1751,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afb47f68bb1ed5408fcc493688f5fc7, type: 3}
+--- !u!1001 &1574851047657055210
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114354950, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1461178895}
+    - target: {fileID: 1574851047612008681, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_Name
+      value: Light Werewolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.8414173
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.833098
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9499b11585203d644a858411b90171bc, type: 3}
 --- !u!1001 &4909087650936263416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1816,6 +1876,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1167513253, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b91d8353156b1a84e91f6b68f992b300, type: 2}
     - target: {fileID: 1167513253, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
       propertyPath: m_WarningMessage
       value: 
