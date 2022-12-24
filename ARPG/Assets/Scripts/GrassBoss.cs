@@ -30,6 +30,8 @@ public class GrassBoss : MonoBehaviour
 
     private bool _moveToAttackSpot;
     private GameObject _groundScatterInstance;
+    public LayerMask hitLayer;
+    public float danceDamage;
 
 
     void Start()
@@ -139,6 +141,12 @@ public class GrassBoss : MonoBehaviour
         Vector3 desiredArea = posOffsetX + posOffsetZ + _firePoint.transform.position;
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
+        Collider[] hits = Physics.OverlapSphere(danceInstance.transform.position, 2, hitLayer);
+        foreach (var t in hits)
+        {
+            if(t.TryGetComponent(out IDamageable damageable))
+                damageable.TakeDamage(danceDamage);
+        }
         yield return null;
     }
 }
