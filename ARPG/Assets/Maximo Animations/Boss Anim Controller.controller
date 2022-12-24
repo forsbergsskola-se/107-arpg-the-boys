@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   danceDuration: 8
-  nukeSpawnRate: 0.1
+  nukeSpawnRate: 0.3
 --- !u!1101 &6794777548923493292
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

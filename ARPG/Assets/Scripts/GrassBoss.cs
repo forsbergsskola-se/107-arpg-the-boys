@@ -132,11 +132,11 @@ public class GrassBoss : MonoBehaviour
 
     public IEnumerator CO_Dance()
     {
-        
-        var position = _firePoint.transform;
-        var zPos = _firePoint.transform.forward;
-        var xPos = _firePoint.transform.right;
-        Vector3 desiredArea =  new Vector3(Random.Range(xPos.x - danceRadius, xPos.x + danceRadius), 0, Random.Range(zPos.z, zPos.z + danceRadius * 2));
+        Vector3 posRotX = _firePoint.transform.rotation * Vector3.right;
+        Vector3 posRotZ = _firePoint.transform.rotation * Vector3.forward;
+        Vector3 posOffsetX = posRotX * Random.Range(-danceRadius, danceRadius);
+        Vector3 posOffsetZ = posRotZ * Random.Range(0, danceRadius * 2);
+        Vector3 desiredArea = posOffsetX + posOffsetZ + _firePoint.transform.position;
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
         yield return null;
