@@ -191,6 +191,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 if (!hasHitEnemy)
                 {
                     hasHitEnemy = true;
+                    audioSource.pitch = 1;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
                     audioSource.Play();
                     _playerStats.AddDash();
