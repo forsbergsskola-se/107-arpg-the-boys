@@ -265,12 +265,16 @@ MonoBehaviour:
   dancePrefab: {fileID: 6352747105645326638, guid: e4fed0e7169d73240a9bb980d0e62256, type: 3}
   abilityScale: {x: 0.4, y: 0.4, z: 0.4}
   enemyScript: {fileID: 8960667572649674085}
-  danceRadius: 5
+  danceRadius: 20
   groundScatterAmount: 4
-  groundScatterDistance: 10
+  groundScatterDistance: 20
   groundScatterSpeed: 0.4
   passiveStageDuration: 10
   firePointIsOnBoss: 1
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  danceDamage: 5
 --- !u!65 &1888077724
 BoxCollider:
   m_ObjectHideFlags: 0
