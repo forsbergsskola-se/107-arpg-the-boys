@@ -15,6 +15,7 @@ public class soundEffects
     public AudioClip lightAttackSound;
     public AudioClip heavyAttackSound;
     public AudioClip attackHitSound;
+    public AudioClip guardSound;
 }
 
 [System.Serializable]
@@ -288,6 +289,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         audioSource.Play();
     }
 
+    public void GuardAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.guardSound;
+        audioSource.Play();
+    }
+
     //boxcast for hitbox of attack
     public void HitBox(Vector3 size, float damage)
     {
@@ -325,8 +332,14 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         if (CurrentHealth <= 0)
         {
-            //death logic here.
-            Destroy(gameObject);
+            enemyMovement.enabled = false;
+            enabled = false;
+            animator.SetTrigger("Dead");
+            Collider[] hitBox = GetComponentsInChildren<Collider>();
+            for (var i = 0; i < hitBox.Length; i++)
+            {
+                hitBox[i].enabled = false;
+            }
         }
     }
 

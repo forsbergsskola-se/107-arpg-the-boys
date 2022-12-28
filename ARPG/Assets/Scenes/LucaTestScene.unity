@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c709b7a294373aa4e87ccde509bcbacc, type: 2}
+--- !u!1001 &63989586
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2279127500164087791, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1461178895}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.1445327
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6965536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.5903527
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705881743917737729, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825372332017837820, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
+      propertyPath: m_Name
+      value: "Bj\xF6rne"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71e80f6985da70c40a263220b1435a91, type: 3}
 --- !u!1 &75047631
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +878,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed08fb7be8186b458181f6814f22d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  soundEffects:
+    walkSound: {fileID: 0}
+    lightAttackSound: {fileID: 0}
+    heavyAttackSound: {fileID: 0}
+    attackHitSound: {fileID: 0}
+    guardSound: {fileID: 0}
   moveSpeed: 0
   attackRange: {x: 0, y: 0, z: 0}
   showHitbox: 0
@@ -1766,6 +1834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Werewolf
       objectReference: {fileID: 0}
+    - target: {fileID: 1574851047612008681, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -1933,82 +2005,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1167513253, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b91d8353156b1a84e91f6b68f992b300, type: 2}
-    - target: {fileID: 1167513253, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513254, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Height
-      value: 3.1930285
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513254, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Radius
-      value: 0.8456843
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513254, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Center.y
-      value: 1.0965142
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513254, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Center.z
-      value: -0.02452159
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513255, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: viewAngle
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513255, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: timeToRotate
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1167513255, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 1461178895}
-    - target: {fileID: 1167513256, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: attackRange.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513256, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: attackRange.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513256, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: attackRange.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513256, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: hasAiMovement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513257, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513257, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_Acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513257, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167513257, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863535830, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863535830, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.81
-      objectReference: {fileID: 0}
     - target: {fileID: 1322718462634241890, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -2056,6 +2056,10 @@ PrefabInstance:
     - target: {fileID: 2533563025633197055, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
       propertyPath: m_Name
       value: Shield Orc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533563025633197055, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
