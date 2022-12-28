@@ -16,4 +16,5 @@ public interface IInterruptible
     //     CurrentAttackState = attackState;
     // }
     AttackState CurrentAttackState { get; set; }
+    bool IsInterruptible { get;}
 }
