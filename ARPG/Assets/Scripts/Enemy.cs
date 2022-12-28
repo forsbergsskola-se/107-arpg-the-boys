@@ -335,6 +335,11 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             enemyMovement.enabled = false;
             enabled = false;
             animator.SetTrigger("Dead");
+            Collider[] hitBox = GetComponentsInChildren<Collider>();
+            for (var i = 0; i < hitBox.Length; i++)
+            {
+                hitBox[i].enabled = false;
+            }
         }
     }
 
