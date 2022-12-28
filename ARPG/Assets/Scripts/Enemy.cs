@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public Animator animator;
     public string walkAnimationParameterName;
 
+    public bool isInterruptible;
     public string interruptedAnimationParameter;
 
 
@@ -77,6 +78,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private bool _isAttacking;
     [NonSerialized]
     public bool endAttack = true;
+
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
@@ -332,7 +334,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         if (CurrentHealth <= 0)
         {
-            enemyMovement.enabled = false;
+            if(hasAiMovement)
+                enemyMovement.enabled = false;
             enabled = false;
             animator.SetTrigger("Dead");
             Collider[] hitBox = GetComponentsInChildren<Collider>();
