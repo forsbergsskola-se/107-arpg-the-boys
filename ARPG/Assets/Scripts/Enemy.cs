@@ -332,8 +332,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         if (CurrentHealth <= 0)
         {
-            //death logic here.
-            Destroy(gameObject);
+            enemyMovement.enabled = false;
+            enabled = false;
+            animator.SetTrigger("Dead");
         }
     }
 
