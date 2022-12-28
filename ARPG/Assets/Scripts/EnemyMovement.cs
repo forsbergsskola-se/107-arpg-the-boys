@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject _player;
     private NavMeshAgent _navMeshAgent;
     private PlayerCombat _playerCombat;
+    private Enemy _enemy;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedRun = 9;
@@ -42,6 +43,7 @@ public class EnemyMovement : MonoBehaviour
         _currentWaypointIndex = 0;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerCombat = FindObjectOfType<PlayerCombat>();
+        _enemy = GetComponent<Enemy>();
         _player = _playerCombat.gameObject;
         
         _navMeshAgent.isStopped = false;
@@ -140,12 +142,14 @@ public class EnemyMovement : MonoBehaviour
     {
         _navMeshAgent.isStopped = true;
         _navMeshAgent.speed = 0;
+        _enemy.animator.SetBool(_enemy.walkAnimationParameterName, false);
     }
 
     private void Move(float speed)
     {
         _navMeshAgent.isStopped = false;
         _navMeshAgent.speed = speed;
+        _enemy.animator.SetBool(_enemy.walkAnimationParameterName, true);
     }
 
     void CaughtPlayer()
