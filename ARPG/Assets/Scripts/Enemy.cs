@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     private bool[] _abilities;
     private bool _isAttacking;
+    [NonSerialized]
     public bool endAttack = true;
     private Coroutine _startedAttack;
 
@@ -208,15 +209,14 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private IEnumerator CO_EnemyGuard()
     {
         endAttack = false;
-        if (guardInformation.guardChild == null)
-            yield break;
         _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.Guard;
         _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
         yield return new WaitUntil(() => endAttack);
-        guardInformation.guardChild.SetActive(false);
+        if(guardInformation.guardChild != null)
+            guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
         _isAttacking = false;
