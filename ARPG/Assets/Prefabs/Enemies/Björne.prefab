@@ -4215,6 +4215,7 @@ MonoBehaviour:
   showHitbox: 0
   maxHealth: 100
   enemyMovement: {fileID: 2279127500164087791}
+  hasAiMovement: 0
   animator: {fileID: 1973990269}
   walkAnimationParameterName: Walking
   interruptedAnimationParameter: Interrupted
@@ -4268,7 +4269,6 @@ MonoBehaviour:
     m_Bits: 256
   agroDistance: 8
   waypoints:
-  - {fileID: 0}
   - {fileID: 0}
 --- !u!136 &280569395
 CapsuleCollider:

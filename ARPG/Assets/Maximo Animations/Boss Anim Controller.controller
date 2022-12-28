@@ -314,7 +314,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: LightAttack
     m_Type: 4
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundScatterCd: 2
   roarCd: 4
-  danceCd: 4
+  danceCd: 2
   roundsBeforeSpecial: 3
 --- !u!114 &6001662626450565231
 MonoBehaviour:
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   danceDuration: 8
-  nukeSpawnRate: 0.1
+  nukeSpawnRate: 0.03
 --- !u!1101 &6794777548923493292
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

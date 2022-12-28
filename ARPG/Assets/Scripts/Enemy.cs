@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public bool showHitbox;
     public float maxHealth;
     public EnemyMovement enemyMovement;
-
+    public bool hasAiMovement;
+    
     public Animator animator;
     public string walkAnimationParameterName;
 
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     private bool[] _abilities;
     private bool _isAttacking;
+    [NonSerialized]
     public bool endAttack = true;
     private Coroutine _startedAttack;
 
@@ -121,7 +123,17 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public void EnemyMovement()
     {
-        enemyMovement.EnemyyMovement();
+        if(hasAiMovement)
+            enemyMovement.EnemyyMovement();
+        else
+        {
+            //Boss Movement prolly
+            animator.SetBool(walkAnimationParameterName, true);
+            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            var targetPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     //selection of attacks
@@ -197,15 +209,14 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private IEnumerator CO_EnemyGuard()
     {
         endAttack = false;
-        if (guardInformation.guardChild == null)
-            yield break;
         _isAttacking = true;
         CurrentAttackState = IInterruptible.AttackState.Guard;
         _currentAttackParameter = guardInformation.guardParameterNameOfTypeBool;
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
         yield return new WaitUntil(() => endAttack);
-        guardInformation.guardChild.SetActive(false);
+        if(guardInformation.guardChild != null)
+            guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
         _isAttacking = false;
@@ -258,8 +269,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
-                if (damageable is IInterruptible interruptible)
-                    if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard ||
+                if (hits[i].TryGetComponent(out IInterruptible interruptible))
+                    if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard &&
                         interruptible.CurrentAttackState != IInterruptible.AttackState.Parry)
                         interruptible.Interrupt();
                     else

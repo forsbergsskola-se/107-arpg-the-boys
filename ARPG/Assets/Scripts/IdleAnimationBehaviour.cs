@@ -28,13 +28,13 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         if (_bossScript.switchFromPassive)
         {
             _timer += Time.deltaTime;
-            if (_timer > groundScatterCd && _bossScript._scatterRounds < roundsBeforeSpecial)
+            if (_timer > groundScatterCd && _bossScript.scatterRounds < roundsBeforeSpecial)
                 MainAttack();
             
-            if (_timer > danceCd && _bossScript._scatterRounds >= roundsBeforeSpecial && _switchSpecial)
+            if (_timer > danceCd && _bossScript.scatterRounds >= roundsBeforeSpecial && _switchSpecial)
                 DanceAttack();
             
-            if (_timer > roarCd && _bossScript._scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
+            if (_timer > roarCd && _bossScript.scatterRounds >= roundsBeforeSpecial && !_switchSpecial)
                 FartAttack();
         }
 
@@ -45,13 +45,13 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         {
             animator.SetBool("GroundScatter",true);
             _timer = 0;
-            _bossScript._scatterRounds++;
+            _bossScript.scatterRounds++;
         }
 
         void FartAttack()
         {
             animator.SetBool("Roar",true);
-            _bossScript._scatterRounds = 0;
+            _bossScript.scatterRounds = 0;
             _timer = 0;
             _switchSpecial = true;
         }
@@ -59,7 +59,7 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
         void DanceAttack()
         {
             animator.SetBool("Dance",true);
-            _bossScript._scatterRounds = 0;
+            _bossScript.scatterRounds = 0;
             _timer = 0;
             _switchSpecial = false;
         }
@@ -68,10 +68,10 @@ public class IdleAnimationBehaviour : StateMachineBehaviour
     
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    { 
-        
-    }
+    // public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // { 
+    //     
+    // }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -20,15 +20,18 @@ public class GrassBoss : MonoBehaviour
     public float passiveStageDuration;
 
     [NonSerialized]
-    public float _scatterRounds;
-
+    public float scatterRounds;
+    [NonSerialized]
     public bool passiveStageActive;
+    [NonSerialized]
     public bool switchFromPassive;
     private float _distanceBetween;
     public bool firePointIsOnBoss;
 
-    private bool moveToAttackSpot;
-    private GameObject groundScatterInstance;
+    private bool _moveToAttackSpot;
+    private GameObject _groundScatterInstance;
+    public LayerMask hitLayer;
+    public float danceDamage;
 
 
     void Start()
@@ -50,14 +53,13 @@ public class GrassBoss : MonoBehaviour
         transform.position = position;
 
         //move towards _firePoint
-        if (moveToAttackSpot)
+        if (_moveToAttackSpot)
             MoveToAttackSpot();
     }
 
     private void MoveToAttackSpot()
     {
         Quaternion targetRotation = Quaternion.LookRotation(_firePoint.transform.position - transform.position);
-        
         transform.position = Vector3.MoveTowards(transform.position,_firePoint.transform.position, enemyScript.moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, enemyScript.rotationSpeed * Time.deltaTime);
     }
@@ -70,12 +72,23 @@ public class GrassBoss : MonoBehaviour
         yield return new WaitUntil(() => enemyScript.endAttack);
         enemyScript.enabled = false;
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, true);
-        moveToAttackSpot = true;
+        _moveToAttackSpot = true;
         yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
-        moveToAttackSpot = false;
+        _moveToAttackSpot = false;
+        yield return StartCoroutine(CO_RotateToTarget(_firePoint.transform));
         passiveStageActive = false;
+    }
+
+    private IEnumerator CO_RotateToTarget(Transform target)
+    {
+        while (transform.rotation != target.transform.rotation)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation,
+                enemyScript.rotationSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
     public IEnumerator CO_GroundScatter()
     {
@@ -85,8 +98,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed); 
             } 
         }
@@ -95,8 +108,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -105,8 +118,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
-                groundScatterInstance.transform.localScale = abilityScale;
+                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                _groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -121,25 +134,20 @@ public class GrassBoss : MonoBehaviour
 
     public IEnumerator CO_Dance()
     {
-        
-        var position = _firePoint.transform.position;
-        Vector3 desiredArea = _firePoint.transform.rotation * new Vector3(Random.Range(position.x - danceRadius, position.x + danceRadius), 0, Random.Range(position.z, position.z + danceRadius * 2));
+        Vector3 posRotX = _firePoint.transform.rotation * Vector3.right;
+        Vector3 posRotZ = _firePoint.transform.rotation * Vector3.forward;
+        Vector3 posOffsetX = posRotX * Random.Range(-danceRadius, danceRadius);
+        Vector3 posOffsetZ = posRotZ * Random.Range(0, danceRadius * 2);
+        Vector3 desiredArea = posOffsetX + posOffsetZ + _firePoint.transform.position;
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
-        yield return null;
-    }
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Collider[] collisions = other != null ? other.GetComponentsInChildren<Collider>() : null;
-        if (collisions != null)
-            for (var i = 0; i < collisions.Length; i++)
-            {
-                if (collisions[i].CompareTag("Player"))
-                    print("dadady");
-            }
-
-        print("colliding");
+        yield return new WaitForSeconds(.5f);
+        Collider[] hits = Physics.OverlapSphere(danceInstance.transform.position, 2, hitLayer);
+        foreach (var t in hits)
+        {
+            print("dadd");
+            if(t.TryGetComponent(out IDamageable damageable))
+                damageable.TakeDamage(danceDamage); 
+        }
     }
 }
