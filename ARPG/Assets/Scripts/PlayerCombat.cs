@@ -10,7 +10,6 @@ using static DrawBoxCast;
 
 public class PlayerCombat : MonoBehaviour, IInterruptible
 {
-    
     public BaseWeapon currentWeapon;
     public Transform weaponHolder;
     public LayerMask hitLayer;
@@ -18,21 +17,19 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public float attackRotateSpeed = 20;
     public bool showLightHitBox;
     public bool showHeavyHitBox;
-    [NonSerialized]
-    public bool isAttacking;
+    [NonSerialized] public bool isAttacking;
 
-    [Header("Audio")]
+    [Header("Audio")] 
     public AudioSource audioSource;
-    public AudioClip[] slashWhoosh, enemyHitSound;
+    public AudioClip[] slashWhoosh, enemyHitSound, blockSound;
 
     private Coroutine _currentAttack;
     private Rigidbody _rb;
     private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
 
-    [NonSerialized] 
-    public bool animationEnded;
-    
+    [NonSerialized] public bool animationEnded;
+
     void Start()
     {
         _playerStats = GetComponent<PlayerStats>();
@@ -46,12 +43,16 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.lightAttackSpeed, "Light-attack", IInterruptible.AttackState.LightAttack));
+                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.lightAttackSpeed, "Light-attack",
+                    IInterruptible.AttackState.LightAttack));
             }
+
             if (Input.GetButtonDown("Fire2"))
             {
-                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack", IInterruptible.AttackState.HeavyAttack));
+                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack",
+                    IInterruptible.AttackState.HeavyAttack));
             }
+
             if (Input.GetButtonDown("Fire3"))
             {
                 _currentAttack = StartCoroutine(CO_Guard(currentWeapon.guardTime, currentWeapon.parryTime));
@@ -62,18 +63,22 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             return;
         }
+
         if (showLightHitBox)
         {
-            Vector3 worldOffset = attackCenter.TransformDirection(currentWeapon.lightAttackColOffset); // Offset in world space
-            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, Color.cyan);
+            Vector3 worldOffset =
+                attackCenter.TransformDirection(currentWeapon.lightAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.lightAttackColSize / 2,
+                attackCenter.rotation, Color.cyan);
         }
 
         if (showHeavyHitBox)
         {
-            Vector3 worldOffset = attackCenter.TransformDirection(currentWeapon.heavyAttackColOffset); // Offset in world space
-            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.heavyAttackColSize / 2, attackCenter.rotation, Color.cyan);
+            Vector3 worldOffset =
+                attackCenter.TransformDirection(currentWeapon.heavyAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.heavyAttackColSize / 2,
+                attackCenter.rotation, Color.cyan);
         }
-        
     }
 
     private void FixedUpdate()
@@ -83,9 +88,10 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     private void RotateToMouse()
     {
-        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation, Quaternion.LookRotation(_playerMovement.rotateDir), attackRotateSpeed * Time.deltaTime);
+        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation,
+            Quaternion.LookRotation(_playerMovement.rotateDir), attackRotateSpeed * Time.deltaTime);
     }
-    
+
     private void SetRotatePoint()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -96,7 +102,10 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             float playerYDiff = Camera.main.transform.position.y - transform.position.y;
             float angle = Vector3.Angle(Vector3.down, ray.direction);
             float vectorDistance = Mathf.Abs(playerYDiff / Mathf.Cos(angle));
-            _playerMovement.rotateDir = Vector3.ProjectOnPlane((Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position, Vector3.up).normalized;
+            _playerMovement.rotateDir = Vector3
+                .ProjectOnPlane(
+                    (Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position,
+                    Vector3.up).normalized;
         }
     }
 
@@ -104,22 +113,22 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         CurrentAttackState = attackState;
         Debug.Log(animTriggerName);
-        
+
         // TODO: Attack speed modifier.
-        
+
         _playerMovement.playerAnimator.speed = attackSpeed;
 
         animationEnded = false;
         isAttacking = true;
         _playerMovement._rb.velocity = Vector3.zero;
-        
+
         SetRotatePoint();
 
         // Plays animation and waits until animation has ended before finishing up the attack
         _playerMovement.playerAnimator.SetTrigger(animTriggerName);
 
         yield return new WaitUntil(() => animationEnded);
-        
+
         // End attack
         isAttacking = false;
         _playerMovement.playerAnimator.speed = 1;
@@ -130,8 +139,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         Debug.Log("Guarded!");
 
-        
-        
+
         _playerMovement.playerAnimator.speed = 1f / guardTime;
         animationEnded = false;
         isAttacking = true;
@@ -164,7 +172,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         _playerMovement.playerAnimator.speed = 1;
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
-    
+
     public void Parry()
     {
         Debug.Log("Parried!");
@@ -182,7 +190,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         bool hasHitEnemy = false;
         Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
-        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer);        // if (showBox)
+        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2,
+            Quaternion.identity, hitLayer); // if (showBox)
         //     DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
         for (var i = 0; i < hits.Length; i++)
         {
@@ -193,13 +202,27 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                     hasHitEnemy = true;
                     audioSource.pitch = 1;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
-                    audioSource.Play();
                     _playerStats.AddDash();
                     Debug.Log("An enemy was hit");
                 }
-                if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
-                    interruptible.Interrupt();
+
                 float damage = weaponDamage + _playerStats.AttackPower;
+
+                if (hits[i].TryGetComponent(out IInterruptible interruptible))
+                {
+                    if (ShouldInterrupt(this, interruptible))
+                    {
+                        interruptible.Interrupt();
+                    }
+
+                    if (interruptible.CurrentAttackState == IInterruptible.AttackState.Guard)
+                    {
+                        damage = 0;
+                        audioSource.clip = GetRandomAudioClip(blockSound);
+                    }
+                }
+
+                audioSource.Play();
                 damageable.TakeDamage(damage);
             }
         }
@@ -223,12 +246,15 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 {
                     return true;
                 }
+
                 break;
             case IInterruptible.AttackState.HeavyAttack:
-                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack || enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
+                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack ||
+                    enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
                 {
                     return true;
                 }
+
                 break;
         }
 
