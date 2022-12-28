@@ -81,7 +81,7 @@ public class GrassBoss : MonoBehaviour
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
         _moveToAttackSpot = false;
-        yield return StartCoroutine(CO_RotateToTarget(_firePoint.transform));
+        StartCoroutine(CO_RotateToTarget(_firePoint.transform));
         passiveStageActive = false;
     }
 

@@ -682,5 +682,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: soundEffects.attackHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8aa74c82aa1127143bf18d9222a59618, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
