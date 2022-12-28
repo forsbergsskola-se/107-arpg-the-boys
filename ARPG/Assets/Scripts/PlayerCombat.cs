@@ -38,7 +38,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     void Update()
     {
-        Debug.Log(CurrentAttackState);
+        //Debug.Log(CurrentAttackState);
         if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
             if (Input.GetButtonDown("Fire1"))
