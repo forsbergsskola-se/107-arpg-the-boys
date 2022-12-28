@@ -21,7 +21,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     [Header("Audio")] 
     public AudioSource audioSource;
-    public AudioClip[] slashWhoosh, enemyHitSound, blockSound;
+    public AudioClip[] slashWhoosh, enemyHitSound, blockSound, parrySound, guardSound;
 
     private Coroutine _currentAttack;
     private Rigidbody _rb;
@@ -138,7 +138,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     private IEnumerator CO_Guard(float guardTime, float parryTime)
     {
         Debug.Log("Guarded!");
-
+        audioSource.clip = GetRandomAudioClip(guardSound);
+        audioSource.Play();
 
         _playerMovement.playerAnimator.speed = 1f / guardTime;
         animationEnded = false;
@@ -176,6 +177,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public void Parry()
     {
         Debug.Log("Parried!");
+        audioSource.clip = GetRandomAudioClip(parrySound);
+        audioSource.Play();
         Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
         for (var i = 0; i < hits.Length; i++)
         {
@@ -184,6 +187,9 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 enemy.Parried();
             }
         }
+        _playerMovement.playerAnimator.SetTrigger("Parry");
+        CancelAttack();
+        
     }
 
     public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
