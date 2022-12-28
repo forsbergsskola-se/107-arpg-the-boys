@@ -60,10 +60,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     
     public Animator animator;
     public string walkAnimationParameterName;
-
-    public bool isInterruptible;
+    
     public string interruptedAnimationParameter;
-
+    public bool interruptible;
 
     public LightAttack lightAttackInformation;
     public bool hasLightAttacks;
@@ -366,6 +365,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float CurrentHealth { get; private set; }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
+    
+    public bool IsInterruptible => interruptible;
 
     [ContextMenu("Interrupt")]
     public void Interrupt()

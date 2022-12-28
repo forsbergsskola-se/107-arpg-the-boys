@@ -288,4 +288,5 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
+    public bool IsInterruptible { get; }
 }
