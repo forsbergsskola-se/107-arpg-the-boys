@@ -15,6 +15,7 @@ public class soundEffects
     public AudioClip lightAttackSound;
     public AudioClip heavyAttackSound;
     public AudioClip attackHitSound;
+    public AudioClip guardSound;
 }
 
 [System.Serializable]
@@ -285,6 +286,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void HeavyAttackAnimationSoundStart()
     {
         audioSource.clip = soundEffects.heavyAttackSound;
+        audioSource.Play();
+    }
+
+    public void GuardAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.guardSound;
         audioSource.Play();
     }
 
