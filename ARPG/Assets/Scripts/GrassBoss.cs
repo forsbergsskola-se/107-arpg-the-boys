@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
 public class GrassBoss : MonoBehaviour
 {
     public GameObject groundScatterPrefab;
@@ -18,6 +17,11 @@ public class GrassBoss : MonoBehaviour
     public float groundScatterDistance;
     public float groundScatterSpeed;
     public float passiveStageDuration;
+
+    public AudioSource audioSource;
+    public AudioClip roarSound;
+    public AudioClip jumpSound;
+    public AudioClip jumpStartSound;
 
     [NonSerialized]
     public float scatterRounds;
@@ -149,5 +153,17 @@ public class GrassBoss : MonoBehaviour
             if(t.TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(danceDamage); 
         }
+    }
+
+    public void JumpAnimationSound()
+    {
+        audioSource.clip = jumpSound;
+        audioSource.Play();
+    }
+
+    public void JumpAnimationStartSound()
+    {
+        audioSource.clip = jumpStartSound;
+        audioSource.Play();
     }
 }

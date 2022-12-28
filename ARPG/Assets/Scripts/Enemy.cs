@@ -8,6 +8,15 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static DrawBoxCast;
 
+[Serializable]
+public class soundEffects
+{
+    public AudioClip walkSound;
+    public AudioClip lightAttackSound;
+    public AudioClip heavyAttackSound;
+    public AudioClip lightAttackHit;
+    public AudioClip heavyAttackHit;
+}
 
 [System.Serializable]
 public class LightAttack
@@ -39,6 +48,8 @@ public class Guard
 
 public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
+    public AudioSource audioSource;
+    public soundEffects soundEffects;
     private GameObject target;
     public float moveSpeed;
     public Vector3 attackRange;
@@ -233,6 +244,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void LightAttackAnimationAttack()
     {
         HitBox(lightAttackInformation.lightAttackSize, lightAttackInformation.lightAttackDamage);
+        audioSource.clip = soundEffects.lightAttackHit;
+        audioSource.Play();
     }
 
     public void LightAttackAnimationEnd()
@@ -243,6 +256,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void HeavyAttackAnimation()
     {
         HitBox(heavyAttackInformation.heavyAttackSize, heavyAttackInformation.heavyAttackDamage);
+        audioSource.clip = soundEffects.heavyAttackHit;
+        audioSource.Play();
     }
 
     public void HeavyAttackAnimationEnd()
@@ -258,6 +273,24 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void GuardAnimationEnd()
     {
         endAttack = true;
+    }
+    
+    public void WalkAnimationSound()
+    {
+        audioSource.clip = soundEffects.walkSound;
+        audioSource.Play();
+    }
+
+    public void LightAttackAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.lightAttackSound;
+        audioSource.Play();
+    }
+
+    public void HeavyAttackAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.heavyAttackSound;
+        audioSource.Play();
     }
 
     //boxcast for hitbox of attack
