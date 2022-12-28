@@ -220,8 +220,8 @@ MonoBehaviour:
     walkSound: {fileID: 8300000, guid: a6445322901a7a346bd082d3db185645, type: 3}
     lightAttackSound: {fileID: 8300000, guid: e1be6879da07da741a196ed5a74fe8b5, type: 3}
     heavyAttackSound: {fileID: 8300000, guid: 3124ea185a123e643b13753c344db2ad, type: 3}
-    lightAttackHit: {fileID: 8300000, guid: ab16e18c2c1392742a2bf7e87f60f3fd, type: 3}
-    heavyAttackHit: {fileID: 8300000, guid: 303aa44418d30e74ca163014401c2aa7, type: 3}
+    attackHitSound: {fileID: 8300000, guid: 8aa74c82aa1127143bf18d9222a59618, type: 3}
+    guardSound: {fileID: 0}
   moveSpeed: 5
   attackRange: {x: 4, y: 4, z: 4}
   showHitbox: 1
@@ -230,6 +230,7 @@ MonoBehaviour:
   hasAiMovement: 0
   animator: {fileID: 6624447921053603127}
   walkAnimationParameterName: Walking
+  isInterruptible: 0
   interruptedAnimationParameter: 
   lightAttackInformation:
     showHitBox: 0

@@ -15,6 +15,7 @@ public class soundEffects
     public AudioClip lightAttackSound;
     public AudioClip heavyAttackSound;
     public AudioClip attackHitSound;
+    public AudioClip guardSound;
 }
 
 [System.Serializable]
@@ -60,6 +61,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public Animator animator;
     public string walkAnimationParameterName;
 
+    public bool isInterruptible;
     public string interruptedAnimationParameter;
 
 
@@ -76,6 +78,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     private bool _isAttacking;
     [NonSerialized]
     public bool endAttack = true;
+
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
@@ -288,6 +291,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         audioSource.Play();
     }
 
+    public void GuardAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.guardSound;
+        audioSource.Play();
+    }
+
     //boxcast for hitbox of attack
     public void HitBox(Vector3 size, float damage)
     {
@@ -325,8 +334,15 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         if (CurrentHealth <= 0)
         {
-            //death logic here.
-            Destroy(gameObject);
+            if(hasAiMovement)
+                enemyMovement.enabled = false;
+            enabled = false;
+            animator.SetTrigger("Dead");
+            Collider[] hitBox = GetComponentsInChildren<Collider>();
+            for (var i = 0; i < hitBox.Length; i++)
+            {
+                hitBox[i].enabled = false;
+            }
         }
     }
 
