@@ -325,7 +325,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3170058645661208535}
   - component: {fileID: 3838015269602294466}
-  m_Layer: 0
+  - component: {fileID: 2305619482848091213}
+  m_Layer: 3
   m_Name: 4ExitRoomDungeon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,6 +364,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2305619482848091213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035866770613994179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085960bc2826a16418c9c8ab93c94724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotPoints:
+  - {fileID: 4343143996611027832}
+  - {fileID: 4011813024466112377}
+  - {fileID: 6398759167620153509}
+  - {fileID: 1755487054110289211}
+  monsterSpawners: []
 --- !u!1 &4086095083907063334
 GameObject:
   m_ObjectHideFlags: 0

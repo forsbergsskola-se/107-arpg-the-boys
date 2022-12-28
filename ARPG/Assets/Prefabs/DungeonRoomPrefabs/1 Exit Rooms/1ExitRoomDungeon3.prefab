@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8603496609518748633}
   - component: {fileID: 2094208469657713383}
   - component: {fileID: 593881085939364354}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1ExitRoomDungeon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,8 +63,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.489929, y: 14.656322, z: 10.739449}
-  m_Center: {x: -1.2819443, y: 7.5860543, z: -2.8698769}
+  m_Size: {x: 7.489929, y: 14.656322, z: 11.124512}
+  m_Center: {x: -1.2819443, y: 7.5860543, z: -2.6773453}
 --- !u!114 &593881085939364354
 MonoBehaviour:
   m_ObjectHideFlags: 0
