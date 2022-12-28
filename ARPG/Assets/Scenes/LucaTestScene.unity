@@ -894,6 +894,7 @@ MonoBehaviour:
   animator: {fileID: 75047632}
   walkAnimationParameterName: 
   interruptedAnimationParameter: 
+  interruptible: 0
   lightAttackInformation:
     showHitBox: 1
     lightAttackParameterNameOfTypeBool: 
@@ -1834,10 +1835,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Werewolf
       objectReference: {fileID: 0}
-    - target: {fileID: 1574851047612008681, guid: 9499b11585203d644a858411b90171bc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1574851047612008686, guid: 9499b11585203d644a858411b90171bc, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -2056,10 +2053,6 @@ PrefabInstance:
     - target: {fileID: 2533563025633197055, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
       propertyPath: m_Name
       value: Shield Orc
-      objectReference: {fileID: 0}
-    - target: {fileID: 2533563025633197055, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}

@@ -158,6 +158,7 @@ MonoBehaviour:
   animator: {fileID: 1167513253}
   walkAnimationParameterName: Walking
   interruptedAnimationParameter: Interrupted
+  interruptible: 1
   lightAttackInformation:
     showHitBox: 1
     lightAttackParameterNameOfTypeBool: LightAttack
