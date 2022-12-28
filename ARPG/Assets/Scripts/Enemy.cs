@@ -8,6 +8,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using static DrawBoxCast;
 
+[Serializable]
+public class soundEffects
+{
+    public AudioClip walkSound;
+    public AudioClip lightAttackSound;
+    public AudioClip heavyAttackSound;
+    public AudioClip attackHitSound;
+}
 
 [System.Serializable]
 public class LightAttack
@@ -39,6 +47,8 @@ public class Guard
 
 public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
+    public AudioSource audioSource;
+    public soundEffects soundEffects;
     private GameObject target;
     public float moveSpeed;
     public Vector3 attackRange;
@@ -259,6 +269,24 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         endAttack = true;
     }
+    
+    public void WalkAnimationSound()
+    {
+        audioSource.clip = soundEffects.walkSound;
+        audioSource.Play();
+    }
+
+    public void LightAttackAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.lightAttackSound;
+        audioSource.Play();
+    }
+
+    public void HeavyAttackAnimationSoundStart()
+    {
+        audioSource.clip = soundEffects.heavyAttackSound;
+        audioSource.Play();
+    }
 
     //boxcast for hitbox of attack
     public void HitBox(Vector3 size, float damage)
@@ -269,6 +297,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
+                audioSource.clip = soundEffects.attackHitSound;
+                audioSource.Play();
                 if (hits[i].TryGetComponent(out IInterruptible interruptible))
                     if (interruptible.CurrentAttackState != IInterruptible.AttackState.Guard &&
                         interruptible.CurrentAttackState != IInterruptible.AttackState.Parry)

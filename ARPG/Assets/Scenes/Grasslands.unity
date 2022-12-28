@@ -454,6 +454,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6882785845036874446, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882785845036874446, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
       value: Player
@@ -644,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 940945136563801933, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 940945136563801933, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -682,5 +690,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674085, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: soundEffects.attackHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8aa74c82aa1127143bf18d9222a59618, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
