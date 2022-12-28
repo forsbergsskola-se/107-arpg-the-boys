@@ -454,6 +454,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6882785845036874446, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882785845036874446, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
       value: Player
@@ -644,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 940945136563801933, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 940945136563801933, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
       propertyPath: m_LocalPosition.y
