@@ -19,8 +19,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public bool showHeavyHitBox;
     [NonSerialized] public bool isAttacking;
 
-    [Header("Audio")] 
-    public AudioSource audioSource;
+    [Header("Audio")] public AudioSource audioSource;
     public AudioClip[] slashWhoosh, enemyHitSound, blockSound, parrySound, guardSound;
 
     private Coroutine _currentAttack;
@@ -187,9 +186,9 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 enemy.Parried();
             }
         }
+
         _playerMovement.playerAnimator.SetTrigger("Parry");
         CancelAttack();
-        
     }
 
     public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
@@ -245,23 +244,26 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)
     {
-        switch (player.CurrentAttackState)
+        if (enemy.IsInterruptible)
         {
-            case IInterruptible.AttackState.LightAttack:
-                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack)
-                {
-                    return true;
-                }
+            switch (player.CurrentAttackState)
+            {
+                case IInterruptible.AttackState.LightAttack:
+                    if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack)
+                    {
+                        return true;
+                    }
 
-                break;
-            case IInterruptible.AttackState.HeavyAttack:
-                if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack ||
-                    enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
-                {
-                    return true;
-                }
+                    break;
+                case IInterruptible.AttackState.HeavyAttack:
+                    if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack ||
+                        enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
+                    {
+                        return true;
+                    }
 
-                break;
+                    break;
+            }
         }
 
         return false;
