@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
         _playerAnimator = body.GetComponent<Animator>();
-        _playerStats.dodgesCharges = _playerStats.maxDodgeCharges;
+        _playerStats.DodgeCharges = _playerStats.maxDodgeCharges;
     }
 
     void Update()
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 RollTimer();
             }
-            else if (_dash && _playerStats.dodgesCharges > 0)
+            else if (_dash && _playerStats.DodgeCharges > 0)
             {
                 StartRoll();
             }
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         _endVel = rotateDir * _playerStats.DodgeSpeed;
 
         // Uses up one dash
-        _playerStats.dodgesCharges = Math.Clamp(_playerStats.dodgesCharges - 1, 0, _playerStats.maxDodgeCharges);
+        _playerStats.DodgeCharges = Math.Clamp(_playerStats.DodgeCharges - 1, 0, _playerStats.maxDodgeCharges);
         
         // Play the roll animation
         _playerAnimator.SetTrigger("Roll");
