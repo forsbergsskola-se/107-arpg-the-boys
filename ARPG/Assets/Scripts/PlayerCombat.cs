@@ -137,6 +137,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     private IEnumerator CO_Guard(float guardTime, float parryTime)
     {
         Debug.Log("Guarded!");
+        audioSource.pitch = 1;
         audioSource.clip = GetRandomAudioClip(guardSound);
         audioSource.Play();
 

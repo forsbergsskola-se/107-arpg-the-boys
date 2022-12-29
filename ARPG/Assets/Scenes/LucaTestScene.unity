@@ -1295,17 +1295,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   critRate: 0.1
   critDamageBonus: 1.5
-  lightAttackDamage: 10
-  lightAttackSpeed: 0.5
-  lightAttackColSize: {x: 0, y: 0, z: 0}
+  lightAttackDamage: 300
+  lightAttackSpeed: 4
+  lightAttackColSize: {x: 5, y: 5, z: 5}
   lightAttackColOffset: {x: 0, y: 0, z: 0}
-  heavyAttackDamage: 20
-  heavyAttackSpeed: 1
-  heavyAttackColSize: {x: 0, y: 0, z: 0}
+  heavyAttackDamage: 300
+  heavyAttackSpeed: 4
+  heavyAttackColSize: {x: 5, y: 5, z: 5}
   heavyAttackColOffset: {x: 0, y: 0, z: 0}
-  guardTime: 0
-  parryPunishRange: 3
-  parryTime: 0
+  guardTime: 0.6
+  parryPunishRange: 15
+  parryTime: 0.6
   modelPosOffset: {x: -0.076, y: 0.437, z: -0.246}
   modelRotOffset: {x: 19.310951, y: 324.92932, z: 346.89166}
 --- !u!65 &1605847482
@@ -2185,6 +2185,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5296135388477071890, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: interactableLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7330928658350872650, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: hitLayer.m_Bits
       value: 5120
