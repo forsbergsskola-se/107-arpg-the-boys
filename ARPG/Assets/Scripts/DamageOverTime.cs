@@ -17,11 +17,4 @@ public class DamageOverTime : MonoBehaviour
         }
         
     }
-
-    private Collider hits;
-
-    private void Start()
-    {
-        
-    }
 }
