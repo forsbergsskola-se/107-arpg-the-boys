@@ -1354,8 +1354,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4390147298263783957}
   m_AABB:
-    m_Center: {x: -0.00000029802322, y: 0.050202355, z: 0.83861893}
-    m_Extent: {x: 0.19593044, y: 0.16920327, z: 0.21295477}
+    m_Center: {x: 0.12978014, y: 0.029383093, z: 0.000000029802322}
+    m_Extent: {x: 0.21395078, y: 0.18789598, z: 0.19471085}
   m_DirtyAABB: 0
 --- !u!183 &4390147297730285650
 Cloth:
@@ -3867,6 +3867,7 @@ Transform:
   m_Children:
   - {fileID: 4390147298263784413}
   - {fileID: 5630916525282134633}
+  - {fileID: 3195682421368019723}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3910,7 +3911,7 @@ MonoBehaviour:
   weaponHolder: {fileID: 5577569843397224882}
   hitLayer:
     serializedVersion: 2
-    m_Bits: 5120
+    m_Bits: 1024
   attackCenter: {fileID: 5148911742629426043}
   attackRotateSpeed: 20
   showLightHitBox: 1
@@ -3931,26 +3932,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 575a2eeab6244354dbdc493d3078ade9, type: 3}
   - {fileID: 8300000, guid: b06517c526a3b044f95ce4a22b65d9c3, type: 3}
   - {fileID: 8300000, guid: f2bb59d9a4cccc74bb689a53aba53373, type: 3}
-  blockSound:
-  - {fileID: 8300000, guid: 7e1b307156779254690a9333c49e3773, type: 3}
-  - {fileID: 8300000, guid: 8be0690036fa97d448d8f5d96c9a3f5b, type: 3}
-  - {fileID: 8300000, guid: 90c2dc6b40f928d4097419e5bd4c1d4a, type: 3}
-  - {fileID: 8300000, guid: e18da735ed91bed4a8ec624f3be639c0, type: 3}
-  - {fileID: 8300000, guid: 259b18db211c1a247b5591fa530c4e7f, type: 3}
-  - {fileID: 8300000, guid: 5d5491d171322834f8ae6da5e0e25600, type: 3}
-  - {fileID: 8300000, guid: b86364a0568c07344a572f0d23dc04b2, type: 3}
-  - {fileID: 8300000, guid: 51eb97b2a4bf20b4fb5e8195b1333daa, type: 3}
-  - {fileID: 8300000, guid: 643d4e1688a259e4bbc8e49da0e4eea4, type: 3}
-  parrySound:
-  - {fileID: 8300000, guid: a726e50fd1b8e5d4d9224d6415722fe9, type: 3}
-  - {fileID: 8300000, guid: 665a0fcb03c104c46a59aa4149375012, type: 3}
-  - {fileID: 8300000, guid: cad2aaa93bcb9004191f3721c4f558fd, type: 3}
-  - {fileID: 8300000, guid: 89837be0511f17547bb0a8ca2cf8a6aa, type: 3}
-  - {fileID: 8300000, guid: ab4bab60b8427eb4098e017fa576b8fa, type: 3}
-  - {fileID: 8300000, guid: 7b2bc68343ab57e4fbdbda301cce263f, type: 3}
-  - {fileID: 8300000, guid: 083744b5eb24f2e42a6b9bbcc826dcf8, type: 3}
-  guardSound:
-  - {fileID: 8300000, guid: 8ed6060fb0bf49d489367dca3698eb9b, type: 3}
 --- !u!114 &5296135388477071890
 MonoBehaviour:
   m_ObjectHideFlags: 0

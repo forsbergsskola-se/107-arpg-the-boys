@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
@@ -142,8 +141,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isRolling = false;
             _invulnerabilityTimer = 0.0f;
-            Physics.IgnoreLayerCollision(7, 10, false);
-            Physics.IgnoreLayerCollision(7, 12, false);
         }
     }
 
@@ -156,10 +153,6 @@ public class PlayerMovement : MonoBehaviour
                 // If the player is rolling will attacking it snaps the rotation to the way the player is walking
                 ForceRotatePlayer();
             }
-
-            
-            Physics.IgnoreLayerCollision(7, 10, true);
-            Physics.IgnoreLayerCollision(7, 12, true);
 
             // Set the player's velocity to the roll speed in the direction the player is currently facing
             endVel = rotateDir * _playerStats.DodgeSpeed;

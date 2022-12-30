@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 public class GrassBoss : MonoBehaviour
 {
     public GameObject groundScatterPrefab;
@@ -18,24 +19,16 @@ public class GrassBoss : MonoBehaviour
     public float groundScatterSpeed;
     public float passiveStageDuration;
 
-    public AudioSource audioSource;
-    public AudioClip roarSound;
-    public AudioClip jumpSound;
-    public AudioClip jumpStartSound;
+    [NonSerialized]
+    public float _scatterRounds;
 
-    [NonSerialized]
-    public float scatterRounds;
-    [NonSerialized]
     public bool passiveStageActive;
-    [NonSerialized]
     public bool switchFromPassive;
     private float _distanceBetween;
     public bool firePointIsOnBoss;
 
-    private bool _moveToAttackSpot;
-    private GameObject _groundScatterInstance;
-    public LayerMask hitLayer;
-    public float danceDamage;
+    private bool moveToAttackSpot;
+    private GameObject groundScatterInstance;
 
 
     void Start()
@@ -57,7 +50,7 @@ public class GrassBoss : MonoBehaviour
         transform.position = position;
 
         //move towards _firePoint
-        if (_moveToAttackSpot)
+        if (moveToAttackSpot)
             MoveToAttackSpot();
     }
 
@@ -76,12 +69,12 @@ public class GrassBoss : MonoBehaviour
         yield return new WaitUntil(() => enemyScript.endAttack);
         enemyScript.enabled = false;
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, true);
-        _moveToAttackSpot = true;
+        moveToAttackSpot = true;
         yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
-        _moveToAttackSpot = false;
-        StartCoroutine(CO_RotateToTarget(_firePoint.transform));
+        moveToAttackSpot = false;
+        yield return StartCoroutine(CO_RotateToTarget(_firePoint.transform));
         passiveStageActive = false;
     }
 
@@ -102,8 +95,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                _groundScatterInstance.transform.localScale = abilityScale;
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed); 
             } 
         }
@@ -112,8 +105,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
-                _groundScatterInstance.transform.localScale = abilityScale;
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.right * (groundScatterDistance - i * _distanceBetween) + _firePoint.transform.forward * 2, _firePoint.transform.rotation);
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -122,8 +115,8 @@ public class GrassBoss : MonoBehaviour
         {
             for (int i = 0; i < groundScatterAmount; i++)
             {
-                _groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
-                _groundScatterInstance.transform.localScale = abilityScale;
+                groundScatterInstance = Instantiate(groundScatterPrefab, _firePoint.transform.position + _firePoint.transform.forward * (-groundScatterDistance + i * _distanceBetween) + _firePoint.transform.right * -13 + _firePoint.transform.forward * 13, _firePoint.transform.rotation * Quaternion.Euler(0,90,0));
+                groundScatterInstance.transform.localScale = abilityScale;
                 yield return new WaitForSeconds(groundScatterSpeed);
             } 
         }
@@ -138,32 +131,13 @@ public class GrassBoss : MonoBehaviour
 
     public IEnumerator CO_Dance()
     {
-        Vector3 posRotX = _firePoint.transform.rotation * Vector3.right;
-        Vector3 posRotZ = _firePoint.transform.rotation * Vector3.forward;
-        Vector3 posOffsetX = posRotX * Random.Range(-danceRadius, danceRadius);
-        Vector3 posOffsetZ = posRotZ * Random.Range(0, danceRadius * 2);
-        Vector3 desiredArea = posOffsetX + posOffsetZ + _firePoint.transform.position;
+        
+        var position = _firePoint.transform;
+        var zPos = _firePoint.transform.forward;
+        var xPos = _firePoint.transform.right;
+        Vector3 desiredArea =  new Vector3(Random.Range(xPos.x - danceRadius, xPos.x + danceRadius), 0, Random.Range(zPos.z, zPos.z + danceRadius * 2));
         GameObject danceInstance = Instantiate(dancePrefab, desiredArea, Quaternion.identity);
         danceInstance.transform.localScale = abilityScale;
-        yield return new WaitForSeconds(.5f);
-        Collider[] hits = Physics.OverlapSphere(danceInstance.transform.position, 2, hitLayer);
-        foreach (var t in hits)
-        {
-            print("dadd");
-            if(t.TryGetComponent(out IDamageable damageable))
-                damageable.TakeDamage(danceDamage); 
-        }
-    }
-
-    public void JumpAnimationSound()
-    {
-        audioSource.clip = jumpSound;
-        audioSource.Play();
-    }
-
-    public void JumpAnimationStartSound()
-    {
-        audioSource.clip = jumpStartSound;
-        audioSource.Play();
+        yield return null;
     }
 }
