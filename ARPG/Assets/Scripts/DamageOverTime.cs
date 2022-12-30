@@ -15,5 +15,13 @@ public class DamageOverTime : MonoBehaviour
             if(other.TryGetComponent(out IDamageable damageable))
                 damageable.TakeDamage(dps * Time.deltaTime);
         }
+        
+    }
+
+    private Collider hits;
+
+    private void Start()
+    {
+        
     }
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 3020076226108067228}
   - component: {fileID: 4601106798467332137}
   - component: {fileID: 1680872160044979848}
+  - component: {fileID: 663423018534908570}
   m_Layer: 0
   m_Name: Effect_21_GroundScatter
   m_TagString: Untagged
@@ -345,6 +346,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &663423018534908570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170752514618103492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35515e12e073e9b40a22cf7863eb9f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  dps: 5
 --- !u!1001 &698042137850939259
 PrefabInstance:
   m_ObjectHideFlags: 0

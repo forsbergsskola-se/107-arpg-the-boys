@@ -24501,7 +24501,7 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 128
-  dps: 5
+  dps: 30
 --- !u!82 &143476245609649069
 AudioSource:
   m_ObjectHideFlags: 0
