@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class danceAnimationBehaviour : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this statedssd
     private float _timer;
     public float danceDuration;
     private GrassBoss _bossScript;
