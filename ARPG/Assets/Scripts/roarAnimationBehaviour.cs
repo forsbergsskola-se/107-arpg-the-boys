@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RoarAnimationBehaviour : StateMachineBehaviour
+public class roarAnimationBehaviour : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     private GrassBoss _bossScript;
