@@ -8,6 +8,7 @@ public class PlayerInteract : MonoBehaviour
 {
     public PlayerCombat playerCombat;
     public float interactAreaSize;
+    public LayerMask interactableLayerMask;
     private IInteractable _closestInteractable;
 
     void Start()
@@ -31,24 +32,34 @@ public class PlayerInteract : MonoBehaviour
 
     private IInteractable ClosestInteractable()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactAreaSize);
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactAreaSize, interactableLayerMask);
 
-        var hit = hits
-            .Where(hit => hit.GetComponent<Collider>().TryGetComponent(out IInteractable _))
-            .OrderBy(hit => Vector3.Distance(hit.GetComponent<Collider>().transform.position, transform.position))
-            .FirstOrDefault();
+        // Find the closest interactable
+        IInteractable closestInteractable = null;
+        float closestDistance = float.MaxValue;
+        foreach (var hit in hits)
+        {
+            IInteractable interactable = hit.GetComponent<IInteractable>();
+            if (interactable == null)
+                continue;
 
-        if (hit != null) 
-            return hit.GetComponent<Collider>()?.GetComponent<IInteractable>();
-        return null;
+            float distance = Vector3.Distance(hit.transform.position, transform.position);
+            if (distance < closestDistance)
+            {
+                closestInteractable = interactable;
+                closestDistance = distance;
+            }
+        }
+
+        return closestInteractable;
     }
 
     private void TryInteract(IInteractable interactable)
     {
-        if (interactable is IPickupable pickupable and BaseWeapon)
+        if (interactable is IPickupable pickupable and BaseWeapon)  // What happens when you interact with a weapon
         {
             if (playerCombat.currentWeapon != null)
-                playerCombat.currentWeapon.DropWeapon(playerCombat);
+                playerCombat.currentWeapon.DropWeapon(playerCombat);  // It never calls Interact() on the weapon, it just calls DropWeapon() and Pickup()
             pickupable.Pickup(playerCombat);
         }
         else if (interactable != null)
