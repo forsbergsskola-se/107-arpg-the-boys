@@ -207,7 +207,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                     hasHitEnemy = true;
                     audioSource.pitch = 1;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
-                    _playerStats.AddDash();
+                    _playerStats.AddDodge(1);
                     Debug.Log("An enemy was hit");
                 }
 
