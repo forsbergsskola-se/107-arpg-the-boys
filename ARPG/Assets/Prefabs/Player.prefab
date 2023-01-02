@@ -1354,8 +1354,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4390147298263783957}
   m_AABB:
-    m_Center: {x: 0.12978014, y: 0.029383093, z: 0.000000029802322}
-    m_Extent: {x: 0.21395078, y: 0.18789598, z: 0.19471085}
+    m_Center: {x: 0.12997776, y: 0.03286259, z: 0.000000029802322}
+    m_Extent: {x: 0.2141484, y: 0.18415348, z: 0.19471085}
   m_DirtyAABB: 0
 --- !u!183 &4390147297730285650
 Cloth:
@@ -3867,7 +3867,7 @@ Transform:
   m_Children:
   - {fileID: 4390147298263784413}
   - {fileID: 5630916525282134633}
-  - {fileID: 3195682421368019723}
+  - {fileID: 2006851877373625618}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4108,24 +4108,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &5156847042402483364
+--- !u!1001 &8075042150189621949
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8451480336757137063}
     m_Modifications:
-    - target: {fileID: 1735113265680090730, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1735113265680090730, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3662063391438160147, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
       propertyPath: m_Name
       value: PlayerUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723009334115722355, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6165721307116226737, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
       propertyPath: player
@@ -4217,8 +4213,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
---- !u!224 &3195682421368019723 stripped
+--- !u!224 &2006851877373625618 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7766903044561020847, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
-  m_PrefabInstance: {fileID: 5156847042402483364}
+  m_PrefabInstance: {fileID: 8075042150189621949}
   m_PrefabAsset: {fileID: 0}
