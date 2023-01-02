@@ -17,6 +17,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public float attackRotateSpeed = 20;
     public bool showLightHitBox;
     public bool showHeavyHitBox;
+    public bool showParryHitBox;
+    public GameObject parryDebugHitBox;
     [NonSerialized] public bool isAttacking;
 
     [Header("Audio")] public AudioSource audioSource;
@@ -33,6 +35,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         _playerStats = GetComponent<PlayerStats>();
         _playerMovement = GetComponent<PlayerMovement>();
+        parryDebugHitBox.SetActive(false);
     }
 
     void Update()
@@ -78,6 +81,19 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.heavyAttackColSize / 2,
                 attackCenter.rotation, Color.cyan);
         }
+
+        if (showParryHitBox && currentWeapon != null)
+        {
+            parryDebugHitBox.SetActive(true);
+            Vector3 hitBoxSize = new Vector3(currentWeapon.parryPunishRange * 2, currentWeapon.parryPunishRange * 2,
+                currentWeapon.parryPunishRange * 2);
+            parryDebugHitBox.transform.parent = null;
+            parryDebugHitBox.transform.localScale = hitBoxSize;
+            parryDebugHitBox.transform.parent = transform;
+        }
+        else 
+            parryDebugHitBox.SetActive(false);
+        
     }
 
     private void FixedUpdate()
@@ -196,9 +212,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         bool hasHitEnemy = false;
         Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
-        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2,
-            Quaternion.identity, hitLayer); // if (showBox)
-        //     DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
+        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer); 
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))

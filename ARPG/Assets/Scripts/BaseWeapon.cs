@@ -41,7 +41,7 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
         _rb = GetComponent<Rigidbody>();
     }
 
-    public void Interact()
+    public void Interact() // Interact is never called on the weapon, pickup and drop are directly called on the correct weapons from the PlayerInteract script
     {
         throw new System.NotImplementedException();
     }

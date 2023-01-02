@@ -56,10 +56,10 @@ public class PlayerInteract : MonoBehaviour
 
     private void TryInteract(IInteractable interactable)
     {
-        if (interactable is IPickupable pickupable and BaseWeapon)
+        if (interactable is IPickupable pickupable and BaseWeapon)  // What happens when you interact with a weapon
         {
             if (playerCombat.currentWeapon != null)
-                playerCombat.currentWeapon.DropWeapon(playerCombat);
+                playerCombat.currentWeapon.DropWeapon(playerCombat);  // It never calls Interact() on the weapon, it just calls DropWeapon() and Pickup()
             pickupable.Pickup(playerCombat);
         }
         else if (interactable != null)
