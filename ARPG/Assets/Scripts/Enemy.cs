@@ -57,12 +57,12 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float maxHealth;
     public EnemyMovement enemyMovement;
     public bool hasAiMovement;
-    
+
     public Animator animator;
     public string walkAnimationParameterName;
 
     public string interruptedAnimationParameter;
-
+    public bool interruptible;
 
     public LightAttack lightAttackInformation;
     public bool hasLightAttacks;
@@ -75,8 +75,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     private bool[] _abilities;
     private bool _isAttacking;
-    [NonSerialized]
-    public bool endAttack = true;
+    [NonSerialized] public bool endAttack = true;
+
     private Coroutine _startedAttack;
 
     private string _currentAttackParameter;
@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     public void EnemyMovement()
     {
-        if(hasAiMovement)
+        if (hasAiMovement)
             enemyMovement.EnemyyMovement();
         else
         {
@@ -226,7 +226,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         yield return new WaitForSeconds(guardInformation.guardStartDelay);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, true);
         yield return new WaitUntil(() => endAttack);
-        if(guardInformation.guardChild != null)
+        if (guardInformation.guardChild != null)
             guardInformation.guardChild.SetActive(false);
         animator.SetBool(guardInformation.guardParameterNameOfTypeBool, false);
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
@@ -270,7 +270,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         endAttack = true;
     }
-    
+
     public void WalkAnimationSound()
     {
         audioSource.clip = soundEffects.walkSound;
@@ -332,9 +332,15 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     {
         if (CurrentHealth <= 0)
         {
-            enemyMovement.enabled = false;
+            if (hasAiMovement)
+                enemyMovement.enabled = false;
             enabled = false;
             animator.SetTrigger("Dead");
+            Collider[] hitBox = GetComponentsInChildren<Collider>();
+            for (var i = 0; i < hitBox.Length; i++)
+            {
+                hitBox[i].enabled = false;
+            }
         }
     }
 
@@ -358,6 +364,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public float CurrentHealth { get; private set; }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
+
+    public bool IsInterruptible => interruptible;
 
     [ContextMenu("Interrupt")]
     public void Interrupt()
