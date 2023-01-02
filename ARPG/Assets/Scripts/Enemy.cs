@@ -333,7 +333,10 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
         if (CurrentHealth <= 0)
         {
             if (hasAiMovement)
+            {
                 enemyMovement.enabled = false;
+                enemyMovement.navMeshAgent.enabled = false;
+            }
             enabled = false;
             animator.SetTrigger("Dead");
             Collider[] hitBox = GetComponentsInChildren<Collider>();
@@ -341,6 +344,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             {
                 hitBox[i].enabled = false;
             }
+
+            Canvas canvas = GetComponentInChildren<Canvas>();
+            canvas.enabled = false;
         }
     }
 
