@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3475280394130837806}
   - component: {fileID: 4612775170497648768}
   - component: {fileID: 3139172985816072195}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: 1ExitRoomDungeon6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793420350396263268}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27.835657, y: 15.24424, z: 10.431147}

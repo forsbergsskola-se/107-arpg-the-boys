@@ -722,7 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2056
   desiredRoomAmount: 14
   deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
   allRooms:

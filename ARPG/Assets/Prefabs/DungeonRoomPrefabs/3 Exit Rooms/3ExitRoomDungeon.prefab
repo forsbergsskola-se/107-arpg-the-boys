@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6576831270341643155}
   - component: {fileID: 108088960873103764}
   - component: {fileID: 4463115786101062743}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: 3ExitRoomDungeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
