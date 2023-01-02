@@ -25,8 +25,12 @@ public class GroundScatterScript : MonoBehaviour
                 groundScatterPoints[i].transform.rotation, hitLayer);
             for (var i1 = 0; i1 < hits.Length; i1++)
             {
-                if(hits[i1].TryGetComponent(out IDamageable damageable))
+                if (hits[i1].TryGetComponent(out IDamageable damageable))
+                {
                     damageable.TakeDamage(groundScatterDamage);
+                    yield break;
+                }
+                
             }
             while (_timer < _delayBetween)
             {

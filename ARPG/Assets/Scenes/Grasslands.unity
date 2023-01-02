@@ -1004,5 +1004,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8960667572649674086, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
+      propertyPath: danceDamage
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef5dd0691f6d014b8d9c88c86e4dcc3, type: 3}
