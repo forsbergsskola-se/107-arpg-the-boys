@@ -9,11 +9,20 @@ public class WorldGenerator : MonoBehaviour
     [Header("Settings")]
     public LayerMask roomLayer;
     public int desiredRoomAmount;
+    public int desiredShopAmount;
+    public int desiredExitAmount;
     private int _generatedRoomAmount;
     
-    [Header("Rooms")]
+    [Header("Rubble, usually")]
     public DungeonRoom deadEnd;
     
+    [Header("Shops")]
+    public DungeonRoom[] Shops;
+    
+    [Header("BossRooms")]
+    public DungeonRoom[] Exits;
+    
+    [Header("Rooms")]
     public List<RoomList> allRooms;
     
     private Transform[] _currentPivots;
@@ -75,7 +84,6 @@ public class WorldGenerator : MonoBehaviour
                 _generatedRoomAmount++;
             }
         }
-        
     }
 
     Transform[] SpawnRoom(int doors, Vector3 pos,Quaternion rot)
@@ -180,11 +188,15 @@ public class WorldGenerator : MonoBehaviour
     }
     private BoxCollider[] _colBuffer = new BoxCollider[1111];
     private bool wasDestroyed = false;
+    private List<Transform> oneExitRooms;
     Transform[] SpawnRoomCheckDoors(DungeonRoom spawnRoom, Vector3 fromRoomPos,Quaternion fromRoomRot)
     {
         wasDestroyed = false;
         DungeonRoom currentRoom = Instantiate(spawnRoom,fromRoomPos, Quaternion.identity);
-        
+        if (currentRoom.pivotPoints.Length == 1)
+        {
+            oneExitRooms.Add(currentRoom.pivotPoints[0]);
+        }
         //we start with this random value in order to start at a random entrance-point.
         int randomEntranceStart = Random.Range(0, currentRoom.pivotPoints.Length);
         
