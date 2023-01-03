@@ -791,7 +791,7 @@ MonoBehaviour:
     showHitBox: 1
     lightAttackParameterNameOfTypeBool: LightAttack
     lightAttackSize: {x: 1.5, y: 1.5, z: 1.5}
-    lightAttackDamage: 2
+    lightAttackDamage: 5
     lightAttackStartDelay: 0
   hasLightAttacks: 1
   heavyAttackInformation:
