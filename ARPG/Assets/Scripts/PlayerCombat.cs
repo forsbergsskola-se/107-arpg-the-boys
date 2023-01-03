@@ -198,7 +198,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
         for (var i = 0; i < hits.Length; i++)
         {
-            if (hits[i].TryGetComponent(out Enemy enemy))
+            if (hits[i].TryGetComponent(out Enemy enemy) && enemy.IsInterruptible)
             {
                 enemy.Parried();
             }
