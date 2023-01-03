@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
@@ -93,6 +96,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [Header("Ice Variables")]
     public float iceSlowPerc = 0.2f; //inherent percentile - doesn't need ModPerc
     public float iceLength = 5f;
+
+
+    [Header("Death stuff")]
+    public int onDeathSceneIndex;
+    public CanvasGroup deathUITextCanvasGroup;
+    public CanvasGroup deathUIBlackScreenCanvasGroup;
+    private bool hasDied;
+    private PlayerMovement _playerMovement;
+    
     
     
     //methods
@@ -100,8 +112,47 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         if (damage > 0) { CurrentHealth -= damage * dmgTakePerc; }
         else { CurrentHealth -= damage * hpRecovModPerc; }
+
+        if (CurrentHealth <= 0 && !hasDied)
+        {
+            StartCoroutine(Death());
+        }
     }
 
+    private IEnumerator Death()
+    {
+        hasDied = true;
+        _playerMovement.canMove = false;
+        _playerMovement.playerAnimator.SetTrigger("Death");
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        yield return new WaitForSeconds(1);
+
+        // Fade in the DeathUI Text object
+        {
+            float fadeInDuration = 1.5f;
+            float elapsedTime = 0f;
+            while (elapsedTime < fadeInDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                deathUITextCanvasGroup.alpha = elapsedTime / fadeInDuration;
+                yield return null;
+            }
+        }
+        {
+            float fadeInDuration = 1.5f;
+            float elapsedTime = 0f;
+            while (elapsedTime < fadeInDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                deathUIBlackScreenCanvasGroup.alpha = elapsedTime / fadeInDuration;
+                yield return null;
+            }
+        }
+        yield return new WaitForSeconds(1);
+        
+        SceneManager.LoadScene(onDeathSceneIndex);
+    }
     public void ChangeMana(float change)
     {
         if (change > 0) { CurrentMana -= change; }
@@ -118,6 +169,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         _currentHealth = MaxHealth;
         _currentMana = MaxMana;
+        
+        //Death stuff
+        _playerMovement = GetComponent<PlayerMovement>();
+        deathUITextCanvasGroup.alpha = 0;
+        deathUIBlackScreenCanvasGroup.alpha = 0;
     }
 
 }
