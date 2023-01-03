@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2125228741861111680}
   - component: {fileID: 2125228741861111683}
   - component: {fileID: 2125228741861111682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5320977010455807449}
   - component: {fileID: 9113090966636595836}
   - component: {fileID: 6457252271471394486}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mace1H_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
