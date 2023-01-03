@@ -129,7 +129,6 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
 
         //dont call every frame later
-        Death();
     }
 
     public void EnemyMovement()
@@ -330,24 +329,24 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
     private void Death()
     {
-        if (CurrentHealth <= 0)
-        {
-            if (hasAiMovement)
-            {
-                enemyMovement.enabled = false;
-                enemyMovement.navMeshAgent.enabled = false;
-            }
-            enabled = false;
-            animator.SetTrigger("Dead");
-            Collider[] hitBox = GetComponentsInChildren<Collider>();
-            for (var i = 0; i < hitBox.Length; i++)
-            {
-                hitBox[i].enabled = false;
-            }
+        if (hasAiMovement)
+            enemyMovement.navMeshAgent.enabled = false;
 
-            Canvas canvas = GetComponentInChildren<Canvas>();
-            canvas.enabled = false;
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+        foreach (var script in scripts)
+        {
+            script.enabled = false;
         }
+
+        animator.SetTrigger("Dead");
+        Collider[] hitBox = GetComponentsInChildren<Collider>();
+        for (var i = 0; i < hitBox.Length; i++)
+        {
+            hitBox[i].enabled = false;
+        }
+
+        Canvas canvas = GetComponentInChildren<Canvas>();
+        canvas.enabled = false;
     }
 
 
@@ -391,6 +390,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+            Death();
     }
 
     #endregion
