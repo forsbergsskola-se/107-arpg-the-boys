@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,13 +12,19 @@ public class HubShop : MonoBehaviour, IInteractable
     // Reference to the shop UI panel
     public GameObject shopUIPanel;
 
-    // Reference to the player's inventory script
-    public PlayerCombat playerCombat;
+    // Reference to the player
+    public GameObject player;
+    private PlayerCombat _playerCombat;
+    private PlayerMovement _playerMovement;
+    private Rigidbody _playerRb;
 
-    private void Start()
+    private void Awake()
     {
         // Load the player's progress from PlayerPrefs
         LoadProgress();
+        _playerCombat = player.GetComponent<PlayerCombat>();
+        _playerMovement = player.GetComponent<PlayerMovement>();
+        _playerRb = player.GetComponent<Rigidbody>();
     }
 
     public void Interact()
@@ -34,13 +41,29 @@ public class HubShop : MonoBehaviour, IInteractable
     private void OpenShopUI()
     {
         shopUIPanel.SetActive(true);
+        UpdateShopUI();
+        _playerMovement.canMove = false;
+        _playerRb.isKinematic = true;
     }
 
-    private void CloseShopUI()
+    public void CloseShopUI()
     {
+        UpdateShopUI();
         shopUIPanel.SetActive(false);
+        _playerMovement.canMove = true;
+        _playerRb.isKinematic = false;
     }
 
+    public void TryBuyOrEquipItem(int shopWeaponArraySpot)
+    {
+        ShopWeapon selectedWeapon = ShopWeapons[shopWeaponArraySpot];
+        if(selectedWeapon.IsBought)
+            EquipItem(selectedWeapon);
+        else
+            BuyItem(selectedWeapon);
+        SaveProgress();
+    }
+    
     public void BuyItem(ShopWeapon selectedWeapon)
     {
         // Check if the player has enough money to buy the selected weapon
@@ -69,16 +92,15 @@ public class HubShop : MonoBehaviour, IInteractable
         // Check if the selected weapon has been bought
         if (selectedWeapon.IsBought)
         {
-            // Instantiate the selected weapon
-            Instantiate(selectedWeapon.Weapon.gameObject, playerCombat.transform.position, Quaternion.identity);
-            
             // Equip the weapon by calling the "EquipWeapon" method on the player's inventory script
-            if (playerCombat.currentWeapon != null)
+            if (_playerCombat.currentWeapon != null)
             {
-                Destroy(playerCombat.currentWeapon);
-                playerCombat.currentWeapon = null;
+                Destroy(_playerCombat.currentWeapon.gameObject);
+                _playerCombat.currentWeapon = null;
             }
-            selectedWeapon.Weapon.Pickup(playerCombat);
+
+            var instance = Instantiate(selectedWeapon.Weapon);
+            instance.Pickup(_playerCombat);
 
             // Save the player's progress
             SaveProgress();
@@ -104,12 +126,12 @@ public class HubShop : MonoBehaviour, IInteractable
             if (weapon.IsBought)
             {
                 // Change the button's text to "Equip"
-                weaponButton.GetComponentInChildren<Text>().text = "Equip";
+                weaponButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
             }
             else
             {
                 // Change the button's text to "Buy"
-                weaponButton.GetComponentInChildren<Text>().text = "Buy";
+                weaponButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy";
             }
         }
     }
@@ -119,35 +141,19 @@ public class HubShop : MonoBehaviour, IInteractable
         // Iterate through the shop weapons
         for (int i = 0; i < ShopWeapons.Length; i++)
         {
-            // Check if the player has bought the current weapon
-            if (PlayerPrefs.GetInt("WeaponBought" + i, 0) == 1)
-            {
-                // Set the weapon's "isBought" field to true
-                ShopWeapons[i].IsBought = true;
-            }
-            else
-            {
-                // Set the weapon's "isBought" field to false
-                ShopWeapons[i].IsBought = false;
-            }
+            // Load the "isBought" field of the current weapon from PlayerPrefs
+            ShopWeapons[i].IsBought = PlayerPrefs.GetInt("WeaponBought" + i, 0) == 1;
         }
 
-        // Load the player's equipped weapon
-        string equippedWeapon = PlayerPrefs.GetString("EquippedWeapon", "");
-
-        // Check if the player has an equipped weapon
-        if (equippedWeapon != "")
+        // Load the index of the equipped weapon from PlayerPrefs
+        int equippedWeaponIndex = PlayerPrefs.GetInt("EquippedWeaponIndex", -1);
+        if (equippedWeaponIndex >= 0 && equippedWeaponIndex < ShopWeapons.Length)
         {
-            // Iterate through the shop weapons
-            foreach (ShopWeapon weapon in ShopWeapons)
+            // Equip the weapon
+            ShopWeapon equippedWeapon = ShopWeapons[equippedWeaponIndex];
+            if (equippedWeapon.IsBought)
             {
-                // Check if the current weapon is the equipped weapon
-                if (weapon.Weapon.name == equippedWeapon)
-                {
-                    // Equip the weapon by calling the "EquipWeapon" method on the player's inventory script
-                    EquipItem(weapon);
-                    break;
-                }
+                equippedWeapon.Weapon.Pickup(_playerCombat);
             }
         }
     }
@@ -157,32 +163,21 @@ public class HubShop : MonoBehaviour, IInteractable
         // Iterate through the shop weapons
         for (int i = 0; i < ShopWeapons.Length; i++)
         {
-            // Save the "isBought" field for the current weapon
+            // Save the "isBought" field of the current weapon to PlayerPrefs
             PlayerPrefs.SetInt("WeaponBought" + i, ShopWeapons[i].IsBought ? 1 : 0);
         }
 
-        // Save the player's equipped weapon
-        string equippedWeapon = "";
-        if (playerCombat.currentWeapon != null)
-        {
-            equippedWeapon = playerCombat.currentWeapon.name;
-        }
-        PlayerPrefs.SetString("EquippedWeapon", equippedWeapon);
+        // Save the index of the equipped weapon in the ShopWeapons array to PlayerPrefs
+        int equippedWeaponIndex = Array.IndexOf(ShopWeapons, _playerCombat.currentWeapon);
+        PlayerPrefs.SetInt("EquippedWeaponIndex", equippedWeaponIndex);
     }
     
-    public struct ShopWeapon
+    [Serializable]
+    public class ShopWeapon
     {
         public BaseWeapon Weapon;
         public Button ShopButton;
         public int Cost;
         public bool IsBought;
-
-        public ShopWeapon(BaseWeapon weapon, Button shopButton)
-        {
-            Weapon = weapon;
-            ShopButton = shopButton;
-            Cost = 0;
-            IsBought = false;
-        }
     }
 }

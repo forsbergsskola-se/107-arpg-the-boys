@@ -36,7 +36,7 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
 
     private Rigidbody _rb;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
