@@ -11,48 +11,54 @@ public class PlayerMovement : MonoBehaviour
     [NonSerialized]
     public Vector3 move;
     
-    
     private CapsuleCollider _col;
-    private Rigidbody _rb;
-    private Animator _playerAnimator;
+    [NonSerialized]
+    public Rigidbody _rb;
+    private PlayerStats _playerStats;
+    private PlayerCombat _playerCombat;
+    [NonSerialized]
+    public Animator playerAnimator;
     private bool _grounded;
     private Vector3 _groundNormal = Vector3.up;
     private float _regularSpeed;
-    private Vector3 _endVel;
+    
     private float _invulnerabilityTimer = 0.0f;
-    private bool _isInvulnerable = false;
+    [NonSerialized]
+    public bool isRolling;
     private float _desiredSpeed;
     private bool _dash;
-    private int _dashes;
     private bool _running;
-
-    [Header("Movement Variables")] 
-    public float walkSpeed = 5;
-    public float runSpeed = 11f;
+    private float _rollCooldownTimer;
+    [NonSerialized]
+    public Vector3 endVel;
+    
+    [Header("Movement Variables")]
     public float acceleration = 2;
-    public float rollSpeed = 5.0f;
+    //public float rollSpeed = 5.0f;
     public float rotationSpeed = 10;
     public float rollRotationSpeed = 20;
 
-    [Header("Move Limitations")] 
-    public int maxDashAmount = 1;
+    [Header("Move Limitations")]
     public float friction = 0.6f;
     public float maxStrafeSpeed = 30;
     public float maxGroundAngle = 35f;
-    public float maxVelocity = 50;
-    public LayerMask walkableLayers;
-    
+    public float rollCooldown = 0.3f;
+
     [Header("Other movement variables")]
     public float gravityScale = 9.82f;
-    public float rollInvulnerabilityDuration = 1.0f;
+    public float rollDuration = 0.4f;
     public bool canMove = true;
 
     void Start()
     {
-        _dashes = maxDashAmount;
+        
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
-        _playerAnimator = body.GetComponent<Animator>();
+        _playerStats = GetComponent<PlayerStats>();
+        _playerCombat = GetComponent<PlayerCombat>();
+        playerAnimator = body.GetComponent<Animator>();
+        _playerStats.DodgeCharges = _playerStats.maxDodgeCharges;
+        _rollCooldownTimer = rollCooldown;
     }
 
     void Update()
@@ -65,6 +71,9 @@ public class PlayerMovement : MonoBehaviour
         else
             _running = false;
         
+        // Update the roll cooldown timer
+        _rollCooldownTimer += Time.deltaTime;
+        
         MovementAnimation();
     }
 
@@ -75,55 +84,53 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        _endVel = transform.InverseTransformVector(_rb.velocity);
+        endVel = transform.InverseTransformVector(_rb.velocity);
 
-        if (canMove)
+        if (canMove && !_playerCombat.isAttacking)
         {
             if (_grounded)
             {
-                if (!_isInvulnerable)
+                if (!isRolling)
                 {
                     if (_running)
                     {
-                        _endVel = Accelerate(_endVel, runSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, runSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.RunMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.RunMoveSpeed, friction, _groundNormal);
                     }
                     else
                     {
-                        _endVel = Accelerate(_endVel, walkSpeed, acceleration, _groundNormal);
-                        _endVel = Friction(_endVel, walkSpeed, friction, _groundNormal);
+                        endVel = Accelerate(endVel, _playerStats.WalkMoveSpeed, acceleration, _groundNormal);
+                        endVel = Friction(endVel, _playerStats.WalkMoveSpeed, friction, _groundNormal);
                     }
-                    
                 }
             }
-            
-            if (_isInvulnerable)
+        }
+        
+        if (canMove)
+        {
+            if (isRolling)
             {
                 RollTimer();
             }
-            else if (_dash && _dashes > 0)
+            else if (_dash && _playerStats.DodgeCharges > 0)
             {
                 StartRoll();
             }
         }
-
+        
         if (!_grounded)
         {
             Gravity();
         }
 
-        RotatePlayer();
-        _rb.velocity = transform.TransformVector(_endVel);
-    }
-
-    public void AddDash() // Made this a function so I can add dashes from other scripts easier
-    {
-        Math.Clamp(_dashes++, 0, maxDashAmount);
+        if (!_playerCombat.isAttacking)
+            RotatePlayer();
+        _rb.velocity = transform.TransformVector(endVel);
     }
 
     private void MovementAnimation()
     {
-        _playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
+        playerAnimator.SetFloat("Movement Speed", _rb.velocity.magnitude);
     }
     
     void RollTimer()
@@ -131,29 +138,51 @@ public class PlayerMovement : MonoBehaviour
         _invulnerabilityTimer += Time.deltaTime;
         body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rollRotationSpeed * Time.deltaTime);
 
-        if (_invulnerabilityTimer >= rollInvulnerabilityDuration)
+        if (_invulnerabilityTimer >= rollDuration)
         {
-            _isInvulnerable = false;
+            isRolling = false;
             _invulnerabilityTimer = 0.0f;
+            Physics.IgnoreLayerCollision(7, 10, false);
+            Physics.IgnoreLayerCollision(7, 12, false);
         }
     }
-    
+
     void StartRoll()
     {
-        // Set the player's velocity to the roll speed in the direction the player is currently facing
-        _endVel = rotateDir * rollSpeed;
+        if (_rollCooldownTimer >= rollCooldown)
+        {
+            if (_playerCombat.CancelAttack() && move.sqrMagnitude != 0)
+            {
+                // If the player is rolling will attacking it snaps the rotation to the way the player is walking
+                ForceRotatePlayer();
+            }
 
-        // Uses up one dash
-        _dashes = Math.Clamp(_dashes--, 0, maxDashAmount);
-        
-        // Play the roll animation
-        _playerAnimator.SetTrigger("Roll");
+            
+            Physics.IgnoreLayerCollision(7, 10, true);
+            Physics.IgnoreLayerCollision(7, 12, true);
 
-        // Set the invulnerability flag and reset the invulnerability timer
-        _isInvulnerable = true;
-        _invulnerabilityTimer = 0.0f;
+            // Set the player's velocity to the roll speed in the direction the player is currently facing
+            endVel = rotateDir * _playerStats.DodgeSpeed;
+
+            // Uses up one dash
+            _playerStats.DodgeCharges = Math.Clamp(_playerStats.DodgeCharges - 1, 0, _playerStats.maxDodgeCharges);
+
+            // Play the roll animation
+            playerAnimator.SetTrigger("Roll");
+
+            // Set the invulnerability flag and reset the invulnerability timer
+            isRolling = true;
+            _invulnerabilityTimer = 0.0f;
+
+            _rollCooldownTimer = 0;
+        }
     }
 
+    void PassiveRollReplenish()
+    {
+        
+    }
+    
     private IEnumerator CO_DashActivate()
     {
         _dash = true;
@@ -161,14 +190,21 @@ public class PlayerMovement : MonoBehaviour
         _dash = false;
     }
     
-    private Vector3 rotateDir;
+    [NonSerialized]
+    public Vector3 rotateDir;
     private void RotatePlayer()
     {
-        if (MoveFromCamera().sqrMagnitude >= 0.1f && !_isInvulnerable)
+        if (MoveFromCamera().sqrMagnitude >= 0.1f && !isRolling && canMove)
         {
             rotateDir = MoveFromCamera();
-            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir), rotationSpeed * Time.deltaTime);
+            body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(rotateDir, Vector3.up), rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private void ForceRotatePlayer()
+    {
+        rotateDir = MoveFromCamera();
+        body.rotation = Quaternion.LookRotation(rotateDir, Vector3.up);
     }
     
     private Vector3 Accelerate(Vector3 vel, float wishSpeed, float accel, Vector3 normal)
@@ -205,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Gravity()
     {
-        _endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
+        endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
     }
     
     private void OnCollisionExit(Collision col)
