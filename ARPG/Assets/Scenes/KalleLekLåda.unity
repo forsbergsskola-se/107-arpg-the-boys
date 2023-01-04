@@ -723,7 +723,7 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 8
-  desiredRoomAmount: 14
+  desiredRoomAmount: 25
   deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
   allRooms:
   - rooms:
@@ -746,7 +746,6 @@ MonoBehaviour:
     - {fileID: 108088960873103764, guid: 45fa17d3391e08048ae54f6d71a50cf1, type: 3}
   - rooms:
     - {fileID: 2540099011062652085, guid: 415d20e8e125d054abe3f99d014ff84c, type: 3}
-    - {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - {fileID: 2305619482848091213, guid: e571f11826d0ed44280a5abfffb8ea69, type: 3}
   debugOn: 0
   debugSphere: {fileID: 1074531172}
