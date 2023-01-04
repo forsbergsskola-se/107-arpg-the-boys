@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerCombatAnimations : MonoBehaviour
 {
     public PlayerCombat playerCombat;
     public PlayerMovement playerMovement;
+    public Transform spellTransform;
+    public GameObject slashPrefab;
 
     public void EndAnimation()
     {
@@ -20,6 +23,11 @@ public class PlayerCombatAnimations : MonoBehaviour
     public void HeavyAttackEvent()
     {
         playerCombat.AttackBox(playerCombat.currentWeapon.heavyAttackColSize, playerCombat.currentWeapon.heavyAttackColOffset, playerCombat.currentWeapon.heavyAttackDamage);
+    }
+
+    public void SlashAttackEvent()
+    {
+        Instantiate(slashPrefab, spellTransform.position, spellTransform.rotation);
     }
 
     public void PlayWhooshSound()
