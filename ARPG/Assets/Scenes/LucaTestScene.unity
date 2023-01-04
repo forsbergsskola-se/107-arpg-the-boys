@@ -2075,10 +2075,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Orc
       objectReference: {fileID: 0}
-    - target: {fileID: 4444952434171885534, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bf4bc8901769540a94113fcb45b63f, type: 3}
 --- !u!1001 &5544351135400957630

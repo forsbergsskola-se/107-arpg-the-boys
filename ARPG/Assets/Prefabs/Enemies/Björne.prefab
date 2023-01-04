@@ -4187,16 +4187,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-    'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform 'clavicle_l'\n\tTransform
-    'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tTransform 'middle_01_l'\n\tand
-    more ...\n\tFrom animation clip 'Idle_Othe'\n\tFrom animation clip 'Walk_Back'\n\tFrom
-    animation clip 'Walk_Back'\n\tFrom animation clip 'Walk_Left'\n\tFrom animation
-    clip 'Walk_Left'\n\tFrom animation clip 'Walk_Right'\n\tFrom animation clip 'Walk_Right'\n\tFrom
-    animation clip 'Turn_Right'\n\tFrom animation clip 'Turn_left'\n\tFrom animation
-    clip 'Walk_Sit'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -4220,7 +4211,7 @@ MonoBehaviour:
     attackHitSound: {fileID: 8300000, guid: ab16e18c2c1392742a2bf7e87f60f3fd, type: 3}
     guardSound: {fileID: 0}
   moveSpeed: 5
-  attackRange: {x: 1.5, y: 1.5, z: 1.5}
+  attackRange: {x: 1, y: 1, z: 1}
   showHitbox: 0
   maxHealth: 100
   enemyMovement: {fileID: 2279127500164087791}
@@ -4239,7 +4230,7 @@ MonoBehaviour:
   heavyAttackInformation:
     showHitBox: 1
     heavyAttackParameterNameOfTypeBool: HeavyAttack
-    heavyAttackSize: {x: 2, y: 2, z: 2}
+    heavyAttackSize: {x: 3, y: 2, z: 2}
     heavyAttackDamage: 10
     heavyAttackStartDelay: 0.3
   hasHeavyAttacks: 1
