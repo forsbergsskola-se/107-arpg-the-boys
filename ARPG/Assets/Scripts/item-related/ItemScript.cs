@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour
@@ -158,4 +159,9 @@ public class ItemScript : MonoBehaviour
         Debug.Log("items held value in item script: " + heldCount);
     }
 
+    public float rotationSpeed;
+    private void Update()
+    {
+        transform.Rotate(transform.up, rotationSpeed);
+    }
 }

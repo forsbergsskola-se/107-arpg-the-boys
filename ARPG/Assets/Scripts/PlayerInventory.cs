@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
-        DirectoryInfo itemsDir = new DirectoryInfo("Assets/Item Prefabs/Item ScriptableObjects"); //points at directory
+        DirectoryInfo itemsDir = new DirectoryInfo("Assets/item-related/Item Prefabs/Item ScriptableObjects"); //points at directory
         FileInfo[] files = itemsDir.GetFiles("*.asset"); //pulls appropriate files from directory
         foreach (FileInfo file in files) //runs through array initializing entries in dictionary
         {
