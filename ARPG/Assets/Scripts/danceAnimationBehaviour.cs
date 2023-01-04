@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class danceAnimationBehaviour : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this statedssd
     private float _timer;
     public float danceDuration;
     private GrassBoss _bossScript;
@@ -27,6 +25,7 @@ public class danceAnimationBehaviour : StateMachineBehaviour
         {
             animator.SetBool("Dance", false);
             _timer = 0;
+            _bossScript.switchFromPassive = false;
         }
 
         if (_nukeTimer > nukeSpawnRate)

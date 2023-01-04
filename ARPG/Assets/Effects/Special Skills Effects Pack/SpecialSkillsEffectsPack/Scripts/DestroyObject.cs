@@ -17,6 +17,9 @@ public class DestroyObject : MonoBehaviour
     void Update()
     {
         if (Time.time > m_Time + m_DestroytTime)
+        {
             Destroy(transform.parent.gameObject);
+        }
+            
     }
 }

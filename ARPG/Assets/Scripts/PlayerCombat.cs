@@ -1,192 +1,309 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
+using static DrawBoxCast;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour, IInterruptible
 {
     public BaseWeapon currentWeapon;
+    public Transform weaponHolder;
+    public LayerMask hitLayer;
     public Transform attackCenter;
+    public float attackRotateSpeed = 20;
+    public bool showLightHitBox;
+    public bool showHeavyHitBox;
+    public bool showParryHitBox;
+    public GameObject parryDebugHitBox;
+    [NonSerialized] public bool isAttacking;
+
+    [Header("Audio")] public AudioSource audioSource;
+    public AudioClip[] slashWhoosh, enemyHitSound, blockSound, parrySound, guardSound;
+
+    private Coroutine _currentAttack;
+    private Rigidbody _rb;
+    private PlayerMovement _playerMovement;
     private PlayerStats _playerStats;
-    
+
+    [NonSerialized] public bool animationEnded;
+
     void Start()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        parryDebugHitBox.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        //Debug.Log(CurrentAttackState);
+        if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
-            LightAttack();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            HeavyAttack();
-        }
-        if (Input.GetButtonDown("Fire3"))
-        {
-            Guard();
-        }
-    }
-
-    private void LightAttack()
-    {
-        Debug.Log("Light attack!");
-        
-        // TODO: Does animation
-        
-        // TODO: Plays sound
-        
-        // TODO: Boxcast with take damage
-        RaycastHit[] hits = Physics.BoxCastAll(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.forward, Quaternion.identity, 1);
-        DrawBoxCastBox(attackCenter.position, currentWeapon.lightAttackColSize / 2, attackCenter.rotation, attackCenter.forward, 1, Color.cyan);
-        for (var i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].collider.TryGetComponent(out IDamageable damageable))
+            if (Input.GetButtonDown("Fire1"))
             {
-                float damage = currentWeapon.lightAttackDamage + _playerStats.AttackPower;
-                damageable.TakeDamage(damage);
+                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.lightAttackSpeed, "Light-attack",
+                    IInterruptible.AttackState.LightAttack));
+            }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack",
+                    IInterruptible.AttackState.HeavyAttack));
+            }
+
+            if (Input.GetButtonDown("Fire3"))
+            {
+                _currentAttack = StartCoroutine(CO_Guard(currentWeapon.guardTime, currentWeapon.parryTime));
             }
         }
 
+        if (currentWeapon == null)
+        {
+            return;
+        }
 
-        // TODO: Cooldown
+        if (showLightHitBox)
+        {
+            Vector3 worldOffset =
+                attackCenter.TransformDirection(currentWeapon.lightAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.lightAttackColSize / 2,
+                attackCenter.rotation, Color.cyan);
+        }
+
+        if (showHeavyHitBox)
+        {
+            Vector3 worldOffset =
+                attackCenter.TransformDirection(currentWeapon.heavyAttackColOffset); // Offset in world space
+            DrawBoxCastBox(attackCenter.position + worldOffset, currentWeapon.heavyAttackColSize / 2,
+                attackCenter.rotation, Color.cyan);
+        }
+
+        if (showParryHitBox && currentWeapon != null)
+        {
+            parryDebugHitBox.SetActive(true);
+            Vector3 hitBoxSize = new Vector3(currentWeapon.parryPunishRange * 2, currentWeapon.parryPunishRange * 2,
+                currentWeapon.parryPunishRange * 2);
+            parryDebugHitBox.transform.parent = null;
+            parryDebugHitBox.transform.localScale = hitBoxSize;
+            parryDebugHitBox.transform.parent = transform;
+        }
+        else 
+            parryDebugHitBox.SetActive(false);
+        
     }
-    
-    private void HeavyAttack()
+
+    private void FixedUpdate()
     {
-        Debug.Log("Heavy attack!");
-        
-        // TODO: Does animation
-        
-        // TODO: Plays sound
-        
-        // TODO: Boxcast with take damage
-        
-        // TODO: Cooldown
+        RotateToMouse();
     }
-    
-    private void Guard()
+
+    private void RotateToMouse()
+    {
+        _playerMovement.body.rotation = Quaternion.Lerp(_playerMovement.body.rotation,
+            Quaternion.LookRotation(_playerMovement.rotateDir), attackRotateSpeed * Time.deltaTime);
+    }
+
+    private void SetRotatePoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
+        else
+        {
+            float playerYDiff = Camera.main.transform.position.y - transform.position.y;
+            float angle = Vector3.Angle(Vector3.down, ray.direction);
+            float vectorDistance = Mathf.Abs(playerYDiff / Mathf.Cos(angle));
+            _playerMovement.rotateDir = Vector3
+                .ProjectOnPlane(
+                    (Camera.main.transform.position + ray.direction.normalized * vectorDistance) - transform.position,
+                    Vector3.up).normalized;
+        }
+    }
+
+    private IEnumerator CO_Attack(float attackSpeed, string animTriggerName, IInterruptible.AttackState attackState)
+    {
+        CurrentAttackState = attackState;
+        Debug.Log(animTriggerName);
+
+        // TODO: Attack speed modifier.
+
+        _playerMovement.playerAnimator.speed = attackSpeed;
+
+        animationEnded = false;
+        isAttacking = true;
+        _playerMovement._rb.velocity = Vector3.zero;
+
+        SetRotatePoint();
+
+        // Plays animation and waits until animation has ended before finishing up the attack
+        _playerMovement.playerAnimator.SetTrigger(animTriggerName);
+
+        yield return new WaitUntil(() => animationEnded);
+
+        // End attack
+        isAttacking = false;
+        _playerMovement.playerAnimator.speed = 1;
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
+    }
+
+    private IEnumerator CO_Guard(float guardTime, float parryTime)
     {
         Debug.Log("Guarded!");
+        audioSource.pitch = 1;
+        audioSource.clip = GetRandomAudioClip(guardSound);
+        audioSource.Play();
+
+        _playerMovement.playerAnimator.speed = 1f / guardTime;
+        animationEnded = false;
+        isAttacking = true;
+        _playerMovement._rb.velocity = Vector3.zero;
+
+        _playerMovement.playerAnimator.SetTrigger("Guard");
+
+        float elapsedTime = 0f;
+        while (elapsedTime < guardTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime < parryTime)
+            {
+                CurrentAttackState = IInterruptible.AttackState.Parry;
+            }
+            else
+            {
+                CurrentAttackState = IInterruptible.AttackState.Guard;
+            }
+
+            yield return null;
+        }
+
+        // Wait for the animation to end
+        yield return new WaitUntil(() => animationEnded);
+
+        // End guard
+        isAttacking = false;
+        _playerMovement.playerAnimator.speed = 1;
+        CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
-    
-    private void Parry()
+
+    public void Parry()
     {
         Debug.Log("Parried!");
+        audioSource.clip = GetRandomAudioClip(parrySound);
+        audioSource.Play();
+        Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out Enemy enemy) && enemy.IsInterruptible)
+            {
+                enemy.Parried();
+            }
+        }
+
+        _playerMovement.playerAnimator.SetTrigger("Parry");
+        CancelAttack();
     }
-    
-    
-    
-    
-    // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
-    //Draws just the box at where it is currently hitting.
-    public static void DrawBoxCastOnHit(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float hitInfoDistance, Color color)
+
+    public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
     {
-        origin = CastCenterOnCollision(origin, direction, hitInfoDistance);
-        DrawBox(origin, halfExtents, orientation, color);
+        bool hasHitEnemy = false;
+        Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
+        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer); 
+        for (var i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                if (!hasHitEnemy)
+                {
+                    hasHitEnemy = true;
+                    audioSource.pitch = 1;
+                    audioSource.clip = GetRandomAudioClip(enemyHitSound);
+                    _playerStats.AddDodge(1);
+                    Debug.Log("An enemy was hit");
+                }
+
+                float damage = weaponDamage + _playerStats.AttackPower;
+
+                if (hits[i].TryGetComponent(out IInterruptible interruptible))
+                {
+                    if (ShouldInterrupt(this, interruptible))
+                    {
+                        interruptible.Interrupt();
+                    }
+
+                    if (interruptible.CurrentAttackState == IInterruptible.AttackState.Guard)
+                    {
+                        damage = 0;
+                        audioSource.clip = GetRandomAudioClip(blockSound);
+                    }
+                }
+
+                audioSource.Play();
+                damageable.TakeDamage(damage);
+            }
+        }
     }
-    
-    
-     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float distance, Color color)
-     {
-         direction.Normalize();
-         Box bottomBox = new Box(origin, halfExtents, orientation);
-         Box topBox = new Box(origin + (direction * distance), halfExtents, orientation);
-             
-         Debug.DrawLine(bottomBox.backBottomLeft, topBox.backBottomLeft,    color);
-         Debug.DrawLine(bottomBox.backBottomRight, topBox.backBottomRight, color);
-         Debug.DrawLine(bottomBox.backTopLeft, topBox.backTopLeft, color);
-         Debug.DrawLine(bottomBox.backTopRight, topBox.backTopRight,    color);
-         Debug.DrawLine(bottomBox.frontTopLeft, topBox.frontTopLeft,    color);
-         Debug.DrawLine(bottomBox.frontTopRight, topBox.frontTopRight, color);
-         Debug.DrawLine(bottomBox.frontBottomLeft, topBox.frontBottomLeft, color);
-         Debug.DrawLine(bottomBox.frontBottomRight, topBox.frontBottomRight,    color);
-     
-         DrawBox(bottomBox, color);
-         DrawBox(topBox, color);
-     }
-     
-     public static void DrawBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
-     {
-         DrawBox(new Box(origin, halfExtents, orientation), color);
-     }
-     public static void DrawBox(Box box, Color color)
-     {
-         Debug.DrawLine(box.frontTopLeft,     box.frontTopRight,    color);
-         Debug.DrawLine(box.frontTopRight,     box.frontBottomRight, color);
-         Debug.DrawLine(box.frontBottomRight, box.frontBottomLeft, color);
-         Debug.DrawLine(box.frontBottomLeft,     box.frontTopLeft, color);
-                                                  
-         Debug.DrawLine(box.backTopLeft,         box.backTopRight, color);
-         Debug.DrawLine(box.backTopRight,     box.backBottomRight, color);
-         Debug.DrawLine(box.backBottomRight,     box.backBottomLeft, color);
-         Debug.DrawLine(box.backBottomLeft,     box.backTopLeft, color);
-                                                  
-         Debug.DrawLine(box.frontTopLeft,     box.backTopLeft, color);
-         Debug.DrawLine(box.frontTopRight,     box.backTopRight, color);
-         Debug.DrawLine(box.frontBottomRight, box.backBottomRight, color);
-         Debug.DrawLine(box.frontBottomLeft,     box.backBottomLeft, color);
-     }
-     
-     
-     
-     
-     public struct Box
-     {
-         public Vector3 localFrontTopLeft     {get; private set;}
-         public Vector3 localFrontTopRight    {get; private set;}
-         public Vector3 localFrontBottomLeft  {get; private set;}
-         public Vector3 localFrontBottomRight {get; private set;}
-         public Vector3 localBackTopLeft      {get {return -localFrontBottomRight;}}
-         public Vector3 localBackTopRight     {get {return -localFrontBottomLeft;}}
-         public Vector3 localBackBottomLeft   {get {return -localFrontTopRight;}}
-         public Vector3 localBackBottomRight  {get {return -localFrontTopLeft;}}
- 
-         public Vector3 frontTopLeft     {get {return localFrontTopLeft + origin;}}
-         public Vector3 frontTopRight    {get {return localFrontTopRight + origin;}}
-         public Vector3 frontBottomLeft  {get {return localFrontBottomLeft + origin;}}
-         public Vector3 frontBottomRight {get {return localFrontBottomRight + origin;}}
-         public Vector3 backTopLeft      {get {return localBackTopLeft + origin;}}
-         public Vector3 backTopRight     {get {return localBackTopRight + origin;}}
-         public Vector3 backBottomLeft   {get {return localBackBottomLeft + origin;}}
-         public Vector3 backBottomRight  {get {return localBackBottomRight + origin;}}
- 
-         public Vector3 origin {get; private set;}
- 
-         public Box(Vector3 origin, Vector3 halfExtents, Quaternion orientation) : this(origin, halfExtents)
-         {
-             Rotate(orientation);
-         }
-         public Box(Vector3 origin, Vector3 halfExtents)
-         {
-             this.localFrontTopLeft     = new Vector3(-halfExtents.x, halfExtents.y, -halfExtents.z);
-             this.localFrontTopRight    = new Vector3(halfExtents.x, halfExtents.y, -halfExtents.z);
-             this.localFrontBottomLeft  = new Vector3(-halfExtents.x, -halfExtents.y, -halfExtents.z);
-             this.localFrontBottomRight = new Vector3(halfExtents.x, -halfExtents.y, -halfExtents.z);
- 
-             this.origin = origin;
-         }
- 
- 
-         public void Rotate(Quaternion orientation)
-         {
-             localFrontTopLeft     = RotatePointAroundPivot(localFrontTopLeft    , Vector3.zero, orientation);
-             localFrontTopRight    = RotatePointAroundPivot(localFrontTopRight   , Vector3.zero, orientation);
-             localFrontBottomLeft  = RotatePointAroundPivot(localFrontBottomLeft , Vector3.zero, orientation);
-             localFrontBottomRight = RotatePointAroundPivot(localFrontBottomRight, Vector3.zero, orientation);
-         }
-     }
- 
-      //This should work for all cast types
-     static Vector3 CastCenterOnCollision(Vector3 origin, Vector3 direction, float hitInfoDistance)
-     {
-         return origin + (direction.normalized * hitInfoDistance);
-     }
-     
-     static Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Quaternion rotation)
-     {
-         Vector3 direction = point - pivot;
-         return pivot + rotation * direction;
-     }
+
+    public AudioClip GetRandomAudioClip(AudioClip[] audioClips)
+    {
+        // Select a random index from the array
+        int randomIndex = Random.Range(0, audioClips.Length);
+
+        // Return the audio clip at the random index
+        return audioClips[randomIndex];
+    }
+
+    private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)
+    {
+        if (enemy.IsInterruptible)
+        {
+            switch (player.CurrentAttackState)
+            {
+                case IInterruptible.AttackState.LightAttack:
+                    if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack)
+                    {
+                        return true;
+                    }
+
+                    break;
+                case IInterruptible.AttackState.HeavyAttack:
+                    if (enemy.CurrentAttackState == IInterruptible.AttackState.LightAttack ||
+                        enemy.CurrentAttackState == IInterruptible.AttackState.Guard)
+                    {
+                        return true;
+                    }
+
+                    break;
+            }
+        }
+
+        return false;
+    }
+
+    public void Interrupt()
+    {
+        _playerMovement.playerAnimator.SetTrigger("Interrupted");
+        CancelAttack();
+    }
+
+    public bool CancelAttack()
+    {
+        if (_currentAttack != null)
+        {
+            StopCoroutine(_currentAttack);
+            isAttacking = false;
+            _playerMovement.playerAnimator.speed = 1;
+            CurrentAttackState = IInterruptible.AttackState.NoAttack;
+            return true;
+        }
+
+        return false;
+    }
+
+    public IInterruptible.AttackState CurrentAttackState { get; set; }
+    public bool IsInterruptible { get; }
 }
