@@ -195,7 +195,7 @@ public class WorldGenerator : MonoBehaviour
         DungeonRoom currentRoom = Instantiate(spawnRoom,fromRoomPos, Quaternion.identity);
         if (currentRoom.pivotPoints.Length == 1)
         {
-            oneExitRooms.Add(currentRoom.pivotPoints[0]);
+            //oneExitRooms.Add(currentRoom.pivotPoints[0]);
         }
         //we start with this random value in order to start at a random entrance-point.
         int randomEntranceStart = Random.Range(0, currentRoom.pivotPoints.Length);
