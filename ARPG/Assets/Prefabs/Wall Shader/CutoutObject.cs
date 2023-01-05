@@ -13,12 +13,15 @@ public class CutoutObject : MonoBehaviour
     private bool _hitSomething;
     private bool kuk = true;
     public float offset;
+    public float shaderMaxSize;
     private Renderer[] _lastRenderers;
     private Material[] _lastMaterials;
     private static readonly int CutoutPos = Shader.PropertyToID("_CutoutPos");
     private static readonly int CutoutSize = Shader.PropertyToID("_CutoutSize");
     private static readonly int FalloffSize = Shader.PropertyToID("_FalloffSize");
     public float rayCastSize;
+    private float shaderSize;
+    public float durration;
 
     private void Awake()
     {
@@ -37,7 +40,8 @@ public class CutoutObject : MonoBehaviour
         cutoutPos.y /= (Screen.width / Screen.height) - 1;
 
         Vector3 direction = targetObject.position - transform.position;
-        RaycastHit[] hitObject = Physics.SphereCastAll(transform.position, rayCastSize, direction, direction.magnitude - offset, wallMask);
+        //RaycastHit[] hitObject = Physics.SphereCastAll(transform.position, rayCastSize, direction, direction.magnitude - offset, wallMask);
+        RaycastHit[] hitObject = Physics.RaycastAll(transform.position, direction, direction.magnitude, wallMask);
         _hitSomething = false;
         for (int i = 0; i < hitObject.Length; i++)
         {
@@ -65,22 +69,21 @@ public class CutoutObject : MonoBehaviour
                 hitObject[i].transform.GetComponent<wallscript>().OnRayCastHit(shaderMaterials);
             }
 
+            shaderSize += Time.deltaTime / durration;
+            shaderSize = Mathf.Clamp(shaderSize,0, shaderMaxSize);
+            
             for (int j = 0; j < shaderMaterials.Length; j++)
             {
                 shaderMaterials[j].SetVector(CutoutPos, cutoutPos);
-                shaderMaterials[j].SetFloat(CutoutSize, 0.13f);
+                shaderMaterials[j].SetFloat(CutoutSize, shaderSize);
                 shaderMaterials[j].SetFloat(FalloffSize, 0.05f);
             }
         }
 
-        // if (!_hitSomething)
-        // {
-        //     for (var i = 0; i < _lastRenderers.Length; i++)
-        //     {
-        //         _lastRenderers[i].material = _lastMaterials[i];
-        //     }
-        //
-        //     kuk = true;
-        // }
+        if (!_hitSomething)
+        {
+            shaderSize -= Time.deltaTime / durration;
+            shaderSize = Mathf.Clamp(shaderSize,0, shaderMaxSize);
+        }
     }
 }

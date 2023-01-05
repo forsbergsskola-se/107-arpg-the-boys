@@ -7,6 +7,7 @@ public class wallscript : MonoBehaviour
     private Material _defaultMat;
     private Renderer _renderer;
     private Coroutine _currentRayCast;
+    
     public void OnRayCastHit(Material[] shaderMat)
     {
         if (_currentRayCast != null)
