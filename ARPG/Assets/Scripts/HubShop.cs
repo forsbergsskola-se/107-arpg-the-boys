@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class HubShop : MonoBehaviour, IInteractable
 {
     public ShopWeapon[] ShopWeapons;
-    public Armory armory;
     private ShopWeapon selectedWeapon;
 
     // Reference to the shop UI panel
