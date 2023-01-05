@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b32cd2f79601742f9bc3011048a95f80, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.21562861, g: 0.25440738, b: 0.28182518, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,7 +259,7 @@ Camera:
   m_GameObject: {fileID: 451814528}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -723,8 +723,8 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 8
-  desiredRoomAmount: 25
-  deadEnd: {fileID: 8282403222250315860, guid: c38e696d3c671cc4c99e51dd8c8a00ca, type: 3}
+  desiredRoomAmount: 15
+  deadEnd: {fileID: 6826714623388744095, guid: 659a7e015b79f6f4ea8833c3bc3f65c5, type: 3}
   allRooms:
   - rooms:
     - {fileID: 6107921834861795579, guid: e929172ebc750334fa3beabff3b6662a, type: 3}
