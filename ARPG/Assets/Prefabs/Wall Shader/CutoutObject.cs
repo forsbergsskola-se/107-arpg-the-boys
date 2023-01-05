@@ -84,6 +84,13 @@ public class CutoutObject : MonoBehaviour
         {
             shaderSize -= Time.deltaTime / durration;
             shaderSize = Mathf.Clamp(shaderSize,0, shaderMaxSize);
+            
+            for (int j = 0; j < shaderMaterials.Length; j++)
+            {
+                shaderMaterials[j].SetVector(CutoutPos, cutoutPos);
+                shaderMaterials[j].SetFloat(CutoutSize, shaderSize);
+                shaderMaterials[j].SetFloat(FalloffSize, 0.05f);
+            }
         }
     }
 }
