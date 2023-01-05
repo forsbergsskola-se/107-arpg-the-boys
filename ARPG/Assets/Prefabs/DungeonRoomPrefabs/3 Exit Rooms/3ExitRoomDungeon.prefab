@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6576831270341643155}
   - component: {fileID: 108088960873103764}
   - component: {fileID: 4463115786101062743}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: 3ExitRoomDungeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,8 +117,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.70111, y: 8.210827, z: 16.24661}
-  m_Center: {x: 10.008272, y: 3.6054125, z: 9.026429}
+  m_Size: {x: 18.507296, y: 8.210827, z: 14.514589}
+  m_Center: {x: 9.679585, y: 3.6054125, z: 9.883121}
 --- !u!1001 &56791678278731131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1276330849123174, guid: 3d0e048f29527f243b99783f25df9eb1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097500270151942, guid: 3d0e048f29527f243b99783f25df9eb1, type: 3}
       propertyPath: m_RootOrder
@@ -1759,7 +1759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1276330849123174, guid: 3d0e048f29527f243b99783f25df9eb1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4097500270151942, guid: 3d0e048f29527f243b99783f25df9eb1, type: 3}
       propertyPath: m_RootOrder
@@ -2705,7 +2705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.935
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2713,7 +2713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.174
+      value: 1.467
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4227,7 +4227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.699
+      value: 17.466
       objectReference: {fileID: 0}
     - target: {fileID: 516119125707905432, guid: 3949e07187b501b4a96408b0d817477d, type: 3}
       propertyPath: m_LocalRotation.w
