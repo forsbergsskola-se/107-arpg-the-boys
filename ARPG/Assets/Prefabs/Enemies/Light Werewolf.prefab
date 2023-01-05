@@ -748,14 +748,14 @@ MonoBehaviour:
   timeToRotate: 2
   speedRun: 9
   viewRadius: 15
-  viewAngle: 90
+  viewAngle: 360
   playerMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 256
-  agroDistance: 2
+  agroDistance: 15
   waypoints:
   - {fileID: 0}
 --- !u!114 &114354951
