@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:ARPG/Assets/SkySeries Freebie/ExampleScenes/AmbienceExposure.unity.meta
-guid: 2ca65ab21dc909b4492c809a91af4426
-timeCreated: 1512945925
-licenseType: Store
-DefaultImporter:
-========
+<<<<<<<< HEAD:ARPG/Assets/Prefabs/Wall Shader/wall shader mat.mat.meta
 guid: 984d54d044db94c46ade3473527a469b
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
->>>>>>>> origin/feature/CameraShader:ARPG/Assets/Prefabs/Wall Shader/wall shader mat.mat.meta
+========
+guid: 745822b12dae28c44b79ddd800e253e4
+timeCreated: 1527134118
+licenseType: Store
+DefaultImporter:
+>>>>>>>> origin/features/13-dungeon-rooms-grasslands:ARPG/Assets/SkySeries Freebie/ExampleScenes/CasualDay.unity.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
