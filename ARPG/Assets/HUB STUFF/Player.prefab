@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,20 +231,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   body: {fileID: 8390407974502790934}
-  moveSpeed: 11
   acceleration: 2
-  rollSpeed: 20
   rotationSpeed: 7
   rollRotationSpeed: 20
   friction: 0.6
   maxStrafeSpeed: 30
   maxGroundAngle: 35
-  maxVelocity: 50
-  walkableLayers:
-    serializedVersion: 2
-    m_Bits: 64
+  rollCooldown: 0.3
   gravityScale: 9.82
-  rollInvulnerabilityDuration: 0.4
+  rollDuration: 0.4
   canMove: 1
 --- !u!54 &8390407975359524474
 Rigidbody:
