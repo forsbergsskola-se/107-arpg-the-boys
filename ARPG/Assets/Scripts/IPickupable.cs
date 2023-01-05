@@ -13,4 +13,9 @@ public interface IPickupable
     {
         
     }
+    
+    void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
+    {
+        
+    }
 }
