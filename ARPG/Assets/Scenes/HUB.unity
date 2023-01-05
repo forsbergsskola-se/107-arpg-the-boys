@@ -4812,7 +4812,7 @@ MonoBehaviour:
     ShopButton: {fileID: 3435047817691616366}
     Cost: 0
     IsBought: 0
-  - Weapon: {fileID: 9128292064536508339, guid: 1b035162e8f807446b642433228ab46e, type: 3}
+  - Weapon: {fileID: 2681921599505278631, guid: 1b035162e8f807446b642433228ab46e, type: 3}
     ShopButton: {fileID: 161987586}
     Cost: 0
     IsBought: 0

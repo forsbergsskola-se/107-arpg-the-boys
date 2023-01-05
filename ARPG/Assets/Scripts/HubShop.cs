@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class HubShop : MonoBehaviour, IInteractable
 {
     public ShopWeapon[] ShopWeapons;
+    public Armory armory;
+    private ShopWeapon selectedWeapon;
 
     // Reference to the shop UI panel
     public GameObject shopUIPanel;
@@ -21,10 +23,10 @@ public class HubShop : MonoBehaviour, IInteractable
     private void Awake()
     {
         // Load the player's progress from PlayerPrefs
-        LoadProgress();
         _playerCombat = player.GetComponent<PlayerCombat>();
         _playerMovement = player.GetComponent<PlayerMovement>();
         _playerRb = player.GetComponent<Rigidbody>();
+        LoadProgress();
     }
 
     public void Interact()
@@ -56,7 +58,7 @@ public class HubShop : MonoBehaviour, IInteractable
 
     public void TryBuyOrEquipItem(int shopWeaponArraySpot)
     {
-        ShopWeapon selectedWeapon = ShopWeapons[shopWeaponArraySpot];
+        selectedWeapon = ShopWeapons[shopWeaponArraySpot];
         if(selectedWeapon.IsBought)
             EquipItem(selectedWeapon);
         else
@@ -146,15 +148,17 @@ public class HubShop : MonoBehaviour, IInteractable
         }
 
         // Load the index of the equipped weapon from PlayerPrefs
-        int equippedWeaponIndex = PlayerPrefs.GetInt("EquippedWeaponIndex", -1);
+        int equippedWeaponIndex = PlayerPrefs.GetInt("EquippedWeaponIndex");
+        if (equippedWeaponIndex == -1)
+            Debug.LogError("equippedWeaponIndex is invalid. The index is -1");
+        
         if (equippedWeaponIndex >= 0 && equippedWeaponIndex < ShopWeapons.Length)
         {
             // Equip the weapon
-            ShopWeapon equippedWeapon = ShopWeapons[equippedWeaponIndex];
-            if (equippedWeapon.IsBought)
-            {
-                equippedWeapon.Weapon.Pickup(_playerCombat);
-            }
+            selectedWeapon = ShopWeapons[equippedWeaponIndex];
+            var instance = Instantiate(selectedWeapon.Weapon);
+            instance.Pickup(_playerCombat);
+            Debug.Log("Picked up loaded weapon");
         }
     }
 
@@ -168,7 +172,8 @@ public class HubShop : MonoBehaviour, IInteractable
         }
 
         // Save the index of the equipped weapon in the ShopWeapons array to PlayerPrefs
-        int equippedWeaponIndex = Array.IndexOf(ShopWeapons, _playerCombat.currentWeapon);
+        int equippedWeaponIndex =
+            Array.FindIndex(ShopWeapons, it => it.Weapon.weaponID == _playerCombat.currentWeapon.weaponID);
         PlayerPrefs.SetInt("EquippedWeaponIndex", equippedWeaponIndex);
     }
     
