@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 327679170}
   - component: {fileID: 327679169}
   - component: {fileID: 327679168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 557141290}
   - component: {fileID: 557141289}
   - component: {fileID: 557141288}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 694822274}
   - component: {fileID: 694822273}
   - component: {fileID: 694822272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 708464660}
   - component: {fileID: 708464659}
   - component: {fileID: 708464658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 857048504}
   - component: {fileID: 857048503}
   - component: {fileID: 857048502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 2000066317}
   - component: {fileID: 2000066316}
   - component: {fileID: 2000066315}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1616,6 +1616,7 @@ GameObject:
   - component: {fileID: 2024453894}
   - component: {fileID: 2024453893}
   - component: {fileID: 2024453896}
+  - component: {fileID: 2024453897}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1706,6 +1707,25 @@ MonoBehaviour:
   sharpness: 15
   bossToPlayerCamLerp: 0.5
   maxDistanceFromTarget: 10
+--- !u!114 &2024453897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024453892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3718e5078f4cd894881281e45aef7de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 1230244675}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  mainCamera: {fileID: 2024453894}
+  materials:
+  - {fileID: 2100000, guid: 984d54d044db94c46ade3473527a469b, type: 2}
 --- !u!1001 &381550104032346196
 PrefabInstance:
   m_ObjectHideFlags: 0
