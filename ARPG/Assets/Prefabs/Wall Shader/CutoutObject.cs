@@ -64,9 +64,9 @@ public class CutoutObject : MonoBehaviour
 
 
             // hitObject[i].transform.GetComponent<Renderer>().materials = shaderMaterials;
-            if (hitObject[i].transform.GetComponent<wallscript>() != null)
+            if (hitObject[i].transform.GetComponent<Wallscript>() != null)
             {
-                hitObject[i].transform.GetComponent<wallscript>().OnRayCastHit(shaderMaterials);
+                hitObject[i].transform.GetComponent<Wallscript>().OnRayCastHit(shaderMaterials);
             }
 
             shaderSize += Time.deltaTime / durration;

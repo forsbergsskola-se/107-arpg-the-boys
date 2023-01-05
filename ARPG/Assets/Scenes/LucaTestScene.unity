@@ -1626,6 +1626,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallBothSides
       objectReference: {fileID: 0}
+    - target: {fileID: 3529142613778538257, guid: b335836acedd0ad409da8bf659fd964d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910847810132081672, guid: b335836acedd0ad409da8bf659fd964d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8058408317659370425, guid: b335836acedd0ad409da8bf659fd964d, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -1960,7 +1968,7 @@ MonoBehaviour:
     m_Bits: 256
   mainCamera: {fileID: 2024453894}
   shaderMaterials:
-  - {fileID: 2100000, guid: 984d54d044db94c46ade3473527a469b, type: 2}
+  - {fileID: 2100000, guid: 14b8fc02a10306247aa03772b02bbdb0, type: 2}
   offset: 10
   shaderMaxSize: 0.13
   rayCastSize: 5

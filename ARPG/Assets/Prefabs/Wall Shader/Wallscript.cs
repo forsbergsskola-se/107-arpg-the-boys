@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wallscript : MonoBehaviour
+public class Wallscript : MonoBehaviour
 {
     private Material _defaultMat;
     private Renderer _renderer;
