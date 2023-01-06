@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using static DrawBoxCast;
 
 public class GhoulBossScript : MonoBehaviour
 {
@@ -13,11 +14,16 @@ public class GhoulBossScript : MonoBehaviour
     public float movespeed;
     public float rotationSpeed;
     public Animator animator;
-    public float attackRange;
+    public Vector3 attackRange;
     public Transform attackTransform;
     public Vector3 attackSize;
     public LayerMask hitLayer;
     public float damage;
+    public bool showAttackRange;
+    public bool showAttackSize;
+    private Coroutine _currentChase;
+    private float _timer;
+    private bool _isAttacking;
 
     void Start()
     {
@@ -25,9 +31,20 @@ public class GhoulBossScript : MonoBehaviour
     }
     void Update()
     {
-        if (_isInChaseMode)
+        print(_timer);
+        print(_isInChaseMode);
+        if (_isInChaseMode && !_isAttacking)
         {
             ChaseMode();
+        }
+
+        if (showAttackSize)
+        {
+            DrawBoxCastBox(attackTransform.position, attackSize / 2, transform.rotation, Color.red);
+        }
+        if (showAttackRange)
+        {
+            DrawBoxCastBox(attackTransform.position, attackRange / 2, transform.rotation, Color.yellow);
         }
     }
     
@@ -36,9 +53,14 @@ public class GhoulBossScript : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(player.transform.position);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position,movespeed*Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed*Time.deltaTime);
-        if (Vector3.Distance(transform.position,player.transform.position)<attackRange)
+        Collider[] hits = Physics.OverlapBox(attackTransform.position, attackRange / 2, transform.rotation, hitLayer);
+        for (var i = 0; i < hits.Length; i++)
         {
-            animator.SetTrigger("Attack");
+            if (hits[i].TryGetComponent(out IDamageable damageable))
+            {
+                animator.SetTrigger("Attack");
+                _isAttacking = true;
+            }
         }
     }
     
@@ -52,13 +74,21 @@ public class GhoulBossScript : MonoBehaviour
 
     public IEnumerator CO_ChaseMode()
     {
+        _isAttacking = false;
         animator.SetTrigger("Chase");
         _isInChaseMode = true;
-        yield return new WaitForSeconds(chaseModeDuration);
+        while (_timer < chaseModeDuration)
+        {
+            _timer += Time.deltaTime;
+            _isInChaseMode = true;
+            yield return null;
+        }
         _isInChaseMode = false;
+        
     }
 
     #region Animation Methods
+    
     public void BombAnimation()
     {
         GameObject indicatorInstance = Instantiate(indicatorPrefab, player.transform.position, Quaternion.identity);
@@ -67,6 +97,7 @@ public class GhoulBossScript : MonoBehaviour
 
     public void PunchAnimation()
     {
+        HitBox();
         
     }
     
@@ -75,15 +106,19 @@ public class GhoulBossScript : MonoBehaviour
 
     public void HitBox()
     {
+        
         Collider[] hits = Physics.OverlapBox(attackTransform.position, attackSize / 2, transform.rotation, hitLayer);
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(damage);
+                _timer = 0;
             }
+            
         }
     }
+    
     
     
 }
