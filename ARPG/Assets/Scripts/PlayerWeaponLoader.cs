@@ -52,8 +52,11 @@ public class PlayerWeaponLoader : MonoBehaviour
         }
     
         // Save the index of the equipped weapon in the ShopWeapons array to PlayerPrefs
-        int equippedWeaponIndex =
-            Array.FindIndex(armory.armoryWeapons, it => it.weapon.weaponID == _playerCombat.currentWeapon.weaponID);
+        int equippedWeaponIndex = -1;
+        if (_playerCombat.currentWeapon != null)
+        {
+            equippedWeaponIndex = Array.FindIndex(armory.armoryWeapons, it => it.weapon.weaponID == _playerCombat.currentWeapon.weaponID);
+        }
         PlayerPrefs.SetInt("EquippedWeaponIndex", equippedWeaponIndex);
     }
 }

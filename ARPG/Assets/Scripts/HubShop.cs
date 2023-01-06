@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static RandomSound;
 
 public class HubShop : MonoBehaviour, IInteractable
 {
-    public Armory armory;
+    [Header("Shop Weapons")]
     public ShopWeapon[] shopWeapons;
+    
+    [Header("References")]
+    public Armory armory;
     private ShopWeapon _selectedWeapon;
 
     // Reference to the shop UI panel
@@ -20,6 +24,12 @@ public class HubShop : MonoBehaviour, IInteractable
     private PlayerMovement _playerMovement;
     private PlayerWeaponLoader _weaponLoader;
     private Rigidbody _playerRb;
+
+    [Header("Audio")] 
+    public AudioSource audioSource;
+    public AudioClip[] buySounds;
+    public AudioClip[] equipSounds;
+    public AudioClip[] toggleMenuSounds;
 
     private void Awake()
     {
@@ -56,6 +66,8 @@ public class HubShop : MonoBehaviour, IInteractable
     {
         shopUIPanel.SetActive(true);
         UpdateShopUI();
+        audioSource.clip = GetRandomAudioClip(toggleMenuSounds);
+        audioSource.Play();
         _playerMovement.canMove = false;
         _playerRb.isKinematic = true;
     }
@@ -64,6 +76,8 @@ public class HubShop : MonoBehaviour, IInteractable
     {
         UpdateShopUI();
         shopUIPanel.SetActive(false);
+        audioSource.clip = GetRandomAudioClip(toggleMenuSounds);
+        audioSource.Play();
         _playerMovement.canMove = true;
         _playerRb.isKinematic = false;
     }
@@ -90,6 +104,10 @@ public class HubShop : MonoBehaviour, IInteractable
 
             // Set the weapon's "isBought" field to true
             selectedWeapon.isBought = true;
+            
+            // Play Buy-sound
+            audioSource.clip = GetRandomAudioClip(buySounds);
+            audioSource.Play();
 
             // Save the player's progress
             _weaponLoader.SaveProgress();
@@ -115,8 +133,12 @@ public class HubShop : MonoBehaviour, IInteractable
                 _playerCombat.currentWeapon = null;
             }
 
-            var instance = Instantiate(selectedWeapon.weapon);
+            var instance = Instantiate(selectedWeapon.weapon, transform.position, Quaternion.identity);
             instance.Pickup(_playerCombat);
+            
+            // Play pickup-sound
+            audioSource.clip = GetRandomAudioClip(equipSounds);
+            audioSource.Play();
 
             // Save the player's progress
             _weaponLoader.SaveProgress();
