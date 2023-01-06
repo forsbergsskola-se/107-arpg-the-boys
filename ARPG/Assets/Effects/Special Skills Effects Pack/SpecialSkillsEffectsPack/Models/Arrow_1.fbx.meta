@@ -1,6 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Arrow_1.fbx.meta
+<<<<<<<< HEAD:ARPG/Assets/GPVFX_POTIONS PACK/3D/POTIONS_Default/GPVFX_CORK.obj.meta
+guid: cd765151bc92846f29cd0a3da80270b6
+========
 guid: 2ec6bbe644b16004b886a1fc0c37f516
+>>>>>>>> origin/transparent-wall-filter:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Arrow_1.fbx.meta
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -15,15 +18,6 @@ ModelImporter:
   externalObjects: {}
   materials:
     importMaterials: 1
-========
-guid: cd765151bc92846f29cd0a3da80270b6
-ModelImporter:
-  serializedVersion: 21300
-  internalIDToNameTable: []
-  externalObjects: {}
-  materials:
-    materialImportMode: 2
->>>>>>>> features/13-dungeon-rooms-grasslands:ARPG/Assets/GPVFX_POTIONS PACK/3D/POTIONS_Default/GPVFX_CORK.obj.meta
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -32,7 +26,6 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -50,42 +43,28 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Arrow_1.fbx.meta
-========
-    sortHierarchyByName: 1
->>>>>>>> features/13-dungeon-rooms-grasslands:ARPG/Assets/GPVFX_POTIONS PACK/3D/POTIONS_Default/GPVFX_CORK.obj.meta
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 1
-    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    bakeAxisConversion: 0
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    optimizeBones: 1
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 1
-    secondaryUVMinLightmapResolution: 40
-    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
@@ -98,13 +77,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Arrow_1.fbx.meta
-========
-  referencedClips: []
->>>>>>>> features/13-dungeon-rooms-grasslands:ARPG/Assets/GPVFX_POTIONS PACK/3D/POTIONS_Default/GPVFX_CORK.obj.meta
   importAnimation: 1
+  copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -114,18 +90,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
-  avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

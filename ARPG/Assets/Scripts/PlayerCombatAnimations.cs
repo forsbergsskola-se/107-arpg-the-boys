@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombatAnimations : MonoBehaviour
 {
     public PlayerCombat playerCombat;
+    public PlayerMovement playerMovement;
 
     public void EndAnimation()
     {
@@ -34,4 +35,18 @@ public class PlayerCombatAnimations : MonoBehaviour
         playerCombat.audioSource.clip = playerCombat.GetRandomAudioClip(playerCombat.slashWhoosh);
         playerCombat.audioSource.Play();
     }
+
+    public void OnInterruptExit()
+    {
+        playerMovement.canMove = true;
+        playerMovement.playerAnimator.speed = 1f;
+    }
+    
+    public void OnInterruptEnter()
+    {
+        playerMovement.playerAnimator.speed = 2f;
+        playerMovement._rb.velocity = Vector3.zero;
+        playerMovement.canMove = false;
+    }
+    
 }

@@ -1,25 +1,14 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Circle.fbx.meta
 guid: 6fce644209a12414fb05305b3cb18fb7
-========
-guid: 7d2da4ded14c50e4595f7e8ad0f1d0d1
->>>>>>>> origin/feature/enemy-combat:ARPG/Assets/HUB STUFF/ASTROFISH_GAMES/MEDIEVAL_SERIES/MEDIEVAL_VILLAGE_HD/[NEW FREE EXTRA] MEDIEVAL_BLOCKOUTS/_Assets/Mods/MCastle_ArchDoors_00.FBX.meta
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/Models/Circle.fbx.meta
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
     4300000: Circle_Mesh
-========
-    2100000: BLOCKOUT_MCastle_Default
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: BLOCKOUT_MCastle_ArchDoors_00
->>>>>>>> origin/feature/enemy-combat:ARPG/Assets/HUB STUFF/ASTROFISH_GAMES/MEDIEVAL_SERIES/MEDIEVAL_VILLAGE_HD/[NEW FREE EXTRA] MEDIEVAL_BLOCKOUTS/_Assets/Mods/MCastle_ArchDoors_00.FBX.meta
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -1,13 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/EffectsScenes/EffectsScene.unity.meta
 guid: c125bc2a97c864beb819e619289f85e1
 timeCreated: 1527659549
 licenseType: Store
-========
-guid: e4d200bd9cd394c85b6d524927580559
->>>>>>>> features/13-dungeon-rooms-grasslands:ARPG/Assets/HUB STUFF/Conifers [BOTD]/Render Pipeline Support/Built-in RP/VSPro_CTIShaderController.unitypackage.meta
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
