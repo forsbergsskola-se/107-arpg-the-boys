@@ -48,17 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critRate: 0.1
-  critDamageBonus: 1.5
-  lightAttackDamage: 10
-  lightAttackSpeed: 3.58
-  lightAttackColSize: {x: 0, y: 0, z: 0}
-  lightAttackColOffset: {x: 0, y: 0, z: 0}
-  heavyAttackDamage: 20
-  heavyAttackSpeed: 2.57
-  heavyAttackColSize: {x: 0, y: 0, z: 0}
-  heavyAttackColOffset: {x: 0, y: 0, z: 0}
-  guardTime: 0.5
-  parryPunishRange: 4.5
+  critDamageBonus: 2
+  lightAttackDamage: 25
+  lightAttackSpeed: 1.1
+  lightAttackColSize: {x: 4.81, y: 2.82, z: 5.85}
+  lightAttackColOffset: {x: 0, y: -0.53, z: 2.52}
+  heavyAttackDamage: 50
+  heavyAttackSpeed: 0.8
+  heavyAttackColSize: {x: 4.44, y: 2.59, z: 5.56}
+  heavyAttackColOffset: {x: 0, y: -0.46, z: 3.05}
+  guardTime: 0.55
+  parryPunishRange: 5
   parryTime: 0.1
   modelPosOffset: {x: 0.0049, y: 0.0927, z: 0.0004}
   modelRotOffset: {x: -2.279, y: 88.314, z: -7.25}
