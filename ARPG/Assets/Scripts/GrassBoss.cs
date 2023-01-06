@@ -56,6 +56,13 @@ public class GrassBoss : MonoBehaviour
         position = new Vector3(position.x, Mathf.Clamp(position.y, 0, 10),position.z);
         transform.position = position;
 
+        Quaternion rotation = transform.localRotation;
+        
+        rotation.x = 0;
+        rotation.z = 0;
+        
+        transform.localRotation = rotation;
+
         //move towards _firePoint
         if (_moveToAttackSpot)
             MoveToAttackSpot();
