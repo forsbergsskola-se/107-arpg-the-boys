@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoneyUI : MonoBehaviour
