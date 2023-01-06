@@ -235,7 +235,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
-    
+    public bool IsInterruptible { get; }
+
 
     // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
     //Draws just the box at where it is currently hitting.
