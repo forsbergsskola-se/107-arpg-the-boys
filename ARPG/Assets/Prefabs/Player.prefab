@@ -4366,6 +4366,7 @@ GameObject:
   - component: {fileID: 7330928658350872650}
   - component: {fileID: 5296135388477071890}
   - component: {fileID: 938367398927242142}
+  - component: {fileID: 6373543057918427415}
   - component: {fileID: 8451480336757137057}
   - component: {fileID: 8451480336757137056}
   - component: {fileID: 1822394994}
@@ -4548,6 +4549,20 @@ MonoBehaviour:
   onDeathSceneIndex: 0
   deathUITextCanvasGroup: {fileID: 1267092726}
   deathUIBlackScreenCanvasGroup: {fileID: 1416097744}
+--- !u!114 &6373543057918427415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451480336757137061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefc4c68d50069941ae93863f64511e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armory: {fileID: 11400000, guid: 85b51e61f51edaa408bcb435e50a228e, type: 2}
+  player: {fileID: 8451480336757137061}
 --- !u!54 &8451480336757137057
 Rigidbody:
   m_ObjectHideFlags: 0

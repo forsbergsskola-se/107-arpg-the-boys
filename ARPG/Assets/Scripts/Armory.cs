@@ -11,5 +11,6 @@ public class Armory : ScriptableObject
     {
         public BaseWeapon weapon;
         public bool isBought;
+        public int cost;
     }
 }

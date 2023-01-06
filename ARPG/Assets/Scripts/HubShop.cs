@@ -27,12 +27,17 @@ public class HubShop : MonoBehaviour, IInteractable
         _playerCombat = player.GetComponent<PlayerCombat>();
         _playerMovement = player.GetComponent<PlayerMovement>();
         _playerRb = player.GetComponent<Rigidbody>();
+        _weaponLoader = player.GetComponent<PlayerWeaponLoader>();
+    }
+
+    private void Start()
+    {
         _weaponLoader.LoadProgress();
         for (var i = 0; i < armory.armoryWeapons.Length; i++)
         {
             shopWeapons[i].weapon = armory.armoryWeapons[i].weapon;
             shopWeapons[i].isBought = armory.armoryWeapons[i].isBought;
-            
+            shopWeapons[i].cost = armory.armoryWeapons[i].cost;
         }
     }
 
@@ -66,17 +71,19 @@ public class HubShop : MonoBehaviour, IInteractable
     public void TryBuyOrEquipItem(int shopWeaponArraySpot)
     {
         _selectedWeapon = shopWeapons[shopWeaponArraySpot];
-        if(_selectedWeapon.isBought)
-            EquipItem(_selectedWeapon);
-        else
+        if (!_selectedWeapon.isBought)
             BuyItem(_selectedWeapon);
+        else
+            EquipItem(_selectedWeapon);
+
+        armory.armoryWeapons[shopWeaponArraySpot].isBought = _selectedWeapon.isBought;
         _weaponLoader.SaveProgress();
     }
-    
+
     public void BuyItem(ShopWeapon selectedWeapon)
     {
         // Check if the player has enough money to buy the selected weapon
-        if (true/*money >= selectedWeapon.Cost*/)
+        if (true /*money >= selectedWeapon.Cost*/)
         {
             // Deduct the cost from the player's money
             //money -= selectedWeapon.Cost;
@@ -92,7 +99,7 @@ public class HubShop : MonoBehaviour, IInteractable
             // Display a message to the player telling them that they don't have enough money
             Debug.Log("You don't have enough money to buy this weapon!");
         }
-        
+
         UpdateShopUI();
     }
 
@@ -119,7 +126,7 @@ public class HubShop : MonoBehaviour, IInteractable
             // Display a message to the player telling them that they need to buy the weapon first
             Debug.Log("You need to buy this weapon first!");
         }
-        
+
         UpdateShopUI();
     }
 
@@ -140,7 +147,7 @@ public class HubShop : MonoBehaviour, IInteractable
             else
             {
                 // Change the button's text to "Buy"
-                weaponButton.GetComponentInChildren<TextMeshProUGUI>().text = "Buy";
+                weaponButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Buy ({weapon.cost})";
             }
         }
     }
@@ -148,9 +155,9 @@ public class HubShop : MonoBehaviour, IInteractable
     [Serializable]
     public class ShopWeapon
     {
-        public BaseWeapon weapon;
+        [NonSerialized] public BaseWeapon weapon;
+        [NonSerialized] public int cost;
+        [NonSerialized] public bool isBought;
         public Button shopButton;
-        public int cost;
-        public bool isBought;
     }
 }

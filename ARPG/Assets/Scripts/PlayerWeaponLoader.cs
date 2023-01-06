@@ -9,18 +9,14 @@ public class PlayerWeaponLoader : MonoBehaviour
     private BaseWeapon[] _baseWeapons;
     private Armory.ArmoryWeapon _selectedWeapon;
     
-    public GameObject player;
     private PlayerCombat _playerCombat;
     
     void Awake()
     {
-        _playerCombat = player.GetComponent<PlayerCombat>();
-        
-        for (var i = 0; i < armory.armoryWeapons.Length; i++)
-        {
-            _baseWeapons[i] = armory.armoryWeapons[i].weapon.GetComponent<BaseWeapon>();
-        }
+        _playerCombat = gameObject.GetComponent<PlayerCombat>();
     }
+    
+    
 
     public void LoadProgress()
     {
@@ -32,9 +28,9 @@ public class PlayerWeaponLoader : MonoBehaviour
         }
     
         // Load the index of the equipped weapon from PlayerPrefs
-        int equippedWeaponIndex = PlayerPrefs.GetInt("EquippedWeaponIndex");
+        int equippedWeaponIndex = PlayerPrefs.GetInt("EquippedWeaponIndex", -1);
         if (equippedWeaponIndex == -1)
-            Debug.LogError("equippedWeaponIndex is invalid. The index is -1");
+            Debug.Log("There is no saved weapon, equipping nothing.");
         
         if (equippedWeaponIndex >= 0 && equippedWeaponIndex < armory.armoryWeapons.Length)
         {

@@ -3449,6 +3449,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
   m_PrefabInstance: {fileID: 1222220607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1265226761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965184132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefc4c68d50069941ae93863f64511e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armory: {fileID: 0}
 --- !u!1001 &1269608878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4807,31 +4820,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7f167055cec134a97d4fab20a15591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopWeapons:
-  - Weapon: {fileID: 5544351134137442709, guid: 2394c4cf4664292458a12ec34f09bf8e, type: 3}
-    ShopButton: {fileID: 3435047817691616366}
-    Cost: 0
-    IsBought: 0
-  - Weapon: {fileID: 2681921599505278631, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-    ShopButton: {fileID: 161987586}
-    Cost: 0
-    IsBought: 0
-  - Weapon: {fileID: 4909087652306778666, guid: 46af6ed57912eb94891c97ca51eaf426, type: 3}
-    ShopButton: {fileID: 1806400554}
-    Cost: 0
-    IsBought: 0
-  - Weapon: {fileID: 837803579199771690, guid: 4afb47f68bb1ed5408fcc493688f5fc7, type: 3}
-    ShopButton: {fileID: 1223420978}
-    Cost: 0
-    IsBought: 0
-  - Weapon: {fileID: 2125228741861111680, guid: 68692559b2cd9f849918a341db479bd7, type: 3}
-    ShopButton: {fileID: 1085278287}
-    Cost: 0
-    IsBought: 0
-  - Weapon: {fileID: 7828089153916935713, guid: 323813849c143ef41aba5a7dc34e76c6, type: 3}
-    ShopButton: {fileID: 1224033135}
-    Cost: 0
-    IsBought: 0
+  armory: {fileID: 11400000, guid: 85b51e61f51edaa408bcb435e50a228e, type: 2}
+  shopWeapons:
+  - shopButton: {fileID: 3435047817691616366}
+  - shopButton: {fileID: 161987586}
+  - shopButton: {fileID: 1806400554}
+  - shopButton: {fileID: 1223420978}
+  - shopButton: {fileID: 1085278287}
+  - shopButton: {fileID: 1224033135}
   shopUIPanel: {fileID: 585055858}
   player: {fileID: 965184132}
 --- !u!1001 &1908312220
