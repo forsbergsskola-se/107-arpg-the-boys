@@ -1,7 +1,8 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class ItemScript : MonoBehaviour
+public class ItemScript : MonoBehaviour, IInteractable, IPickupable
 {
     public ItemScriptableObject itemSo;
     [Header("if this is disabled, item power will curve towards zero for this item type.")]
@@ -9,17 +10,7 @@ public class ItemScript : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision) //can be replaced with other pick-up logic if required
     {
-        if (collision.gameObject.GetComponent<PlayerStats>())
-        {
-            //get necessary components
-            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-            PlayerInventory playerInventory = collision.gameObject.GetComponent<PlayerInventory>();
-            heldCount = playerInventory.GetItemCount(itemSo.name);//get # of items held from player inventory
-            ItemPickedUp(playerStats); // runs pick-up method
-            playerInventory.UpdateItemCount(itemSo.name); // updates # held
-            Debug.Log($"{gameObject} collided with {collision.gameObject} and was destroyed.");
-            Destroy(gameObject); //kills object
-        }
+        
     }
     /* todo: method for selling items.
      method should be calling 'ItemPickedUp' so that value decreases instead of increases.
@@ -158,4 +149,28 @@ public class ItemScript : MonoBehaviour
         Debug.Log("items held value in item script: " + heldCount);
     }
 
+    public float rotationSpeed;
+    private void Update()
+    {
+        transform.Rotate(transform.up, rotationSpeed);
+    }
+
+    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
+    {
+        Pickup(playerStats, playerInventory);
+    }
+
+    public void Highlight()
+    {
+        throw new NotImplementedException();
+    }
+    
+    public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
+    {
+        //get necessary components
+        heldCount = playerInventory.GetItemCount(itemSo.name);//get # of items held from player inventory
+        ItemPickedUp(playerStats); // runs pick-up method
+        playerInventory.UpdateItemCount(itemSo.name); // updates # held
+        Destroy(gameObject); //kills object
+    }
 }
