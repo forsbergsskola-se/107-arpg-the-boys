@@ -2977,6 +2977,16 @@ MonoBehaviour:
   itemThree: {fileID: 0}
   itemFour: {fileID: 0}
   itemFive: {fileID: 0}
+  iOneDw: 50
+  iTwoDw: 40
+  iThreeDw: 30
+  iFourDw: 20
+  iFiveDw: 10
+  chanceOfDrop: 50
+  potionDrop: {fileID: 3508470042474671433, guid: 64b8ab0432074724db100603b3244801, type: 3}
+  chanceOfPotion: 20
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 100
 --- !u!1 &3391090307503573233
 GameObject:
   m_ObjectHideFlags: 0
