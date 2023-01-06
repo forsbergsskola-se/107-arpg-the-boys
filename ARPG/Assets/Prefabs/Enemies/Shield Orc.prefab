@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1167513256}
   - component: {fileID: 1167513257}
   - component: {fileID: 1155628011}
+  - component: {fileID: 8018545301037897304}
   m_Layer: 10
   m_Name: Shield Orc
   m_TagString: Untagged
@@ -302,6 +303,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8018545301037897304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533563025633197055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOne: {fileID: 6073467025313538038, guid: a7f8f204210ae2c49bc08f0f4307e5ae, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: f622f6e9792f91d4bb7d8af660e3917b, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: ccf3b4db3fa486a45b2024b5b6ea3107, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: c2ed4b4073fc0974b9d580269441f0f2, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: d1941788ba7649f4180617946590d50d, type: 3}
+  iOneDw: 60
+  iTwoDw: 50
+  iThreeDw: 40
+  iFourDw: 30
+  iFiveDw: 20
+  chanceOfDrop: 100
+  potionDrop: {fileID: 7128999294487744332, guid: 55c3a84d78392f4428b14edf9d1ac7e8, type: 3}
+  chanceOfPotion: 100
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 100
 --- !u!1 &2573205927090387073
 GameObject:
   m_ObjectHideFlags: 0

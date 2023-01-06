@@ -4146,6 +4146,7 @@ GameObject:
   - component: {fileID: 280569395}
   - component: {fileID: 224781859}
   - component: {fileID: 38332992643484363}
+  - component: {fileID: -5176376341162199347}
   m_Layer: 10
   m_Name: "Bj\xF6rne"
   m_TagString: Untagged
@@ -4402,6 +4403,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5176376341162199347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825372332017837820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOne: {fileID: 6073467025313538038, guid: aa907834bab8f26438e548e568259526, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: a75e99d15448a294281bd90a67fbb17c, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: 480217e520bcb4442bb639c74fcad4d0, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: 546fde21800c15a43b2379c41b882918, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: c2ed4b4073fc0974b9d580269441f0f2, type: 3}
+  iOneDw: 60
+  iTwoDw: 50
+  iThreeDw: 40
+  iFourDw: 30
+  iFiveDw: 20
+  chanceOfDrop: 50
+  potionDrop: {fileID: 7128999294487744332, guid: 55c3a84d78392f4428b14edf9d1ac7e8, type: 3}
+  chanceOfPotion: 50
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 100
 --- !u!1 &8844589350914480094
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 using static DrawBoxCast;
+using static RandomSound;
 
 public class PlayerCombat : MonoBehaviour, IInterruptible
 {
@@ -253,15 +254,6 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 damageable.TakeDamage(damage);
             }
         }
-    }
-
-    public AudioClip GetRandomAudioClip(AudioClip[] audioClips)
-    {
-        // Select a random index from the array
-        int randomIndex = Random.Range(0, audioClips.Length);
-
-        // Return the audio clip at the random index
-        return audioClips[randomIndex];
     }
 
     private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)

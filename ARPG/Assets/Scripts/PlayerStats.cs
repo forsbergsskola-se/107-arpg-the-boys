@@ -1,11 +1,24 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
+    [Header("Potion counters")] 
+    public int maxHealthPotions;
+    private int _currentHealthPotions; //for clamp
+    public int CurrentHealthPotions
+    { get => _currentHealthPotions; private set => _currentHealthPotions = math.clamp(value, 0, maxManaPotions); }
+
+    public int maxManaPotions;
+    private int _currentManaPotions;
+    public int CurrentManaPotions
+    { get => _currentManaPotions; private set => _currentManaPotions = math.clamp(value, 0, maxManaPotions); }
+
+    
     [Header("HP Variables")]
     public float baseMaxHealth = 100f;
     public float maxHealthModPerc = 1f;
@@ -104,18 +117,20 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public CanvasGroup deathUIBlackScreenCanvasGroup;
     private bool hasDied;
     private PlayerMovement _playerMovement;
-    
-    
+
+
     
     //methods
     public void TakeDamage(float damage)
     {
-        if (damage > 0) { CurrentHealth -= damage * dmgTakePerc; }
-        else { CurrentHealth -= damage * hpRecovModPerc; }
-
-        if (CurrentHealth <= 0 && !hasDied)
+        if (!_playerMovement.isRolling)
         {
-            StartCoroutine(Death());
+            if (damage > 0)
+            { CurrentHealth -= damage * dmgTakePerc; }
+            else
+            { CurrentHealth -= damage * hpRecovModPerc; }
+            if (CurrentHealth <= 0 && !hasDied)
+            { StartCoroutine(Death()); }
         }
     }
 
@@ -163,8 +178,51 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         DodgeCharges  = Math.Clamp(DodgeCharges + addCharges, 0, maxDodgeCharges);
     }
-    
-    
+
+    public void AddHPotion(int addCharges)
+    { _currentHealthPotions = Math.Clamp( _currentHealthPotions + addCharges, 0, maxHealthPotions); }
+
+    public void AddMPotion(int addCharges)
+    { _currentManaPotions = Math.Clamp(_currentManaPotions + addCharges, 0, maxManaPotions); }
+
+    private void UseHPotion()
+    {
+        if (CurrentHealthPotions > 0)
+        {
+            TakeDamage(-20f); //negative damage dealt = health restored
+            CurrentHealthPotions -= 1;
+            Debug.Log("recovered 20 hp.");
+        }
+        else
+        {
+            Debug.Log("not enough potions!");
+        }
+
+    }
+
+    private void UseMPotion()
+    {
+        if (CurrentManaPotions > 0)
+        {
+            ChangeMana(-20f); //negative number change = mana restored
+            CurrentManaPotions -= 1;
+            Debug.Log("recovered 20 mana.");
+        }
+        else
+        {
+            Debug.Log("not enough potions!");
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("HealthPotion"))
+        { UseHPotion(); }
+
+        if (Input.GetButtonDown("ManaPotion"))
+        { UseMPotion(); }
+    }
+
     void Start()
     {
         _currentHealth = MaxHealth;

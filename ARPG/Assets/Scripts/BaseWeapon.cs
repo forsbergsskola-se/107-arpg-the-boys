@@ -37,9 +37,12 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public Vector3 modelPosOffset;
     public Vector3 modelRotOffset;
 
+    [Header("Other")]
+    public int weaponID;
+
     private Rigidbody _rb;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
