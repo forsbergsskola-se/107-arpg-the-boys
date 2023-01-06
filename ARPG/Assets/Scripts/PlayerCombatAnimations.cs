@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RandomSound;
 
 public class PlayerCombatAnimations : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class PlayerCombatAnimations : MonoBehaviour
         {
             playerCombat.audioSource.pitch = .5f + playerCombat.currentWeapon.heavyAttackSpeed * .5f;
         }
-        playerCombat.audioSource.clip = playerCombat.GetRandomAudioClip(playerCombat.slashWhoosh);
+        playerCombat.audioSource.clip = GetRandomAudioClip(playerCombat.slashWhoosh);
         playerCombat.audioSource.Play();
     }
 

@@ -62,6 +62,7 @@ MonoBehaviour:
   parryTime: 0.1
   modelPosOffset: {x: 0, y: -0.0348, z: -0.001}
   modelRotOffset: {x: -6.771, y: 0, z: 0}
+  weaponID: 2
 --- !u!54 &4909087652306778665
 Rigidbody:
   m_ObjectHideFlags: 0

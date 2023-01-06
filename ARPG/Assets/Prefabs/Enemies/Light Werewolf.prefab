@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 114354951}
   - component: {fileID: 114354952}
   - component: {fileID: 90752548}
+  - component: {fileID: 5701619630325548521}
   m_Layer: 10
   m_Name: Light Werewolf
   m_TagString: Untagged
@@ -929,6 +930,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5701619630325548521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574851047612008681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOne: {fileID: 6073467025313538038, guid: bfafaecfc33acbf43a78aa3bc8aba9e6, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: ccf3b4db3fa486a45b2024b5b6ea3107, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: 00a63345a7c8c724e9849f933971297c, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: ae59a84f3b02de949941b63a47c93b70, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: 2dffc4f88b5759c4890bf1cfca38f2b9, type: 3}
 --- !u!1 &1580826613530131203
 GameObject:
   m_ObjectHideFlags: 0
