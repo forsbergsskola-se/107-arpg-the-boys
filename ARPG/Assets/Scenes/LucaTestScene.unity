@@ -1893,6 +1893,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5701619630325548521, guid: 9499b11585203d644a858411b90171bc, type: 3}
+      propertyPath: potionDrop
+      value: 
+      objectReference: {fileID: 3508470042474671433, guid: 64b8ab0432074724db100603b3244801, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9499b11585203d644a858411b90171bc, type: 3}
 --- !u!1001 &2125228740562475602
@@ -1902,6 +1906,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2125228741861111680, guid: 68692559b2cd9f849918a341db479bd7, type: 3}
+      propertyPath: magicAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2125228741861111681, guid: 68692559b2cd9f849918a341db479bd7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1959,6 +1967,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4909087652306778666, guid: 46af6ed57912eb94891c97ca51eaf426, type: 3}
+      propertyPath: magicAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4909087652306778678, guid: 46af6ed57912eb94891c97ca51eaf426, type: 3}
       propertyPath: m_Name
       value: 'Dagger '
@@ -2129,6 +2141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 48.745
       objectReference: {fileID: 0}
+    - target: {fileID: 5544351134137442709, guid: 2394c4cf4664292458a12ec34f09bf8e, type: 3}
+      propertyPath: magicAttackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5544351134137442710, guid: 2394c4cf4664292458a12ec34f09bf8e, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -2203,58 +2219,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1708705578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708705578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708705578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708705578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1708705578, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: baseRangePower
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: maxManaPotions
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: baseRangedRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: maxHealthPotions
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: rangePowerModPerc
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2783323404988249554, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_Name
-      value: PlayerManaBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195513252081199579, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7330928658350872650, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: slashCost
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
       value: Player
