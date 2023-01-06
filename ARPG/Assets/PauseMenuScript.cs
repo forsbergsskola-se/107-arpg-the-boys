@@ -122,6 +122,11 @@ public class PauseMenuScript : MonoBehaviour
     }
     
     //button functions
+
+    public void NewGameButton()
+    {
+        //logic for playerprefs here.
+    }
     public void ResumeButton()
     {
         Resume();
