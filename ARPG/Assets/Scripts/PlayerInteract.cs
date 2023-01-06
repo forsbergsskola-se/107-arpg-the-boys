@@ -28,7 +28,7 @@ public class PlayerInteract : MonoBehaviour
         if (_closestInteractable != null)
         {
             //_closestInteractable.Highlight();
-            if (_closestInteractable is ItemScript)
+            if (_closestInteractable is ItemScript or HealthPotion or ManaPotion)
             {
                 _closestInteractable.Interact(_playerStats, _playerInventory);
             }
