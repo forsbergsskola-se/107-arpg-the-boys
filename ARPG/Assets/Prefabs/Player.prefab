@@ -4366,11 +4366,11 @@ GameObject:
   - component: {fileID: 7330928658350872650}
   - component: {fileID: 5296135388477071890}
   - component: {fileID: 938367398927242142}
+  - component: {fileID: 6872167576773819811}
   - component: {fileID: 6373543057918427415}
   - component: {fileID: 8451480336757137057}
   - component: {fileID: 8451480336757137056}
   - component: {fileID: 1822394994}
-  - component: {fileID: 1265226761}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -4492,11 +4492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e6354a802514442a74bb522ea26d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCombat: {fileID: 7330928658350872650}
+  player: {fileID: 8451480336757137061}
   interactAreaSize: 3
   interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 8704
+    m_Bits: 25088
 --- !u!114 &938367398927242142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4550,6 +4550,18 @@ MonoBehaviour:
   onDeathSceneIndex: 0
   deathUITextCanvasGroup: {fileID: 1267092726}
   deathUIBlackScreenCanvasGroup: {fileID: 1416097744}
+--- !u!114 &6872167576773819811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451480336757137061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fc92c07b482e649a95240e0b5d2d3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6373543057918427415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4689,19 +4701,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1265226761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8451480336757137061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eefc4c68d50069941ae93863f64511e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armory: {fileID: 0}
 --- !u!1001 &5156847042402483364
 PrefabInstance:
   m_ObjectHideFlags: 0

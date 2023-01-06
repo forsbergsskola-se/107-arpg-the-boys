@@ -23,7 +23,9 @@ public class HubShop : MonoBehaviour, IInteractable
     private PlayerCombat _playerCombat;
     private PlayerMovement _playerMovement;
     private PlayerWeaponLoader _weaponLoader;
+    private PlayerInventory _inventory;
     private Rigidbody _playerRb;
+    
 
     [Header("Audio")] 
     public AudioSource audioSource;
@@ -38,6 +40,7 @@ public class HubShop : MonoBehaviour, IInteractable
         _playerMovement = player.GetComponent<PlayerMovement>();
         _playerRb = player.GetComponent<Rigidbody>();
         _weaponLoader = player.GetComponent<PlayerWeaponLoader>();
+        _inventory = player.GetComponent<PlayerInventory>();
     }
 
     private void Start()
@@ -97,10 +100,11 @@ public class HubShop : MonoBehaviour, IInteractable
     public void BuyItem(ShopWeapon selectedWeapon)
     {
         // Check if the player has enough money to buy the selected weapon
-        if (true /*money >= selectedWeapon.Cost*/)
+        if (_inventory.GetItemCount("Money") >= selectedWeapon.cost)
         {
             // Deduct the cost from the player's money
-            //money -= selectedWeapon.Cost;
+            _inventory.ShopSellMoney("Money", _inventory.GetItemCount("Money") - selectedWeapon.cost);
+            Debug.Log($"Bought weapon, now you have {_inventory.GetItemCount("Money")} moneys.");
 
             // Set the weapon's "isBought" field to true
             selectedWeapon.isBought = true;
@@ -115,7 +119,7 @@ public class HubShop : MonoBehaviour, IInteractable
         else
         {
             // Display a message to the player telling them that they don't have enough money
-            Debug.Log("You don't have enough money to buy this weapon!");
+            Debug.Log($"You don't have enough money to buy this weapon! You need {selectedWeapon.cost} but you only have {_inventory.GetItemCount("Money")}");
         }
 
         UpdateShopUI();

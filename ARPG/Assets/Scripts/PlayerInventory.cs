@@ -40,4 +40,9 @@ public class PlayerInventory : MonoBehaviour
         _itemDict[itemName]--; //increments with flat -1
         Debug.Log("selling: " + itemName + "new amount held: " + _itemDict[itemName]);
     }
+    
+    public void ShopSellMoney(string itemName, int valuechange)
+    {
+        _itemDict[itemName] =+ valuechange;
+    }
 }
