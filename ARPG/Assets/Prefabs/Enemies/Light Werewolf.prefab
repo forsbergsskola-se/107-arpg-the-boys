@@ -947,6 +947,16 @@ MonoBehaviour:
   itemThree: {fileID: 6073467025313538038, guid: 00a63345a7c8c724e9849f933971297c, type: 3}
   itemFour: {fileID: 6073467025313538038, guid: ae59a84f3b02de949941b63a47c93b70, type: 3}
   itemFive: {fileID: 6073467025313538038, guid: 2dffc4f88b5759c4890bf1cfca38f2b9, type: 3}
+  iOneDw: 100
+  iTwoDw: 1
+  iThreeDw: 1
+  iFourDw: 1
+  iFiveDw: 1
+  chanceOfDrop: 100
+  potionDrop: {fileID: 7128999294487744332, guid: 55c3a84d78392f4428b14edf9d1ac7e8, type: 3}
+  chanceOfPotion: 100
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 100
 --- !u!1 &1580826613530131203
 GameObject:
   m_ObjectHideFlags: 0
