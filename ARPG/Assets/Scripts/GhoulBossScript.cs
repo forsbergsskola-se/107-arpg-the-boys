@@ -10,8 +10,7 @@ public class GhoulBossScript : MonoBehaviour
     public GameObject indicatorPrefab;
     public GameObject bombPrefab;
     public float chaseModeDuration;
-    private bool _isInChaseMode;
-    public float movespeed;
+    public float moveSpeed;
     public float rotationSpeed;
     public Animator animator;
     public Vector3 attackRange;
@@ -21,9 +20,12 @@ public class GhoulBossScript : MonoBehaviour
     public float damage;
     public bool showAttackRange;
     public bool showAttackSize;
+    public int bombTurns;
     private Coroutine _currentChase;
     private float _timer;
     private bool _isAttacking;
+    private bool _isInChaseMode;
+    private int _bombCounter;
 
     void Update()
     {
@@ -38,6 +40,9 @@ public class GhoulBossScript : MonoBehaviour
         {
             ChaseMode();
         }
+        
+        print(_bombCounter);
+        print(_timer);
 
         if (showAttackSize)
         {
@@ -50,11 +55,10 @@ public class GhoulBossScript : MonoBehaviour
         }
     }
 
-    public void ChaseMode()
+    private void ChaseMode()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position);
-        transform.position =
-            Vector3.MoveTowards(transform.position, player.transform.position, movespeed * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         Collider[] hits = Physics.OverlapBox(attackTransform.position, attackRange / 2, transform.rotation, hitLayer);
         for (var i = 0; i < hits.Length; i++)
@@ -67,8 +71,13 @@ public class GhoulBossScript : MonoBehaviour
         }
     }
 
+    private void BombMode()
+    {
+        animator.SetTrigger("Bomb");
+    }
 
-    public IEnumerator CO_BombSpawn(GameObject indicatorInstance)
+
+    private IEnumerator CO_BombSpawn(GameObject indicatorInstance)
     {
         yield return new WaitForSeconds(1);
         Instantiate(bombPrefab, indicatorInstance.transform.position, Quaternion.identity);
@@ -85,16 +94,21 @@ public class GhoulBossScript : MonoBehaviour
             _isInChaseMode = true;
             yield return null;
         }
-
+        BombMode();
         _isInChaseMode = false;
+        _timer = 0;
     }
 
     #region Animation Methods
 
     public void BombAnimation()
     {
-        GameObject indicatorInstance = Instantiate(indicatorPrefab, player.transform.position, Quaternion.identity);
-        StartCoroutine(CO_BombSpawn(indicatorInstance));
+        if (_bombCounter <= bombTurns)
+        {
+            _bombCounter++;
+            GameObject indicatorInstance = Instantiate(indicatorPrefab, player.transform.position, Quaternion.identity);
+            StartCoroutine(CO_BombSpawn(indicatorInstance));
+        }
     }
 
     public void PunchAnimation()
@@ -107,6 +121,19 @@ public class GhoulBossScript : MonoBehaviour
         if (_currentChase != null)
             StopCoroutine(_currentChase);
         _currentChase = StartCoroutine(CO_ChaseMode());
+    }
+
+    public void BombEnd()
+    {
+        if (_bombCounter >= bombTurns)
+        {
+            _currentChase = StartCoroutine(CO_ChaseMode());
+            _bombCounter = 0;
+        }
+        else
+            animator.SetTrigger("Bomb");
+        
+        
     }
 
     #endregion
