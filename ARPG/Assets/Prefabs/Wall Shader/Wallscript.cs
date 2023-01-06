@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class Wallscript : MonoBehaviour
 {
-    private Material _defaultMat;
+    public Material defaultMat;
     private Renderer _renderer;
     private Coroutine _currentRayCast;
-    
     public void OnRayCastHit(Material[] shaderMat)
     {
+
         if (_currentRayCast != null)
         {
             StopCoroutine(_currentRayCast);
         }
-        _renderer.materials = shaderMat;
+        
         _currentRayCast = StartCoroutine(CO_OnRayCastExit());
+        
+        
+        _renderer.materials = shaderMat;
     }
 
     void Awake()
     {
         _renderer = GetComponent<Renderer>();
-        _defaultMat = _renderer.material;
-
+        defaultMat = _renderer.material;
+        
     }
 
     private IEnumerator CO_OnRayCastExit()
     {
         yield return new WaitForSeconds(0.3f);
-        _renderer.material = _defaultMat;
-        print("big");
+        _renderer.material = defaultMat;
     }
     void Update()
     {

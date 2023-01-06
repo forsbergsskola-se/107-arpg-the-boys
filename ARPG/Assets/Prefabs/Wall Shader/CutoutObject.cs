@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public class CutoutObject : MonoBehaviour
@@ -11,7 +12,6 @@ public class CutoutObject : MonoBehaviour
     public Camera mainCamera;
     public Material[] shaderMaterials;
     private bool _hitSomething;
-    private bool kuk = true;
     public float offset;
     public float shaderMaxSize;
     private Renderer[] _lastRenderers;
@@ -19,13 +19,14 @@ public class CutoutObject : MonoBehaviour
     private static readonly int CutoutPos = Shader.PropertyToID("_CutoutPos");
     private static readonly int CutoutSize = Shader.PropertyToID("_CutoutSize");
     private static readonly int FalloffSize = Shader.PropertyToID("_FalloffSize");
-    public float rayCastSize;
+    private static readonly int MainTexture = Shader.PropertyToID("_MainTexture");
     private float shaderSize;
     public float durration;
-
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
+        
+
     }
 
     void Update()
@@ -42,32 +43,20 @@ public class CutoutObject : MonoBehaviour
         Vector3 direction = targetObject.position - transform.position;
         //RaycastHit[] hitObject = Physics.SphereCastAll(transform.position, rayCastSize, direction, direction.magnitude - offset, wallMask);
         RaycastHit[] hitObject = Physics.RaycastAll(transform.position, direction, direction.magnitude, wallMask);
+        Wallscript[] wallObjects = new Wallscript[hitObject.Length];
+
+
         _hitSomething = false;
         for (int i = 0; i < hitObject.Length; i++)
         {
-            // if (kuk)
-            // {
-            //     _lastRenderers = new Renderer[hitObject.Length];
-            //     _lastMaterials = new Material[hitObject.Length];
-            //     
-            //     for (var i1 = 0; i1 < hitObject.Length; i1++)
-            //     {
-            //
-            //         _lastRenderers[i1] = hitObject[i1].transform.GetComponent<Renderer>();
-            //         _lastMaterials[i1] = hitObject[i1].transform.GetComponent<Renderer>().material;
-            //
-            //     }
-            //     kuk = false;
-            // }
 
+            wallObjects[i] = hitObject[i].transform.GetComponent<Wallscript>();
             _hitSomething = true;
 
 
             // hitObject[i].transform.GetComponent<Renderer>().materials = shaderMaterials;
-            if (hitObject[i].transform.GetComponent<Wallscript>() != null)
-            {
-                hitObject[i].transform.GetComponent<Wallscript>().OnRayCastHit(shaderMaterials);
-            }
+            
+            
 
             shaderSize += Time.deltaTime / durration;
             shaderSize = Mathf.Clamp(shaderSize,0, shaderMaxSize);
@@ -77,6 +66,12 @@ public class CutoutObject : MonoBehaviour
                 shaderMaterials[j].SetVector(CutoutPos, cutoutPos);
                 shaderMaterials[j].SetFloat(CutoutSize, shaderSize);
                 shaderMaterials[j].SetFloat(FalloffSize, 0.05f);
+                shaderMaterials[j].SetTexture(MainTexture, wallObjects[i].defaultMat.mainTexture);
+            }
+            
+            if (wallObjects[i] != null)
+            {
+                wallObjects[i].OnRayCastHit(shaderMaterials);
             }
         }
 
