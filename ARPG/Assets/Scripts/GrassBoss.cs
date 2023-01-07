@@ -19,6 +19,7 @@ public class GrassBoss : MonoBehaviour
 
 
     private float _distanceBetween;
+    public bool switchFromPassive;
 
 
     void Start()

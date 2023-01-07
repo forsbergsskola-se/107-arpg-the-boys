@@ -89,6 +89,7 @@ public class WorldGenerator : MonoBehaviour
     Transform[] SpawnRoom(int doors, Vector3 pos,Quaternion rot)
     {
         DungeonRoom currentRoom = Instantiate(GetRoom(doors),pos, Quaternion.identity);
+        Debug.Log("Instantiated + " + currentRoom.name);
         int randomPivot = Random.Range(0,currentRoom.pivotPoints.Length);
         Transform currentPivotPoint = currentRoom.pivotPoints[randomPivot];
         Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * -Vector3.right, rot * Vector3.right);
@@ -116,6 +117,8 @@ public class WorldGenerator : MonoBehaviour
     Transform[] SpawnRoom(DungeonRoom room, Vector3 pos,Quaternion rot)
     {
         DungeonRoom currentRoom = Instantiate(room,pos, Quaternion.identity);
+        Debug.Log("Instantiated + " + currentRoom.name);
+
         int randomPivot = Random.Range(0,currentRoom.pivotPoints.Length);
         Transform currentPivotPoint = currentRoom.pivotPoints[randomPivot];
         Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * -Vector3.right, rot * Vector3.right);
@@ -193,6 +196,8 @@ public class WorldGenerator : MonoBehaviour
     {
         wasDestroyed = false;
         DungeonRoom currentRoom = Instantiate(spawnRoom,fromRoomPos, Quaternion.identity);
+        Debug.Log("Instantiated + " + currentRoom.name);
+
         if (currentRoom.pivotPoints.Length == 1)
         {
             //oneExitRooms.Add(currentRoom.pivotPoints[0]);
@@ -233,7 +238,13 @@ public class WorldGenerator : MonoBehaviour
                 //If we collide with any room, try another orientation.
                 if (count>0)
                 {
-                    if (debugOn) Instantiate(debugSphere, _colBuffer[0].transform.position, Quaternion.identity).name = "I tried being a + " + currentRoom.name + " but I collided with: " + _colBuffer[0].gameObject.name;
+                    if (debugOn)
+                    {
+                        StoringShitThatDoesntExist shit = Instantiate(debugSphere, _colBuffer[0].transform.position,
+                            Quaternion.identity).GetComponent<StoringShitThatDoesntExist>();
+                        shit.name = "I tried being a + " + currentRoom.name + " but I collided with: " + _colBuffer[0].gameObject.name;
+                        shit.collided = _colBuffer[0].gameObject;
+                    } 
                     break;
                 }
                 

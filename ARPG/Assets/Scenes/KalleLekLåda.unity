@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 74161826}
   - component: {fileID: 74161825}
   - component: {fileID: 74161824}
+  - component: {fileID: 74161827}
   m_Layer: 0
   m_Name: CHECKING HERE
   m_TagString: Untagged
@@ -206,6 +207,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &74161827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74161822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f7174907595fa4089f5ad0515e0874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collided: {fileID: 0}
 --- !u!1 &451814528
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +763,10 @@ PrefabInstance:
       propertyPath: maxDodgeCharges
       value: 5096
       objectReference: {fileID: 0}
+    - target: {fileID: 2006851877373625618, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7220317599497472196, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: lightAttackColSize.x
       value: 2
@@ -851,7 +869,7 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 2056
-  desiredRoomAmount: 37
+  desiredRoomAmount: 90
   desiredShopAmount: 0
   desiredExitAmount: 0
   deadEnd: {fileID: 6826714623388744095, guid: 659a7e015b79f6f4ea8833c3bc3f65c5, type: 3}
@@ -880,7 +898,7 @@ MonoBehaviour:
     - {fileID: 2540099011062652085, guid: 415d20e8e125d054abe3f99d014ff84c, type: 3}
     - {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - {fileID: 2305619482848091213, guid: e571f11826d0ed44280a5abfffb8ea69, type: 3}
-  debugOn: 0
+  debugOn: 1
   debugSphere: {fileID: 1074531172}
   debugCube: {fileID: 74161822}
 --- !u!4 &1686337407
