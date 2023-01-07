@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 1074531176}
   - component: {fileID: 1074531175}
   - component: {fileID: 1074531174}
+  - component: {fileID: 1074531177}
   m_Layer: 0
   m_Name: Debug Sphere
   m_TagString: Untagged
@@ -651,6 +652,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074531177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074531172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f7174907595fa4089f5ad0515e0874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collided: {fileID: 0}
 --- !u!1 &1273656855
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +677,7 @@ GameObject:
   - component: {fileID: 1273656858}
   - component: {fileID: 1273656857}
   - component: {fileID: 1273656856}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +912,7 @@ MonoBehaviour:
     - {fileID: 2540099011062652085, guid: 415d20e8e125d054abe3f99d014ff84c, type: 3}
     - {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - {fileID: 2305619482848091213, guid: e571f11826d0ed44280a5abfffb8ea69, type: 3}
-  debugOn: 1
+  debugOn: 0
   debugSphere: {fileID: 1074531172}
   debugCube: {fileID: 74161822}
 --- !u!4 &1686337407
