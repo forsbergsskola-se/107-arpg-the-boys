@@ -52,12 +52,14 @@ MonoBehaviour:
   lightAttackDamage: 10
   lightAttackSpeed: 1.5
   lightAttackColSize: {x: 0, y: 0, z: 0}
+  lightAttackColOffset: {x: 0, y: 0, z: 0}
   heavyAttackDamage: 20
-  heavyAttackSpeed: 0.5
+  heavyAttackSpeed: 0.8
   heavyAttackColSize: {x: 0, y: 0, z: 0}
-  guardTime: 1
-  parryPunishRange: 4
-  parryTime: 0.5
+  heavyAttackColOffset: {x: 0, y: 0, z: 0}
+  guardTime: 0.8
+  parryPunishRange: 9
+  parryTime: 0.6
   modelPosOffset: {x: -0.03855363, y: -0.001335014, z: 0.000717569}
   modelRotOffset: {x: 5.073, y: -109.972, z: -18.31}
 --- !u!54 &837803579199771691

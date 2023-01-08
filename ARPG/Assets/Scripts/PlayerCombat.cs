@@ -6,7 +6,6 @@ using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
-using static DrawBoxCast;
 
 public class PlayerCombat : MonoBehaviour, IInterruptible
 {
@@ -20,7 +19,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     public bool showHeavyHitBox;
     [NonSerialized]
     public bool isAttacking;
-
+    
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] slashWhoosh, enemyHitSound;
@@ -41,20 +40,19 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     void Update()
     {
-        Debug.Log(CurrentAttackState);
         if (!isAttacking && _playerMovement.canMove && !_playerMovement.isRolling && currentWeapon != null)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.lightAttackSpeed, "Light-attack", IInterruptible.AttackState.LightAttack));
+                _currentAttack = StartCoroutine(Attack(currentWeapon.lightAttackSpeed, "Light-attack", IInterruptible.AttackState.LightAttack));
             }
             if (Input.GetButtonDown("Fire2"))
             {
-                _currentAttack = StartCoroutine(CO_Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack", IInterruptible.AttackState.HeavyAttack));
+                _currentAttack = StartCoroutine(Attack(currentWeapon.heavyAttackSpeed, "Heavy-attack", IInterruptible.AttackState.HeavyAttack));
             }
             if (Input.GetButtonDown("Fire3"))
             {
-                _currentAttack = StartCoroutine(CO_Guard(currentWeapon.guardTime, currentWeapon.parryTime));
+                Guard(currentWeapon.guardTime);
             }
         }
 
@@ -100,7 +98,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         }
     }
 
-    private IEnumerator CO_Attack(float attackSpeed, string animTriggerName, IInterruptible.AttackState attackState)
+    private IEnumerator Attack(float attackSpeed, string animTriggerName, IInterruptible.AttackState attackState)
     {
         CurrentAttackState = attackState;
         Debug.Log(animTriggerName);
@@ -126,46 +124,27 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
 
-    private IEnumerator CO_Guard(float guardTime, float parryTime)
+    private IEnumerator Guard(float guardTime)
     {
         Debug.Log("Guarded!");
-
+        CurrentAttackState = IInterruptible.AttackState.Guard;
         
-        
-        _playerMovement.playerAnimator.speed = 1f / guardTime;
+        _playerMovement.playerAnimator.speed = guardTime;
         animationEnded = false;
         isAttacking = true;
         _playerMovement._rb.velocity = Vector3.zero;
-
-        _playerMovement.playerAnimator.SetTrigger("Guard");
-
-        float elapsedTime = 0f;
-        while (elapsedTime < guardTime)
-        {
-            elapsedTime += Time.deltaTime;
-
-            if (elapsedTime < parryTime)
-            {
-                CurrentAttackState = IInterruptible.AttackState.Parry;
-            }
-            else
-            {
-                CurrentAttackState = IInterruptible.AttackState.Guard;
-            }
-
-            yield return null;
-        }
-
-        // Wait for the animation to end
+        
+        _playerMovement.playerAnimator.SetBool("isGuarding", true);
+        
         yield return new WaitUntil(() => animationEnded);
-
+        
         // End guard
         isAttacking = false;
         _playerMovement.playerAnimator.speed = 1;
         CurrentAttackState = IInterruptible.AttackState.NoAttack;
     }
     
-    public void Parry()
+    private void Parry()
     {
         Debug.Log("Parried!");
         Collider[] hits = Physics.OverlapSphere(transform.position, currentWeapon.parryPunishRange, hitLayer);
@@ -173,14 +152,14 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             if (hits[i].TryGetComponent(out Enemy enemy))
             {
-                enemy.Parried();
+                // TODO: Call enemy parried function here
             }
         }
     }
 
     public void AttackBox(Vector3 attackColSize, Vector3 attackColOffset, float weaponDamage)
     {
-        bool hasHitEnemy = false;
+        bool hitEnemy = false;
         Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
         Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer);        // if (showBox)
         //     DrawBoxCastBox(attackCenter.position, attackColSize / 2, attackCenter.rotation, Color.cyan);
@@ -188,13 +167,13 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
             {
-                if (!hasHitEnemy)
+                if (!hitEnemy)
                 {
-                    hasHitEnemy = true;
+                    hitEnemy = true;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
                     audioSource.Play();
                     _playerStats.AddDash();
-                    Debug.Log("An enemy was hit");
+                    //Debug.Log("An enemy was hit");
                 }
                 if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
                     interruptible.Interrupt();
@@ -236,6 +215,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     public void Interrupt()
     {
+        _playerMovement.playerAnimator.speed = 2.5f;
         _playerMovement.playerAnimator.SetTrigger("Interrupted");
         CancelAttack();
     }
@@ -255,4 +235,104 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     }
 
     public IInterruptible.AttackState CurrentAttackState { get; set; }
+    
+
+    // TA BORT ALL DET HÄR SEN!!! SNÄLLA SNÄLLA SNÄLLA
+    //Draws just the box at where it is currently hitting.
+    public static void DrawBoxCastOnHit(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Vector3 direction, float hitInfoDistance, Color color)
+    {
+        origin = CastCenterOnCollision(origin, direction, hitInfoDistance);
+        DrawBox(origin, halfExtents, orientation, color);
+    }
+    
+    
+     public static void DrawBoxCastBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
+     {
+         Box bottomBox = new Box(origin, halfExtents, orientation);
+         DrawBox(bottomBox, color);
+     }
+     
+     public static void DrawBox(Vector3 origin, Vector3 halfExtents, Quaternion orientation, Color color)
+     {
+         DrawBox(new Box(origin, halfExtents, orientation), color);
+     }
+     public static void DrawBox(Box box, Color color)
+     {
+         Debug.DrawLine(box.frontTopLeft,     box.frontTopRight,    color);
+         Debug.DrawLine(box.frontTopRight,     box.frontBottomRight, color);
+         Debug.DrawLine(box.frontBottomRight, box.frontBottomLeft, color);
+         Debug.DrawLine(box.frontBottomLeft,     box.frontTopLeft, color);
+                                                  
+         Debug.DrawLine(box.backTopLeft,         box.backTopRight, color);
+         Debug.DrawLine(box.backTopRight,     box.backBottomRight, color);
+         Debug.DrawLine(box.backBottomRight,     box.backBottomLeft, color);
+         Debug.DrawLine(box.backBottomLeft,     box.backTopLeft, color);
+                                                  
+         Debug.DrawLine(box.frontTopLeft,     box.backTopLeft, color);
+         Debug.DrawLine(box.frontTopRight,     box.backTopRight, color);
+         Debug.DrawLine(box.frontBottomRight, box.backBottomRight, color);
+         Debug.DrawLine(box.frontBottomLeft,     box.backBottomLeft, color);
+     }
+     
+     
+     
+     
+     public struct Box
+     {
+         public Vector3 localFrontTopLeft     {get; private set;}
+         public Vector3 localFrontTopRight    {get; private set;}
+         public Vector3 localFrontBottomLeft  {get; private set;}
+         public Vector3 localFrontBottomRight {get; private set;}
+         public Vector3 localBackTopLeft      {get {return -localFrontBottomRight;}}
+         public Vector3 localBackTopRight     {get {return -localFrontBottomLeft;}}
+         public Vector3 localBackBottomLeft   {get {return -localFrontTopRight;}}
+         public Vector3 localBackBottomRight  {get {return -localFrontTopLeft;}}
+ 
+         public Vector3 frontTopLeft     {get {return localFrontTopLeft + origin;}}
+         public Vector3 frontTopRight    {get {return localFrontTopRight + origin;}}
+         public Vector3 frontBottomLeft  {get {return localFrontBottomLeft + origin;}}
+         public Vector3 frontBottomRight {get {return localFrontBottomRight + origin;}}
+         public Vector3 backTopLeft      {get {return localBackTopLeft + origin;}}
+         public Vector3 backTopRight     {get {return localBackTopRight + origin;}}
+         public Vector3 backBottomLeft   {get {return localBackBottomLeft + origin;}}
+         public Vector3 backBottomRight  {get {return localBackBottomRight + origin;}}
+ 
+         public Vector3 origin {get; private set;}
+ 
+         public Box(Vector3 origin, Vector3 halfExtents, Quaternion orientation) : this(origin, halfExtents)
+         {
+             Rotate(orientation);
+         }
+         public Box(Vector3 origin, Vector3 halfExtents)
+         {
+             this.localFrontTopLeft     = new Vector3(-halfExtents.x, halfExtents.y, -halfExtents.z);
+             this.localFrontTopRight    = new Vector3(halfExtents.x, halfExtents.y, -halfExtents.z);
+             this.localFrontBottomLeft  = new Vector3(-halfExtents.x, -halfExtents.y, -halfExtents.z);
+             this.localFrontBottomRight = new Vector3(halfExtents.x, -halfExtents.y, -halfExtents.z);
+ 
+             this.origin = origin;
+         }
+ 
+ 
+         public void Rotate(Quaternion orientation)
+         {
+             localFrontTopLeft     = RotatePointAroundPivot(localFrontTopLeft    , Vector3.zero, orientation);
+             localFrontTopRight    = RotatePointAroundPivot(localFrontTopRight   , Vector3.zero, orientation);
+             localFrontBottomLeft  = RotatePointAroundPivot(localFrontBottomLeft , Vector3.zero, orientation);
+             localFrontBottomRight = RotatePointAroundPivot(localFrontBottomRight, Vector3.zero, orientation);
+         }
+     }
+ 
+      //This should work for all cast types
+     static Vector3 CastCenterOnCollision(Vector3 origin, Vector3 direction, float hitInfoDistance)
+     {
+         return origin + (direction.normalized * hitInfoDistance);
+     }
+     
+     static Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Quaternion rotation)
+     {
+         Vector3 direction = point - pivot;
+         return pivot + rotation * direction;
+     }
+     
 }
