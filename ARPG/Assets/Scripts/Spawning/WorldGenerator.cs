@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,11 +17,10 @@ public class WorldGenerator : MonoBehaviour
     [Header("Rubble, usually")]
     public DungeonRoom deadEnd;
     
-    [Header("Shops")]
-    public DungeonRoom[] Shops;
-    
-    [Header("BossRooms")]
-    public DungeonRoom[] Exits;
+    [Header("Limited Amount Rooms")]
+    public List<LimitedRoomList> limitedRooms;
+
+    private int[][] _limitedAmountRoomsCount;
     
     [Header("Rooms")]
     public List<RoomList> allRooms;
@@ -32,7 +32,18 @@ public class WorldGenerator : MonoBehaviour
     public GameObject debugCube;
     void Awake()
     {
+        InitFunnyArray();
         GenerateRooms(desiredRoomAmount,Vector3.zero, Quaternion.identity);
+    }
+
+    private void InitFunnyArray()
+    {
+        _limitedAmountRoomsCount = new int[limitedRooms.Count][];
+
+        for (int i = 0; i < limitedRooms.Count; i++)
+        {
+            _limitedAmountRoomsCount[i] = new int[limitedRooms[i].rooms.Count];
+        }
     }
 
     public DungeonRoom GetRoom(int amountOfDoors)
@@ -89,7 +100,7 @@ public class WorldGenerator : MonoBehaviour
     Transform[] SpawnRoom(int doors, Vector3 pos,Quaternion rot)
     {
         DungeonRoom currentRoom = Instantiate(GetRoom(doors),pos, Quaternion.identity);
-        Debug.Log("Instantiated + " + currentRoom.name);
+        //Debug.Log("Instantiated + " + currentRoom.name);
         int randomPivot = Random.Range(0,currentRoom.pivotPoints.Length);
         Transform currentPivotPoint = currentRoom.pivotPoints[randomPivot];
         Quaternion roomRot = Quaternion.FromToRotation(currentPivotPoint.rotation * -Vector3.right, rot * Vector3.right);
@@ -144,17 +155,31 @@ public class WorldGenerator : MonoBehaviour
         return unusedPivots;
     }
 
-    private List<DungeonRoom> currentNotChecked;
+    private List<DungeonRoom> _currentNotChecked;
     private Transform[] PlaceValidRoom(Vector3 pos, Quaternion rot, int doorAmount)
     {
-        currentNotChecked = GetBiasedRoomList(doorAmount, true);
-        for (int i = 0; i < currentNotChecked.Count; i++)
+        _currentNotChecked = GetBiasedRoomList(doorAmount, true);
+        for (int i = 0; i < _currentNotChecked.Count; i++)
         {
-            int rand = Random.Range(0, currentNotChecked.Count);
-            Transform[]points = SpawnRoomCheckDoors(currentNotChecked[rand], pos, rot);
+            int rand = Random.Range(0, _currentNotChecked.Count);
+            
+            for (int j = 0; j < _currentNotChecked.Count; j++)
+            {
+                if (ShouldPrioritize(_currentNotChecked[j]))
+                {
+                    rand = j;
+                    break;
+                }
+            }
+            
+            if (doorAmount == 0)
+            {
+                Debug.Log("Spawning with only one door!");
+            }
+            Transform[]points = SpawnRoomCheckDoors(_currentNotChecked[rand], pos, rot);
             if (points==null)
             {
-                currentNotChecked.RemoveAt(rand);
+                _currentNotChecked.RemoveAt(rand);
             }
             else
             {
@@ -164,16 +189,69 @@ public class WorldGenerator : MonoBehaviour
         }
 
         return null;
-    }   
+    }
+
+    private void RidAmountRoomIfFailedToSpawn(DungeonRoom checkRoom)
+    {
+        int points = checkRoom.pivotPoints.Length - 1;
+
+        if (points >= limitedRooms.Count) return;
+        
+        for (int i = 0; i < limitedRooms[points].rooms.Count; i++)
+        {
+            if (limitedRooms[points].rooms[i].randomBetweenRooms.Contains(checkRoom))
+            {
+                Debug.Log("Removed how many spawned because room was never spawned :(");
+                _limitedAmountRoomsCount[points][i]--;
+                return;
+            }
+        }
+    }
+
+    private bool ShouldPrioritize(DungeonRoom room)
+    {
+        int points = room.pivotPoints.Length - 1;
+        
+        if (points >= limitedRooms.Count) return false;
+        
+        for (int i = 0; i < limitedRooms[points].rooms.Count; i++)
+        {
+            if (limitedRooms[points].rooms[i].randomBetweenRooms.Contains(room))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
     private List<DungeonRoom> GetBiasedRoomList(int doors, bool include)
     {
         //List<DungeonRoom> localRooms = include? allRooms[doors].rooms : allCollectedRooms;
         List<DungeonRoom> localRooms = new();
 
+        if (limitedRooms.Count > doors)
+        {
+            //Loop through the rooms with a certain amount of doors
+            for (int i = 0; i < limitedRooms[doors].rooms.Count; i++)
+            {
+                //Debug.Log(_limitedAmountRoomsCount[doors][i]);
+                //Debug.Log(limitedRooms[doors].rooms[i].amount);
+                //We are inside the rooms with a certain amount of doors
+                if (_limitedAmountRoomsCount[doors][i] < limitedRooms[doors].rooms[i].amount)
+                {
+                    _limitedAmountRoomsCount[doors][i]++;
+                    Debug.Log("Added room to front of spawnables");
+                    localRooms.Add(limitedRooms[doors].rooms[i].randomBetweenRooms[Random.Range(0, limitedRooms[doors].rooms[i].randomBetweenRooms.Length)]);
+                } 
+            }
+        }
+        
         foreach (DungeonRoom room in allRooms[doors].rooms)
         {
             localRooms.Add(room);
         }
+        
         if (!include)
         {
             for (int i = 0; i < allRooms.Count; i++)
@@ -196,7 +274,7 @@ public class WorldGenerator : MonoBehaviour
     {
         wasDestroyed = false;
         DungeonRoom currentRoom = Instantiate(spawnRoom,fromRoomPos, Quaternion.identity);
-        Debug.Log("Instantiated + " + currentRoom.name);
+        Debug.Log("Checking + " + currentRoom.name);
 
         if (currentRoom.pivotPoints.Length == 1)
         {
@@ -274,10 +352,13 @@ public class WorldGenerator : MonoBehaviour
                         }
                     }
                     
+                    Debug.Log(currentRoom.name + " was spawned!");
+
                     return unusedPivots;
                 }
             }
         }
+        RidAmountRoomIfFailedToSpawn(spawnRoom);
         Destroy(currentRoom.gameObject);
         if (debugOn) Instantiate(debugCube, currentRoom.transform.position, Quaternion.identity).name = "I was destroyed.";
 
@@ -339,4 +420,17 @@ public class WorldGenerator : MonoBehaviour
 public class RoomList
 {
     public List<DungeonRoom> rooms;
+}
+
+[System.Serializable]
+public class LimitedRoomList
+{
+    public List<LimitedAmountRoom> rooms;
+}
+
+[System.Serializable]
+public struct LimitedAmountRoom
+{
+    public DungeonRoom[] randomBetweenRooms;
+    public int amount;
 }
