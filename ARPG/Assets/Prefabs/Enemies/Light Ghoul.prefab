@@ -2015,6 +2015,7 @@ GameObject:
   - component: {fileID: 1471041412}
   - component: {fileID: 1471041414}
   - component: {fileID: 1471041415}
+  - component: {fileID: 9036434715484550701}
   m_Layer: 10
   m_Name: Light Ghoul
   m_TagString: Untagged
@@ -2273,6 +2274,33 @@ MonoBehaviour:
   agroDistance: 15
   waypoints:
   - {fileID: 0}
+--- !u!114 &9036434715484550701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749923263509970878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOne: {fileID: 0}
+  itemTwo: {fileID: 0}
+  itemThree: {fileID: 0}
+  itemFour: {fileID: 0}
+  itemFive: {fileID: 0}
+  iOneDw: 50
+  iTwoDw: 40
+  iThreeDw: 30
+  iFourDw: 20
+  iFiveDw: 10
+  chanceOfDrop: 50
+  potionDrop: {fileID: 3508470042474671433, guid: 64b8ab0432074724db100603b3244801, type: 3}
+  chanceOfPotion: 10
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 50
 --- !u!1 &8749924308782157380
 GameObject:
   m_ObjectHideFlags: 0

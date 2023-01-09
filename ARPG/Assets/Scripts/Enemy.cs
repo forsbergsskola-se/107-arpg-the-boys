@@ -347,6 +347,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
         Canvas canvas = GetComponentInChildren<Canvas>();
         canvas.enabled = false;
+        DropLogic dropTable = GetComponent<DropLogic>();
+        dropTable.DropItem();
     }
 
 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/ArmoryScriptableObject.asset.meta
+guid: b2b4035b77725a44b982b826346d8559
+NativeFormatImporter:
+========
+guid: 40e307aaf12211b49bfa784439da7a34
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> full-item-implement:ARPG/Assets/item-related/item asset imports.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

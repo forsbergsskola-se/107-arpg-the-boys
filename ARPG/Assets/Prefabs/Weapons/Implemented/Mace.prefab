@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125228741861111709}
-  m_LocalRotation: {x: 0.67801917, y: 0.000002039142, z: 0.00000028214512, w: 0.73504436}
+  m_LocalRotation: {x: 0.6780184, y: 0.0000010619143, z: 0.0000009296137, w: 0.735045}
   m_LocalPosition: {x: 1.4374995, y: 2.9943004, z: 0.8650001}
   m_LocalScale: {x: 1.7071004, y: 1.7071004, z: 1.7071004}
   m_ConstrainProportionsScale: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 5320977010455807449}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -173.108, y: -91.41101, z: 176.588}
+  m_LocalEulerAnglesHint: {x: -265.378, y: -179.998, z: 180.002}
 --- !u!114 &2125228741861111680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,21 +47,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ffc8a0b105458448947445b0346e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critRate: 0.1
-  critDamageBonus: 1.5
-  lightAttackDamage: 35
-  lightAttackSpeed: 1.6
-  lightAttackColSize: {x: 2.84, y: 2.03, z: 2.06}
-  lightAttackColOffset: {x: 0, y: 0, z: 0}
-  heavyAttackDamage: 60
-  heavyAttackSpeed: 1
-  heavyAttackColSize: {x: 2.41, y: 2.01, z: 2.06}
-  heavyAttackColOffset: {x: 0, y: 0, z: 1.81}
-  guardTime: 0.5
-  parryPunishRange: 2
-  parryTime: 0.1
+  critRate: 0.3
+  critDamageBonus: 2
+  lightAttackDamage: 50
+  lightAttackSpeed: 1.1
+  lightAttackColSize: {x: 3.51, y: 2.54, z: 2.77}
+  lightAttackColOffset: {x: 0, y: -0.6, z: 1.66}
+  heavyAttackDamage: 90
+  heavyAttackSpeed: 0.82
+  heavyAttackColSize: {x: 3.36, y: 2.56, z: 2.54}
+  heavyAttackColOffset: {x: 0, y: -0.82, z: 2.2}
+  guardTime: 0.45
+  parryPunishRange: 2.3
+  parryTime: 0.09
   modelPosOffset: {x: 0.0137252, y: 0.004287681, z: -0.0002933731}
   modelRotOffset: {x: -173.108, y: -91.41101, z: 176.588}
+  weaponID: 4
 --- !u!54 &2125228741861111683
 Rigidbody:
   m_ObjectHideFlags: 0

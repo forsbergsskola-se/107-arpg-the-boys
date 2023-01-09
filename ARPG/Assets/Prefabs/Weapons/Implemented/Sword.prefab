@@ -227,20 +227,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critRate: 0.1
-  critDamageBonus: 1.5
+  critDamageBonus: 2
   lightAttackDamage: 25
   lightAttackSpeed: 2.2
   lightAttackColSize: {x: 3, y: 3, z: 2.62}
   lightAttackColOffset: {x: 0, y: 0, z: 1.63}
-  heavyAttackDamage: 20
+  heavyAttackDamage: 55
   heavyAttackSpeed: 1.2
   heavyAttackColSize: {x: 3, y: 3, z: 3.96}
   heavyAttackColOffset: {x: 0, y: 0, z: 2.03}
   guardTime: 0.7
   parryPunishRange: 3
-  parryTime: 0.6
+  parryTime: 0.3
   modelPosOffset: {x: 0, y: -0.19, z: 0}
   modelRotOffset: {x: 0, y: 0, z: 0}
+  weaponID: 0
 --- !u!54 &5544351134137442708
 Rigidbody:
   m_ObjectHideFlags: 0
