@@ -152,7 +152,7 @@ MonoBehaviour:
     attackHitSound: {fileID: 8300000, guid: ab16e18c2c1392742a2bf7e87f60f3fd, type: 3}
     guardSound: {fileID: 8300000, guid: 8ed6060fb0bf49d489367dca3698eb9b, type: 3}
   moveSpeed: 3
-  attackRange: {x: 1.5, y: 1.5, z: 1.5}
+  attackRange: {x: 1, y: 1, z: 1}
   showHitbox: 1
   maxHealth: 100
   enemyMovement: {fileID: 1167513255}

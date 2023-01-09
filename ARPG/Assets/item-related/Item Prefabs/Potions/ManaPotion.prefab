@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6828676842323088750}
   - component: {fileID: -5752070652960413772}
   - component: {fileID: 1776574108872866166}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ManaPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
