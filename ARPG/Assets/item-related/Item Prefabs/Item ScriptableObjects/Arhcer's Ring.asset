@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
+  m_Name: Arhcer's Ring
+  m_EditorClassIdentifier: 
+  baseMaxHealthChange: 0
+  baseMaxHpModPercChange: 0
+  currentHealthChange: 0
+  baseMaxManaChange: 0
+  maxMpModPercChange: 0
+  currentManaChange: 0
+  hpRecovModPercChange: 0
+  mpRecovModPercChange: 0
+  basePowerChange: 0
+  powerModPercChange: 0
+  critRateChange: 0
+  critDamageChange: 0
+  lightAtkModPercChange: 0
+  lightAtkSpeedPercChange: 0
+  heavyAtkModPercChange: 0
+  heavyAtkSpeedPercChange: 0
+  guardTimeModPercChange: 0
+  guardPunishModPercChange: 0
+  baseRangedRangeChange: 0
+  rangedRangeModPercChange: 0.05
+  baseRangePowerChange: 0
+  rangePowerModPercChange: 0
+  baseWalkMoveSpeedChange: 0
+  baseRunMoveSpeedChange: 0
+  moveSpeedModPercChange: 0
+  dodgeChargesChange: 0
+  maxDodgeChargesChange: 0
+  baseDodgeSpeedChange: 0
+  dodgeSpeedModPercChange: 0
+  baseDodgeRangeChange: 0
+  dodgeRangeModPercChange: 0
+  dmgTakePerc: 0
+  evasionChanceChange: 0
+  basePoisonDamageChange: 0
+  poisonDmgModPercChange: 0
+  poisonLengthChange: 0
+  baseFireDamageChange: 0
+  fireDmgModPercChange: 0
+  fireLengthChange: 0
+  iceSlowPercChange: 0
+  iceLengthChange: 0
+  optValue: 0
+  optValueTwo: 0

@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ffc8a0b105458448947445b0346e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critRate: 0.1
-  critDamageBonus: 1.5
+  critRate: 0.08
+  critDamageBonus: 1.7
   lightAttackDamage: 8
   lightAttackSpeed: 6
   lightAttackColSize: {x: 2, y: 2, z: 2}
@@ -62,6 +62,7 @@ MonoBehaviour:
   parryTime: 0.1
   modelPosOffset: {x: 0, y: -0.0348, z: -0.001}
   modelRotOffset: {x: -6.771, y: 0, z: 0}
+  weaponID: 2
 --- !u!54 &4909087652306778665
 Rigidbody:
   m_ObjectHideFlags: 0

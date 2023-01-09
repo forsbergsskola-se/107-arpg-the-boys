@@ -25,6 +25,9 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public Vector3 heavyAttackColSize;
     public Vector3 heavyAttackColOffset;
 
+    [Header("Magic Attack Stats")] 
+    public float magicAttackDamage;
+
     [Header("Guard Stats")]
     public float guardTime;
     public float parryPunishRange = 3;
@@ -34,9 +37,12 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public Vector3 modelPosOffset;
     public Vector3 modelRotOffset;
 
+    [Header("Other")]
+    public int weaponID;
+
     private Rigidbody _rb;
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }

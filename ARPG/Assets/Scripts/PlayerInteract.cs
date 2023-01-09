@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public PlayerCombat playerCombat;
+    public GameObject player;
+    private PlayerCombat _playerCombat;
+    private PlayerInventory _playerInventory;
+    private PlayerStats _playerStats;
     public float interactAreaSize;
     public LayerMask interactableLayerMask;
     private IInteractable _closestInteractable;
@@ -14,6 +17,9 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         _closestInteractable = null;
+        _playerCombat = player.GetComponent<PlayerCombat>();
+        _playerStats = player.GetComponent<PlayerStats>();
+        _playerInventory = player.GetComponent<PlayerInventory>();
     }
 
     void Update()
@@ -22,6 +28,10 @@ public class PlayerInteract : MonoBehaviour
         if (_closestInteractable != null)
         {
             //_closestInteractable.Highlight();
+            if (_closestInteractable is ItemScript or HealthPotion or ManaPotion)
+            {
+                _closestInteractable.Interact(_playerStats, _playerInventory);
+            }
         }
 
         if (Input.GetButtonDown("Interact"))
@@ -58,9 +68,9 @@ public class PlayerInteract : MonoBehaviour
     {
         if (interactable is IPickupable pickupable and BaseWeapon)  // What happens when you interact with a weapon
         {
-            if (playerCombat.currentWeapon != null)
-                playerCombat.currentWeapon.DropWeapon(playerCombat);  // It never calls Interact() on the weapon, it just calls DropWeapon() and Pickup()
-            pickupable.Pickup(playerCombat);
+            if (_playerCombat.currentWeapon != null)
+                _playerCombat.currentWeapon.DropWeapon(_playerCombat);  // It never calls Interact() on the weapon, it just calls DropWeapon() and Pickup()
+            pickupable.Pickup(_playerCombat);
         }
         else if (interactable != null)
         {
