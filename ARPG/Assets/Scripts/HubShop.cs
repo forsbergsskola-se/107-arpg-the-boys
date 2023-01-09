@@ -45,7 +45,7 @@ public class HubShop : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        _weaponLoader.LoadProgress();
+        //_weaponLoader.LoadProgress();
         for (var i = 0; i < armory.armoryWeapons.Length; i++)
         {
             shopWeapons[i].weapon = armory.armoryWeapons[i].weapon;
