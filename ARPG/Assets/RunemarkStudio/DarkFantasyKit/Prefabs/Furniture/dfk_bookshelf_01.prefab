@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 23452946116859936}
   - component: {fileID: 64325012930437030}
   - component: {fileID: 4439227428006949571}
-  m_Layer: 0
+  - component: {fileID: 2786069367883056234}
+  m_Layer: 8
   m_Name: dfk_bookshelf_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,3 +113,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0616024, y: 2.2412152, z: 0.4700352}
   m_Center: {x: 0, y: 1.1188002, z: 0.02986756}
+--- !u!114 &2786069367883056234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166630950117764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
