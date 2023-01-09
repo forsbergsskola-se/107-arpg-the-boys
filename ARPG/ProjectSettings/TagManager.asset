@@ -17,10 +17,10 @@ TagManager:
   - Solid
   - Weapon
   - Enemy
-  - 
+  - Room
   - Boss
-  - 
-  - 
+  - NPC
+  - Item
   - 
   - 
   - 

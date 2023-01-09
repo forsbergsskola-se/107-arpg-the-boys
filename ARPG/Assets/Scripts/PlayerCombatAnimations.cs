@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using static RandomSound;
 
 public class PlayerCombatAnimations : MonoBehaviour
 {
     public PlayerCombat playerCombat;
     public PlayerMovement playerMovement;
+    public Transform spellTransform;
+    public GameObject slashPrefab;
 
     public void EndAnimation()
     {
@@ -22,6 +26,11 @@ public class PlayerCombatAnimations : MonoBehaviour
         playerCombat.AttackBox(playerCombat.currentWeapon.heavyAttackColSize, playerCombat.currentWeapon.heavyAttackColOffset, playerCombat.currentWeapon.heavyAttackDamage);
     }
 
+    public void SlashAttackEvent()
+    {
+        Instantiate(slashPrefab, spellTransform.position, spellTransform.rotation);
+    }
+
     public void PlayWhooshSound()
     {
         if (playerCombat.CurrentAttackState == IInterruptible.AttackState.LightAttack)
@@ -32,7 +41,7 @@ public class PlayerCombatAnimations : MonoBehaviour
         {
             playerCombat.audioSource.pitch = .5f + playerCombat.currentWeapon.heavyAttackSpeed * .5f;
         }
-        playerCombat.audioSource.clip = playerCombat.GetRandomAudioClip(playerCombat.slashWhoosh);
+        playerCombat.audioSource.clip = GetRandomAudioClip(playerCombat.slashWhoosh);
         playerCombat.audioSource.Play();
     }
 

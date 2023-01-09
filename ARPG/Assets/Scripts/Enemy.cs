@@ -315,7 +315,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
                             damage *= 0.05f;
                         if (interruptible.CurrentAttackState == IInterruptible.AttackState.Parry)
                         {
-                            _playerCombat.Parry();
+                            //_playerCombat.Parry();
                             damage = 0;
                         }
                     }
@@ -347,6 +347,8 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 
         Canvas canvas = GetComponentInChildren<Canvas>();
         canvas.enabled = false;
+        DropLogic dropTable = GetComponent<DropLogic>();
+        dropTable.DropItem();
     }
 
 

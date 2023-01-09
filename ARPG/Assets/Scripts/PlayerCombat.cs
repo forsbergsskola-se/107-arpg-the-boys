@@ -7,6 +7,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 using static DrawBoxCast;
+using static RandomSound;
 
 public class PlayerCombat : MonoBehaviour, IInterruptible
 {
@@ -30,12 +31,14 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     private PlayerStats _playerStats;
 
     [NonSerialized] public bool animationEnded;
+    public float slashCost;
 
     void Start()
     {
         _playerStats = GetComponent<PlayerStats>();
         _playerMovement = GetComponent<PlayerMovement>();
         parryDebugHitBox.SetActive(false);
+        GetComponent<PlayerWeaponLoader>().LoadProgress();
     }
 
     void Update()
@@ -58,6 +61,12 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             if (Input.GetButtonDown("Fire3"))
             {
                 _currentAttack = StartCoroutine(CO_Guard(currentWeapon.guardTime, currentWeapon.parryTime));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) && _playerStats.CurrentMana >= slashCost)
+            {
+                _currentAttack = StartCoroutine(CO_Attack(1, "Slash-attack", IInterruptible.AttackState.NoAttack));
+                _playerStats.ChangeMana(slashCost);
             }
         }
 
@@ -91,9 +100,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
             parryDebugHitBox.transform.localScale = hitBoxSize;
             parryDebugHitBox.transform.parent = transform;
         }
-        else 
+        else
             parryDebugHitBox.SetActive(false);
-        
     }
 
     private void FixedUpdate()
@@ -212,7 +220,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         bool hasHitEnemy = false;
         Vector3 worldOffset = attackCenter.TransformDirection(attackColOffset); // Offset in world space
-        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2, Quaternion.identity, hitLayer); 
+        Collider[] hits = Physics.OverlapBox(attackCenter.position + worldOffset, attackColSize / 2,
+            Quaternion.identity, hitLayer);
         for (var i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent(out IDamageable damageable))
@@ -246,15 +255,6 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                 damageable.TakeDamage(damage);
             }
         }
-    }
-
-    public AudioClip GetRandomAudioClip(AudioClip[] audioClips)
-    {
-        // Select a random index from the array
-        int randomIndex = Random.Range(0, audioClips.Length);
-
-        // Return the audio clip at the random index
-        return audioClips[randomIndex];
     }
 
     private bool ShouldInterrupt(IInterruptible player, IInterruptible enemy)
