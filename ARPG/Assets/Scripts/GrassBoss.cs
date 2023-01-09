@@ -13,6 +13,7 @@ public class GrassBoss : MonoBehaviour
     
     public float danceRadius;
     private GameObject _firePoint;
+    private GameObject _bossRoom;
     public int groundScatterAmount;
     public float groundScatterDistance;
     public float groundScatterSpeed;
@@ -41,6 +42,7 @@ public class GrassBoss : MonoBehaviour
     void Start()
     {
         _firePoint = GameObject.FindGameObjectWithTag("firePoint");
+        _bossRoom = GameObject.FindGameObjectWithTag("BossRoom");
         if (firePointIsOnBoss)
         {
             _firePoint.transform.position = transform.position;
@@ -53,7 +55,7 @@ public class GrassBoss : MonoBehaviour
     void Update()
     {
         var position = transform.position;
-        position = new Vector3(position.x, Mathf.Clamp(position.y, 0, 10),position.z);
+        position = new Vector3(position.x, _bossRoom.transform.position.y,position.z);
         transform.position = position;
 
         Quaternion rotation = transform.localRotation;
@@ -84,7 +86,7 @@ public class GrassBoss : MonoBehaviour
         enemyScript.enabled = false;
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, true);
         _moveToAttackSpot = true;
-        yield return new WaitUntil(() => transform.position == _firePoint.transform.position);
+        yield return new WaitUntil(() => Vector3.Distance(transform.position,_firePoint.transform.position) < 3);
         enemyScript.animator.SetBool(enemyScript.walkAnimationParameterName, false);
         switchFromPassive = true;
         _moveToAttackSpot = false;

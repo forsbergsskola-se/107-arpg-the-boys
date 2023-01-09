@@ -769,6 +769,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1695816411, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: baseDodgeSpeed
       value: 20
@@ -781,15 +785,13 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3195682421368019723, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4390147298256074173, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-        'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-        'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform
-        'hand_l'\n\tTransform 'middle_01_l'\n\tand more ...\n\tFrom animation clip
-        'Dead_1'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7220317599497472196, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: lightAttackColSize.x
@@ -1068,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: debugOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: debugCube
