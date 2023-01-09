@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6073467025313538043}
   - component: {fileID: 6073467025313538040}
   - component: {fileID: 6073467025313538041}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 00testitem00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   itemSo: {fileID: 11400000, guid: 565185168d895c24399ad7a4020d9dfc, type: 2}
   isLinearScaling: 0
   heldCount: 0
+  rotationSpeed: 0
 --- !u!54 &6073467025313538041
 Rigidbody:
   m_ObjectHideFlags: 0

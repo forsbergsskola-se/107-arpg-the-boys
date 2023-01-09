@@ -141,6 +141,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         _playerMovement.playerAnimator.SetTrigger("Death");
         GetComponent<Collider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
+        PlayerPrefs.SetInt("Money-Count", GetComponent<PlayerInventory>().GetItemCount("Money"));
         yield return new WaitForSeconds(1);
 
         // Fade in the DeathUI Text object
