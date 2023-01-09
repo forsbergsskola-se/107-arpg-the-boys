@@ -172,7 +172,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
                     hitEnemy = true;
                     audioSource.clip = GetRandomAudioClip(enemyHitSound);
                     audioSource.Play();
-                    _playerStats.AddDash();
+                    //_playerStats.AddDash();
                     //Debug.Log("An enemy was hit");
                 }
                 if (hits[i].TryGetComponent(out IInterruptible interruptible) && ShouldInterrupt(this, interruptible))
