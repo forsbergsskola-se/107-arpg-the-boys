@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23993539567231628}
   - component: {fileID: 64725627686754188}
   - component: {fileID: 491337046730246157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_pillar_large_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
