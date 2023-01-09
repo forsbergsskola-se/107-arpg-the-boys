@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class roarAnimationBehaviour : StateMachineBehaviour
@@ -8,10 +5,13 @@ public class roarAnimationBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     private GrassBoss _bossScript;
 
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _bossScript = FindObjectOfType<GrassBoss>();
         _bossScript.StartCoroutine(_bossScript.CO_Fart());
+        _bossScript.audioSource.clip = _bossScript.roarSound;
+        _bossScript.audioSource.Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,6 +23,7 @@ public class roarAnimationBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _bossScript.switchFromPassive = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

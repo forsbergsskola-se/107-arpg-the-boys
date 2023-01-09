@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/SkySeries Freebie/ExampleScenes/AmbienceExposure.unity.meta
+guid: 8d47f25a25106dd4fb4f92261f369863
+timeCreated: 1512945925
+licenseType: Store
+DefaultImporter:
+========
+guid: 984d54d044db94c46ade3473527a469b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> origin/feature/CameraShader:ARPG/Assets/Prefabs/Wall Shader/wall shader mat.mat.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
