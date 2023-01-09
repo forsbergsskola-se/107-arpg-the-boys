@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3597881711203662405}
   - component: {fileID: 1232430315111396657}
-  m_Layer: 0
+  - component: {fileID: 6663103705578737847}
+  m_Layer: 8
   m_Name: RafWindowWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +49,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.208638, y: 14.556486, z: 0.11530399}
   m_Center: {x: -3.3938031, y: 6.778243, z: 6.4264235}
+--- !u!114 &6663103705578737847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217617092785576601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982340329859919016
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +72,8 @@ GameObject:
   - component: {fileID: 1984151722895245992}
   - component: {fileID: 2017342578133259476}
   - component: {fileID: 2004973506435652828}
-  m_Layer: 0
+  - component: {fileID: 4237329455602892411}
+  m_Layer: 8
   m_Name: dfk_wall_01a_diagonal_window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +146,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4237329455602892411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982340329859919016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4250933820002551353
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +169,7 @@ GameObject:
   - component: {fileID: 4248573081790965817}
   - component: {fileID: 4216464010166287941}
   - component: {fileID: 4228863589687227981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01a_diagonal_window_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +253,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: dfk_window_01_glass_interactive
       objectReference: {fileID: 0}
+    - target: {fileID: 1191018118179494, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361897802458796, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608798770108758, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948610093890640, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4811354936557328, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -290,3 +332,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4811354936557328, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
   m_PrefabInstance: {fileID: 1287602464721632218}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1286411730150003068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1191018118179494, guid: 1a659ba8eec1c6d419f1a79e1f53ab61, type: 3}
+  m_PrefabInstance: {fileID: 1287602464721632218}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6455514000718242093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286411730150003068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
