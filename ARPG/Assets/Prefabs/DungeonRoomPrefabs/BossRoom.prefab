@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 5796211671617023382}
   - component: {fileID: 6933090186091429494}
   - component: {fileID: 718909382065845995}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
