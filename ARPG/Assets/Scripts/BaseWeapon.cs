@@ -25,6 +25,9 @@ public class BaseWeapon : MonoBehaviour, IInteractable, IPickupable
     public Vector3 heavyAttackColSize;
     public Vector3 heavyAttackColOffset;
 
+    [Header("Magic Attack Stats")] 
+    public float magicAttackDamage;
+
     [Header("Guard Stats")]
     public float guardTime;
     public float parryPunishRange = 3;
