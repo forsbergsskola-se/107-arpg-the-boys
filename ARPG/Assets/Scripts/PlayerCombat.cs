@@ -38,6 +38,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         _playerStats = GetComponent<PlayerStats>();
         _playerMovement = GetComponent<PlayerMovement>();
         parryDebugHitBox.SetActive(false);
+        GetComponent<PlayerWeaponLoader>().LoadProgress();
     }
 
     void Update()
