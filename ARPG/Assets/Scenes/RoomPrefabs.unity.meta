@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/Prefabs/DungeonRoomPrefabs.meta
+guid: 33703ecda93504049b0e66024f6bef47
+folderAsset: yes
+========
+guid: 0ea0cf392b838b4408282ddbc9a16215
+>>>>>>>> origin/feature/CameraShader:ARPG/Assets/Scenes/RoomPrefabs.unity.meta
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

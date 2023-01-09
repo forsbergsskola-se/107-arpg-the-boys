@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/Prefabs/DungeonRoomPrefabs/2 Exit Rooms.meta
 guid: 3de4ea35ebe11a941bfda22d091928b5
 folderAsset: yes
+========
+guid: 364005ee84f4bd54d9feda29358e9fee
+>>>>>>>> origin/feature/CameraShader:ARPG/Assets/RunemarkStudio/DarkFantasyKit/UserGuide.pdf.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

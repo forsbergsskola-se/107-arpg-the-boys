@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2875140122747187587}
   - component: {fileID: 9167907119130938208}
   - component: {fileID: 5728583094981543889}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: 2ExitRoomDungeon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 29.33452, y: 15.426171, z: 7.095313}
-  m_Center: {x: -15.357942, y: 2.4304204, z: -3.302587}
+  m_Size: {x: 30.010998, y: 15.426171, z: 7.095313}
+  m_Center: {x: -15.561281, y: 2.4304204, z: -3.302587}
 --- !u!114 &5728583094981543889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,24 +770,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
---- !u!1 &1212465752219176635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1331997785237148, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
-  m_PrefabInstance: {fileID: 1213491798870943783}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1488370852691149695
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212465752219176635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10.2604065, y: 1.6687108, z: 0.29871213}
-  m_Center: {x: 0.4821981, y: 0.33435553, z: -0.020051375}
 --- !u!4 &1214260736944850593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4182440960601734, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
@@ -3506,24 +3488,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
---- !u!1 &7625502501751141801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1331997785237148, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
-  m_PrefabInstance: {fileID: 7626706804703892277}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &4889536282947575726
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7625502501751141801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10.2604065, y: 1.6687108, z: 0.34440657}
-  m_Center: {x: 0.4821981, y: 0.33435553, z: -0.042898577}
 --- !u!4 &7627226976166493619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4182440960601734, guid: ec026b3a6a2aa5f488e569ec8ca81e9e, type: 3}
