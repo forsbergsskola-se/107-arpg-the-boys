@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3597881711203662405}
   - component: {fileID: 1232430315111396657}
-  - component: {fileID: 6663103705578737847}
   m_Layer: 8
   m_Name: RafWindowWall
   m_TagString: Untagged
@@ -49,18 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.208638, y: 14.556486, z: 0.11530399}
   m_Center: {x: -3.3938031, y: 6.778243, z: 6.4264235}
---- !u!114 &6663103705578737847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217617092785576601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1982340329859919016
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +156,7 @@ GameObject:
   - component: {fileID: 4248573081790965817}
   - component: {fileID: 4216464010166287941}
   - component: {fileID: 4228863589687227981}
+  - component: {fileID: 1841680732726233971}
   m_Layer: 8
   m_Name: dfk_wall_01a_diagonal_window_01 (1)
   m_TagString: Untagged
@@ -242,6 +230,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1841680732726233971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250933820002551353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1287602464721632218
 PrefabInstance:
   m_ObjectHideFlags: 0
