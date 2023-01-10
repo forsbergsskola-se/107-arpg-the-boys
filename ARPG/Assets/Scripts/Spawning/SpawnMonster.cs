@@ -26,7 +26,7 @@ public class SpawnMonster : MonoBehaviour
     {
         int thisEnemy = ThisEnemy();
         //Debug.Log(thisEnemy +" is the chosen enemy from the array");
-        Instantiate(enemies[thisEnemy], transform.position + new Vector3(0,3,0), transform.rotation);
+        Instantiate(enemies[thisEnemy], transform.position, transform.rotation);
         spawnEffect.Play();
     }
 

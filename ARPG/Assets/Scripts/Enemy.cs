@@ -315,7 +315,7 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
                             damage *= 0.05f;
                         if (interruptible.CurrentAttackState == IInterruptible.AttackState.Parry)
                         {
-                            _playerCombat.Parry();
+                            //_playerCombat.Parry();
                             damage = 0;
                         }
                     }

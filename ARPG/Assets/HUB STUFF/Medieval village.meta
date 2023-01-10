@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: 4c406cf007b0766488c53b3476d1c45d
+<<<<<<<< HEAD:ARPG/Assets/HUB STUFF/Medieval village.meta
+guid: e6eb83a3f3d6e1149b92712633872744
 folderAsset: yes
+========
+guid: ab2a2931612c00e4999dd10ef926921a
+>>>>>>>> origin/feature/18-boss:ARPG/Assets/Effects/Special Skills Effects Pack/SpecialSkillsEffectsPack/GuidePaper/New HDRP&URP Patch Guide (Uppder2020_ModernSRP)/HDRPDecalMatrixFixGuidePapaer.pdf.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
