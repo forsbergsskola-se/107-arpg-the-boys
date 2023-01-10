@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33942251730034486}
   - component: {fileID: 23790024607864638}
   - component: {fileID: -5586114051376617345}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01a_diagonal_window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

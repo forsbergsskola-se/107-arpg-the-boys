@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23201342426828588}
   - component: {fileID: 65400235590536094}
   - component: {fileID: 8312713194710352417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01a_bevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,3 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
