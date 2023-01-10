@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NavMeshBaker : MonoBehaviour
 {
-    public NavMeshSurface[] navMeshSurfaces;
+    private NavMeshSurface[] navMeshSurfaces;
     void Start()
     {
         StartCoroutine(WaitForSpawn());
