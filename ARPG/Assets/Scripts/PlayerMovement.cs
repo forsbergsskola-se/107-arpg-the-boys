@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private float _desiredSpeed;
     private bool _dash;
     private bool _running;
+    private float _rollCooldownTimer;
     [NonSerialized]
     public Vector3 endVel;
     
@@ -41,9 +42,8 @@ public class PlayerMovement : MonoBehaviour
     public float friction = 0.6f;
     public float maxStrafeSpeed = 30;
     public float maxGroundAngle = 35f;
-    public float maxVelocity = 50;
-    public LayerMask walkableLayers;
-    
+    public float rollCooldown = 0.3f;
+
     [Header("Other movement variables")]
     public float gravityScale = 9.82f;
     public float rollDuration = 0.4f;
@@ -51,12 +51,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
         _playerCombat = GetComponent<PlayerCombat>();
         playerAnimator = body.GetComponent<Animator>();
         _playerStats.DodgeCharges = _playerStats.maxDodgeCharges;
+        _rollCooldownTimer = rollCooldown;
     }
 
     void Update()
@@ -68,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
             _running = true;
         else
             _running = false;
+        
+        // Update the roll cooldown timer
+        _rollCooldownTimer += Time.deltaTime;
         
         MovementAnimation();
     }
@@ -100,11 +105,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            endVel = Accelerate(endVel, 0, acceleration, _groundNormal);
-            endVel = Friction(endVel, 0, friction, _groundNormal);
-        }
         
         if (canMove)
         {
@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
                 StartRoll();
             }
         }
-        
         
         if (!_grounded)
         {
@@ -143,30 +142,47 @@ public class PlayerMovement : MonoBehaviour
         {
             isRolling = false;
             _invulnerabilityTimer = 0.0f;
+            Physics.IgnoreLayerCollision(7, 10, false);
+            Physics.IgnoreLayerCollision(7, 12, false);
         }
     }
-    
+
     void StartRoll()
     {
-        if (_playerCombat.CancelAttack() && move.sqrMagnitude != 0)
+        if (_rollCooldownTimer >= rollCooldown)
         {
-            //
-            ForceRotatePlayer();
+            if (_playerCombat.CancelAttack() && move.sqrMagnitude != 0)
+            {
+                // If the player is rolling will attacking it snaps the rotation to the way the player is walking
+                ForceRotatePlayer();
+            }
+
+            
+            Physics.IgnoreLayerCollision(7, 10, true);
+            Physics.IgnoreLayerCollision(7, 12, true);
+
+            // Set the player's velocity to the roll speed in the direction the player is currently facing
+            endVel = rotateDir * _playerStats.DodgeSpeed;
+
+            // Uses up one dash
+            _playerStats.DodgeCharges = Math.Clamp(_playerStats.DodgeCharges - 1, 0, _playerStats.maxDodgeCharges);
+
+            // Play the roll animation
+            playerAnimator.SetTrigger("Roll");
+
+            // Set the invulnerability flag and reset the invulnerability timer
+            isRolling = true;
+            _invulnerabilityTimer = 0.0f;
+
+            _rollCooldownTimer = 0;
         }
-        // Set the player's velocity to the roll speed in the direction the player is currently facing
-        endVel = rotateDir * _playerStats.DodgeSpeed;
-
-        // Uses up one dash
-        _playerStats.DodgeCharges = Math.Clamp(_playerStats.DodgeCharges - 1, 0, _playerStats.maxDodgeCharges);
-        
-        // Play the roll animation
-        playerAnimator.SetTrigger("Roll");
-
-        // Set the invulnerability flag and reset the invulnerability timer
-        isRolling = true;
-        _invulnerabilityTimer = 0.0f;
     }
 
+    void PassiveRollReplenish()
+    {
+        
+    }
+    
     private IEnumerator CO_DashActivate()
     {
         _dash = true;

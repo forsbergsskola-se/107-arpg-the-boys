@@ -122,7 +122,6 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
         if (Physics.Raycast(ray, out RaycastHit hit, 100, camRayLayer))
         {
             _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
-            Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), hit.point, Quaternion.identity);
         }
         else
         {

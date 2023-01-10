@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33942251730034486}
   - component: {fileID: 23790024607864638}
   - component: {fileID: -5586114051376617345}
+  - component: {fileID: 2609100604871081269}
   m_Layer: 8
   m_Name: dfk_wall_01a_diagonal_window_01
   m_TagString: Untagged
@@ -97,3 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!65 &2609100604871081269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455926534121290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5355349, y: 3, z: 0.22733724}
+  m_Center: {x: 0, y: 1.5, z: 0.1136685}
