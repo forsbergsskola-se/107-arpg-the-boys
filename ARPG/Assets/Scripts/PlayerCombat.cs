@@ -32,7 +32,6 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
     [NonSerialized] public bool animationEnded;
     public float slashCost;
-    public LayerMask camRayLayer;
 
     void Start()
     {
@@ -119,10 +118,8 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     private void SetRotatePoint()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100, camRayLayer))
-        {
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
             _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
-        }
         else
         {
             float playerYDiff = Camera.main.transform.position.y - transform.position.y;
