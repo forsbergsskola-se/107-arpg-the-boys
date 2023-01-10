@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,15 +9,6 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
     [Header("if this is disabled, item power will curve towards zero for this item type.")]
     public bool isLinearScaling;
     
-    private void OnCollisionEnter(Collision collision) //can be replaced with other pick-up logic if required
-    {
-        
-    }
-    /* todo: method for selling items.
-     method should be calling 'ItemPickedUp' so that value decreases instead of increases.
-     increase/decrease should employ scaling curve and update items held count as appropriate.
-     see trello backlog entry 'sell item method'.
-    */
 
     float Scale(int numItems, float power) //scaling math stuff
     {
@@ -26,7 +18,7 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         }
         return power / (1.0f + MathF.Sqrt(numItems));
     }
-
+    
     public int heldCount;
     private void ItemPickedUp(PlayerStats plStat) //could probably clean this up, but... it works. so i won't.
     {
@@ -149,22 +141,36 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         Debug.Log("items held value in item script: " + heldCount);
     }
 
-    public float rotationSpeed;
+    private bool _pickUpEnabled;
+    private void Start()
+    {
+        _camera = Camera.main;
+        _pickUpEnabled = false;
+        StartCoroutine(PickupDelay());
+    }
+    private IEnumerator PickupDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        _pickUpEnabled = true;
+    }
+
+    private Camera _camera;
     private void Update()
     {
-        transform.Rotate(transform.up, rotationSpeed);
+        transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
     }
 
     public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
     {
-        Pickup(playerStats, playerInventory);
+        if(_pickUpEnabled)
+        { Pickup(playerStats, playerInventory); } 
     }
 
     public void Highlight()
     {
         throw new NotImplementedException();
     }
-    
+
     public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
     {
         //get necessary components
@@ -173,4 +179,5 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         playerInventory.UpdateItemCount(itemSo.name); // updates # held
         Destroy(gameObject); //kills object
     }
+   
 }

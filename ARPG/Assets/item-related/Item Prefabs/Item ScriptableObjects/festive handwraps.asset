@@ -25,7 +25,7 @@ MonoBehaviour:
   critRateChange: 0
   critDamageChange: 0
   lightAtkModPercChange: 0
-  lightAtkSpeedPercChange: 0.05
+  lightAtkSpeedPercChange: 0.25
   heavyAtkModPercChange: 0
   heavyAtkSpeedPercChange: 0
   guardTimeModPercChange: 0

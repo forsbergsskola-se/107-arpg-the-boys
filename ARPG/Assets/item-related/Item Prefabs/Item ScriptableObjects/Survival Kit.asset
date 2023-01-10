@@ -18,7 +18,7 @@ MonoBehaviour:
   baseMaxManaChange: 0
   maxMpModPercChange: 0
   currentManaChange: 0
-  hpRecovModPercChange: 0.05
+  hpRecovModPercChange: 0.25
   mpRecovModPercChange: 0
   basePowerChange: 0
   powerModPercChange: 0

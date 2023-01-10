@@ -19,7 +19,7 @@ MonoBehaviour:
   maxMpModPercChange: 0
   currentManaChange: 0
   hpRecovModPercChange: 0
-  mpRecovModPercChange: 0.05
+  mpRecovModPercChange: 0.25
   basePowerChange: 0
   powerModPercChange: 0
   critRateChange: 0

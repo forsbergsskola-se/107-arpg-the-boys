@@ -29,7 +29,7 @@ MonoBehaviour:
   heavyAtkModPercChange: 0
   heavyAtkSpeedPercChange: 0
   guardTimeModPercChange: 0
-  guardPunishModPercChange: 0.05
+  guardPunishModPercChange: 0.25
   baseRangedRangeChange: 0
   rangedRangeModPercChange: 0
   baseRangePowerChange: 0

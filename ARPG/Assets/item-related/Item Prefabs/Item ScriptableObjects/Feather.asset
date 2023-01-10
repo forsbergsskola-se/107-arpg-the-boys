@@ -18,17 +18,31 @@ MonoBehaviour:
   baseMaxManaChange: 0
   maxMpModPercChange: 0
   currentManaChange: 0
+  hpRecovModPercChange: 0
+  mpRecovModPercChange: 0
   basePowerChange: 0
   powerModPercChange: 0
   critRateChange: 0
   critDamageChange: 0
+  lightAtkModPercChange: 0
+  lightAtkSpeedPercChange: 0
+  heavyAtkModPercChange: 0
+  heavyAtkSpeedPercChange: 0
+  guardTimeModPercChange: 0
+  guardPunishModPercChange: 0
+  baseRangedRangeChange: 0
+  rangedRangeModPercChange: 0
+  baseRangePowerChange: 0
+  rangePowerModPercChange: 0
   baseWalkMoveSpeedChange: 0
   baseRunMoveSpeedChange: 0
-  moveSpeedModPercChange: 0.05
+  moveSpeedModPercChange: 0.25
   dodgeChargesChange: 0
   maxDodgeChargesChange: 0
   baseDodgeSpeedChange: 0
   dodgeSpeedModPercChange: 0
+  baseDodgeRangeChange: 0
+  dodgeRangeModPercChange: 0
   dmgTakePerc: 0
   evasionChanceChange: 0
   basePoisonDamageChange: 0

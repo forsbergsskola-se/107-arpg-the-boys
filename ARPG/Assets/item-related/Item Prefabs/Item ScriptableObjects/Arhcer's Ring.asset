@@ -31,7 +31,7 @@ MonoBehaviour:
   guardTimeModPercChange: 0
   guardPunishModPercChange: 0
   baseRangedRangeChange: 0
-  rangedRangeModPercChange: 0.05
+  rangedRangeModPercChange: 0.25
   baseRangePowerChange: 0
   rangePowerModPercChange: 0
   baseWalkMoveSpeedChange: 0
