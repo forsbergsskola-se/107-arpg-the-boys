@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33349934412918048}
   - component: {fileID: 23549775543825620}
   - component: {fileID: 7310786446387248859}
+  - component: {fileID: 3664830314124592624}
   m_Layer: 8
   m_Name: dfk_wall_01a_window_01
   m_TagString: Untagged
@@ -63,7 +64,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 84915c941d235bf4d80c69807fa32c4a, type: 2}
-  - {fileID: 2100000, guid: 131d833b7238e844cbcf97c4cc3df251, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!65 &3664830314124592624
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265118139019156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5000005, y: 3, z: 0.22733724}
+  m_Center: {x: 0, y: 1.5, z: 0.1136685}
