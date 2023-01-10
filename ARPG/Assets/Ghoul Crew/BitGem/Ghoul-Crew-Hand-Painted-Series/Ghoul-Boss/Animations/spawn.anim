@@ -105512,7 +105512,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 3.2666667
-    functionName: CO_ChaseMode
+    functionName: Chase
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
