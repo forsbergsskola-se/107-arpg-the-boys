@@ -149,7 +149,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 65157085acc073845b8c9a00bbcce6a0, type: 2}
+  m_Motion: {fileID: -203655887218126122, guid: 2d1feb2b6fcd80c45b44c80a26d56ec7, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -265,7 +265,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Heavy_Attack_Animations
+  m_Name: Animations_With_Weapon
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: xMove

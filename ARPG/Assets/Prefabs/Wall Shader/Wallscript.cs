@@ -21,7 +21,7 @@ public class Wallscript : MonoBehaviour
         _renderer.materials = shaderMat;
     }
 
-    void Awake()
+    void Start()
     {
         _renderer = GetComponent<Renderer>();
         defaultMat = _renderer.material;

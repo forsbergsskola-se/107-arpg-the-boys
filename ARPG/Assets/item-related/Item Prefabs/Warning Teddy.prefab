@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6073467025313538040}
   - component: {fileID: 6073467025313538041}
   - component: {fileID: 6278194714755028089}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Warning Teddy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

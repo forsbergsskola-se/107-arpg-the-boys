@@ -10,6 +10,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
+        
         DirectoryInfo itemsDir = new DirectoryInfo("Assets/item-related/Item Prefabs/Item ScriptableObjects"); //points at directory
         FileInfo[] files = itemsDir.GetFiles("*.asset"); //pulls appropriate files from directory
         foreach (FileInfo file in files) //runs through array initializing entries in dictionary
@@ -22,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log("item: " + item.Key +" value: " + item.Value); //tells dev what entries have been made
         }
+        ShopSellMoney("Money", PlayerPrefs.GetInt("Money-Count", 0));
+
     }
 
     public int GetItemCount(string itemName)

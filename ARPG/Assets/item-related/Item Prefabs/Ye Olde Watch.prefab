@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6073467025313538040}
   - component: {fileID: 6073467025313538041}
   - component: {fileID: 3821493132682373021}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Ye Olde Watch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

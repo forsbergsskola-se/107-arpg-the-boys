@@ -224,7 +224,7 @@ MonoBehaviour:
     attackHitSound: {fileID: 8300000, guid: 8aa74c82aa1127143bf18d9222a59618, type: 3}
     guardSound: {fileID: 0}
   moveSpeed: 5
-  attackRange: {x: 4, y: 4, z: 4}
+  attackRange: {x: 4, y: 8, z: 4}
   showHitbox: 1
   maxHealth: 100
   enemyMovement: {fileID: 0}
@@ -234,14 +234,14 @@ MonoBehaviour:
   interruptedAnimationParameter: 
   interruptible: 0
   lightAttackInformation:
-    showHitBox: 0
+    showHitBox: 1
     lightAttackParameterNameOfTypeBool: LightAttack
     lightAttackSize: {x: 10, y: 10, z: 10}
     lightAttackDamage: 5
     lightAttackStartDelay: 0.3
   hasLightAttacks: 1
   heavyAttackInformation:
-    showHitBox: 0
+    showHitBox: 1
     heavyAttackParameterNameOfTypeBool: HeavyAttack
     heavyAttackSize: {x: 10, y: 10, z: 10}
     heavyAttackDamage: 10
@@ -3096,11 +3096,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_RootOrder
@@ -3108,11 +3108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3128,6 +3128,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
@@ -3148,15 +3160,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 601224605566623800, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3178,9 +3190,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3678457575337341387, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4922290139527322304, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6193420970064811134, guid: 74c3cb72bf2ead843b271bcfc9a0838f, type: 3}
       propertyPath: m_Name
