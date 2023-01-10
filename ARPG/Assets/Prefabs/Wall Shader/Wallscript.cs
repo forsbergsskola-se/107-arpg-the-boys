@@ -2,33 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wallscript : MonoBehaviour
+public class Wallscript : MonoBehaviour
 {
-    private Material _defaultMat;
+    public Material defaultMat;
     private Renderer _renderer;
     private Coroutine _currentRayCast;
     public void OnRayCastHit(Material[] shaderMat)
     {
+
         if (_currentRayCast != null)
         {
             StopCoroutine(_currentRayCast);
         }
-        _renderer.materials = shaderMat;
+        
         _currentRayCast = StartCoroutine(CO_OnRayCastExit());
+        
+        
+        _renderer.materials = shaderMat;
     }
 
-    void Awake()
+    void Start()
     {
         _renderer = GetComponent<Renderer>();
-        _defaultMat = _renderer.material;
-
+        defaultMat = _renderer.material;
+        
     }
 
     private IEnumerator CO_OnRayCastExit()
     {
-        yield return new WaitForSeconds(0.1f);
-        _renderer.material = _defaultMat;
-        print("big");
+        yield return new WaitForSeconds(0.3f);
+        _renderer.material = defaultMat;
     }
     void Update()
     {
