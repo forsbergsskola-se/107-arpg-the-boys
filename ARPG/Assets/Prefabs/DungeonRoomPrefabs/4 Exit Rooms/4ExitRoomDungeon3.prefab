@@ -1241,6 +1241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3170058645661208535}
     m_Modifications:
+    - target: {fileID: -5586114051376617345, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1455926534121290, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
       propertyPath: m_Name
       value: dfk_wall_01a_diagonal_window_01 (3)
@@ -3908,6 +3912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3170058645661208535}
     m_Modifications:
+    - target: {fileID: -5586114051376617345, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1455926534121290, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
       propertyPath: m_Name
       value: dfk_wall_01a_diagonal_window_01
@@ -5902,6 +5910,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3170058645661208535}
     m_Modifications:
+    - target: {fileID: -5586114051376617345, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1455926534121290, guid: eeb5d26afde13a6468d2d75b4dd231e7, type: 3}
       propertyPath: m_Name
       value: dfk_wall_01a_diagonal_window_01 (2)
