@@ -744,6 +744,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[2].rooms.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[2].rooms.Array.data[1]
+      value: 
+      objectReference: {fileID: 3049121769853175112, guid: 9064f5f4e4fd1724896179eb4e6b8724, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[2].rooms.Array.data[2]
+      value: 
+      objectReference: {fileID: 1885582750304760833, guid: 84cb07f965b8ecf4bbcda784c2582df0, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[2].rooms.Array.data[3]
+      value: 
+      objectReference: {fileID: 108088960873103764, guid: 45fa17d3391e08048ae54f6d71a50cf1, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.size
       value: 2
       objectReference: {fileID: 0}
