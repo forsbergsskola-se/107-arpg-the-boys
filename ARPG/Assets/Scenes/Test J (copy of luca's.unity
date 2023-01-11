@@ -3325,7 +3325,6 @@ MonoBehaviour:
   celebrateFlare: {fileID: 4294357079386861526, guid: 9f0c34500de5b3d4b94ef4a9af784d76, type: 3}
   textPrefab: {fileID: 1823635383}
   lifetime: 5
-  flareLife: 0.5
 --- !u!1 &2000066314
 GameObject:
   m_ObjectHideFlags: 0

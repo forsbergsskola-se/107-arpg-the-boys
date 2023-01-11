@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
@@ -9,7 +8,6 @@ public class TextPopUpScript : MonoBehaviour
     public ParticleSystem celebrateFlare;
     public TMP_Text textPrefab;
     public float lifetime = 5f;
-    public float flareLife = 0.5f;
     public void SpawnText(string text, Vector3 position)
     {
         Vector3 variation = new Vector3(Random.Range(-5f, 5f), 5f, Random.Range(-5f, 5f));
@@ -21,10 +19,10 @@ public class TextPopUpScript : MonoBehaviour
         Destroy(instantiatedText.gameObject, lifetime);
     }
 
-    public void SpawnFlare(Vector3 position)
+    private void SpawnFlare(Vector3 position)
     {
-        ParticleSystem flareinstance = Instantiate(celebrateFlare, position, quaternion.identity);
-        Destroy(flareinstance.gameObject, lifetime);
+        ParticleSystem flareInstance = Instantiate(celebrateFlare, position, quaternion.identity);
+        Destroy(flareInstance.gameObject, lifetime);
     }
 
 }
