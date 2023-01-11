@@ -9775,6 +9775,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642220210}
     m_Modifications:
+    - target: {fileID: 805072108232030839, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a5b264c73b608ee4c8640220922bbd50, type: 3}
+    - target: {fileID: 5105986825548553316, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a5b264c73b608ee4c8640220922bbd50, type: 3}
     - target: {fileID: 8186911319254808289, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.399994
