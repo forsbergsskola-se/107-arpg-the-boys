@@ -806,17 +806,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3195682421368019723, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4390147298256074173, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-        'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-        'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform
-        'hand_l'\n\tTransform 'middle_01_l'\n\tand more ...\n\tFrom animation clip
-        'Dead_1'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7220317599497472196, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: lightAttackColSize.x
@@ -842,6 +836,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 451814528}
+    - target: {fileID: 8451480336757137062, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: rollCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1045,12 +1043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b026fc790e8964b9ed96cb7ccea1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshSurfaces:
-  - {fileID: 8830068643018732153, guid: 278e8eacf74c6154ebc173a666e00c27, type: 3}
-  - {fileID: 3317238994115501731, guid: 88d791eab3e30f04da431f42b86f071b, type: 3}
-  - {fileID: -8223360620369498617, guid: 25475368b88508f478185f37c42eef79, type: 3}
-  - {fileID: 5500010103638513858, guid: 31d4fc7b324191a4e95aa1ea0c22a627, type: 3}
-  - {fileID: -4166548772421327895, guid: b57a0166022d9eb44af77339e0dc3aca, type: 3}
 --- !u!4 &2003786178
 Transform:
   m_ObjectHideFlags: 0

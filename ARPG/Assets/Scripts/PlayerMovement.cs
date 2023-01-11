@@ -105,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            endVel = Accelerate(endVel, 0, acceleration, _groundNormal);
+            endVel = Friction(endVel, 0, friction, _groundNormal);
+        }
         
         if (canMove)
         {
@@ -117,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
                 StartRoll();
             }
         }
+        
         
         if (!_grounded)
         {
