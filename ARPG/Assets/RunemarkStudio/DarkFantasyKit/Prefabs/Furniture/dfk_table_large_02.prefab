@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33128692738381580}
   - component: {fileID: 23261031077184704}
   - component: {fileID: 2473054536372696401}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_table_large_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

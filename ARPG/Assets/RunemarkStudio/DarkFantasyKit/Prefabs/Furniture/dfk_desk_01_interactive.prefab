@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4579496755205268}
   - component: {fileID: 114951299481220790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DrawerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.254035, y: 0.6979389, z: 0.13016224}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4503834828352668}
   m_Father: {fileID: 4505247589702776}
@@ -86,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4546411105106730}
   - component: {fileID: 114208459704712566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DrawerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +104,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.26993704, y: 0.6979389, z: 0.13016224}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4518876991559692}
   m_Father: {fileID: 4505247589702776}
@@ -164,7 +166,7 @@ GameObject:
   - component: {fileID: 33851738029859274}
   - component: {fileID: 23141772169708322}
   - component: {fileID: 64706507500893188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_desk_01_interactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,6 +183,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4579496755205268}
   - {fileID: 4546411105106730}
@@ -206,10 +209,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -234,6 +239,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64706507500893188
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -259,7 +265,7 @@ GameObject:
   - component: {fileID: 4503834828352668}
   - component: {fileID: 33944904560458120}
   - component: {fileID: 23579139954334086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk01.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,6 +282,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4579496755205268}
   m_RootOrder: 0
@@ -299,10 +306,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -327,6 +336,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1485632404355408
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +348,7 @@ GameObject:
   - component: {fileID: 4518876991559692}
   - component: {fileID: 33673267413762738}
   - component: {fileID: 23753163324455260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Desk01.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +365,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4546411105106730}
   m_RootOrder: 0
@@ -378,10 +389,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -406,3 +419,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

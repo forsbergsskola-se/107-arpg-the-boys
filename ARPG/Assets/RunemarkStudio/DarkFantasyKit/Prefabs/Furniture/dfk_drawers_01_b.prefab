@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4016153525241324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawer_BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.16615963, y: 0.3045008, z: 0.11839378}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4014504281570360}
   m_Father: {fileID: 4020583991417368}
@@ -40,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4796365814333600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawer_MiddleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,6 +58,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.16615963, y: 0.51687837, z: 0.11839378}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4064931773852690}
   m_Father: {fileID: 4020583991417368}
@@ -71,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4291529622295778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawer_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,6 +90,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.7402887, z: 0.14623421}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4569981974513298}
   m_Father: {fileID: 4020583991417368}
@@ -104,7 +107,7 @@ GameObject:
   - component: {fileID: 4014504281570360}
   - component: {fileID: 33750844265728094}
   - component: {fileID: 23277895039867884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers01.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +124,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4016153525241324}
   m_RootOrder: 0
@@ -144,10 +148,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -172,6 +178,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1357075682413386
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4454589152965322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawer_BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,6 +205,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.16615963, y: 0.3045008, z: 0.11839378}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4252220155608938}
   m_Father: {fileID: 4020583991417368}
@@ -214,7 +222,7 @@ GameObject:
   - component: {fileID: 4980935595487208}
   - component: {fileID: 33736206189439700}
   - component: {fileID: 23549591783988890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers01.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +239,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4633939018035114}
   m_RootOrder: 0
@@ -254,10 +263,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -282,6 +293,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1489531181644608
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +305,7 @@ GameObject:
   - component: {fileID: 4252220155608938}
   - component: {fileID: 33490297842867306}
   - component: {fileID: 23445717387793088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers01.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,6 +322,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4454589152965322}
   m_RootOrder: 0
@@ -333,10 +346,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -361,6 +376,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1502384794012830
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +389,7 @@ GameObject:
   - component: {fileID: 33631310155627274}
   - component: {fileID: 23735639071917880}
   - component: {fileID: 64652135332275830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_drawers_01_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,6 +406,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4291529622295778}
   - {fileID: 4796365814333600}
@@ -418,10 +435,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -446,6 +465,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64652135332275830
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -469,7 +489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4633939018035114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawer_MiddleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,6 +506,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.16615963, y: 0.51687837, z: 0.11839378}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4980935595487208}
   m_Father: {fileID: 4020583991417368}
@@ -502,7 +523,7 @@ GameObject:
   - component: {fileID: 4569981974513298}
   - component: {fileID: 33947780557709084}
   - component: {fileID: 23946073358376016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers02.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,6 +540,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4291529622295778}
   m_RootOrder: 0
@@ -542,10 +564,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -570,6 +594,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1917514125174542
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +606,7 @@ GameObject:
   - component: {fileID: 4064931773852690}
   - component: {fileID: 33476854390505874}
   - component: {fileID: 23203288679507672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drawers01.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,6 +623,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4796365814333600}
   m_RootOrder: 0
@@ -621,10 +647,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -649,3 +677,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

@@ -4257,7 +4257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f873ce3fa13de845addb0b03b875bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startWaitTime: 4
+  startWaitTime: 0
   timeToRotate: 2
   speedRun: 9
   viewRadius: 15

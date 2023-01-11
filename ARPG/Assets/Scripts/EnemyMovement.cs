@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     private PlayerCombat _playerCombat;
     private Enemy _enemy;
-    public float startWaitTime = 4;
+    public float startWaitTime = 0;
     public float timeToRotate = 2;
     public float speedRun = 9;
 
@@ -115,11 +115,11 @@ public class EnemyMovement : MonoBehaviour
                 _waitTime = startWaitTime;
                 _timeToRotate = timeToRotate;
             }
-            else
-            {
-                Stop();
-                _waitTime -= Time.deltaTime;
-            }
+            // else
+            // {
+            //     Stop();
+            //     _waitTime -= Time.deltaTime;
+            // }
 
         }
 
