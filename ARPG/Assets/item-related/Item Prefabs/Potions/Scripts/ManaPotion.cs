@@ -4,7 +4,7 @@ using UnityEngine;
 public class ManaPotion : MonoBehaviour, IInteractable, IPickupable
 {
     public int charges;
-    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
+    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {  
         if(_pickUpEnabled)
         { Pickup(playerStats, playerInventory); } 

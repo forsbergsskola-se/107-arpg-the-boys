@@ -9,7 +9,7 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
     [Header("if this is disabled, item power will curve towards zero for this item type.")]
     public bool isLinearScaling;
     
-
+    
     float Scale(int numItems, float power) //scaling math stuff
     {
         if (numItems == 0)
@@ -20,8 +20,9 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
     }
     
     public int heldCount;
-    private void ItemPickedUp(PlayerStats plStat) //could probably clean this up, but... it works. so i won't.
+    private void ItemPickedUp(PlayerStats plStat, TextPopUpScript textPopUpScript) //could probably clean this up, but... it works. so i won't.
     {
+        textPopUpScript.SpawnText(itemSo.itemTextPopUp, gameObject.transform.position);
         if(isLinearScaling)
         {
             //hp
@@ -160,10 +161,10 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
     }
 
-    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
+    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {
         if(_pickUpEnabled)
-        { Pickup(playerStats, playerInventory); } 
+        { Pickup(playerStats, playerInventory, textPopUpScript); } 
     }
 
     public void Highlight()
@@ -171,13 +172,14 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         throw new NotImplementedException();
     }
 
-    public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
+    public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {
         //get necessary components
         heldCount = playerInventory.GetItemCount(itemSo.name);//get # of items held from player inventory
-        ItemPickedUp(playerStats); // runs pick-up method
+        ItemPickedUp(playerStats, textPopUpScript); // runs pick-up method
         playerInventory.UpdateItemCount(itemSo.name); // updates # held
         Destroy(gameObject); //kills object
     }
+    
    
 }

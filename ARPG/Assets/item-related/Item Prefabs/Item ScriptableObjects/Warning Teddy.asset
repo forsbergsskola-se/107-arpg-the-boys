@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: Warning Teddy
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Warning Teddy: +25% Evasion chance'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0

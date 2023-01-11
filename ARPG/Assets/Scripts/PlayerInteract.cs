@@ -13,13 +13,14 @@ public class PlayerInteract : MonoBehaviour
     public float interactAreaSize;
     public LayerMask interactableLayerMask;
     private IInteractable _closestInteractable;
-
+    private TextPopUpScript _textPopUpScript;
     void Start()
     {
         _closestInteractable = null;
         _playerCombat = player.GetComponent<PlayerCombat>();
         _playerStats = player.GetComponent<PlayerStats>();
         _playerInventory = player.GetComponent<PlayerInventory>();
+        _textPopUpScript = player.GetComponent<TextPopUpScript>();
     }
 
     void Update()
@@ -30,7 +31,7 @@ public class PlayerInteract : MonoBehaviour
             //_closestInteractable.Highlight();
             if (_closestInteractable is ItemScript or HealthPotion or ManaPotion)
             {
-                _closestInteractable.Interact(_playerStats, _playerInventory);
+                _closestInteractable.Interact(_playerStats, _playerInventory, _textPopUpScript);
             }
         }
 

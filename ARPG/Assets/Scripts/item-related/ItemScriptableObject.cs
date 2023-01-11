@@ -4,7 +4,8 @@ using UnityEngine;
 public class ItemScriptableObject : ScriptableObject
 {
     //"ModPerc" implies the value is a modifying percentage, where 1f = 100%, 1.5f = 150%, etc.
-    
+    [Header("Descriptive Hover text string")]
+    public string itemTextPopUp = "Default text (replace me)";
 
     [Header("HP Variables")] 
     public float baseMaxHealthChange;

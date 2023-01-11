@@ -73,7 +73,7 @@ public class DropLogic : MonoBehaviour
    {
       DropPotion();
       DropMoney();
-      Vector3 variation = new Vector3(Random.Range(0.1f, 1f), 0.5f, Random.Range(0.1f, 1f));
+      Vector3 variation = new Vector3(Random.Range(-3f, 3f), 0.5f, Random.Range(-3f, 3f));
       switch (_selector)
       {
          case var n when n >=iOneDw:
@@ -99,7 +99,7 @@ public class DropLogic : MonoBehaviour
       _potionRoll = Random.Range(1, 100);
       if (_potionRoll < chanceOfPotion)
       {
-         Vector3 variation = new Vector3(Random.Range(0.1f, 1f), 0.5f, Random.Range(0.1f, 1f));
+         Vector3 variation = new Vector3(Random.Range(-3f, 3f), 0.5f, Random.Range(-3f, 3f));
          Instantiate(potionDrop, transform.position+variation, quaternion.identity);
       }
    }
@@ -109,7 +109,7 @@ public class DropLogic : MonoBehaviour
       _moneyRoll = Random.Range(1, 100);
       if (_moneyRoll < chanceOfMoney)
       {
-         Vector3 variation = new Vector3(Random.Range(0.1f, 1f), 0.5f, Random.Range(0.1f, 1f));
+         Vector3 variation = new Vector3(Random.Range(-3f, 3f), 0.5f, Random.Range(-3f, 3f));
          Instantiate(moneyDrop, transform.position+variation, quaternion.identity);
       }
    }
