@@ -6,7 +6,6 @@ TagManager:
   tags:
   - firePoint
   - BossRoom
-  - Enemy
   layers:
   - Default
   - TransparentFX
