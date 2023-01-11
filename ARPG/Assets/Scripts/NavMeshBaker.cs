@@ -16,11 +16,14 @@ public class NavMeshBaker : MonoBehaviour
 
     public IEnumerator WaitForSpawn()
     {
-        yield return new WaitForSeconds(1);
-        navMeshSurfaces = _navMeshSurfaces;
-        for (var i = 0; i < navMeshSurfaces.Length; i++)
+        for (int j = 0; j < 6; j++)
         {
-            navMeshSurfaces[i].BuildNavMesh();
+            yield return new WaitForSeconds(2);
+            navMeshSurfaces = _navMeshSurfaces;
+            for (var i = 0; i < navMeshSurfaces.Length; i++)
+            {
+                navMeshSurfaces[i].BuildNavMesh();
+            }
         }
     }
 }
