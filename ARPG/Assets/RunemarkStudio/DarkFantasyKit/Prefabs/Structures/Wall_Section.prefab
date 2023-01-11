@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4910320247221832}
-  m_Layer: 0
+  - component: {fileID: 8125570226099996991}
+  m_Layer: 8
   m_Name: Wall_Section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4584522833340094}
   - {fileID: 4588085730511082}
@@ -34,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8125570226099996991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041848634078788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1044264124499534
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +61,7 @@ GameObject:
   - component: {fileID: 33727713759845084}
   - component: {fileID: 23943917725173972}
   - component: {fileID: 65144429285930490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hook_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,6 +78,7 @@ Transform:
   m_LocalRotation: {x: 0.50000006, y: -0.49999988, z: 0.50000006, w: 0.4999999}
   m_LocalPosition: {x: 0.437, y: 1.351, z: -0.0384}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4584522833340094}
   m_RootOrder: 2
@@ -86,10 +102,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -114,6 +132,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65144429285930490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584522833340094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_flag_04_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,6 +172,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2900009, y: 2.2374363, z: 0.29000092}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4344679096896222}
   - {fileID: 4232217762722724}
@@ -173,7 +193,7 @@ GameObject:
   - component: {fileID: 33000346750898368}
   - component: {fileID: 23635624148169852}
   - component: {fileID: 64432420907799122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flag_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,6 +210,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4584522833340094}
   m_RootOrder: 0
@@ -213,10 +234,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -241,6 +264,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64432420907799122
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -267,7 +291,7 @@ GameObject:
   - component: {fileID: 33433171673124222}
   - component: {fileID: 23581770634438852}
   - component: {fileID: 65574257144993256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hook_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,6 +308,7 @@ Transform:
   m_LocalRotation: {x: 0.5000001, y: -0.4999999, z: 0.5000001, w: 0.49999994}
   m_LocalPosition: {x: -0.442, y: 1.351, z: -0.038}
   m_LocalScale: {x: 0.99999976, y: 0.99999964, z: 0.99999964}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4584522833340094}
   m_RootOrder: 3
@@ -307,10 +332,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -335,6 +362,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65574257144993256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -361,7 +389,7 @@ GameObject:
   - component: {fileID: 23499669280779236}
   - component: {fileID: 64213281797308140}
   - component: {fileID: 65609675763746858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,6 +406,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4910320247221832}
   m_RootOrder: 1
@@ -401,10 +430,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -429,6 +460,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64213281797308140
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -468,7 +500,7 @@ GameObject:
   - component: {fileID: 33317592746261530}
   - component: {fileID: 23347275854579726}
   - component: {fileID: 65055823322108122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01b_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,6 +517,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2310009, y: 3, z: 0.050001144}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4910320247221832}
   m_RootOrder: 3
@@ -508,10 +541,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -536,6 +571,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65055823322108122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -560,7 +596,7 @@ GameObject:
   - component: {fileID: 4847266252996050}
   - component: {fileID: 33653168444975096}
   - component: {fileID: 23623792561525680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_wall_01a_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,6 +613,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.2310009, y: 4.5, z: 0.050001144}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4910320247221832}
   m_RootOrder: 2
@@ -600,10 +637,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -628,6 +667,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1692417484890980
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +680,7 @@ GameObject:
   - component: {fileID: 33075874571801050}
   - component: {fileID: 23083838292425406}
   - component: {fileID: 136463060747279596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flagpole_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,6 +697,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.70710677}
   m_LocalPosition: {x: -0, y: 1.32, z: 0}
   m_LocalScale: {x: 1.4395012, y: 1.4395012, z: 1.4395012}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4584522833340094}
   m_RootOrder: 1
@@ -680,10 +721,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -708,6 +751,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &136463060747279596
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33001253320015282}
   - component: {fileID: 23573167495752364}
   - component: {fileID: -8466712755786938853}
+  - component: {fileID: 7723418452184719345}
   m_Layer: 8
   m_Name: dfk_wall_01a_corner_element_low
   m_TagString: Untagged
@@ -96,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!114 &7723418452184719345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133750539930806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}

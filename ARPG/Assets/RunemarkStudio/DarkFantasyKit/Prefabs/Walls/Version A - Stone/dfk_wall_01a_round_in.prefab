@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 33297305320079208}
   - component: {fileID: 23406799097776732}
   - component: {fileID: 4643921093217497624}
-  m_Layer: 0
+  - component: {fileID: 6741232594714929066}
+  m_Layer: 8
   m_Name: dfk_wall_01a_round_in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!114 &6741232594714929066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729636103011596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}

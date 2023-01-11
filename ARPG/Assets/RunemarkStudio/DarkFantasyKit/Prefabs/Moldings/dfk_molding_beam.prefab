@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33892991893746986}
   - component: {fileID: 23887583534428134}
   - component: {fileID: 65659248917782426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Molding1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000035271052, y: 0.008045191, z: 0.12300302}
   m_LocalScale: {x: 1, y: 0.35597914, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4042304347955568}
   m_RootOrder: 0
@@ -52,10 +53,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65659248917782426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,7 +109,8 @@ GameObject:
   - component: {fileID: 33739035873934022}
   - component: {fileID: 23360634156265926}
   - component: {fileID: 65251020051557310}
-  m_Layer: 0
+  - component: {fileID: 1787895737501513748}
+  m_Layer: 8
   m_Name: dfk_molding_beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +127,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2.8091533, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4648829011378514}
   - {fileID: 4443269647165352}
@@ -147,10 +153,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -175,6 +183,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65251020051557310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -188,6 +197,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 0.05616841, z: 0.067899466}
   m_Center: {x: 0, y: 0.005090112, z: 0.0062632263}
+--- !u!114 &1787895737501513748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498950553180454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1928697733223560
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +222,7 @@ GameObject:
   - component: {fileID: 33759378602101700}
   - component: {fileID: 23757833707456434}
   - component: {fileID: 65981209199611318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Molding1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +239,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0.007974068, z: -0.111000076}
   m_LocalScale: {x: 1, y: 0.35597914, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4042304347955568}
   m_RootOrder: 1
@@ -240,10 +263,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -268,6 +293,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &65981209199611318
 BoxCollider:
   m_ObjectHideFlags: 0

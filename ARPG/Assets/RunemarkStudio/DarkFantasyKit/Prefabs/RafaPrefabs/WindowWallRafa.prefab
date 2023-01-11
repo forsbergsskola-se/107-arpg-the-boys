@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5601033314477886846}
   - component: {fileID: 917180407038851150}
   - component: {fileID: 7532546793156951620}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WindowWallRafa
   m_TagString: Untagged
   m_Icon: {fileID: 0}

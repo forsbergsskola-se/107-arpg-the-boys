@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4158190476288002}
   - component: {fileID: 33122276971681832}
   - component: {fileID: 23392727549316252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Doorframe (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,8 @@ GameObject:
   - component: {fileID: 23407650478722828}
   - component: {fileID: 64297918302190860}
   - component: {fileID: 5522454177293043925}
-  m_Layer: 0
+  - component: {fileID: 6007309293906905878}
+  m_Layer: 8
   m_Name: dfk_wall_01a_corner_door_both
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +197,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!114 &6007309293906905878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818030551811380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1852759401166792
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +222,7 @@ GameObject:
   - component: {fileID: 4626361106349798}
   - component: {fileID: 33447708263189058}
   - component: {fileID: 23537255428249794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Doorframe (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
