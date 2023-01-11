@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using System.Collections;
 public class WorldGenerator : MonoBehaviour
 {
     [Header("Settings")]
@@ -35,6 +35,15 @@ public class WorldGenerator : MonoBehaviour
         InitFunnyArray();
         GenerateRooms(desiredRoomAmount,Vector3.zero, Quaternion.identity);
         StartCoroutine(WrongEnemySpawnPurge());
+    }    
+    private IEnumerator WrongEnemySpawnPurge()
+    {
+        yield return new WaitForSeconds(2);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Destroy(enemies[i]);
+        }
     }
 
     private void InitFunnyArray()
