@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33629843155869088}
   - component: {fileID: 23993539567231628}
   - component: {fileID: 64725627686754188}
-  - component: {fileID: 491337046730246157}
+  - component: {fileID: -988570841381647810}
   m_Layer: 8
   m_Name: dfk_pillar_large_01
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4b746d8ace285a5449d1d2f18bd4a939, type: 3}
---- !u!114 &491337046730246157
+--- !u!114 &-988570841381647810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
