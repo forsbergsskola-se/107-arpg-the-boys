@@ -649,50 +649,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1867880624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1867880626}
-  - component: {fileID: 1867880625}
-  m_Layer: 0
-  m_Name: NavMeshBuild
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1867880625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867880624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b026fc790e8964b9ed96cb7ccea1eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1867880626
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867880624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.849581, y: 12.696989, z: 40.90172}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062845020
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +809,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[3].rooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: allRooms.Array.data[2].rooms.Array.data[1]
       value: 
       objectReference: {fileID: 3049121769853175112, guid: 9064f5f4e4fd1724896179eb4e6b8724, type: 3}
@@ -864,6 +824,14 @@ PrefabInstance:
       propertyPath: allRooms.Array.data[2].rooms.Array.data[3]
       value: 
       objectReference: {fileID: 108088960873103764, guid: 45fa17d3391e08048ae54f6d71a50cf1, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[3].rooms.Array.data[1]
+      value: 
+      objectReference: {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: allRooms.Array.data[3].rooms.Array.data[2]
+      value: 
+      objectReference: {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.size
       value: 2
