@@ -5154,10 +5154,7 @@ MonoBehaviour:
   friction: 0.6
   maxStrafeSpeed: 30
   maxGroundAngle: 35
-  maxVelocity: 50
-  walkableLayers:
-    serializedVersion: 2
-    m_Bits: 0
+  rollCooldown: 0.7
   gravityScale: 9.82
   rollDuration: 0.4
   canMove: 1

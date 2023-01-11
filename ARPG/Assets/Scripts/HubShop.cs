@@ -105,6 +105,8 @@ public class HubShop : MonoBehaviour, IInteractable
             // Deduct the cost from the player's money
             _inventory.ShopSellMoney("Money", _inventory.GetItemCount("Money") - selectedWeapon.cost);
             Debug.Log($"Bought weapon, now you have {_inventory.GetItemCount("Money")} moneys.");
+            
+            PlayerPrefs.SetInt("Money-Count", _inventory.GetItemCount("Money"));
 
             // Set the weapon's "isBought" field to true
             selectedWeapon.isBought = true;
