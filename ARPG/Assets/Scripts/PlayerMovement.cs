@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxStrafeSpeed = 30;
     public float maxGroundAngle = 35f;
     public float rollCooldown = 0.3f;
+    public LayerMask walkableLayers;
 
     [Header("Other movement variables")]
     public float gravityScale = 9.82f;
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        CheckGrounded();
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         if (Input.GetButtonDown("Dash"))
             StartCoroutine(CO_DashActivate());  //Using a coroutine so I can use WaitForFixedUpdate
@@ -105,6 +107,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        else if (_grounded && _playerCombat.isAttacking)
+        {
+            endVel = Accelerate(endVel, 0, acceleration, _groundNormal);
+            endVel = Friction(endVel, 0, friction, _groundNormal);
+        }
         
         if (canMove)
         {
@@ -117,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 StartRoll();
             }
         }
+        
         
         if (!_grounded)
         {
@@ -243,24 +251,20 @@ public class PlayerMovement : MonoBehaviour
     {
         endVel += Vector3.down * (gravityScale * Time.fixedDeltaTime);
     }
-    
-    private void OnCollisionExit(Collision col)
-    {
-        if (!_grounded) return;
-        _grounded = false;
-    }
 
-    private void OnCollisionStay(Collision col)
+    void CheckGrounded()
     {
-        for (int i = 0; i < col.contactCount; i++)
-        {
-            
-            if (IsWithinAngle(col.GetContact(i).normal, maxGroundAngle))
-            {
-                _grounded = true;
-                _groundNormal = col.GetContact(i).normal;
-            }
-        }
+        // Get the bottom position of player's collider
+        Vector3 rayOrigin = _col.bounds.center + Vector3.down * (_col.bounds.extents.y - 0.1f);
+
+        // use the player's collider radius as the distance of the ray
+        float rayDistance = _col.radius;
+
+        // use Physics.SphereCast to check if the player is touching the walkable surface
+        _grounded = Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hitInfo, rayDistance, walkableLayers);
+
+        // visualize the ray
+        Debug.DrawRay(rayOrigin, Vector3.down * rayDistance, Color.red);
     }
 
     private bool IsWithinAngle(Vector3 normal, float angle)

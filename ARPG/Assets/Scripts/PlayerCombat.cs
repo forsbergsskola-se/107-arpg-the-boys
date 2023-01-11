@@ -146,7 +146,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
         animationEnded = false;
         isAttacking = true;
-        _playerMovement._rb.velocity = Vector3.zero;
+        // _playerMovement._rb.velocity = Vector3.zero;
 
         SetRotatePoint();
 
