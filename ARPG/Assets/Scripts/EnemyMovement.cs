@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
         
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedRun;
-        navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+            navMeshAgent.SetDestination(_player.transform.position);
     }
 
     public void EnemyyMovement()
@@ -67,71 +67,14 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Chasing()
     {
-        _playerNear = false;
-        _playerLastPosition = Vector3.zero;
-        if (!_caughtPlayer)
-        {
-            Move(speedRun);
-            navMeshAgent.SetDestination(_playerPosition);
-        }
-
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-        {
-            if (!_caughtPlayer && Vector3.Distance(transform.position, _player.transform.position) >= agroDistance)
-            {
-                _isPatrol = true;
-                _playerNear = false;
-                Move(speedRun);
-                _timeToRotate = timeToRotate;
-                _waitTime = startWaitTime;
-                navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
-            }
-            else //if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
-            {
-                Stop();
-                _waitTime -= Time.deltaTime;
-            }
-
-        }
+        Move(speedRun);
+        navMeshAgent.SetDestination(_player.transform.position);
     }
 
     private void Patroling()
     {
-        if (_playerNear)
-        {
-            if (_timeToRotate <= 0)
-            {
-                Move(speedRun);
-                LookingPlayer(_playerLastPosition);
-            }
-            else
-            {
-                Stop();
-                _timeToRotate -= Time.deltaTime;
-
-            }
-        }
-        else
-        {
-            _playerNear = false;
-            _playerPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-            {
-                if (_waitTime <= 0)
-                {
-                    NextPoint();
-                    Move(speedRun);
-                    _waitTime = startWaitTime;
-                }
-                else
-                {
-                    
-                    Stop();
-                    _waitTime -= Time.deltaTime;
-                }
-            }
-        }
+        Move(speedRun);
+        navMeshAgent.SetDestination(_player.transform.position);
     }
     
     public void NextPoint()

@@ -226,7 +226,7 @@ MonoBehaviour:
   moveSpeed: 5
   attackRange: {x: 4, y: 8, z: 4}
   showHitbox: 1
-  maxHealth: 100
+  maxHealth: 1000
   enemyMovement: {fileID: 0}
   hasAiMovement: 0
   animator: {fileID: 6624447921053603127}
