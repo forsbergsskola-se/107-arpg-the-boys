@@ -120,7 +120,9 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100, camRayLayer))
+        {
             _playerMovement.rotateDir = Vector3.ProjectOnPlane((hit.point - transform.position), Vector3.up).normalized;
+        }
         else
         {
             float playerYDiff = Camera.main.transform.position.y - transform.position.y;
@@ -144,7 +146,7 @@ public class PlayerCombat : MonoBehaviour, IInterruptible
 
         animationEnded = false;
         isAttacking = true;
-        _playerMovement._rb.velocity = Vector3.zero;
+        // _playerMovement._rb.velocity = Vector3.zero;
 
         SetRotatePoint();
 

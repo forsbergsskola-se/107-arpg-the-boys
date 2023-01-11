@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 8018545301037897304}
   m_Layer: 10
   m_Name: Shield Orc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 2533563025633197055}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 187e220b4a2cb554fb79d4bc13431c14, type: 3}
-  m_Controller: {fileID: 9100000, guid: b91d8353156b1a84e91f6b68f992b300, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa40163a797740348bfa3e9a317af2d3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

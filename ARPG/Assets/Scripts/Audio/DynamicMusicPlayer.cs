@@ -31,12 +31,12 @@ public class DynamicMusicPlayer : MonoBehaviour
 
         if (_containsEnemy)
         {
-            Debug.Log("Touching Enemy");
+            //Debug.Log("Touching Enemy");
             TransitionState += speed * Time.deltaTime;
         }
         else
         {
-            Debug.Log("Not Touching Enemy");
+            //Debug.Log("Not Touching Enemy");
             TransitionState -= speed * Time.deltaTime;
         }
         //Debug.Log("Transition state is " + TransitionState);

@@ -17,8 +17,9 @@ public class SpawnMonster : MonoBehaviour
     {
         if ((triggerSpawnLayers & (1 << other.gameObject.layer)) != 0 && readyToSpawn)
         {
+            Debug.Log("Enemy spawned by touching "+other);
             readyToSpawn = false;
-            BeginSpawn();   
+            BeginSpawn();
         }
     }
 
@@ -27,6 +28,7 @@ public class SpawnMonster : MonoBehaviour
         int thisEnemy = ThisEnemy();
         //Debug.Log(thisEnemy +" is the chosen enemy from the array");
         Instantiate(enemies[thisEnemy], transform.position, transform.rotation);
+        readyToSpawn = false;
         spawnEffect.Play();
     }
 

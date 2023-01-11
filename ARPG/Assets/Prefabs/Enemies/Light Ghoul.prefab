@@ -2018,7 +2018,7 @@ GameObject:
   - component: {fileID: 9036434715484550701}
   m_Layer: 10
   m_Name: Light Ghoul
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,7 +2053,7 @@ Animator:
   m_GameObject: {fileID: 8749923263509970878}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 273616f94e1c24a0bbef22aa03fce021, type: 3}
-  m_Controller: {fileID: 9100000, guid: 88668948ca3899349a08bbb69ee27efb, type: 2}
+  m_Controller: {fileID: 9100000, guid: fa40163a797740348bfa3e9a317af2d3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
