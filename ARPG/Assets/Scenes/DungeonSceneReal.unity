@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 90b7af5ef1d4bfd49b45507331696f4b, type: 2}
+--- !u!4 &348012537 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5081297216185460704, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+  m_PrefabInstance: {fileID: 1222106247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369660947
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3718e5078f4cd894881281e45aef7de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1355194988}
+  targetObject: {fileID: 348012537}
   wallMask:
     serializedVersion: 2
     m_Bits: 256
@@ -365,9 +370,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1695816411, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195682421368019723, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390147298263784413, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081297216185460704, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5576210471884893618, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630916525282134633, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
