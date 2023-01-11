@@ -321,9 +321,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4390147298256074173, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5576210471884893618, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330928658350872650, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: camRayLayer.m_Bits
+      value: 30657
       objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
@@ -339,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.45
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_LocalPosition.y
@@ -482,14 +490,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773766509992089478, guid: fc0e5fd047a9ac84da2ab68da34671e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4808227032004357481, guid: fc0e5fd047a9ac84da2ab68da34671e9, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4808227032004357481, guid: fc0e5fd047a9ac84da2ab68da34671e9, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6054745304951640930, guid: fc0e5fd047a9ac84da2ab68da34671e9, type: 3}
