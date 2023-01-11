@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4185008163886934}
   - component: {fileID: 33592941505576304}
   - component: {fileID: 23567388674686464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 33212370657224772}
   - component: {fileID: 23455309347812128}
   - component: {fileID: 64238265169958388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4773455549503442}
   - component: {fileID: 33408822411490376}
   - component: {fileID: 23939694474825758}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Beamwork_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1825214331097750
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +392,7 @@ GameObject:
   - component: {fileID: 4944110113147754}
   - component: {fileID: 33722472854956384}
   - component: {fileID: 23748180286830564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +476,7 @@ GameObject:
   - component: {fileID: 33506099460644318}
   - component: {fileID: 23440970128259012}
   - component: {fileID: 64899349520945776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

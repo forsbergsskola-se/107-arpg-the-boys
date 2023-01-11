@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4563240385327882}
   - component: {fileID: 33712368418761956}
   - component: {fileID: 64587295194685604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StairCollider.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 4796616618008622}
   - component: {fileID: 33399945602948324}
   - component: {fileID: 23086120521983114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_float
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4039362610180390}
   - component: {fileID: 6176495409602989861}
-  m_Layer: 0
+  - component: {fileID: -5694997168394756874}
+  m_Layer: 8
   m_Name: dfk_stairs_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +203,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &-5694997168394756874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191681239594084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1529809159400044
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +228,7 @@ GameObject:
   - component: {fileID: 33040964804734062}
   - component: {fileID: 23242302657030980}
   - component: {fileID: 64293481840168728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

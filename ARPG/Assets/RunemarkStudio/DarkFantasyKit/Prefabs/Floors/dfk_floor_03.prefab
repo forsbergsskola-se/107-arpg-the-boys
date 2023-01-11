@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 23553961691956370}
   - component: {fileID: 65801891577304160}
   - component: {fileID: -4166548772421327895}
-  m_Layer: 8
+  - component: {fileID: -3155311675681563139}
+  m_Layer: 6
   m_Name: dfk_floor_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,3 +129,16 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &-3155311675681563139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143820794372520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}

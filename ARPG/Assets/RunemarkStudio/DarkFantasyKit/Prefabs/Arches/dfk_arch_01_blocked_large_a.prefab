@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1074676504089372
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +127,7 @@ GameObject:
   - component: {fileID: 33756432737777212}
   - component: {fileID: 23886360454035062}
   - component: {fileID: 65839914453853564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +224,7 @@ GameObject:
   - component: {fileID: 4036467737312714}
   - component: {fileID: 33642476666907160}
   - component: {fileID: 23588312057504544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +307,7 @@ GameObject:
   - component: {fileID: 4225226632938924}
   - component: {fileID: 33059271595719334}
   - component: {fileID: 23083499659146990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +391,7 @@ GameObject:
   - component: {fileID: 33938334449758778}
   - component: {fileID: 23334281644087970}
   - component: {fileID: 65891994122651212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

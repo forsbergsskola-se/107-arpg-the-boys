@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 4671477913470376}
   - component: {fileID: 33253192078664260}
   - component: {fileID: 23216622894250692}
+  - component: {fileID: -7036571534975152666}
   m_Layer: 8
   m_Name: dfk_painting_frame_02
   m_TagString: Untagged
@@ -368,6 +369,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7036571534975152666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789312659883594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1803065303487886
 GameObject:
   m_ObjectHideFlags: 0

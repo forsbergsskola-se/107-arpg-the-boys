@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4786644774080326}
   - component: {fileID: 33918634217156306}
   - component: {fileID: 64192773814332810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RailingCollider.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 33946900287467222}
   - component: {fileID: 23752445613673186}
   - component: {fileID: 205036672699176958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4233000627452706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_railing_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 4295200075928962}
   - component: {fileID: 33057603507469044}
   - component: {fileID: 23450152871461518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_float
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 33253904598982210}
   - component: {fileID: 23939017932369350}
   - component: {fileID: 64183861823697034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 4362948004141596}
   - component: {fileID: 33054717449464988}
   - component: {fileID: 64084284393851386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StairCollider.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 4135404543795712}
   - component: {fileID: 33203354894677874}
   - component: {fileID: 23134269944980126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02_grate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 33825892516311380}
   - component: {fileID: 23459138781354794}
   - component: {fileID: 65392617101574080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_end (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 4712400813957012}
   - component: {fileID: 33666906979906120}
   - component: {fileID: 23896232559727056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02_grate_LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 33909027343930078}
   - component: {fileID: 23144334393831188}
   - component: {fileID: 65798830298423624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall_low_1_block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 33077607841732690}
   - component: {fileID: 23287328330668226}
   - component: {fileID: 64549858476797260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 4296422658643886}
   - component: {fileID: 33368926570983110}
   - component: {fileID: 23118670321153748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_float
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 4361186134370280}
   - component: {fileID: 33280410082867574}
   - component: {fileID: 64592617312089334}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StairCollider.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1051,7 +1051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4060954127813844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_railing_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1085,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4912204792169182}
   - component: {fileID: 3872832101742685833}
-  m_Layer: 0
+  - component: {fileID: 7998652938467996659}
+  m_Layer: 8
   m_Name: dfk_stairs_01_turn_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,6 +1142,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &7998652938467996659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809148759804100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1834203324013390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1166,7 @@ GameObject:
   - component: {fileID: 4628525591137224}
   - component: {fileID: 33149183415721130}
   - component: {fileID: 23238546427022794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1249,7 @@ GameObject:
   - component: {fileID: 4962856341376888}
   - component: {fileID: 33031751513548516}
   - component: {fileID: 23845938174667248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,7 +1333,7 @@ GameObject:
   - component: {fileID: 33752881422135940}
   - component: {fileID: 23171592424970790}
   - component: {fileID: 65786315965287678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall_low_1_block (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4306873370507680}
   - component: {fileID: 5007547917889119416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tablecloth_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4891753160067664}
   - component: {fileID: 33924274303620344}
   - component: {fileID: 23293136938509868}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_tablecloth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 4630035032095604}
   - component: {fileID: 33605033035826782}
   - component: {fileID: 23684804473206144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_tablecloth_run
   m_TagString: Untagged
   m_Icon: {fileID: 0}

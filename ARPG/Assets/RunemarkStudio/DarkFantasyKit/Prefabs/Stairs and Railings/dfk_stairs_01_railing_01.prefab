@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4494360096486402}
   - component: {fileID: 33887990557483396}
   - component: {fileID: 23410974027909362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02_grate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 33475448182428824}
   - component: {fileID: 23025512712413286}
   - component: {fileID: 64501840870827076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 33722495196354750}
   - component: {fileID: 23709453133932590}
   - component: {fileID: 205620575851750794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 33355625833550964}
   - component: {fileID: 23499632093679648}
   - component: {fileID: 65053887598680046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_end (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 4243535126573448}
   - component: {fileID: 33730912258101892}
   - component: {fileID: 64230504627288444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RailingCollider.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 33553202462517014}
   - component: {fileID: 23947358162854674}
   - component: {fileID: 65297036843742148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_end (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4418228717999304}
   - component: {fileID: 436643081259754034}
-  m_Layer: 0
+  - component: {fileID: 8129959558163998040}
+  m_Layer: 8
   m_Name: dfk_stairs_01_railing_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,6 +614,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &8129959558163998040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592203271826938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1642203519484648
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +638,7 @@ GameObject:
   - component: {fileID: 4514853188277956}
   - component: {fileID: 33684488317608322}
   - component: {fileID: 64381012252822248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StairCollider.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +693,7 @@ GameObject:
   - component: {fileID: 4270427784468200}
   - component: {fileID: 33022779184893028}
   - component: {fileID: 23758761038424450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Railing_02_grate_LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +776,7 @@ GameObject:
   - component: {fileID: 4713874498984118}
   - component: {fileID: 33796233353544750}
   - component: {fileID: 23798281002077752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs_float
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -294,6 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4028395115193528}
   - component: {fileID: 114522355102078778}
+  - component: {fileID: -6895428189789700604}
   m_Layer: 8
   m_Name: dfk_gate_01_small_interactive
   m_TagString: Untagged
@@ -334,6 +335,19 @@ MonoBehaviour:
   List:
   - {fileID: 114066162793726310}
   - {fileID: 114907516272061790}
+--- !u!114 &-6895428189789700604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474762168565580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1730700862706262
 GameObject:
   m_ObjectHideFlags: 0

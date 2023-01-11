@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4726964590921716}
   - component: {fileID: 114528857948616922}
   - component: {fileID: 114668111735592294}
+  - component: {fileID: 2188653848402123671}
   m_Layer: 8
   m_Name: dfk_door_02_interactive
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   List:
   - {fileID: 114891555884150556}
   - {fileID: 114294264258743340}
+--- !u!114 &2188653848402123671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003421851940162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1485268672482454
 GameObject:
   m_ObjectHideFlags: 0

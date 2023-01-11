@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4428313960720624}
   - component: {fileID: 33218635757464368}
   - component: {fileID: 23407562055882692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chandelier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0006353855, y: 0.53211033, z: 0.003158563}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 1
@@ -51,10 +52,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1225907197471680
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +94,7 @@ GameObject:
   - component: {fileID: 4771028501295808}
   - component: {fileID: 33828309967899190}
   - component: {fileID: 23538951647590934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +111,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.6436, y: -0.591, z: -0.0023002625}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 8
@@ -130,10 +135,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -158,6 +165,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1233079356527608
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +177,7 @@ GameObject:
   - component: {fileID: 4041944363814176}
   - component: {fileID: 33995418768271892}
   - component: {fileID: 23884997864019922}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +194,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.395, y: -0.8766999, z: -0.0023002625}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 3
@@ -209,10 +218,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -237,6 +248,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1293756191773748
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +260,7 @@ GameObject:
   - component: {fileID: 4962128765663296}
   - component: {fileID: 33944049986391264}
   - component: {fileID: 23681933348110984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +277,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.8652551, z: -0, w: 0.5013319}
   m_LocalPosition: {x: -0.310318, y: -0.5910001, z: -0.56230545}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 12
@@ -288,10 +301,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -316,6 +331,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1317895140776066
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4319177471733644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_chandelier_01_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,6 +358,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4299271732087168}
   - {fileID: 4428313960720624}
@@ -371,7 +388,7 @@ GameObject:
   - component: {fileID: 4561894011257810}
   - component: {fileID: 33860656052734532}
   - component: {fileID: 23729910119051984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,6 +405,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.635, y: -0.5910001, z: -0.0023002625}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 9
@@ -411,10 +429,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -439,6 +459,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1481712587038316
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +471,7 @@ GameObject:
   - component: {fileID: 4231489917274516}
   - component: {fileID: 33020504352882744}
   - component: {fileID: 23265408944160726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,6 +488,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: 0.18893051, y: -0.8766999, z: -0.35165787}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 6
@@ -490,10 +512,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -518,6 +542,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1581745443922308
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +554,7 @@ GameObject:
   - component: {fileID: 4155922112841336}
   - component: {fileID: 33831930328653128}
   - component: {fileID: 23219387006852240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,6 +571,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.49298126, z: -0, w: 0.87004}
   m_LocalPosition: {x: 0.33603668, y: -0.5910001, z: -0.5523968}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 10
@@ -569,10 +595,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -597,6 +625,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1602835808179788
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +637,7 @@ GameObject:
   - component: {fileID: 4563419867065594}
   - component: {fileID: 33633962233589848}
   - component: {fileID: 23055173141173162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,6 +654,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.8652551, z: -0, w: 0.5013319}
   m_LocalPosition: {x: 0.32554626, y: -0.5910001, z: 0.5469341}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 13
@@ -648,10 +678,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -676,6 +708,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1616944075120216
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +720,7 @@ GameObject:
   - component: {fileID: 4232725623865004}
   - component: {fileID: 33255036762291368}
   - component: {fileID: 23820972793372282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,6 +737,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.3904, y: -0.8767, z: -0.0023}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 2
@@ -727,10 +761,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -755,6 +791,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1685912326284848
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +803,7 @@ GameObject:
   - component: {fileID: 4638837719020688}
   - component: {fileID: 33948286984394436}
   - component: {fileID: 23825246108862188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,6 +820,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: -0.19040298, y: -0.8766999, z: 0.33607674}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 7
@@ -806,10 +844,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -834,6 +874,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1729189411512342
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +886,7 @@ GameObject:
   - component: {fileID: 4430184496257078}
   - component: {fileID: 33263878713502178}
   - component: {fileID: 23887019606990344}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,6 +903,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.4919962, z: -0, w: 0.87059736}
   m_LocalPosition: {x: -0.20336914, y: -0.8766999, z: -0.340559}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 4
@@ -885,10 +927,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -913,6 +957,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1835032205444412
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +969,7 @@ GameObject:
   - component: {fileID: 4299271732087168}
   - component: {fileID: 33838960742043394}
   - component: {fileID: 23518383792410634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chain_chandelier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,6 +986,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0006355047, y: -0.5321102, z: -0.0031585628}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 0
@@ -964,10 +1010,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -992,6 +1040,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1873485936272336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1052,7 @@ GameObject:
   - component: {fileID: 4777082093857422}
   - component: {fileID: 33968646813964426}
   - component: {fileID: 23255812791595724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,6 +1069,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.49298126, z: -0, w: 0.87004}
   m_LocalPosition: {x: -0.32107162, y: -0.5910001, z: 0.5444145}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 11
@@ -1043,10 +1093,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1071,6 +1123,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1999934927901442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1135,7 @@ GameObject:
   - component: {fileID: 4565808880596386}
   - component: {fileID: 33794168731719152}
   - component: {fileID: 23328660877618214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crystal04 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,6 +1152,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.4919962, z: -0, w: 0.87059736}
   m_LocalPosition: {x: 0.20180893, y: -0.8766999, z: 0.33226585}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319177471733644}
   m_RootOrder: 5
@@ -1122,10 +1176,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1150,3 +1206,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

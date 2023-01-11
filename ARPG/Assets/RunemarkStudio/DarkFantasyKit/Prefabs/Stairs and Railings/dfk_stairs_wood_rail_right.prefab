@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 23535630401855010}
   - component: {fileID: 64752708899085150}
   - component: {fileID: -6897065234580001698}
-  m_Layer: 0
+  - component: {fileID: 4522034395935153870}
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,6 +131,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &4522034395935153870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246566808844060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1262803968773422
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +155,7 @@ GameObject:
   - component: {fileID: 4039731570209264}
   - component: {fileID: 33170404106711660}
   - component: {fileID: 23014248243958296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}

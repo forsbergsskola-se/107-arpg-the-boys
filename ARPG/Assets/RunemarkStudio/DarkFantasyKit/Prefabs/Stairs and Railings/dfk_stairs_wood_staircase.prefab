@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33927583614266530}
   - component: {fileID: 23685050961341756}
   - component: {fileID: 65243339156287938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail02b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4192425517218074}
   - component: {fileID: 33885659717827086}
   - component: {fileID: 23891495389971014}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail01b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4884639560563044}
   - component: {fileID: 33525048762462860}
   - component: {fileID: 23415670735420596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail01b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 33346824610276502}
   - component: {fileID: 23786766867000070}
   - component: {fileID: 65367516690496210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail02_half
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4975032458679726}
   - component: {fileID: 5631068421039157473}
-  m_Layer: 0
+  - component: {fileID: -7977198082067813938}
+  m_Layer: 8
   m_Name: dfk_stairs_wood_staircase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,6 +429,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &-7977198082067813938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416895392279318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1442983526709304
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +454,7 @@ GameObject:
   - component: {fileID: 33128777859170068}
   - component: {fileID: 23695615978530348}
   - component: {fileID: 65398380251626232}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail02_half (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +550,7 @@ GameObject:
   - component: {fileID: 4606036711232460}
   - component: {fileID: 33578773687589360}
   - component: {fileID: 23494317674424378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +634,7 @@ GameObject:
   - component: {fileID: 33073279593760374}
   - component: {fileID: 23882659438084334}
   - component: {fileID: 65660780912731950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stair_wood_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +731,7 @@ GameObject:
   - component: {fileID: 33899692951022104}
   - component: {fileID: 23728258574800098}
   - component: {fileID: 64460832726159638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail_full (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +831,7 @@ GameObject:
   - component: {fileID: 33504276210063026}
   - component: {fileID: 23297054786154852}
   - component: {fileID: 64116374536134130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail_full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +930,7 @@ GameObject:
   - component: {fileID: 4662854351586658}
   - component: {fileID: 33901279120299696}
   - component: {fileID: 23721222844967066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_wood_rail01a
   m_TagString: Untagged
   m_Icon: {fileID: 0}

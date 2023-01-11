@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33282339440839454}
   - component: {fileID: 23537331536688396}
   - component: {fileID: 64022695289537782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 33527309040402354}
   - component: {fileID: 23267479367677334}
   - component: {fileID: 64130487381482470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,3 +309,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}

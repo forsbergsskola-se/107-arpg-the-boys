@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4531979362594240}
   - component: {fileID: 33537233912541914}
   - component: {fileID: 23745475334789058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dfk_stairs_spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4462310117981754}
   - component: {fileID: 33343933820816640}
   - component: {fileID: 23070995053709936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpiralStair_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4818596761937822}
   - component: {fileID: 33778059590891328}
   - component: {fileID: 23149770416292648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StairMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4559534415556468}
   - component: {fileID: 8144806256400044904}
-  m_Layer: 0
+  - component: {fileID: 3423247511881760337}
+  m_Layer: 8
   m_Name: dfk_stairs_spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,3 +315,16 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &3423247511881760337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856192895038260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}

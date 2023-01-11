@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4711487696617454}
-  m_Layer: 0
+  - component: {fileID: 1684289688975523998}
+  m_Layer: 8
   m_Name: dfk_curtain_purple_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4007803748110504}
   - {fileID: 4021627799523578}
@@ -35,6 +37,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684289688975523998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236673646303074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1298795136865810
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +62,7 @@ GameObject:
   - component: {fileID: 33219085037506190}
   - component: {fileID: 23393231004923652}
   - component: {fileID: 64475903989856134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Curtain04 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +79,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.566, y: -0.8299999, z: -0.000000230968}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711487696617454}
   m_RootOrder: 2
@@ -87,10 +103,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,6 +133,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64475903989856134
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -140,7 +159,7 @@ GameObject:
   - component: {fileID: 4715609168514534}
   - component: {fileID: 33000479599222938}
   - component: {fileID: 23672139177803304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hook_01.001 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +176,7 @@ Transform:
   m_LocalRotation: {x: 0.5000001, y: -0.4999999, z: 0.5000001, w: 0.49999994}
   m_LocalPosition: {x: -0.8289995, y: 0.014499903, z: -0.06060052}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711487696617454}
   m_RootOrder: 4
@@ -180,10 +200,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -208,6 +230,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1503486128813526
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +242,7 @@ GameObject:
   - component: {fileID: 4007803748110504}
   - component: {fileID: 33345771183261226}
   - component: {fileID: 23431082742623434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CurtainRod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +259,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711487696617454}
   m_RootOrder: 0
@@ -259,10 +283,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -287,6 +313,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1543315714248450
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +326,7 @@ GameObject:
   - component: {fileID: 33201343611048508}
   - component: {fileID: 23070878629314068}
   - component: {fileID: 64959009015173026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Curtain04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,6 +343,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.589, y: -0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711487696617454}
   m_RootOrder: 1
@@ -339,10 +367,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -367,6 +397,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64959009015173026
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -392,7 +423,7 @@ GameObject:
   - component: {fileID: 4515488100006792}
   - component: {fileID: 33316714149067378}
   - component: {fileID: 23998190150663292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hook_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,6 +440,7 @@ Transform:
   m_LocalRotation: {x: 0.5000001, y: -0.4999999, z: 0.5000001, w: 0.49999994}
   m_LocalPosition: {x: 0.8149996, y: 0.017999887, z: -0.047}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4711487696617454}
   m_RootOrder: 3
@@ -432,10 +464,12 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -460,3 +494,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

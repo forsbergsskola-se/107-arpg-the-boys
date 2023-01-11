@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33695961046236082}
   - component: {fileID: 23724835254223282}
   - component: {fileID: 64903687358243372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4926510973798466}
   - component: {fileID: 33680725333229090}
   - component: {fileID: 23045489612392902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 33110229095105650}
   - component: {fileID: 23500256075780840}
   - component: {fileID: 64582954517801526}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arch_1a_block_2_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 4968165568484748}
   - component: {fileID: 33764366743653032}
   - component: {fileID: 23170426085537906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Beamwork_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 23878836282105368}
   - component: {fileID: 64740121668655282}
   - component: {fileID: 2478678148527483401}
+  - component: {fileID: 6791819522520618207}
   m_Layer: 8
   m_Name: dfk_arch_04_blocked_large_b
   m_TagString: Untagged
@@ -479,6 +480,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
+--- !u!114 &6791819522520618207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571129872617876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1904800345902484
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +505,7 @@ GameObject:
   - component: {fileID: 4230324274478286}
   - component: {fileID: 33787211395698108}
   - component: {fileID: 23301407349195602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pillar_Large2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

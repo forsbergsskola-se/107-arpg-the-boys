@@ -4258,7 +4258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWaitTime: 0
-  timeToRotate: 2
+  timeToRotate: 0
   speedRun: 9
   viewRadius: 15
   viewAngle: 360

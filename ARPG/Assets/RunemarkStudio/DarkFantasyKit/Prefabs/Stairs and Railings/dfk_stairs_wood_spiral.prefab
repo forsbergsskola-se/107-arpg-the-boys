@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4523505196550714}
   - component: {fileID: 64531791067691494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider_sides
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710781578827178}
   - component: {fileID: 64861152704427210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider_stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,8 @@ GameObject:
   - component: {fileID: 33547914098171252}
   - component: {fileID: 23482825998047488}
   - component: {fileID: 2136271361175067426}
-  m_Layer: 0
+  - component: {fileID: 1479363622638478843}
+  m_Layer: 8
   m_Name: dfk_stairs_wood_spiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +210,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &1479363622638478843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108252350884822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8899e913abe354a8c1f613066afe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMat: {fileID: 0}
 --- !u!1 &1573923337790126
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4448212435144078}
   - component: {fileID: 64781041470140654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider_stairs_slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
