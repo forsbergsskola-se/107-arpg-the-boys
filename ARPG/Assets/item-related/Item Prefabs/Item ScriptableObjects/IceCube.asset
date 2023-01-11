@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: IceCube
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Ice Cube: +25% ice slow'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
   baseMaxManaChange: 0
   maxMpModPercChange: 0
   currentManaChange: 0
+  hpRecovModPercChange: 0
+  mpRecovModPercChange: 0
   basePowerChange: 0
   powerModPercChange: 0
   critRateChange: 0
   critDamageChange: 0
+  lightAtkModPercChange: 0
+  lightAtkSpeedPercChange: 0
+  heavyAtkModPercChange: 0
+  heavyAtkSpeedPercChange: 0
+  guardTimeModPercChange: 0
+  guardPunishModPercChange: 0
   baseRangedRangeChange: 0
   rangedRangeModPercChange: 0
   baseRangePowerChange: 0
@@ -43,7 +52,7 @@ MonoBehaviour:
   baseFireDamageChange: 0
   fireDmgModPercChange: 0
   fireLengthChange: 0
-  iceSlowPercChange: 0.05
+  iceSlowPercChange: 0.25
   iceLengthChange: 0
   optValue: 0
   optValueTwo: 0

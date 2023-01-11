@@ -9,7 +9,7 @@ public interface IInteractable
         
     }
 
-    void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
+    void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {
         
     }

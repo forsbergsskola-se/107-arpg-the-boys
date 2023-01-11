@@ -10,13 +10,13 @@ public class NavMeshBaker : MonoBehaviour
 
     void Start()
     {
-        _navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
         StartCoroutine(WaitForSpawn());
     }
 
     public IEnumerator WaitForSpawn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
+        _navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
         navMeshSurfaces = _navMeshSurfaces;
         for (var i = 0; i < navMeshSurfaces.Length; i++)
         {

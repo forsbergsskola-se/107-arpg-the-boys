@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity.meta
 guid: 0851605490a599b46b6ac5cb681d93ea
 DefaultImporter:
+========
+guid: 9f0c34500de5b3d4b94ef4a9af784d76
+PrefabImporter:
+>>>>>>>> origin/item-stuff-my-brain-is-dry:ARPG/Assets/item-related/Item Prefabs/Text asset stuff/Celebrate effect.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

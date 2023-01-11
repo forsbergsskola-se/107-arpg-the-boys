@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,16 +9,7 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
     [Header("if this is disabled, item power will curve towards zero for this item type.")]
     public bool isLinearScaling;
     
-    private void OnCollisionEnter(Collision collision) //can be replaced with other pick-up logic if required
-    {
-        
-    }
-    /* todo: method for selling items.
-     method should be calling 'ItemPickedUp' so that value decreases instead of increases.
-     increase/decrease should employ scaling curve and update items held count as appropriate.
-     see trello backlog entry 'sell item method'.
-    */
-
+    
     float Scale(int numItems, float power) //scaling math stuff
     {
         if (numItems == 0)
@@ -26,10 +18,11 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         }
         return power / (1.0f + MathF.Sqrt(numItems));
     }
-
+    
     public int heldCount;
-    private void ItemPickedUp(PlayerStats plStat) //could probably clean this up, but... it works. so i won't.
+    private void ItemPickedUp(PlayerStats plStat, TextPopUpScript textPopUpScript) //could probably clean this up, but... it works. so i won't.
     {
+        textPopUpScript.SpawnText(itemSo.itemTextPopUp, gameObject.transform.position);
         if(isLinearScaling)
         {
             //hp
@@ -149,28 +142,61 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         Debug.Log("items held value in item script: " + heldCount);
     }
 
-    public float rotationSpeed;
-    private void Update()
+    private bool _pickUpEnabled;
+    private void Start()
     {
-        transform.Rotate(transform.up, rotationSpeed);
+        _camera = Camera.main;
+        _pickUpEnabled = false;
+        StartCoroutine(PickupDelay());
+    }
+    private IEnumerator PickupDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        _pickUpEnabled = true;
     }
 
-    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
+    private Camera _camera;
+    private void Update()
     {
-        Pickup(playerStats, playerInventory);
+        transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
+    }
+
+    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
+    {
+        if (_pickUpEnabled)
+        {
+            StartCoroutine(LerpToPlayer(.5f, playerStats, playerInventory, textPopUpScript));
+        } 
     }
 
     public void Highlight()
     {
         throw new NotImplementedException();
     }
-    
-    public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
+
+    public void Pickup(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {
         //get necessary components
         heldCount = playerInventory.GetItemCount(itemSo.name);//get # of items held from player inventory
-        ItemPickedUp(playerStats); // runs pick-up method
+        ItemPickedUp(playerStats, textPopUpScript); // runs pick-up method
         playerInventory.UpdateItemCount(itemSo.name); // updates # held
         Destroy(gameObject); //kills object
+    }
+    
+    private IEnumerator LerpToPlayer(float time, PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
+    {
+        Transform playerPos = playerStats.transform;
+        Vector3 startPos = transform.position;
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            float elapsed01 = Mathf.Clamp01(elapsedTime / time);
+            transform.position = Vector3.Lerp(startPos, playerPos.position, elapsed01);
+            yield return null;
+        }
+        transform.position = playerPos.position;
+        
+        Pickup(playerStats, playerInventory, textPopUpScript);
     }
 }

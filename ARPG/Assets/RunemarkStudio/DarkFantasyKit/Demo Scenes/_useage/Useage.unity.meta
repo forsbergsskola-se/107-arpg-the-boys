@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/RunemarkStudio/DarkFantasyKit/Demo Scenes/_useage/Useage.unity.meta
 guid: 630afe92f512978458b5c414e2c11021
+========
+guid: a5d51ec005a61cb47a366241cf8c5393
+folderAsset: yes
+>>>>>>>> origin/item-stuff-my-brain-is-dry:ARPG/Assets/item-related/Item Prefabs/Text asset stuff.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

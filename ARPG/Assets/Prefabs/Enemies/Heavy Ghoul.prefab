@@ -2972,11 +2972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemOne: {fileID: 0}
-  itemTwo: {fileID: 0}
-  itemThree: {fileID: 0}
-  itemFour: {fileID: 0}
-  itemFive: {fileID: 0}
+  itemOne: {fileID: 6073467025313538038, guid: 546fde21800c15a43b2379c41b882918, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: ccf3b4db3fa486a45b2024b5b6ea3107, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: 1efb87facbab5d14d89e6256209512c9, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: 0fb5d6e07a16cf645a40f885f400f7cd, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: 480217e520bcb4442bb639c74fcad4d0, type: 3}
   iOneDw: 50
   iTwoDw: 40
   iThreeDw: 30

@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthPotion : MonoBehaviour, IInteractable, IPickupable
 {
     public int charges;
-    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory)
-    { Pickup(playerStats, playerInventory); }
+
+    public void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
+    {
+        if(_pickUpEnabled)
+        { Pickup(playerStats, playerInventory); }
+    }
 
     void Pickup(PlayerStats playerStats, PlayerInventory playerInventory)
     {
@@ -16,9 +21,24 @@ public class HealthPotion : MonoBehaviour, IInteractable, IPickupable
         
     }
 
-    public float rotationSpeed;
-    private void Update() 
-    { transform.Rotate(transform.up, rotationSpeed); }
+    private bool _pickUpEnabled;
+    private void Start()
+    {
+        _camera = Camera.main;
+        _pickUpEnabled = false;
+        StartCoroutine(PickupDelay());
+    }
+
+    private IEnumerator PickupDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        _pickUpEnabled = true;
+    }
+    private Camera _camera;
+    private void Update()
+    {
+        transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
+    }
     
     public void Highlight() { throw new System.NotImplementedException(); }
 }
