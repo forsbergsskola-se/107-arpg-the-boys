@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
-  m_Name: Shield Plate
+  m_Name: Bell
   m_EditorClassIdentifier: 
-  itemTextPopUp: 'Shield plate: +25% guard punish'
+  itemTextPopUp: 'Bell: +25% guard punish'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
