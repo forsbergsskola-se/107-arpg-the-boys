@@ -38,7 +38,7 @@ public class WorldGenerator : MonoBehaviour
     }    
     private IEnumerator WrongEnemySpawnPurge()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++)
         {

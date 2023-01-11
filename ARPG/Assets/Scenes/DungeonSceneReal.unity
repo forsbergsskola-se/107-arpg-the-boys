@@ -802,7 +802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: allRooms.Array.data[0].rooms.Array.size
@@ -846,7 +846,11 @@ PrefabInstance:
       objectReference: {fileID: 7679204191476625106, guid: 654e5a3e553b780498fdc4806eccbb97, type: 3}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.size
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.data[0].amount
@@ -857,11 +861,27 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[0].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[1].amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.data[0].randomBetweenRooms.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.data[1].randomBetweenRooms.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[0].randomBetweenRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[1].randomBetweenRooms.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
@@ -870,6 +890,14 @@ PrefabInstance:
       objectReference: {fileID: 718909382065845995, guid: f393d00b243f85341beed599c1e8473e, type: 3}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: limitedRooms.Array.data[0].rooms.Array.data[1].randomBetweenRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 2397945362154435701, guid: f97c172df013d8c40917e03cd627cdae, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[0].randomBetweenRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 2397945362154435701, guid: f97c172df013d8c40917e03cd627cdae, type: 3}
+    - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
+      propertyPath: limitedRooms.Array.data[1].rooms.Array.data[1].randomBetweenRooms.Array.data[0]
       value: 
       objectReference: {fileID: 2397945362154435701, guid: f97c172df013d8c40917e03cd627cdae, type: 3}
     - target: {fileID: 1043354897770691159, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
