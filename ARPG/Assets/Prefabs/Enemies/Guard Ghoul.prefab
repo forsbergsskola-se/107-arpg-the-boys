@@ -1124,13 +1124,21 @@ Animator:
   m_GameObject: {fileID: 4302707925332424882}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4ef1a3afbe3d04fa081ed0804f91d92f, type: 3}
-  m_Controller: {fileID: 9100000, guid: fa40163a797740348bfa3e9a317af2d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 978389365e024454784d4c188f430fe3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'jaw_1'\n\tTransform 'pelvis'\n\tTransform 'middle_03_r'\n\tTransform
+    'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform 'neck_01'\n\tTransform 'clavicle_l'\n\tTransform
+    'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tand more ...\n\tFrom
+    animation clip 'spawn'\n\tFrom animation clip 'attack'\n\tFrom animation clip
+    'backpedal'\n\tFrom animation clip 'block1'\n\tFrom animation clip 'block2'\n\tFrom
+    animation clip 'block3'\n\tFrom animation clip 'die'\n\tFrom animation clip 'gethit'\n\tFrom
+    animation clip 'idle'\n\tFrom animation clip 'run'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
