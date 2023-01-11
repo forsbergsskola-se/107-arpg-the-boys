@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: Survival Kit
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Survival Kit: +25% hp recovery'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
   baseMaxManaChange: 0
   maxMpModPercChange: 0
   currentManaChange: 0
-  hpRecovModPercChange: 0.05
+  hpRecovModPercChange: 0.25
   mpRecovModPercChange: 0
   basePowerChange: 0
   powerModPercChange: 0

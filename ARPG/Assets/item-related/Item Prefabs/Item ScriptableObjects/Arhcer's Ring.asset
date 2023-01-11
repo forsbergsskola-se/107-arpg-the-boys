@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: Arhcer's Ring
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Archer''s Ring: +25% ranged range'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
@@ -31,7 +32,7 @@ MonoBehaviour:
   guardTimeModPercChange: 0
   guardPunishModPercChange: 0
   baseRangedRangeChange: 0
-  rangedRangeModPercChange: 0.05
+  rangedRangeModPercChange: 0.25
   baseRangePowerChange: 0
   rangePowerModPercChange: 0
   baseWalkMoveSpeedChange: 0

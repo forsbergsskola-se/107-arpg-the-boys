@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: Unicorn Dung
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Unicorn Dung: +25% Mp recovery'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
@@ -19,7 +20,7 @@ MonoBehaviour:
   maxMpModPercChange: 0
   currentManaChange: 0
   hpRecovModPercChange: 0
-  mpRecovModPercChange: 0.05
+  mpRecovModPercChange: 0.25
   basePowerChange: 0
   powerModPercChange: 0
   critRateChange: 0

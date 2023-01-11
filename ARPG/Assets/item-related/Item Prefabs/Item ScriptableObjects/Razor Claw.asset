@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4b535c7a820f24a940441201aee3b1, type: 3}
   m_Name: Razor Claw
   m_EditorClassIdentifier: 
+  itemTextPopUp: 'Razor Claw: +25% L.atk dmg'
   baseMaxHealthChange: 0
   baseMaxHpModPercChange: 0
   currentHealthChange: 0
@@ -24,7 +25,7 @@ MonoBehaviour:
   powerModPercChange: 0
   critRateChange: 0
   critDamageChange: 0
-  lightAtkModPercChange: 0.05
+  lightAtkModPercChange: 0.25
   lightAtkSpeedPercChange: 0
   heavyAtkModPercChange: 0
   heavyAtkSpeedPercChange: 0

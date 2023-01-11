@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARPG/Assets/RunemarkStudio/DarkFantasyKit/UserGuide.pdf.meta
 guid: 364005ee84f4bd54d9feda29358e9fee
 DefaultImporter:
+========
+guid: f03e8332f78cf2345a638746862f27ec
+PrefabImporter:
+>>>>>>>> origin/item-stuff-my-brain-is-dry:ARPG/Assets/TinyFire VFX/Prefabs/Pickup Flare.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
