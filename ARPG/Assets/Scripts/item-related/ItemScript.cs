@@ -163,8 +163,11 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
 
     public void Interact(PlayerStats playerStats, PlayerInventory playerInventory, TextPopUpScript textPopUpScript)
     {
-        if(_pickUpEnabled)
-        { Pickup(playerStats, playerInventory, textPopUpScript); } 
+        if (_pickUpEnabled)
+        {
+            LerpToPlayer(1, playerInventory.transform);
+            Pickup(playerStats, playerInventory, textPopUpScript);
+        } 
     }
 
     public void Highlight()
@@ -181,5 +184,17 @@ public class ItemScript : MonoBehaviour, IInteractable, IPickupable
         Destroy(gameObject); //kills object
     }
     
-   
+    private IEnumerator LerpToPlayer(float time, Transform playerPos)
+    {
+        Vector3 localDist = transform.position - playerPos.position;
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            float elapsed01 = Mathf.Clamp01(elapsedTime / time);
+            transform.position = Vector3.Lerp(playerPos.TransformPoint(localDist), playerPos.position, elapsed01);
+            yield return null;
+        }
+        transform.position = playerPos.position;
+    }
 }
