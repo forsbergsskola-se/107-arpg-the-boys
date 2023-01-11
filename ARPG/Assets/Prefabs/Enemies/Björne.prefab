@@ -4149,7 +4149,7 @@ GameObject:
   - component: {fileID: -5176376341162199347}
   m_Layer: 10
   m_Name: "Bj\xF6rne"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -35,6 +35,7 @@ public class WorldGenerator : MonoBehaviour
     {
         InitFunnyArray();
         GenerateRooms(desiredRoomAmount,Vector3.zero, Quaternion.identity);
+        StartCoroutine(WrongEnemySpawnPurge());
     }
 
     private IEnumerator WrongEnemySpawnPurge()
