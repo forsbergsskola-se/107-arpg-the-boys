@@ -63,7 +63,6 @@ MonoBehaviour:
   itemSo: {fileID: 11400000, guid: fe36fc90667b18840a4ebf8a0bf5b286, type: 2}
   isLinearScaling: 0
   heldCount: 0
-  rotationSpeed: 0.1
 --- !u!54 &6073467025313538041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80816007c7e1148f9a12edc61d693895, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12213e4794a15a440bcfaf4803a9f869, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

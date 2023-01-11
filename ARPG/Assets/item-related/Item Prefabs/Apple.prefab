@@ -63,7 +63,6 @@ MonoBehaviour:
   itemSo: {fileID: 11400000, guid: 04bc9b3d9c8a6b24bb63084dff348958, type: 2}
   isLinearScaling: 0
   heldCount: 0
-  rotationSpeed: 0.1
 --- !u!54 &6073467025313538041
 Rigidbody:
   m_ObjectHideFlags: 0

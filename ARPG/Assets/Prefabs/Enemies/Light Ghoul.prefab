@@ -2059,14 +2059,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'chin'\n\tTransform 'jaw'\n\tTransform 'pelvis'\n\tTransform
-    'ring_02_r'\n\tTransform 'spine_01'\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-    'chin'\n\tTransform 'neck_01'\n\tTransform 'clavicle_l'\n\tand more ...\n\tFrom
-    animation clip 'spawn'\n\tFrom animation clip 'attack'\n\tFrom animation clip
-    'block'\n\tFrom animation clip 'die'\n\tFrom animation clip 'gethit'\n\tFrom
-    animation clip 'idle'\n\tFrom animation clip 'run'\n\tFrom animation clip 'walk'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -2293,11 +2286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemOne: {fileID: 0}
-  itemTwo: {fileID: 0}
-  itemThree: {fileID: 0}
-  itemFour: {fileID: 0}
-  itemFive: {fileID: 0}
+  itemOne: {fileID: 6073467025313538038, guid: 0fb5d6e07a16cf645a40f885f400f7cd, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: 1b43bd2eb0ff3b840a9cda8411e1cfcd, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: ccf3b4db3fa486a45b2024b5b6ea3107, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: d1941788ba7649f4180617946590d50d, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: 0fb5d6e07a16cf645a40f885f400f7cd, type: 3}
   iOneDw: 50
   iTwoDw: 40
   iThreeDw: 30

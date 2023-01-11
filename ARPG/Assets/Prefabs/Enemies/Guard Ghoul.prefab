@@ -1365,11 +1365,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemOne: {fileID: 0}
-  itemTwo: {fileID: 0}
-  itemThree: {fileID: 0}
-  itemFour: {fileID: 0}
-  itemFive: {fileID: 0}
+  itemOne: {fileID: 6073467025313538038, guid: 1b43bd2eb0ff3b840a9cda8411e1cfcd, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: c6f0ea38ee2342d4f8048c282123340b, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: d1941788ba7649f4180617946590d50d, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: c2ed4b4073fc0974b9d580269441f0f2, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: 43d80f6f99e8dd24bb05bd38eef01efd, type: 3}
   iOneDw: 60
   iTwoDw: 50
   iThreeDw: 40

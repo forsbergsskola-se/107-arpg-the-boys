@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armoryWeapons:
   - weapon: {fileID: 5544351134137442709, guid: 2394c4cf4664292458a12ec34f09bf8e, type: 3}
-    isBought: 1
-    cost: 20
+    isBought: 0
+    cost: 50
   - weapon: {fileID: 2681921599505278631, guid: 1b035162e8f807446b642433228ab46e, type: 3}
     isBought: 1
-    cost: 30
+    cost: 50
   - weapon: {fileID: 4909087652306778666, guid: 46af6ed57912eb94891c97ca51eaf426, type: 3}
-    isBought: 1
-    cost: 12
+    isBought: 0
+    cost: 50
   - weapon: {fileID: 837803579199771690, guid: 4afb47f68bb1ed5408fcc493688f5fc7, type: 3}
-    isBought: 1
-    cost: 4
+    isBought: 0
+    cost: 50
   - weapon: {fileID: 2125228741861111680, guid: 7c41431eeb7f9064c931760b7983e5c3, type: 3}
-    isBought: 1
-    cost: 0
+    isBought: 0
+    cost: 50
   - weapon: {fileID: 7828089153916935713, guid: 323813849c143ef41aba5a7dc34e76c6, type: 3}
-    isBought: 1
-    cost: 85
+    isBought: 0
+    cost: 50

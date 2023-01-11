@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log("item: " + item.Key +" value: " + item.Value); //tells dev what entries have been made
         }
-        ShopSellMoney("Money", PlayerPrefs.GetInt("Money-Count", 0));
+        ShopSellMoney("Money", PlayerPrefs.GetInt("Money-Count", 50));
 
     }
 
