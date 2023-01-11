@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6073467025313538043}
   - component: {fileID: 6073467025313538040}
   - component: {fileID: 6073467025313538041}
-  - component: {fileID: 6278194714755028089}
+  - component: {fileID: 960625275644201444}
   m_Layer: 14
-  m_Name: Warning Teddy
+  m_Name: Beating Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,10 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fc686ef1cb25c42a5a2b36f422fae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSo: {fileID: 11400000, guid: 78228ced2c2a481488aee178e975375f, type: 2}
+  itemSo: {fileID: 11400000, guid: e65a2f76528751b41a30dbd6f44cc21a, type: 2}
   isLinearScaling: 0
   heldCount: 0
-  rotationSpeed: 0.1
 --- !u!54 &6073467025313538041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80,7 +79,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!212 &6278194714755028089
+--- !u!212 &960625275644201444
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bac278a536d054d52bbac93ca523c17b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44b13524e67591342b29f07cfc80ccfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
