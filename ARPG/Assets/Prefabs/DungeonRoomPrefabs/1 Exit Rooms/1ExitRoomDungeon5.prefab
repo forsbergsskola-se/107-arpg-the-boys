@@ -117,8 +117,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.073711, y: 14.683556, z: 24.93217}
-  m_Center: {x: -1.3446751, y: 7.416935, z: -1.6500835}
+  m_Size: {x: 21.073711, y: 19.444448, z: 24.93217}
+  m_Center: {x: -1.3446751, y: 5.0364885, z: -1.6500835}
 --- !u!114 &1148280148040265101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +282,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 3aefed69c9f131f4a9298a6b6afe52ac, type: 3}
   m_PrefabInstance: {fileID: 114314726186481118}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &5559403996039378870
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114314726186513278}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0616024, y: 2.2412152, z: 0.4700352}
+  m_Center: {x: 0.0000019073486, y: 1.1187992, z: 0.02986756}
 --- !u!114 &5063639508480126134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,19 +320,6 @@ MonoBehaviour:
   _bookHeight: 0.32
   _bookWidth: 0.22
   _instantiatedBooks: []
---- !u!65 &5559403996039378870
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114314726186513278}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0616024, y: 2.2412152, z: 0.4700352}
-  m_Center: {x: 0.0000019073486, y: 1.1187992, z: 0.02986756}
 --- !u!4 &114314726186872670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3aefed69c9f131f4a9298a6b6afe52ac, type: 3}

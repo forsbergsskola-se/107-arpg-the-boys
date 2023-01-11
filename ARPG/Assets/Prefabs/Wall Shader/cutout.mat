@@ -52,10 +52,10 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
-    - _CutoutSize: 0.01013635
+    - _CutoutSize: 0
     - _FalloffSize: 0.05
     m_Colors:
-    - _CutoutPos: {r: 0.5018071, g: Infinity, b: 0, a: 0}
+    - _CutoutPos: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Vector4: {r: 0, g: 0, b: 0, a: 0}
