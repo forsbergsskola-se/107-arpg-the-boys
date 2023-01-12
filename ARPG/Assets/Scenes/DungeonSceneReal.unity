@@ -299,14 +299,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87746180589648127, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_Name
+      value: Music Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 87746180589648127, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 938367398927242142, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: maxDodgeCharges
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421188905551178167, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2177735688051737022, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3496860746698128241, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6019e5aebd30b8d45bb7b90e274e9758, type: 3}
     - target: {fileID: 4390147298263352833, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -566,6 +582,10 @@ PrefabInstance:
     - target: {fileID: 4390147298263353341, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186911319254808289, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20.800049
       objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
@@ -868,7 +888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: desiredRoomAmount
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1043354897770691158, guid: 73580f3fbe172fc41a3bc34c1813cec8, type: 3}
       propertyPath: desiredShopAmount
