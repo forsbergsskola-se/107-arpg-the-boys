@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed08fb7be8186b458181f6814f22d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: 1
   audioSource: {fileID: 579766651}
   soundEffects:
     walkSound: {fileID: 8300000, guid: a6445322901a7a346bd082d3db185645, type: 3}

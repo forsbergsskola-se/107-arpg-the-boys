@@ -48,6 +48,7 @@ public class Guard
 
 public class Enemy : MonoBehaviour, IInterruptible, IDamageable
 {
+    public bool boss;
     public AudioSource audioSource;
     public soundEffects soundEffects;
     private GameObject target;
@@ -338,6 +339,9 @@ public class Enemy : MonoBehaviour, IInterruptible, IDamageable
             script.enabled = false;
         }
 
+        if (boss)
+            FindObjectOfType<Portal>().gameObject.transform.position += new Vector3(0,5,0);
+        
         animator.SetTrigger("Dead");
         Collider[] hitBox = GetComponentsInChildren<Collider>();
         for (var i = 0; i < hitBox.Length; i++)

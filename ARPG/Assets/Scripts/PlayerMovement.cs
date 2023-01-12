@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
+        cam = FindObjectOfType<Camera>().gameObject;
         _col = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _playerStats = GetComponent<PlayerStats>();
@@ -60,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = body.GetComponent<Animator>();
         _playerStats.DodgeCharges = _playerStats.maxDodgeCharges;
         _rollCooldownTimer = rollCooldown;
+    }
+
+    public void NewScene()
+    {
+        cam = FindObjectOfType<Camera>().gameObject;
     }
 
     void Update()

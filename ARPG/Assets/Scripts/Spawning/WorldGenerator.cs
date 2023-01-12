@@ -32,13 +32,14 @@ public class WorldGenerator : MonoBehaviour
     public GameObject debugCube;
     void Awake()
     {
+        FindObjectOfType<PlayerCombat>().gameObject.transform.position = new Vector3(2.45f,0.04f,0);
         InitFunnyArray();
         GenerateRooms(desiredRoomAmount,Vector3.zero, Quaternion.identity);
         StartCoroutine(WrongEnemySpawnPurge());
     }    
     private IEnumerator WrongEnemySpawnPurge()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.3f);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++)
         {

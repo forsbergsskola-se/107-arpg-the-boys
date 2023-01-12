@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +10,12 @@ public class CameraController : MonoBehaviour
     public float sharpness = 2;
     public float bossToPlayerCamLerp = 0.5f;
     public float maxDistanceFromTarget = 10;
+
+    private void Start()
+    {
+        target = FindObjectOfType<PlayerCombat>().gameObject.transform;
+        FindObjectOfType<PlayerMovement>().NewScene();
+    }
 
     private void Update()
     {

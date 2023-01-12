@@ -29,6 +29,10 @@ public class CutoutObject : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        targetObject = FindObjectOfType<PlayerCombat>().gameObject.transform;
+    }
     void Update()
     {
         ShaderThing();
