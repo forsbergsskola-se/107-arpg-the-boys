@@ -38,7 +38,7 @@ public class CutoutObject : MonoBehaviour
     private void ShaderThing()
     {
         Vector2 cutoutPos = mainCamera.WorldToViewportPoint(targetObject.position);
-        cutoutPos.y /= (Screen.width / Screen.height) - 1;
+        cutoutPos.y /= (Screen.width / Screen.height);
 
         Vector3 direction = targetObject.position - transform.position;
         //RaycastHit[] hitObject = Physics.SphereCastAll(transform.position, rayCastSize, direction, direction.magnitude - offset, wallMask);
