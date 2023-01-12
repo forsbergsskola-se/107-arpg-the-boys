@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 8960667572649674086}
   - component: {fileID: 1888077724}
   - component: {fileID: 579766651}
+  - component: {fileID: 1286787973447132328}
   m_Layer: 10
   m_Name: BigBossMan
   m_TagString: Enemy
@@ -398,6 +399,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1286787973447132328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451829122079135223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d15bf3d137d9dd4aa1bd0a3b3284cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOne: {fileID: 6073467025313538038, guid: a75e99d15448a294281bd90a67fbb17c, type: 3}
+  itemTwo: {fileID: 6073467025313538038, guid: f600fba687e174045a927dd29010a675, type: 3}
+  itemThree: {fileID: 6073467025313538038, guid: 43d80f6f99e8dd24bb05bd38eef01efd, type: 3}
+  itemFour: {fileID: 6073467025313538038, guid: c6f0ea38ee2342d4f8048c282123340b, type: 3}
+  itemFive: {fileID: 6073467025313538038, guid: a7f8f204210ae2c49bc08f0f4307e5ae, type: 3}
+  iOneDw: 60
+  iTwoDw: 50
+  iThreeDw: 40
+  iFourDw: 30
+  iFiveDw: 20
+  chanceOfDrop: 100
+  potionDrop: {fileID: 7128999294487744332, guid: 55c3a84d78392f4428b14edf9d1ac7e8, type: 3}
+  chanceOfPotion: 100
+  moneyDrop: {fileID: 6073467025313538038, guid: b4b9d77d369b0504ab5c610fe9e3d204, type: 3}
+  chanceOfMoney: 100
 --- !u!1 &620216483588369120
 GameObject:
   m_ObjectHideFlags: 0
