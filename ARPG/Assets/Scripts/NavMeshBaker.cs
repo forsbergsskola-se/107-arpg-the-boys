@@ -5,24 +5,22 @@ using UnityEngine;
 
 public class NavMeshBaker : MonoBehaviour
 {
-    private NavMeshSurface[] navMeshSurfaces;
-    private NavMeshSurface[] _navMeshSurfaces;
-    private NavMeshSurface[] _navMeshSurfaces1;
+    public NavMeshSurface[] navMeshSurfaces;
+    public LayerMask triggerSpawnLayers;
 
     void Start()
     {
-        _navMeshSurfaces1 = FindObjectsOfType<NavMeshSurface>();
         StartCoroutine(WaitForSpawn());
     }
 
     public IEnumerator WaitForSpawn()
     {
         yield return new WaitForSeconds(1);
-        _navMeshSurfaces = _navMeshSurfaces1;
-        navMeshSurfaces = _navMeshSurfaces;
+        navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
         for (var i = 0; i < navMeshSurfaces.Length; i++)
         {
-            navMeshSurfaces[i].BuildNavMesh();
+            if ((triggerSpawnLayers & (1 << navMeshSurfaces[i].gameObject.layer))!= 0)
+                navMeshSurfaces[i].BuildNavMesh();
         }
     }
 }
