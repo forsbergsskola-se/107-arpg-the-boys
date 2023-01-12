@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
+using Vector3 = UnityEngine.Vector3;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -58,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
         EnviromentView();
         if (!_isPatrol)
         {
+            
             Chasing();
         }
         else
@@ -65,40 +68,56 @@ public class EnemyMovement : MonoBehaviour
             Patroling();
         }
     }
+
+    private Vector3 playerPosition;
+    
     private void Chasing()
-    {  
+    {
+        Debug.Log("Chasing");
+        Debug.Log("pathpending is "+navMeshAgent.pathPending);
         _playerNear = false;
         _playerLastPosition = Vector3.zero;
-        if (!_caughtPlayer)
+
+        
+        if (Vector3.Distance(playerPosition, _player.transform.position) > agroDistance)
         {
-            Move(speedRun);
-            navMeshAgent.SetDestination(_playerPosition);
+            
+            Debug.Log("Player has moved a lot. Recalculating.");
+            if (!navMeshAgent.SetDestination(_player.transform.position))
+            {
+                Debug.Log("Could not find path to player.");
+            }
+            else
+            {
+                playerPosition = _player.transform.position;
+            }
         }
 
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
+            Debug.Log("remainingDistance < stoppingDistance");
             if (!_caughtPlayer && Vector3.Distance(transform.position, _player.transform.position) >= agroDistance)
             {
+                Debug.Log("too far, stop chase");
                 _isPatrol = true;
                 _playerNear = false;
                 Move(speedRun);
                 _timeToRotate = timeToRotate;
                 _waitTime = startWaitTime;
-                navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+                if (!navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position))
+                {
+                    Debug.Log("Could not find path.");
+                }
             }
-            else //if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
-            {
-                Stop();
-                _waitTime -= Time.deltaTime;
-            }
-
         }
     }
 
     private void Patroling()
     {
+        Debug.Log("Patrolling");
         if (_playerNear)
         {
+            Debug.Log("player is near");
             if (_timeToRotate <= 0)
             {
                 Move(speedRun);
@@ -106,6 +125,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
+                Debug.Log("Stopping");
                 Stop();
                 _timeToRotate -= Time.deltaTime;
 
@@ -113,6 +133,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            Debug.Log("player is not near");
             _playerNear = false;
             _playerPosition = Vector3.zero;
             navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);

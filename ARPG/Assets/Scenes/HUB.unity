@@ -9779,10 +9779,30 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a5b264c73b608ee4c8640220922bbd50, type: 3}
+    - target: {fileID: 3496860746698128241, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6019e5aebd30b8d45bb7b90e274e9758, type: 3}
+    - target: {fileID: 4604463338528296852, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604463338528296852, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5105986825548553316, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a5b264c73b608ee4c8640220922bbd50, type: 3}
+    - target: {fileID: 6791384467205766033, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791384467205766033, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7156168390622570852, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: rolloffMode
       value: 2
