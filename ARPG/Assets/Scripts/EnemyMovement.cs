@@ -36,7 +36,6 @@ public class EnemyMovement : MonoBehaviour
     
     void Start()
     {
-        _playerPosition = Vector3.zero;
         _isPatrol = true;
         _caughtPlayer = false;
         _playerInRange = false;
@@ -47,6 +46,7 @@ public class EnemyMovement : MonoBehaviour
         _playerCombat = FindObjectOfType<PlayerCombat>();
         _enemy = GetComponent<Enemy>();
         _player = _playerCombat.gameObject;
+        _playerPosition = _player.transform.position;
         
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedRun;
@@ -67,14 +67,71 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Chasing()
     {  
-        Move(speedRun);
-        navMeshAgent.SetDestination(_player.transform.position);
+        _playerNear = false;
+        _playerLastPosition = Vector3.zero;
+        if (!_caughtPlayer)
+        {
+            Move(speedRun);
+            navMeshAgent.SetDestination(_playerPosition);
+        }
+
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            if (!_caughtPlayer && Vector3.Distance(transform.position, _player.transform.position) >= agroDistance)
+            {
+                _isPatrol = true;
+                _playerNear = false;
+                Move(speedRun);
+                _timeToRotate = timeToRotate;
+                _waitTime = startWaitTime;
+                navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+            }
+            else //if (Vector3.Distance(transform.position, player.transform.position) >= 2.5f)
+            {
+                Stop();
+                _waitTime -= Time.deltaTime;
+            }
+
+        }
     }
 
     private void Patroling()
     {
-        Move(speedRun);
-        navMeshAgent.SetDestination(_player.transform.position);
+        if (_playerNear)
+        {
+            if (_timeToRotate <= 0)
+            {
+                Move(speedRun);
+                LookingPlayer(_playerLastPosition);
+            }
+            else
+            {
+                Stop();
+                _timeToRotate -= Time.deltaTime;
+
+            }
+        }
+        else
+        {
+            _playerNear = false;
+            _playerPosition = Vector3.zero;
+            navMeshAgent.SetDestination(waypoints[_currentWaypointIndex].position);
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                if (_waitTime <= 0)
+                {
+                    NextPoint();
+                    Move(speedRun);
+                    _waitTime = startWaitTime;
+                }
+                else
+                {
+                    
+                    Stop();
+                    _waitTime -= Time.deltaTime;
+                }
+            }
+        }
     }
     
     public void NextPoint()
@@ -127,6 +184,35 @@ public class EnemyMovement : MonoBehaviour
 
     private void EnviromentView()
     {
+        Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+
+        for (int i = 0; i < playerInRange.Length; i++)
+        {
+            Transform player = playerInRange[i].transform;
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+            {
+                float dstToPlayer = Vector3.Distance(transform.position, player.position);
+                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+                {
+                    _playerInRange = true;
+                    _isPatrol = false;
+                }
+                else
+                {
+                    _playerInRange = false;
+                }
+            }
+            if (Vector3.Distance(transform.position, player.position) > viewRadius)
+            {
+                _playerInRange = false;
+            }
+        }
+
+        if (_playerInRange)
+        {
+            _playerPosition = _player.transform.position;
+        }
         _playerPosition = _player.transform.position;
     }
 }

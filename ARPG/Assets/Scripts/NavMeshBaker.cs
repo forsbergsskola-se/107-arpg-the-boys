@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class NavMeshBaker : MonoBehaviour
 {
-    private NavMeshSurface[] navMeshSurfaces;
     private NavMeshSurface[] _navMeshSurfaces;
 
     void Start()
@@ -17,10 +16,9 @@ public class NavMeshBaker : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         _navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
-        navMeshSurfaces = _navMeshSurfaces;
-        for (var i = 0; i < navMeshSurfaces.Length; i++)
+        for (var i = 0; i < _navMeshSurfaces.Length; i++)
         {
-            navMeshSurfaces[i].BuildNavMesh();
+            _navMeshSurfaces[i].BuildNavMesh();
         }
     }
 }
