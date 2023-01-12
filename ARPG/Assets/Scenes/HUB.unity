@@ -9783,10 +9783,6 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a5b264c73b608ee4c8640220922bbd50, type: 3}
-    - target: {fileID: 8186911319254808289, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2.399994
-      objectReference: {fileID: 0}
     - target: {fileID: 8451480336757137061, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9838,10 +9834,6 @@ PrefabInstance:
     - target: {fileID: 8451480336757137063, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8580369591203506151, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -19.099976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2370dc874f50f2040a2250bd8f120f73, type: 3}
@@ -16171,6 +16163,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642220210}
     m_Modifications:
+    - target: {fileID: 37725076051659182, guid: 12f3469b5e8ca874a8ba386369a745f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 37725076895989780, guid: 12f3469b5e8ca874a8ba386369a745f0, type: 3}
       propertyPath: player
       value: 
