@@ -17,7 +17,7 @@ MonoBehaviour:
     isBought: 0
     cost: 50
   - weapon: {fileID: 2681921599505278631, guid: 1b035162e8f807446b642433228ab46e, type: 3}
-    isBought: 1
+    isBought: 0
     cost: 50
   - weapon: {fileID: 4909087652306778666, guid: 46af6ed57912eb94891c97ca51eaf426, type: 3}
     isBought: 0

@@ -4779,6 +4779,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2136343658085962521}
     - target: {fileID: 395778512926661607, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
+      propertyPath: weaponLoader
+      value: 
+      objectReference: {fileID: 6373543057918427415}
+    - target: {fileID: 395778512926661607, guid: 78b4b7ae81882a342a824600863dccbf, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 8451480336757137062}

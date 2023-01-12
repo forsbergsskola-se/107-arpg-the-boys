@@ -13,6 +13,7 @@ public class PauseMenuScript : MonoBehaviour
     private bool _shouldPop;
 
     public PlayerMovement playerMovement;
+    public PlayerWeaponLoader weaponLoader;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
 
@@ -155,8 +156,13 @@ public class PauseMenuScript : MonoBehaviour
 
     public void NewGameButton()
     {
+        // CLEAR ALL THE PLAYERPREFS FFS
         PlayerPrefs.DeleteAll();
+        weaponLoader.SaveProgress();
+        weaponLoader.LoadProgress();
+        weaponLoader.SaveProgress();
         SceneManager.LoadScene(0);
+        PlayerPrefs.DeleteAll();
     }
     public void ResumeButton()
     {
