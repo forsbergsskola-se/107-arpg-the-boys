@@ -6,7 +6,6 @@ using UnityEngine;
 public class NavMeshBaker : MonoBehaviour
 {
     public NavMeshSurface[] navMeshSurfaces;
-    public LayerMask triggerSpawnLayers;
 
     void Start()
     {
@@ -19,8 +18,7 @@ public class NavMeshBaker : MonoBehaviour
         navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
         for (var i = 0; i < navMeshSurfaces.Length; i++)
         {
-            if ((triggerSpawnLayers & (1 << navMeshSurfaces[i].gameObject.layer))!= 0)
-                navMeshSurfaces[i].BuildNavMesh();
+            navMeshSurfaces[i].BuildNavMesh();
         }
     }
 }
