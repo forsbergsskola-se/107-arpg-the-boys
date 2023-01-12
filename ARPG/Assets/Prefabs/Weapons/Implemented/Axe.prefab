@@ -161,6 +161,7 @@ MonoBehaviour:
   heavyAttackSpeed: 0.9
   heavyAttackColSize: {x: 3.67, y: 2.55, z: 2.88}
   heavyAttackColOffset: {x: 0, y: -0.32, z: 2}
+  magicAttackDamage: 15
   guardTime: 0.6
   parryPunishRange: 2.3
   parryTime: 0.15
