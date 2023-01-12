@@ -202,8 +202,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1431000898841606371}
   m_AABB:
-    m_Center: {x: -0.08174469, y: 0.14594659, z: -0.12922332}
-    m_Extent: {x: 0.24898985, y: 0.1378198, z: 0.2799941}
+    m_Center: {x: -0.087060094, y: 0.14845382, z: -0.16426125}
+    m_Extent: {x: 0.24069777, y: 0.08171998, z: 0.24067166}
   m_DirtyAABB: 0
 --- !u!183 &1431000897867001509
 Cloth:
@@ -1011,8 +1011,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1431000898841606343}
   m_AABB:
-    m_Center: {x: 0.2739492, y: -0.21461347, z: -0.000000059604645}
-    m_Extent: {x: 0.3713835, y: 0.09487609, z: 0.14964207}
+    m_Center: {x: 0.27526462, y: -0.21626605, z: -0.000000059604645}
+    m_Extent: {x: 0.37153673, y: 0.012022883, z: 0.14964208}
   m_DirtyAABB: 0
 --- !u!183 &1431000897540701140
 Cloth:
@@ -1386,8 +1386,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1431000898841606343}
   m_AABB:
-    m_Center: {x: 0.2339703, y: 0.23471017, z: -0.000000059604645}
-    m_Extent: {x: 0.30403733, y: 0.09745614, z: 0.2620341}
+    m_Center: {x: 0.23117906, y: 0.2397497, z: -0.0000150203705}
+    m_Extent: {x: 0.2973479, y: 0.05923307, z: 0.26195598}
   m_DirtyAABB: 0
 --- !u!183 &1431000899077187644
 Cloth:
@@ -4306,7 +4306,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 0
 --- !u!82 &38332992643484363
 AudioSource:
   m_ObjectHideFlags: 0
