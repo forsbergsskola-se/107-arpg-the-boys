@@ -1,6 +1,6 @@
 # Dude Guy Dungeon Man
 
-[{video}](https://www.youtube.com/watch?v=xMxG06_TwY8&list=LL&index=2&ab_channel=rafatrash)
+[{Game Trailer}](https://www.youtube.com/watch?v=xMxG06_TwY8&ab_channel=rafatrash)
 
 Step into the world of Dude Guy Dungeon Man, a thrilling rogue-like action role-playing game set in a randomly generated dungeon. As the brave adventurer, Dude Guy, players will embark on a journey to uncover treasure and defeat the ultimate boss lurking at the end of the dungeon.
 
