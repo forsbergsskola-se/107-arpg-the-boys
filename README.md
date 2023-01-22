@@ -13,8 +13,13 @@ With randomly generated levels, no two playthroughs will ever be the same, makin
 ## Marc Zaku Stans
 
 Luca: Team Lead, player movement and combat, shop system etc. 
+
 Kalle: Project Owner, world generation system. 
+
 Hampus: enemies, bosses.
+
 Rafa: room prefab design, game trailer.
+
 Leo: wall see-through shader, hub, enemy ai
+
 James: item system. 
