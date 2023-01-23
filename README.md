@@ -29,4 +29,5 @@ James: item system.
 
 <img width="1033" alt="image" src="https://user-images.githubusercontent.com/56590155/214082519-3723ab7e-e634-4bf9-800b-631c9f0e942b.png">
 
-<img width="422" alt="image" src="https://user-images.githubusercontent.com/56590155/214083388-7f4af96e-87a9-4644-aa69-a3739b82739b.png">
+<img width="976" alt="image" src="https://user-images.githubusercontent.com/56590155/214083674-3cb1f2a6-3e23-4cda-bfc0-0aaab2a73565.png">
+
