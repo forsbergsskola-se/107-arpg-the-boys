@@ -55,7 +55,7 @@ Material:
     - _CutoutSize: 0
     - _FalloffSize: 0.05
     m_Colors:
-    - _CutoutPos: {r: 0.49999997, g: 0.50000006, b: 0, a: 0}
+    - _CutoutPos: {r: 0.49942496, g: 0.50000435, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Vector4: {r: 0, g: 0, b: 0, a: 0}

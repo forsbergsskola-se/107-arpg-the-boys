@@ -7,16 +7,13 @@ public class PlayerInventory : MonoBehaviour
 {
     //programmer beware - black magic inspired by google follows.
     private readonly Dictionary<string, int> _itemDict = new(); //holds all item value pairs
-
+    public ItemScriptableObject[] itemsThatExist;
     private void Start()
     {
-        
-        DirectoryInfo itemsDir = new DirectoryInfo("Assets/item-related/Item Prefabs/Item ScriptableObjects"); //points at directory
-        FileInfo[] files = itemsDir.GetFiles("*.asset"); //pulls appropriate files from directory
-        foreach (FileInfo file in files) //runs through array initializing entries in dictionary
+        foreach (ItemScriptableObject item in itemsThatExist) //runs through array initializing entries in dictionary
         {
-            Debug.Log("file found: " + file.Name + "\n"); //tells dev what's been found
-            _itemDict.Add(file.Name.TrimEnd(".asset"),0); //prunes .asset from file found, initializes entry
+            Debug.Log("file found: " + item + "\n"); //tells dev what's been found
+            _itemDict.Add(item.name,0); //initializes entry
         }
 
         foreach (KeyValuePair<string, int> item in _itemDict)
