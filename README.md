@@ -23,3 +23,10 @@ Rafa: room prefab design, game trailer.
 Leo: wall see-through shader, hub, enemy ai
 
 James: item system. 
+
+## Screenshots
+<img width="1034" alt="image" src="https://user-images.githubusercontent.com/56590155/214082301-1e356c22-e68d-4290-9e37-203f1014401a.png">
+
+<img width="1033" alt="image" src="https://user-images.githubusercontent.com/56590155/214082519-3723ab7e-e634-4bf9-800b-631c9f0e942b.png">
+
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/56590155/214083388-7f4af96e-87a9-4644-aa69-a3739b82739b.png">
